@@ -1,0 +1,56 @@
+﻿@using DevOffice.Common.ViewModels
+@model List<DevOffice.Common.ViewModels.Solution>
+@{
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+}
+
+<div class="solutions-content">
+
+    <ul class="moreinfo-list container-fluid eventlist" role="list">
+
+        @foreach (var solutionItem in Model)
+        {
+            if (!string.IsNullOrEmpty(solutionItem.ExternalLink))
+            {
+                if (!solutionItem.ExternalLink.Contains(baseUrl) && !solutionItem.ExternalLink.StartsWith("/"))
+                {
+                    external = "_blank";
+                }
+            }
+
+            // creating unique link Id's for Microsoft tracking
+            string[] detailLink = { @solutionItem.Title.Replace(" ", ""), "DetailLink" };
+            var detailLinkId = string.Join("-", detailLink);
+
+            string[] moreInfo = { @solutionItem.Title.Replace(" ", ""), "MoreInfoLink" };
+            var moreInfoId = string.Join("-", moreInfo);
+
+            <li class="solutions-box col-xs-12" role="listitem" aria-label="@solutionItem.Title" data-order="@solutionItem.Ordering">
+                <div class="tab-event">
+                    <div class="tab-info">
+                        <div class="tab-icon col-lg-4 col-sm-4 col-xs-12">
+                            <a data-bind="attr: { href: Url }" id="@detailLinkId" href="@solutionItem.ExternalLink" target="@external" role="link">
+                                <img src="@solutionItem.Image" alt="@solutionItem.Title" class="img-responsive" />
+                            </a>
+                        </div>
+                        <div class="tab-tile col-lg-8 col-sm-8 col-xs-12">
+                            <div class="tab-title">@solutionItem.Title</div>
+                            <div class="tab-details details">
+                                <p class="truncate" data-pane="@solutionItem.Title">
+                                    @Html.Raw(solutionItem.Content)
+                                </p>
+                            </div>
+                            <div class="event-links">
+                                <a data-bind="attr: { href: Url }" id="@detailLinkId" href="@solutionItem.ExternalLink" target="@external" role="link" class="pull-right ff-semibold">VIEW<img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+
+    </ul>
+
+</div>

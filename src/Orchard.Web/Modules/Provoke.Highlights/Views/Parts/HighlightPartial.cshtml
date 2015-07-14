@@ -1,0 +1,192 @@
+﻿@using Newtonsoft.Json
+@using Provoke.Highlights.ViewModels
+@model ScenarioViewModel
+
+@{
+    ScenarioViewModel scenarioViewModel = Model;
+
+    var tasks = scenarioViewModel.Tasks.OrderBy(tr => tr.SortOrder).ToArray();
+    var stepelementtype = "div";
+    var contentEditable = "";
+    
+    if (scenarioViewModel.IsAdminView)
+    {
+        stepelementtype = "provoke-draggable";
+        contentEditable = "contenteditable=true";
+    }
+}
+
+
+<div>
+
+    <div class="row task-header">
+        
+        <div class="taskTabs">
+
+            <div ng-repeat="task in tasks track by $index" ng-show="task" class="tab"
+                 ng-class="{selected: task.uid == currentTaskUid}" data-uid="{{task.uid}}"
+                 id="task-tab-{{task.id}}" itemid="{{task.id}}"
+                 data-taskid="{{task.id}}" ng-click='tabClick(task, $index)'>
+
+                @if (scenarioViewModel.IsAdminView)
+                {
+                    <div class='tab-drag-handle'>
+                        @*<div class='tab-edit'>
+                                <span class='glyphicon glyphicon-pencil'></span>
+                            </div>*@
+                        <div class='tab-remove' ng-click='removeTask($index)'>
+                            <span class='glyphicon glyphicon-remove'></span>
+                        </div>
+                    </div>
+                }
+
+                <h2 class="tab-heading ff-light">Part {{task.sortOrder}}</h2>
+                <h3 class="title ff-semibold" ng-model="task.title" @contentEditable>
+                    {{task.title}}
+                </h3>
+                <p class="duration ff-semilight" ng-model="task.duration" @contentEditable>{{task.duration}}</p>
+            </div>
+
+            @if (scenarioViewModel.IsAdminView)
+            {
+                <div ng-show="tasks.length < 8" class="tab tab-new" ng-click='addTask()'>
+                    <span class="title glyphicon glyphicon-plus"></span>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div ng-repeat="task in tasks track by $index" class="task-container"
+         ng-show="task.uid == currentTaskUid" id="{{'task-' + task.id}}" data-uid="{{task.uid}}">
+        
+        @{
+            // only toggle the show/hide state of the description if we are NOT in admin mode.
+            // If we are in admin mode, we want the description box to appear no matter what, so that
+            // we maintain editability of the content. For the end user, we want to hide the box completely
+            // if it has no content.
+            var showDescriptionBinding = !scenarioViewModel.IsAdminView ? "ng-show='task.description.length > 0'" : "";
+        }
+        <!-- TASK DESCRIPTION -->
+        <div class='highlight-description-container' @Html.Raw(showDescriptionBinding)>
+            <div class='description ff-semilight' ng-model="task.description" @contentEditable>
+                {{ task.description }}
+            </div>
+        </div>
+        
+        <div class='task-step-container'>
+
+            @if (scenarioViewModel.IsAdminView)
+            {
+                <p class="task-step-empty" ng-show="!taskHasSteps(task)">
+                    You have no steps in this task. Click &quot;<strong>Add new step</strong>&quot; below to add a step.
+                </p>
+            }
+
+            <div ng-repeat="step in task.steps track by $index | orderBy: 'sortOrder'" class="step-container"
+                 ng-show="task.uid == currentTaskUid && step.uid == currentStepUid"
+                 ng-class="{'selected-step': step.uid == currentStepUid}" data-stepid="{{step.id}}"
+                 data-taskuid="{{task.uid}}" data-stepuid="{{step.uid}}"
+                 ng-init="stepLoaded(task, module)">
+
+                @*@{ var styling = string.Format("position: relative; top: {0}px; left: {1}px;", step.TopPosition, step.LeftPosition); }*@
+
+                <!-- DO NOT REMOVE: will be <div> or <provoke-draggable> depending on client/admin -->
+                <@Html.Raw(stepelementtype) class="step-tooltip" data-stepindex="{{$index}}" data-taskindex="{{$parent.$index}}"
+                                            data-left="{{step.leftPosition}}" data-top="{{step.topPosition}}" ng-show="step.image">
+
+                    @if (scenarioViewModel.IsAdminView)
+                    {
+                        <div class='drag-handle'>
+                            <div class='glyphicon glyphicon-asterisk step-tooltip-anchor-position'
+                                 ng-click='anchorPositionClick(step)'></div>
+                        </div>
+                    }
+
+                    <div class="{{'tooltipPointer ' + step.anchor}}"></div>
+
+                    <div class="detail">
+                        <div class="title ff-semibold" @contentEditable ng-model="step.title">
+                            {{step.title}}
+                        </div>
+                        <div class="instruction ff-semilight" @contentEditable ng-model="step.description" >
+                            {{step.description}}
+                        </div>
+                    </div>
+
+                    <div class="stepIndex" ng-show="task.steps.length > 1">
+
+                        <span ng-show='$index > 0' class="previous-step" ng-click="previousStepClick(task, step, $index)">
+                            <span class="previous-step-icon step-icon"></span>
+                        </span>
+
+                        <span>Step {{step.sortOrder}} of {{task.steps.length}}</span>
+
+                        <span ng-show="$index < (task.steps.length - 1)" class="next-step" ng-click="nextStepClick(task, step, $index)">
+                            <span class="next-step-icon step-icon"></span>
+                        </span>
+
+                    </div>
+
+                    <!-- DO NOT REMOVE: will be </div> or </provoke-draggable> depending on client/admin -->
+                    <@Html.Raw("/" + stepelementtype)>
+
+                        <div class="imageContainer">
+                            <img ng-attr-src="{{step.image}}" ng-attr-alt="{{step.title}}" ng-show="step.image" />
+                        </div>
+
+            </div>  <!-- end .step-container -->
+        </div>
+        @if (scenarioViewModel.IsAdminView)
+        {
+
+            <div class='step-list-container'>
+
+                <hr />
+
+                <h2>Edit steps for Part:</h2>
+                <p class='step-list-title'>
+                    <strong>{{task.title}}</strong>
+                </p>
+
+                <ul class='step-list'>
+                    <li class="step-list-item step-list-add" ng-click='addStep(task, $index)'>
+                        <div class='glyphicon glyphicon-plus'></div>
+                        <div>Add new step</div>
+                    </li>
+                    <li class='step-list-item' ng-repeat="step in getCurrentTaskStepsByTaskUid(currentTaskUid) | orderBy: 'sortOrder'"
+                        ng-class="{selected: step.uid == currentStepUid}"
+                        ng-attr-taskid="{{task.id}}" ng-attr-stepuid="{{step.uid}}"
+                        ng-attr-taskindex="{{$parent.$index}}" ng-attr-stepid="{{step.id}}"
+                        ng-click="stepClick(step)">
+                        <div class='step-list-item-drag-handle'></div>
+                        <div class='step-list-item-remove' ng-click="removeStep($parent.$index, $index)">
+                            <span class='glyphicon glyphicon-remove'></span>
+                        </div>
+                        <div>{{step.title}}</div>
+                        <div class="step-list-item-image glyphicon glyphicon-picture" ng-click="updateMediaUrl(step, $index)"
+                             title="Choose image..."></div>
+                    </li>
+                </ul>
+
+                <div ng-show="showStepReorderMessage"
+                     class='alert alert-warning alert-dismissable message message-Warning'>
+                    Please <strong>save</strong> or <strong>publish</strong> to apply your changes.
+                </div>
+
+            </div>
+
+            <!-- To track the sorting of tasks in admin -->
+            <input type="text" hidden class="SortOrder" ng-value="{{task.sortOrder + 1}}" ng-model="task.sortOrder" />
+        }
+
+    </div>  <!-- end .task-container -->
+    
+    @if (scenarioViewModel.IsAdminView)
+    {
+        <fieldset>
+            @Html.HiddenFor(m => m.TasksJson, new { @ng_value = "tasksAsJSONString" })
+        </fieldset>
+    }
+
+</div>

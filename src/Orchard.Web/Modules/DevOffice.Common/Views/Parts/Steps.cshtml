@@ -1,0 +1,40 @@
+﻿@model DevOffice.Common.ViewModels.StepsDisplayViewModel
+
+        <div class="@Model.StepsPage">
+            @if (Model.Steps != null)
+            {
+
+                <div class="step-section-background">
+                    <div class="container-fluid">
+
+                        @foreach (var step in Model.Steps)
+                        {
+                            <div class="col-lg-4 step" role="article" aria-label="@step.Title">
+                                @if (!String.IsNullOrEmpty(step.LeftImage))
+                                {
+                                    <div class="col-sm-6 col-xs-6 absolute-left pull-left">
+                                        <img src="@step.LeftImage" class="" alt="@step.Title Left Image" />
+                                    </div>
+                                }
+                                <h1>@step.Title</h1>
+                                @*<h3>@Html.Raw(step.Description)</h3>*@
+                                @if (step.Substeps != null)
+                                {
+                                    <ol class="substep-list">
+                                        @foreach (var substep in step.Substeps)
+                                        {
+                                            <li class="substep-item">@Html.Raw(substep.Description)</li>
+                                        }
+                                    </ol>
+                                }
+                                @if (!String.IsNullOrEmpty(step.RightImage))
+                                {
+                                    <img src="@step.RightImage" class="absolute-right pull-right" alt="@step.Title Right Image" />
+                                }
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            }
+        </div>

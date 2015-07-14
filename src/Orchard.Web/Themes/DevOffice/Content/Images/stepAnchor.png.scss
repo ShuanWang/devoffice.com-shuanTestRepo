@@ -1,0 +1,75 @@
+﻿/*
+@import this file directly into your existing Scss files to use these mixins
+*/
+@mixin sprite-stepAnchorBottomCenter() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') 0 0;
+}
+@mixin sprite-stepAnchorBottomLeft() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') 0 -12px;
+}
+@mixin sprite-stepAnchorBottomRight() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') 0 -24px;
+}
+@mixin sprite-stepAnchorLeftBottom() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') 0 -36px;
+}
+@mixin sprite-stepAnchorLeftCenter() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') 0 -61px;
+}
+@mixin sprite-stepAnchorLeftTop() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') 0 -86px;
+}
+@mixin sprite-stepAnchorRightBottom() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') 0 -111px;
+}
+@mixin sprite-stepAnchorRightCenter() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') 0 -136px;
+}
+@mixin sprite-stepAnchorRightTop() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') 0 -161px;
+}
+@mixin sprite-stepAnchorTopCenter() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') 0 -186px;
+}
+@mixin sprite-stepAnchorTopLeft() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') 0 -198px;
+}
+@mixin sprite-stepAnchorTopRight() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') 0 -210px;
+}

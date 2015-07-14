@@ -1,0 +1,16 @@
+<Placement>
+  <Place Parts_SecretFormWidget="Content:1"/>
+  <Place Parts_ActivityFeedAPIFormWidget="Content:1"/>
+  <Place Parts_PartnerReqsPage="Content:1"/>
+  <Place Parts_OverviewPage="Content:1"/>
+  <Place Parts_SingleBlogWidget="AfterContent:1"/>
+
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_SecretFormWidget="-"/>
+    <Place Parts_PartnerReqsPage="-"/>
+    <Place Parts_OverviewPage="-"/>
+  </Match>
+  
+  <Place Parts_SharePointSettings_Edit="Content:1"/>
+  <Place Parts_EmailSettingsPart="Content:before"/>
+</Placement>

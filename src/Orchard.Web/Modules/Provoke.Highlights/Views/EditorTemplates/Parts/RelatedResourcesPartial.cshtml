@@ -1,0 +1,354 @@
+﻿@using Provoke.Highlights.Models
+@using Newtonsoft.Json;
+@using NHibernate.Collection.Generic
+
+@*type, title, url (internal file ro excternal link like skype bg  image), sortorder, id*@
+
+
+@{
+    
+    Style.Include("RelatedlinksStyles.css");
+    Style.Require("jQueryColorBox");
+
+    var order = 0;
+}
+
+
+@*EDIT EXISTING LINK ACCORDION*@
+<div id="linksPart">
+    <div ng-controller="grouplinksController" class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="glyphicon glyphicon-film"></span>
+                    @T("Your related links") ({{ links.length }} links)
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div id="grouplinksAccordion">
+                    <div class="panel-group" ng-repeat="link in links track by $index">
+                        <div class="panel panel-default item editable-container" ng-attr-linkid="{{link.id}}">
+                            <div class="panel-heading" role="tab" ng-attr-id="{{ 'heading-' + link.id }}">
+                                <h4 class="panel-title">
+                                    <div class="moveIcon"></div>
+                                    <div class="skypePanelTitle">{{link.sortorder}}. {{ link.title }}</div>
+                                    <div class="skypeAdminEditRemoveLinks">
+                                        <a href="#" data-toggle="collapse"
+                                           data-parent="#grouplinksAccordion" ng-attr-href="{{ '#collapse-' + link.id }}">
+                                            Edit
+                                        </a>
+                                        <span>|</span>
+                                        <a href="#" ng-click="removelink($index)">Remove</a>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div ng-attr-id="{{ 'collapse-' + link.id }}" class="panel-collapse collapse item">
+                               
+                                <fieldset>
+                                    <label for="link-id-{{link.id}}">Title</label>
+                                    <input class="text" id="link-id-{{link.id}}" ng-value="link.title" ng-model="link.title" ng-change="editlinkHelper[$index].title=link.title" />
+
+                                </fieldset>
+                               
+                                <fieldset>
+                                    <label for="link-type-{{link.type}}">Type</label>
+
+                                    <select ng-value="link.type" ng-model="link.type" id="link-type-{{link.type}}">
+                                        <option value="pptx">Powerpoint</option>
+                                        <option value="rss">RSS</option>
+                                        <option value="twitter">Twitter</option>
+                                        <option value="handsOnLab">Hands-On Lab</option>
+                                        <option value="msdn">MSDN</option>
+                                        <option value="video">Video</option>
+                                        <option value="externalLink">External link</option>
+                                    </select>
+                                </fieldset>
+                                <fieldset class="media-library-picker-container">
+                                    <label for="link-url-{{link.url}}">Url</label>
+                                    <input ng-model="link.url" ng-value="link.url" class="form-control text" id="link-url-{{link.url}}" />
+                                    <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
+                                    <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, $index)">
+                                        <span class="glyphicon glyphicon-picture"></span>
+                                        @T("Change resource...")
+                                    </span>
+                                </fieldset>
+                                <input type="text" hidden class="SortOrder" ng-value="{{link.sortorder + 1}}" ng-model="link.sortorder" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <fieldset>
+            <input  name="ScenarioPart.ResourcesJson" type="hidden" value="{{linksAsJSONString}}" />
+        </fieldset>
+
+        @*ADD NEW LINK PANEL*@
+        <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        @T("Add new related link")
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div id="newItemContainer" class="editable-container">
+                        <fieldset>
+                            <label class="control-label">@T("Title")</label>
+                            <input id="newItemTitle" type="text" class="form-control" ng-model="addItemTitle" ng-value="addItemTitle" />
+                        </fieldset>
+                        <fieldset>
+                            <label class="control-label">@("Type")</label>
+                            <select ng-value="addItemType" ng-model="addItemType" id="newItemType">
+                                <option value="pptx">Powerpoint</option>
+                                <option value="rss">RSS</option>
+                                <option value="twitter">Twitter</option>
+                                <option value="handsOnLab">Hands-On Lab</option>
+                                <option value="msdn">MSDN</option>
+                                <option value="video">Video</option>
+                                <option value="externalLink">External link</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="media-library-picker-container">
+                            <label class="control-label">@T("Url")</label>
+                            <input id="newItemUrl" ng-model="link.url" ng-value="link.url" class="form-control text" />
+                            <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
+                            <span class="button btn-add-image addImage" ng-click="updateMediaUrl()">
+                                <span class="glyphicon glyphicon-picture"></span>
+                                @T("Select resource...")
+                            </span>
+                        </fieldset>
+                        <fieldset>
+                            <span id="addlink" class="button" ng-click="addlink()">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                @T("Done")
+                            </span>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @using (Script.Foot())
+    {
+        <script type="text/javascript">
+            //<![CDATA[
+
+            function Link(data) {
+                this.title = data.Title;
+                this.type = data.Type;
+                this.url = data.Url;
+                this.id = data.Id;
+                this.sortorder = data.SortOrder;
+            }
+
+            devOfficeApp.controller('grouplinksController', [
+                '$scope', '$log', function($scope, $log) {
+
+                    var rawlinks = @Html.Raw(JsonConvert.SerializeObject(Model));
+                    $scope.editlinkHelper = [];
+                    $scope.imageHelper = [];
+                    $scope.sortIndices = [];
+                    $scope.isExternalLink = false;
+                    $scope.resourceTypeSelector = "";
+
+                    var linkCount = 0;
+                    $scope.links = $.map(rawlinks, function(link) {
+                        var newlink = new Link(link);
+
+                        $scope.editlinkHelper.push({
+                            title: newlink.title,
+                            type: newlink.type,
+                            url: newlink.url
+                        });
+
+                        linkCount++;
+                        return newlink;
+                    });
+
+                    $scope.getlinksAsJSONString = function() {
+                        return angular.toJson($scope.links);
+                    }
+
+                    $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+
+                    $scope.$watch('links', function(newValue, oldValue) {
+                        $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+                    }, true);
+
+
+                    $scope.updateLinkUrlHelper = function(link, index) {
+                        $log.log('blah blah blah...');
+                        $log.log(link.url, index);
+                        createNewImage(link.url, index);
+                    }
+
+                    function createNewImage(url, index) {
+                        var img = new Image();
+                        img.onload = function() {
+                            $scope.editlinkHelper[index].url = img;
+                            $log.log('yo', index);
+                            $scope.$apply();
+                        }
+                        img.src = url;
+                        return img;
+                    }
+
+                    $scope.addlinkTitle = '';
+                    $scope.addlinkType = '';
+
+
+                    // Adding a new item image
+                    $scope.newImage = null;
+                    $scope.newImageURL = '';
+                    $scope.newImageCorrectSize = null;
+                    $scope.addItemLinkText = '';
+                    $scope.addItemExternalLink = '';
+
+                    $scope.$watch('newImageURL', function(newURL, oldURL) {
+                        $log.log('new image url changed...', newURL);
+                        var img = new Image();
+                        img.onload = function() {
+                            $scope.newImageCorrectSize = (img.width == 720 && img.height == 472);
+                            $scope.newImage = img;
+                            $log.log('new image: ', $scope.newImage.width, $scope.newImage.height);
+                            $scope.$apply();
+                        }
+
+                        img.src = newURL;
+                    });
+
+                    $scope.removelink = function(index) {
+                        if (!confirm(confirmRemoveMessage)) {
+                            return false;
+                        }
+                        $scope.links.splice(index, 1);
+                        $(".links-message").show();
+
+                        $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+                    }
+                    $scope.addlink = function() {
+                        //grab the fields
+                        var title = $("#newItemTitle");
+                        var type = $("#newItemType"); //add these
+                        var url = $("#newItemUrl");
+
+                        //grab the field values
+                        var titleValue = title.val().trim();
+                        var typeValue = type.val().trim();
+                        var urlValue = url.val().trim();
+
+                        //fields validation
+                        if (titleValue == "") {
+                            title.parent().addClass("has-error");
+                            return false;
+                        }
+
+                        if (typeValue == "") {
+                            type.parent().addClass("has-error");
+                            return false;
+                        }
+
+                        if (urlValue == "") {
+                            url.parent().addClass("has-error");
+                            return false;
+                        }
+
+                        $scope.links.push(new Link({ Title: titleValue, Type: typeValue, Url: urlValue, SortOrder: $scope.links.length + 1, Id: 0 }));
+
+                        //reset the field values
+                        title.val("");
+                        type.val("");
+                        url.val("");
+                        $scope.newImageURL = '';
+
+                        $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+
+                        //$scope.$apply();
+
+                        $(".links-message").show();
+                    }
+
+                    $scope.getlinksAsJSONString = function() {
+                        return angular.toJson($scope.links);
+                    }
+                    $scope.updateMediaUrl = function(updatedItem, index) {
+
+                        var url = '@HttpUtility.JavaScriptStringEncode(Url.Action("Index", "Admin", new {area = "Orchard.MediaLibrary", dialog = true}))';
+                        $.colorbox({
+                            href: url,
+                            iframe: true,
+                            reposition: true,
+                            width: "100%",
+                            height: "100%",
+                            onLoad: function() { // hide the scrollbars from the main window
+                                $('html, body').css('overflow', 'hidden');
+                                $('#cboxClose').remove();
+                            },
+                            onClosed: function() {
+                                $('html, body').css('overflow', '');
+                                var selectedData = $.colorbox.selectedData;
+                                $log.log(selectedData);
+
+                                // NOTE: when grabbing images from the dialog, the path returned in selectedData[0].resource
+                                // is simply the URI, not the full image path. This will cause the preview image not to load.
+                                // To work around this, we have to prepend the entire window.location.hostname to ensure we
+                                // can load the preview image.
+                                var prefix = window.location.protocol + '//' + window.location.hostname;
+
+                                if (selectedData == null) // Dialog cancelled, do nothing
+                                    return;
+                                if (selectedData && updatedItem) {
+                                    $log.log('updating item...');
+                                    updatedItem.url = prefix + selectedData[0].resource;
+                                    //$scope.updateLinkUrlHelper(updatedItem, index);
+                                    $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+                                } else {
+                                    $log.log('adding new image...');
+                                    $("#newItemUrl").val(prefix + selectedData[0].resource);
+                                    $scope.newImageURL = prefix + selectedData[0].resource;
+                                }
+                                //$scope.$apply();
+                            }
+                        });
+                    }
+
+                    $('.save-button button.primaryAction').click(function() {
+                        $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+                        $log.log($scope.linksAsJSONString);
+                    });
+
+
+                    $("#grouplinksAccordion").sortable({
+                        axis: 'y',
+                        containment: 'parent',
+                        update: function () {
+
+                            $("#grouplinksAccordion .panel.item").each(function (index) {
+
+                                var t = $(this).contents().find('.skypePanelTitle').html();
+                                var id = $(this).attr('linkId');
+                                var newSortOrder = index + 1;
+
+                                // find item with matching id and update its sort order
+                                $scope.links.filter(function(link) {
+                                    return link.id == id;
+                                })[0].sortorder = newSortOrder;
+                            });
+
+                            $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+                            $scope.$apply();
+                        }
+                    });
+                }
+            ]);
+
+            //]]>
+        </script>
+    }
+
+        

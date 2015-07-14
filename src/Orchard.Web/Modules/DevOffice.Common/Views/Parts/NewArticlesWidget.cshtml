@@ -1,0 +1,48 @@
+﻿@using DevOffice.Common.ViewModels;
+
+@{
+    
+    Script.Include("blogs-showmore.min.js").AtFoot();
+    
+    List<BlogPost> viewModel = Model.ViewModel;
+    int count = Model.TotalCount;
+    
+    var display = "";
+    if (count <= 20) {
+        display = "display:none;";
+    }
+
+    var displayMobile = "";
+    if (count <= 5)
+    {
+        displayMobile = "display:none;";
+    }
+}
+
+<div class="container-fluid" id="articles-page">
+    <div class="row articlesWidgetNoBorder">
+
+        <ul class="blogslist clearfix" role="list" aria-label="Articles">
+
+            @Html.Partial("Parts/NewArticlesWidgetList", viewModel)
+
+
+            <a class="showMoreArticlesButton col-md-offset-8 col-md-4 col-sm-12 col-xs-12 see-more pull-right" style="@display" href="#" role="button" data-pagenumber="0">
+                <span class="loading" shape-id="15" style="display:none;"></span>
+                See more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" />
+            </a>
+
+            <a class="showMoreArticlesButtonMobile col-md-offset-8 col-md-4 col-sm-12 col-xs-12 see-more pull-right" style="@displayMobile" href="#" role="button" data-pagenumber="0">
+                <span class="loading" shape-id="15" style="display:none;"></span>
+                See more<img class="see-more-plus-icon" src="/Themes/DevOffice/Content/Images/show_more_plus.png" alt="See More Arrow" />
+            </a>
+
+
+        </ul>
+
+        <span class="totalCount" hidden="hidden">@count</span>
+
+    </div>
+</div>
+
+

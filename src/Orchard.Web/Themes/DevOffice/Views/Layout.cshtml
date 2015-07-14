@@ -1,0 +1,159 @@
+﻿@using FluentNHibernate.Utils
+@functions {
+    // To support the layout classifaction below. Implementing as a razor function because we can, could otherwise be a Func<string[], string, string> in the code block following.
+    string CalcuClassify(string[] zoneNames, string classNamePrefix)
+    {
+        var zoneCounter = 0;
+        var zoneNumsFilled = string.Join("", zoneNames.Select(zoneName => { ++zoneCounter; return Model[zoneName] != null ? zoneCounter.ToString() : ""; }).ToArray());
+        return HasText(zoneNumsFilled) ? classNamePrefix + zoneNumsFilled : "";
+    }
+}
+@{
+    /* Global includes for the theme
+    ***************************************************************/
+
+    SetMeta(httpEquiv: "X-UA-Compatible", content: "IE=edge,chrome=1");
+    
+    Style.Include("../Bootstrap/css/bootstrap.min.css");
+    Style.Include("../Bootstrap/css/bootstrap-theme.min.css");
+    Style.Include("../WindowsDevFiles/css/10.min.css");
+    Style.Include("site.min.css?version=h2");
+
+    Script.Require("jQuery").AtHead();
+    //Script.Include("jquery-1.11.1.min.js");
+    Script.Require("jQueryEllipsis").AtHead();
+    Script.Include("/Themes/DevOffice/Scripts/angular.min.js").AtHead();
+    Script.Include("/Modules/Provoke.Highlights/Scripts/angular-contenteditable.js").AtHead();
+    Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead();
+    Script.Include("/Themes/DevOffice/Scripts/app.js").AtHead();
+    Script.Include("common.min.js?version=h2");
+
+    /* Some useful shortcuts or settings
+    ***************************************************************/
+
+    Func<dynamic, dynamic> Zone = x => Display(x); // Zone as an alias for Display to help make it obvious when we're displaying zones
+
+    /* Inserting some ad hoc shapes
+    ***************************************************************/
+
+    WorkContext.Layout.Header.Add(New.Branding(), "5"); // Site name and link to the home page
+    WorkContext.Layout.Footer.Add(New.Footer(), "5"); // Site footer
+
+    Model.Id = "layout-wrapper";
+    var tag = Tag(Model, "div"); // using Tag so the layout div gets the classes, id and other attributes added to the Model
+}
+
+<div ng-app="devOfficeApp">
+    @tag.StartElement
+    @if (Model.Header != null)
+    {
+        <header id="layout-header" role="banner">
+            <div id="header" class="container-fluid">
+                @Zone(Model.Header)
+
+            </div>
+        </header>
+    }
+    @if (Model.Navigation != null)
+    {
+        <div id="layout-navigation">
+            <div class="container-fluid">
+                @Zone(Model.Navigation)
+            </div>
+        </div>
+    }
+    @if (Model.Featured != null)
+    {
+        <div id="layout-featured" class="container-fluid">
+            @Zone(Model.Featured)
+        </div>
+    }
+    <div id="layout-main-container" role="main">
+        <div id="layout-main">
+            <div id="layout-content" class='clearfix'>
+                @if (Model.BeforeContent != null)
+                {
+                    <div id="before-content">
+                        @* HOME PAGE CONTENT *@
+                        <div class="container-fluid main-content">
+                            @Zone(Model.BeforeContent)
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Content != null)
+                {
+                    <div id="content" class="clearfix">
+                        @Zone(Model.Content)
+                    </div>
+                }
+
+                @if (Model.Quarter1 != null || Model.Quarter2 != null || Model.Quarter3 != null && Model.Quarter4 != null)
+                {
+                    <div class='row clearfix quarter-row'>
+                        <div class='container-fluid clearfix'>
+                            @if (Model.Quarter1 != null)
+                            {
+                                <div id="quarter1" class="col-lg-3 col-md-6 col-sm-6  home-widget">
+                                    @Zone(Model.Quarter1)
+                                </div>
+                            } @if (Model.Quarter2 != null)
+                            {
+                                <div id="quarter2" class="col-lg-3 col-md-6 col-sm-6  col-sm-12 home-widget">
+                                    @Zone(Model.Quarter2)
+                                </div>
+                            } @if (Model.Quarter3 != null)
+                            {
+                                <div id="quarter3" class="col-lg-3 col-md-6 col-sm-6  col-sm-12 home-widget">
+                                    @Zone(Model.Quarter3)
+                                </div>
+                            } @if (Model.Quarter4 != null)
+                            {
+                                <div id="quarter4" class="col-lg-3 col-md-6 col-sm-6  col-sm-12 home-widget">
+                                    @Zone(Model.Quarter4)
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                }
+
+
+
+
+                @if (Model.AfterContent != null)
+                {
+                    <div id="after-content">
+                        @Zone(Model.AfterContent)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    @if (Model.AfterMain != null)
+    {
+        <div id="layout-after-main">
+            @Zone(Model.AfterMain)
+        </div>
+    }
+    @if (Model.Footer != null)
+    {
+        <footer id="layout-footer" class="container-fluid" role="contentinfo">
+            @Zone(Model.Footer)
+        </footer>
+    }
+
+    <script>
+        // Attach site-wide multi-line ellipsis support
+        (function ($) {
+            $(function () {
+                $('.pk-ellipsis').ellipsis();
+
+                $(window).load(function () {
+                    $('.pk-ellipsis').not('.pk-ellipsis-rendered').ellipsis();
+                });
+            });
+        })(jQuery);
+    </script>
+    @tag.EndElement
+</div>

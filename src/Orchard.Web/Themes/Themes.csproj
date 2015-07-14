@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CB70A642-8CEC-4DDE-8C9F-AD08900EC98D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Themes</RootNamespace>
+    <AssemblyName>Themes</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\OrchardBasicCorrectness.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Bootstrap\css\bootstrap-theme.css" />
+    <Content Include="DevOffice\Bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="DevOffice\Bootstrap\css\bootstrap.css" />
+    <Content Include="DevOffice\Bootstrap\css\bootstrap.min.css" />
+    <Content Include="DevOffice\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="DevOffice\Bootstrap\js\appbar.js" />
+    <Content Include="DevOffice\Bootstrap\js\bootstrap.js" />
+    <Content Include="DevOffice\Bootstrap\js\bootstrap.min.js" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\demo.htm" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-4.svg" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\custom-text.txt" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\demo.htm" />
+    <Content Include="DevOffice\Content\Icons\carrot.png" />
+    <Content Include="DevOffice\Content\Icons\close-icon-widget.png" />
+    <Content Include="DevOffice\Content\Icons\collapse.png" />
+    <Content Include="DevOffice\Content\Icons\devoffice_msdn_100x39.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_Nav_social_email_16x16.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_Nav_social_fb_16x16.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_Nav_social_twitter_16x16.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_Nav_social_yammer_16x16.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_search_orange_15x15.png" />
+    <Content Include="DevOffice\Content\Icons\devoffice_showmore_white_30x30.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_social_twitter_black_14x14.jpg" />
+    <Content Include="DevOffice\Content\Icons\devOffice_sort_down_grey_13x15.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_sort_down_orange_13x15.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_sort_updown_13x15.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_sort_updown_orange_13x15.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_sort_up_grey_13x15.png" />
+    <Content Include="DevOffice\Content\Icons\devOffice_sort_up_orange_13x15.png" />
+    <Content Include="DevOffice\Content\Icons\icon_back.png" />
+    <Content Include="DevOffice\Content\Icons\icon_collapse.png" />
+    <Content Include="DevOffice\Content\Icons\icon_downarrow.png" />
+    <Content Include="DevOffice\Content\Icons\icon_downarrow_hover.png" />
+    <Content Include="DevOffice\Content\Icons\icon_envelope.png" />
+    <Content Include="DevOffice\Content\Icons\icon_expand.png" />
+    <Content Include="DevOffice\Content\Icons\icon_externalLink_grey.png" />
+    <Content Include="DevOffice\Content\Icons\icon_externalLink_grey_25x25.png" />
+    <Content Include="DevOffice\Content\Icons\icon_externalLink_orange_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_externalLink_orange_25x25.png" />
+    <Content Include="DevOffice\Content\Icons\icon_handsOnLab_grey.png" />
+    <Content Include="DevOffice\Content\Icons\icon_handsOnLab_grey_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_handsOnLab_orange.png" />
+    <Content Include="DevOffice\Content\Icons\icon_handsOnLab_orange_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_msdn_grey.png" />
+    <Content Include="DevOffice\Content\Icons\icon_msdn_grey_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_msdn_orange.png" />
+    <Content Include="DevOffice\Content\Icons\icon_msdn_orange_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_pptx_grey_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_pptx_orange_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_rss_grey.png" />
+    <Content Include="DevOffice\Content\Icons\icon_pptx_grey.png" />
+    <Content Include="DevOffice\Content\Icons\icon_pptx_orange.png" />
+    <Content Include="DevOffice\Content\Icons\icon_rss_grey_25x25.png" />
+    <Content Include="DevOffice\Content\Icons\icon_rss_orange_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_rss_orange_25x25.png" />
+    <Content Include="DevOffice\Content\Icons\icon_seemore.png" />
+    <Content Include="DevOffice\Content\Icons\icon_share.png" />
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png">
+      <DependentUpon>icon_sprite.sprite</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png.css">
+      <DependentUpon>icon_sprite.png</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png.less">
+      <DependentUpon>icon_sprite.png</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png.min.css">
+      <DependentUpon>icon_sprite.png.css</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Content\Icons\icon_twitter_grey.png" />
+    <Content Include="DevOffice\Content\Icons\icon_twitter_grey_25x25.png" />
+    <Content Include="DevOffice\Content\Icons\icon_twitter_orange_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_twitter_orange_25x25.png" />
+    <Content Include="DevOffice\Content\Icons\icon_uparrow.png" />
+    <Content Include="DevOffice\Content\Icons\icon_doc.png" />
+    <Content Include="DevOffice\Content\Icons\icon_filter.png" />
+    <Content Include="DevOffice\Content\Icons\icon_video_grey.png" />
+    <Content Include="DevOffice\Content\Icons\icon_video_grey_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\icon_video_orange.png" />
+    <Content Include="DevOffice\Content\Icons\icon_video_orange_10x10.png" />
+    <Content Include="DevOffice\Content\Icons\MSDNImageSprite.png" />
+    <Content Include="DevOffice\Content\Icons\slick-next-prev.png" />
+    <Content Include="DevOffice\Content\Images\blogs_missingpic_140x140.png" />
+    <Content Include="DevOffice\Content\Images\cloud_one.png" />
+    <Content Include="DevOffice\Content\Images\cloud_three.png" />
+    <Content Include="DevOffice\Content\Images\cloud_two.png" />
+    <Content Include="DevOffice\Content\Images\devOffice_logo.png" />
+    <Content Include="DevOffice\Content\Icons\icon_minus.png" />
+    <Content Include="DevOffice\Content\Icons\icon_MVA.png" />
+    <Content Include="DevOffice\Content\Icons\icon_office.png" />
+    <Content Include="DevOffice\Content\Icons\icon_plus.png" />
+    <Content Include="DevOffice\Content\Icons\icon_samples.png" />
+    <Content Include="DevOffice\Content\Icons\icon_search.png" />
+    <Content Include="DevOffice\Content\Icons\icon_view.png" />
+    <Content Include="DevOffice\Content\Images\ajax-loader.gif" />
+    <Content Include="DevOffice\Content\Images\checkboxWithTick.png" />
+    <Content Include="DevOffice\Content\Images\Close.png" />
+    <Content Include="DevOffice\Content\favicon.ico" />
+    <Content Include="DevOffice\Content\Images\pnp_guidance_lrg.png" />
+    <Content Include="DevOffice\Content\Images\pnp_samples_lrg.png" />
+    <Content Include="DevOffice\Content\Images\pnp_scenarios_lrg.png" />
+    <Content Include="DevOffice\Content\Images\pnp_solutions_lrg.png" />
+    <Content Include="DevOffice\Content\Images\FOF.png" />
+    <Content Include="DevOffice\Content\Images\github.png" />
+    <Content Include="DevOffice\Content\Images\icon-arrow-right.png" />
+    <Content Include="DevOffice\Content\Images\man.png" />
+    <Content Include="DevOffice\Content\Images\microsoftLogo.png" />
+    <Content Include="DevOffice\Content\Images\office_logo_28x34.png" />
+    <Content Include="DevOffice\Content\Images\office_online_devoffice_banner_1900x300.png" />
+    <Content Include="DevOffice\Content\Images\office_online_devoffice_banner_1900x300_3.png" />
+    <Content Include="DevOffice\Content\Images\office_online_devoffice_img_306x430.png" />
+    <Content Include="DevOffice\Content\Images\office_online_devoffice_page_icon_35x35.png" />
+    <Content Include="DevOffice\Content\Images\orange_goto.png" />
+    <Content Include="DevOffice\Content\Images\quickLinksClose.png" />
+    <Content Include="DevOffice\Content\Images\quickLinksOpen.png" />
+    <Content Include="DevOffice\Content\Images\seeMoreIcon.png" />
+    <Content Include="DevOffice\Content\Images\show_more_plus.png" />
+    <Content Include="DevOffice\Content\Images\speach_bubble.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchor.png">
+      <DependentUpon>stepAnchor.sprite</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.css">
+      <DependentUpon>stepAnchor.png</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Content\Images\stepAnchorBottomCenter.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorBottomLeft.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorBottomRight.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorLeftBottom.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorLeftCenter.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorLeftTop.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorRightBottom.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorRightCenter.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorRightTop.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorTopCenter.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorTopLeft.png" />
+    <Content Include="DevOffice\Content\Images\stepAnchorTopRight.png" />
+    <Content Include="DevOffice\Content\Images\taskIndicator.png" />
+    <Content Include="DevOffice\Content\SyncContent\ImportFiles\OfficeDevLocalContentV1.xml" />
+    <Content Include="DevOffice\Content\SyncContent\ImportFiles\OfficeDevLocalContentV2.xml" />
+    <Content Include="DevOffice\Content\SyncContent\ImportFiles\OfficeDevStagingContent.xml" />
+    <Content Include="DevOffice\Content\SyncContent\ImportFiles\OfficeDevStagingContentV1.xml" />
+    <Content Include="DevOffice\Content\SyncContent\ImportFiles\OfficeDevStagingContentV2.xml" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerCodeSamplesPage-1.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerCodeSamplesPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerCommunityPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerEventsPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerGettingStartedPage.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerHowPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerMigratePage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerPatternsAndPracticesPage.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerPodcastPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerPodcastsPage-1.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerPodcastsPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerSolutionShowcasePage.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerTrainingPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerVideoPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerVideosPage-1.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerVideosPage-2.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerVideosPage-old.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerVideosPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\headerWhyPage.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\ResourcesHeader-1.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Banners\ResourcesHeader.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Build\howImage1.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Build\howImage2.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Build\howImage3.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Build\howImage4.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\android.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\angular.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\apple.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\aspnet.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\exchange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\nodejs.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\office.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\onenote.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\outlook.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\php.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\RAILS.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\sharepoint.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\typescript.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\windows.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\xamarin.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\CodeSamples\yammer.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Community\msdnForums.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Community\O365TNYammer.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Community\stackOverflowForum.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Community\uservoiceLogo.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Community\wpDeveloperForum.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\Media-Play-02-1.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\Media-Play-02.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\Media-Play-02_Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\pillar-1-left.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\pillar-1-right.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\pillar-2-left.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\pillar-2-right.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\pillar-3-left.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\pillar-3-right.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\stepsImage1.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\stepsImage2.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\stepsImage3.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Opportunity\stepsImage4.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\Code.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\Code_Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\CommuityLinks-White.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\CommunityLinks-Orange-Small.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\Document-01.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\Documentation.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\Documentation_Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\Documentation_Orange_Small-1.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\Documentation_Orange_Small.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\downloadTools.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\downloadToolsBig.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\getCodeSamples.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\getCodeSamplesBig.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\getDevCenterApp.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\getDevCenterAppBig.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\previewTheOs.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\previewTheOsBig.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\submitApps.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\submitAppsBig.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\TrainingQuickLink.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\TrainingQuickLink_Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\TrainingQuickLink_Orange_Small.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\watchVideos.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Quick Links\watchVideosBig.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Slider\image1.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Slider\image2.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Slider\image3.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Slider\image4.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Slider\image5.jpg" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Slider\image6.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Slider\PollEverywhere.PNG" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Article-Orange-100x100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Article-Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Article-White-100x100-old.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Article-White-100x100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Article-White.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code-Orange-100x100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code-Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code-White-100x100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code-White.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code_100-1.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code_100-2.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code_100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Code_Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Podcast-White-100x100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Video-Orange-100x100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Video-Orange.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Video-White-100x100-old.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Video-White-100x100.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Training\Video-White.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Transformation\migrateImage1.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Transformation\migrateImage2.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Transformation\migrateImage3.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Transformation\migrateImage4.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Transformation\migrateImage5.png" />
+    <Content Include="DevOffice\Content\SyncContent\Media\Transformation\migrateImage6.png" />
+    <Content Include="DevOffice\Content\SyncContent\readme.txt" />
+    <Content Include="DevOffice\Scripts\angular.min.js" />
+    <Content Include="DevOffice\Scripts\app.js" />
+    <Content Include="DevOffice\Scripts\common.js" />
+    <Content Include="DevOffice\Scripts\common.min.js">
+      <DependentUpon>common.js</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Scripts\feedback.js" />
+    <Content Include="DevOffice\Scripts\jquery-1.11.1.min.js" />
+    <Content Include="DevOffice\Scripts\jquery.ellipsis.min.js" />
+    <Content Include="DevOffice\Scripts\plax.js" />
+    <Content Include="DevOffice\Scripts\redirectSearch.js" />
+    <Content Include="DevOffice\Scripts\redirectSearch.min.js">
+      <DependentUpon>redirectSearch.js</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Styles\site.css" />
+    <Content Include="DevOffice\Styles\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\Theme.png" />
+    <Content Include="DevOffice\Theme.txt" />
+    <Content Include="DevOffice\ThemeZonePreview.png" />
+    <Content Include="DevOffice\WindowsDevFiles\css\10.css" />
+    <Content Include="DevOffice\WindowsDevFiles\css\10.min.css">
+      <DependentUpon>10.css</DependentUpon>
+    </Content>
+    <Content Include="DevOffice\WindowsDevFiles\img\app_sprites.png" />
+    <Content Include="DevOffice\WindowsDevFiles\img\l0_spr.png" />
+    <Content Include="DevOffice\WindowsDevFiles\img\spr_hdrftr.png" />
+    <Content Include="DevOffice\WindowsDevFiles\js\appbar.js" />
+    <Content Include="TheAdmin\Scripts\admin.js" />
+    <Content Include="TheAdmin\Scripts\angular.min.js" />
+    <Content Include="TheAdmin\Styles\ie.css" />
+    <Content Include="TheAdmin\Styles\ie7.css" />
+    <Content Include="TheAdmin\Styles\ie8.css" />
+    <Content Include="TheAdmin\Styles\images\adminNavBackground.gif" />
+    <Content Include="TheAdmin\Styles\images\icon-advisory.png" />
+    <Content Include="TheAdmin\Styles\images\icon-contribute.png" />
+    <Content Include="TheAdmin\Styles\images\icon-docs.png" />
+    <Content Include="TheAdmin\Styles\images\icon-friends.png" />
+    <Content Include="TheAdmin\Styles\images\icon-gallery.png" />
+    <Content Include="TheAdmin\Styles\images\icon-settings.png" />
+    <Content Include="TheAdmin\Styles\images\info.gif" />
+    <Content Include="TheAdmin\Styles\images\menu-default.png" />
+    <Content Include="TheAdmin\Styles\images\menu-glyph.png" />
+    <Content Include="TheAdmin\Styles\images\menuClosed.gif" />
+    <Content Include="TheAdmin\Styles\images\menuClosedHover.gif" />
+    <Content Include="TheAdmin\Styles\images\menuOpen.gif" />
+    <Content Include="TheAdmin\Styles\images\menuOpenHover.gif" />
+    <Content Include="TheAdmin\Styles\images\vinesBackgroundBottom.gif" />
+    <Content Include="TheThemeMachine\Styles\Site.css" />
+    <Content Include="TheThemeMachine\Theme.png" />
+    <Content Include="TheThemeMachine\Theme.txt" />
+    <Content Include="SafeMode\Content\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SafeMode\Styles\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TheAdmin\Views\Pager.cshtml" />
+    <Content Include="TheAdmin\Views\OrchardVersion.cshtml" />
+    <Content Include="TheThemeMachine\ThemeZonePreview.png" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TheAdmin\Views\Menu.cshtml" />
+    <Content Include="TheThemeMachine\Views\Branding.cshtml" />
+    <Content Include="TheThemeMachine\Views\BadgeOfHonor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Styles\images\icons.png" />
+    <Content Include="TheAdmin\Styles\images\tableHeaderBackgroundRed.gif" />
+    <Content Include="TheAdmin\Styles\site.css" />
+    <Content Include="TheAdmin\Theme.txt" />
+    <Content Include="SafeMode\Views\Document.cshtml" />
+    <Content Include="TheAdmin\Views\Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Styles\images\icons.psd" />
+    <Content Include="SafeMode\Content\orchard.ico" />
+    <Content Include="SafeMode\Styles\ie6.css" />
+    <Content Include="SafeMode\Styles\images\backgroundHeader.gif" />
+    <Content Include="SafeMode\Styles\images\backgroundVines.gif" />
+    <Content Include="SafeMode\Styles\images\orchardLogo.gif" />
+    <Content Include="SafeMode\Styles\site.css" />
+    <Content Include="SafeMode\Theme.png" />
+    <Content Include="SafeMode\Theme.txt" />
+    <Content Include="SafeMode\Views\Layout.cshtml" />
+    <Content Include="TheAdmin\Styles\images\backgroundGradient.gif" />
+    <Content Include="TheAdmin\Styles\images\backgroundHeader.gif" />
+    <Content Include="TheAdmin\Styles\images\orchardLogo.gif" />
+    <Content Include="TheAdmin\Theme.png" />
+    <Content Include="TheAdmin\Views\User.cshtml" />
+    <Content Include="TheAdmin\Views\Header.cshtml" />
+    <Content Include="TheThemeMachine\Views\Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Styles\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Scripts\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Styles\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Placement.info" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Views\LocalMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Views\Title.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
+      <Name>Orchard.Framework</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Orchard.MediaLibrary\Orchard.MediaLibrary.csproj">
+      <Project>{73a7688a-5bd3-4f7e-adfa-ce36c5a10e3b}</Project>
+      <Name>Orchard.MediaLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\Orchard.Search\Orchard.Search.csproj">
+      <Project>{4be4eb01-ac56-4048-924e-2ca77f509aba}</Project>
+      <Name>Orchard.Search</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheThemeMachine\Views\Pager.cshtml" />
+    <Content Include="TheThemeMachine\Views\Pager.First.cshtml" />
+    <Content Include="TheThemeMachine\Views\Pager.Last.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Views\ErrorPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="DevOffice\Bootstrap\css\bootstrap.css.map" />
+    <Content Include="DevOffice\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="DevOffice\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="DevOffice\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="DevOffice\Placement.info">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DevOffice\Styles\Web.config" />
+    <Content Include="DevOffice\Views\Branding.cshtml" />
+    <Content Include="DevOffice\Views\Document.cshtml" />
+    <Content Include="DevOffice\Views\Layout.cshtml" />
+    <Content Include="DevOffice\Views\LogOn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Parts.MenuWidget-MenuWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Bootstrap\js\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Bootstrap\css\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Scripts\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Bootstrap\fonts\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Fonts\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Parts.Title-Page.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\WindowsDevFiles\css\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\WindowsDevFiles\js\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\WindowsDevFiles\img\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Fields.MediaLibraryPicker-BannerImage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Scripts\common.min.js.map">
+      <DependentUpon>common.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-Event.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-CodeSample.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-Podcast.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-Training.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-PatternsAndPractices.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.sprite">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png.map">
+      <DependentUpon>icon_sprite.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png.scss">
+      <DependentUpon>icon_sprite.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-VideoItem.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-Resource.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Parts.Title-StepPage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-Solution.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-GettingStarted.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Parts.Common.Body.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Fields.Common.Text-Description.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\NotFound.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Bootstrap\js\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Scripts\angular.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-3.woff" />
+    <Content Include="DevOffice\Views\Content-Article.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.sprite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.map">
+      <DependentUpon>stepAnchor.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.less">
+      <DependentUpon>stepAnchor.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.scss">
+      <DependentUpon>stepAnchor.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Scripts\angular.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.css.map">
+      <DependentUpon>stepAnchor.png.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png.css.map">
+      <DependentUpon>icon_sprite.png.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Scripts\redirectSearch.min.js.map">
+      <DependentUpon>redirectSearch.min.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
+    <PropertyGroup>
+      <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
+    </PropertyGroup>
+  </Target>
+  <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>30320</DevelopmentServerPort>
+          <DevelopmentServerVPath>/OrchardLocal</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://orchard.codeplex.com</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

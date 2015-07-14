@@ -1,0 +1,54 @@
+﻿/* orange: #e94300 
+
+font-family:'WOL_Reg','Segoe UI',Tahoma,Helvetica,sans-serif;
+font-weight:normal;
+
+font-family: 'WOL_SL','Segoe UI Semilight','Segoe UI',Tahoma,Helvetica,sans-serif;
+font-weight:200;
+
+font-family: 'WOL_SB','Segoe UI Semibold','Segoe UI',Tahoma,Helvetica,sans-serif;
+font-weight:600;
+
+*/
+
+
+
+body {   
+    font-family: 'WOL_Reg','Segoe UI',Tahoma,Helvetica,sans-serif;}
+
+ul, ol{
+    padding: 0;
+    list-style: none;
+}
+
+a{
+    outline:none;
+    border:none;
+    text-transform:none;
+    color:#000;
+}
+a:hover {
+    text-decoration: none;
+}
+
+p{
+    margin:0px;
+}
+/*Header Top
+***************************************************************/
+#headerTop { background: #505050; width: 100%; min-height: 30px; }
+  #headerTop .office_logo { float:left; margin:6px 0 0 20px; }
+    #headerTop .office_logo img {height:18px; width:61px;}
+
+#headerTop .zone-header-top { background-color: #EAECEE; min-height: 30px; float: right; }
+
+#headerTop .user-display { margin: 0 20px; display: inline-block; vertical-align: top; }
+
+#headerTop .user-display a { color: #666666; display: inline-block; font-size: 13px; line-height: 2.2em; }
+
+/***************************************************************/
+
+.container-fluid {
+
+  max-width: 1400px;
+}

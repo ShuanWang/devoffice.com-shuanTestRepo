@@ -1,0 +1,89 @@
+﻿@using DevOffice.Common.ViewModels
+
+@{
+    GettingStartedViewModel model = Model.ViewModel;
+}
+
+<div class="tab-wrapper gettingstarted-tab container-fluid">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs startPage-nav" role="tablist">
+        @foreach (var tab in model.Tabs)
+        {
+            <li class="col-xs-4 col-sm-4 @(model.Tabs.IndexOf(tab) == 0 ? "active" : string.Empty)">
+                <a href="#@tab.HashTag" role="tab" data-toggle="tab">
+                    @tab.Title
+                    <div class="nav-tabs-icons">
+                        @foreach (var icon in tab.Icons)
+                        {
+                            <span><img class="img-responsive" src="@icon.Image" alt="@icon.Title Icon"/></span>
+                        }
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+    <div class="tab-content startPage-content">
+        @foreach (var tab in model.Tabs)
+        {
+
+        <!-- Tab pane -->
+    <div class="tab-pane @(model.Tabs.IndexOf(tab) == 0 ? "active" : string.Empty)" id="@tab.HashTag">
+
+        
+        <ul class="pane-body">
+            <li class="startPage-pane">
+                <div class="pane-introA">@Html.Raw(tab.Intro)</div>
+                <div class="spage-prime-title"><span><h3>1</h3></span> <h3>@tab.FirstBlockTitle</h3></div>
+                @*<div class="sp-sub-zone">
+                    @Html.Raw(tab.FirstBlockContent)
+                </div>*@
+                <!-- First Block Sub Tabs style layout -->
+                @if (tab.FirstBlockLayoutStyle == "TabStyle")
+                {
+
+                    @Html.Partial("Parts/GettingStartedTabStyle", tab)
+                }
+
+                        //Sqaure boxes style layout
+                else
+                {
+                    @Html.Partial("Parts/GettingStartedBoxStyle", tab)
+                }
+
+
+                @*sp-tabStyle-content*@
+
+                <div>
+                    <div class="spage-prime-title"><span><h3>2</h3></span> <h3>@tab.SecondBlockTitle</h3></div>
+                    <div class="sp-sub-zone">
+                        @Html.Raw(tab.SecondBlockContent)
+                    </div>
+
+                    <div class="spage-prime-title"><span><h3>3</h3></span> <h3>@tab.ThirdBlockTitle</h3></div>
+
+                    <div class="sp-sub-zone">
+                        @Html.Raw(tab.ThirdBlockContent)
+                        <div class="row sp-sub-zone-links">
+                            <a class="sp-sub-zone-doc" href="@tab.DocumentsLink">
+                                <div class="icon_doc"></div>
+                                <span>Documents</span>
+</a>
+                            <a class="sp-sub-zone-sample" href="@tab.SamplesLink">
+                                <div class="icon_samples"></div>
+                                <span>Samples</span>
+</a>
+                            <a class="sp-sub-zone-mva" href="@tab.MVALink">
+                                <div class="icon_MVA"></div>
+                                <span>Microsoft Virtual Academy</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+        }
+    </div>
+</div>

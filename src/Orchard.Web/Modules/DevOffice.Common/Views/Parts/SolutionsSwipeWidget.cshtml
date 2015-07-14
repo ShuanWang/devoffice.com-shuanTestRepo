@@ -1,0 +1,52 @@
+﻿@model List<DevOffice.Common.ViewModels.Solution>
+
+@{
+    int slideIndex = 0;
+}
+@if (Model.Any()) {
+
+
+
+    <div id="tinderesque-container" data-slidesize="@Model.Count">
+        @foreach (var solution in Model) {
+            <div class="solution-swipe-panel">
+
+                <div class="solution-swipe-img col-lg-4">
+                    @if (!string.IsNullOrEmpty(solution.Image))
+                    {
+                        <a href="@solution.ExternalLink" target="_blank">
+                            <img src="@solution.Image" class="img-responsive" />
+                        </a>
+                    }
+                    else
+                    {
+                        @*TODO: USE SOME DEFAULT PICTURE *@
+                    }
+                </div>
+                <div class="solution-swipe-content col-lg-8">
+                    <div class="clearfix">
+                        <div class="solution-title col-sm-11">@solution.Title</div>
+                        <div class="solution-hide pull-right close-icon-widget" data-index="@slideIndex"></div> @* TODO: SWAP OUT X WITH AN IMAGE ? *@
+                    </div>
+                    <div class="solution-text">
+                        <p class="truncate">@solution.Content</p>
+                    </div>
+                    <div class="solution-view-more">
+                        <a class="pull-right" href="@solution.ExternalLink">VIEW <i class="icon_view"></i></a>
+                    </div>
+                </div>
+            </div>
+            slideIndex++;
+        }
+    </div>
+    <div class="row">
+        <div id="results-pane">@*X OF Y results*@</div> 
+    </div>
+
+}
+else {
+    @* TODO: PRETTIFY NO MATCHES FOUND*@
+    <div class="container-fluid">
+        <h3>No Solutions match this filter. Please chose a different combination and try again.</h3>
+    </div>
+}

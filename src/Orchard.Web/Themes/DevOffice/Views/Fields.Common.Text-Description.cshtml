@@ -1,0 +1,15 @@
+﻿@{
+    string name = Model.ContentField.DisplayName;
+}
+
+
+
+@if (HasText(name) && HasText(Model.Value))
+{
+
+    <div class="tab-footer">
+        <div class="container-fluid">
+            @Model.Value
+        </div>
+    </div>  
+}

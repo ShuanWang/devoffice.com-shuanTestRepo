@@ -1,0 +1,47 @@
+﻿@model DevOffice.Common.ViewModels.CommunityViewModel
+@{
+    //For detecting external vs internal links
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+}
+
+<div class="communityWidget" aria-label="Community">
+
+    <h1 class="visible-xs visible-sm" role="heading">Community</h1>
+
+    <div class="row community-container">
+        <div class="communitySection col-lg-12">
+            @if (Model.CommunityItems != null) {
+                <ul role="list">
+                    @foreach (var communityItem in Model.CommunityItems) {
+                        if (!string.IsNullOrEmpty(communityItem.ExternalLink)) {
+                            if (!communityItem.ExternalLink.Contains(baseUrl) && !communityItem.ExternalLink.StartsWith("/")) {
+                                external = "_blank";
+                            }
+                        }
+                        <li class="communityWidget-details col-lg-12 col-xs-12" role="listItem" aria-label="@communityItem.Title">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="two-column-left col-lg-6 col-md-6">
+                                        <a href="@communityItem.ExternalLink" @external role="link" target="@external" id="CommunityItem-@communityItem.Title.Replace(" ", " ")-DetailLink">
+                                            <img class="community-image img-responsive" src="@communityItem.Image" alt="@communityItem.Title Image" />
+                                            <h2 class="hidden" role="heading">@communityItem.Title</h2>
+                                        </a>
+                                        <div class="community-text col-md-10 col-md-offset-1">@Html.Raw(@communityItem.SubText)</div>
+                                    </div>
+                                    <div class="two-column-right col-lg-4 col-md-4 col-lg-offset-1">
+                                        <div class="community-text">@Html.Raw(@communityItem.Description)</div>
+                                    </div>
+                                </div>
+                                <div class="learn-more-row row">
+                                    <a href="#" class="visible-sm visible-xs col-xs-12 see-more-article pull-right" role="link" id="CommunityItem-@communityItem.Title.Replace(" ", " ")-SeeMoreLink-Mobile">Learn more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" /></a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

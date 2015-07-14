@@ -1,0 +1,35 @@
+﻿@model DevOffice.Common.ViewModels.ResourcesViewModel
+
+
+<div class="container-fluid" id="resources-tiles" role="list" aria-label="Resources">
+    @{
+        var counter = 0;
+        foreach (var resource in Model.Resources) {
+            if (counter == 0) {
+                @:<div class="row">
+            }
+            else if (counter > 0 && counter%3 == 0) {
+                @:</div><br/><div class="row">
+            }
+            // creating unique link Id's for Microsoft tracking
+            string[] detailLink = { @resource.Title.Replace(" ", ""), "DetailLink" };
+            var detailLinkId = string.Join("-", detailLink);
+
+            <a class="col-md-4 list-item" href="@resource.LinkUrl" id="@detailLinkId">
+                <header class="clearfix">
+                    <span class="resources-tiles-icon-container">
+                        <img src="@resource.Image" alt="@resource.Title icon" class="resources-tiles-icon" />
+                    </span>
+                    <h3>@resource.Title</h3>
+                </header>
+                <div class="resources-tile-content">
+                    <p>
+                        @resource.SubText
+                    </p>
+                    <span class="resources-tiles-learn-more">@resource.LinkText</span>
+                </div>
+            </a>
+            counter++;
+        }
+}
+</div>

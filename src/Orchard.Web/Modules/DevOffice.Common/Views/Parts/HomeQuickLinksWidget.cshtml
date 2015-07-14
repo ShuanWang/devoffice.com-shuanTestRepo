@@ -1,0 +1,79 @@
+﻿@model DevOffice.Common.ViewModels.QuickLinksViewModel
+
+@{
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+}
+<!--col-lg-3 col-md-6 col-sm-6 -->
+<div class="quickLinksWidget ">
+    <div class="quicklinks-hidden-xs">
+        <h1>Quick Links</h1>
+        <div class="" role="menubar" aria-label="Quick Links">
+            <ol>
+                @foreach (var quickLink in Model.QuickLinks)
+                {
+                    if (!string.IsNullOrEmpty(quickLink.ExternalLink))
+                    {
+                        if (!quickLink.ExternalLink.Contains(baseUrl) && !quickLink.ExternalLink.StartsWith("/"))
+                        {
+                            external = "_blank";
+                        }
+                    }
+                    <li class="quick-links-tile" role="button" aria-label="LiveTileQuickLink-@quickLink.Title.Replace(" ", "")-DetailLink">
+                        <a href="@quickLink.ExternalLink" target="@external" role="link" id="LiveTileQuickLink-@quickLink.Title.Replace(" ", "")-DetailLink">
+                            <div class="livetile">
+                                <div class="cta-icon"><div class="l0-spr cta quick-links-tile-image" style="background-image: url('@quickLink.BigImage')"></div></div>
+                                <div class="cta-text"><p>@quickLink.Title</p></div>
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ol>
+        </div>
+    </div>
+    <div class="quicklinks-visible-xs">
+        <nav class="navbar navbar-default" id="nav" role="navigation" aria-label="Main menu">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
+                        <span class="pull-left">Quick links</span>
+                        <span class="quick-links-image-container-header">
+                            <img class="quick-links-open" src="/Themes/DevOffice/Content/Icons/carrot.png" />
+                            @*<span class="glyphicon glyphicon-plus quick-links-open" ></span>*@
+                            <img class="quick-links-close" src="/Themes/DevOffice/Content/Icons/collapse.png" />
+                            
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="navbar-collapse collapse" id="navbar-collapse-2" role="menubar" style="height: auto;">
+                    <ul class="nav navbar-nav">
+                        @foreach (var quickLink in Model.QuickLinks)
+                        {
+                            if (quickLink.ExternalLink != "")
+                            {
+                                if (!quickLink.ExternalLink.Contains(baseUrl) || !quickLink.ExternalLink.StartsWith("/"))
+                                {
+                                    external = "_blank";
+                                }
+                            }
+
+                            <li aria-label="@quickLink.Title" class="" role="menuitem">
+                                <a href="@quickLink.ExternalLink" target="@external" role="link" id="LiveTileQuickLink-@quickLink.Title.Replace(" ", "")-DetailLink-Mobile">
+                                    <span class="quick-links-image-container">
+                                        <img class="img-responsive" src="@quickLink.BigImage" alt="@quickLink.Title Image" />
+                                    </span>
+                                    <span>@quickLink.Title</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+    </div>
+</div>

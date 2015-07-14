@@ -1,0 +1,88 @@
+{
+  "images": [
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorBottomCenter.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 0,
+      "offsetY": 0
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorBottomLeft.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 0,
+      "offsetY": 12
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorBottomRight.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 0,
+      "offsetY": 24
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorLeftBottom.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 36
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorLeftCenter.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 61
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorLeftTop.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 86
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorRightBottom.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 111
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorRightCenter.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 136
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorRightTop.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 161
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorTopCenter.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 0,
+      "offsetY": 186
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorTopLeft.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 0,
+      "offsetY": 198
+    },
+    {
+      "name": "/DevOffice/Content/Images/stepAnchorTopRight.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 0,
+      "offsetY": 210
+    }
+  ]
+}

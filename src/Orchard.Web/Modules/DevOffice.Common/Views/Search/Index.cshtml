@@ -1,0 +1,147 @@
+﻿@using System.Net.Mime
+@using FluentNHibernate.MappingModel
+@using FluentNHibernate.Utils
+@using NHibernate.Hql.Ast.ANTLR
+@using NHibernate.Linq
+@using Orchard.ContentManagement
+@using Orchard.UI
+@using Orchard.UI.Zones
+@model DevOffice.Common.ViewModels.SearchViewModel
+@{
+    Script.Include("search-showmore.min.js").AtFoot();
+
+    var searchResults = Model.FilteredItems;
+    var plural = "s";
+    var msdnRssFeedUrl = "";
+    var msdnRedirectUrl = "";
+
+    if (HasText(Model.Query)) {
+        msdnRssFeedUrl = string.Format("https://social.msdn.microsoft.com/search/en-US/feed?query={0}&format=rss", Model.Query);
+        msdnRedirectUrl = string.Format("https://social.msdn.microsoft.com/search/en-US?query={0}&Refinement=68&emptyWatermark=true&ac=4", Model.Query);
+    }
+
+}
+
+<section class="row banner-image media-library-picker-field" aria-label="Search Results Banner">
+    <img src="/Media/Default/Banners/headerSearchResultsPage.png" alt="Search Results Banner Image">
+    <div class="banner-text container-fluid">
+        <h2 class="">Search Results</h2>
+    </div>
+</section>
+@*<h1>@Html.TitleForPage(T("Search").Text)</h1>*@
+<div class="container-fluid search-page-wrapper">
+    @if (HasText(Model.Query)) {
+        
+
+            <section class="col-xs-12 col-sm-12 col-md-4 col-lg-4 filter-box">
+                <div class="panel panel-default" id="affix">
+                    <article class="filter-box panel-default" @*data-spy="affix" data-offset-top="400" data-offset-bottom="425"*@ id="filter-wrapper">
+                        <div class="filter-box-header">
+                            <h4>
+                                <i class="icon_filter"></i>
+                                Filters
+                            </h4>
+                            <button type="button" id="applyButton" class="filter-clear-button filter-button">Apply</button>
+                            <button type="reset" id="clearButton" class="clearfilters filter-button" data-toggle="button">Clear</button>
+
+                        </div>
+                        <div class="filter-form">
+                            <ul id="search-filters">
+                                @foreach (var filteredItem in searchResults) {
+                                    if (filteredItem.TotalItemCount > 0) {
+                                        <li class="filter-category-item" data-contenttype="@filteredItem.ContentType">
+                                            @*<i class="icon_minus" ></i> Awaiting checkbox*@
+                                            @filteredItem.ContentTypeDisplayName
+                                            (@filteredItem.TotalItemCount)
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div id="back-to-top">
+                            <a href='#'>
+                                Back to top
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="col-xs-12 col-sm-12 col-md-8 col-lg-8 search-page" id="search-results">
+                @foreach (var filteredItem in searchResults) {
+                    if (filteredItem.ContentItems != null && filteredItem.TotalItemCount > 0) {
+                        //<p class="search-summary">@T.Plural("There is <em>one</em> result", "<em>{1} - {2}</em> of <em>{0}</em> results", filteredItem.TotalItemCount, filteredItem.StartPosition, filteredItem.EndPosition)</p>
+                        //<p>Page @filteredItem.Pager.Page of @filteredItem.Pages</p>
+
+                        <article class="clearfix" data-contenttypesection="@filteredItem.ContentType">
+                            @if (filteredItem.ContentTypeDisplayName.EndsWith("s")) {
+                                <h1>
+                                    @filteredItem.ContentTypeDisplayName
+                                </h1>
+                            }
+                            else
+                            {                                <h1>
+                                @filteredItem.ContentTypeDisplayName@plural
+                            </h1>}
+                          
+
+
+                            <div class="eventsWidget">
+                                <ul>
+                                    <span class="next-page hide" type="hidden">@(filteredItem.Pager.Page + 1)</span>
+                                    <span class="pages hide" type="hidden">@(filteredItem.Pages)</span>
+                                    <span class="current-contentType hide" type="hidden">@filteredItem.ContentType</span>
+                                    @foreach (dynamic eventItem in filteredItem.ContentItems) {
+                                        @Display(eventItem)
+                                    }
+
+                                    @if (filteredItem.Pages > filteredItem.Pager.Page) {
+                                        <a class="search-showmore col-md-offset-8 col-md-4 col-xs-12 search-see-more pull-right" href="#" role="button">See more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" /></a>
+                                    }
+                                </ul>
+                            </div>
+                        </article>
+                    }
+                    if (filteredItem.ContentType == "VideoItem") {
+                        <div id="videoModal">
+                            <div id="videoInner">
+                                <div id="videoRow">
+                                    <div id="videoCol">
+                                        <div id="videoContainer"></div>
+                                        <a id="videoClose" href="#"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                
+                <article class="clearfix" data-contenttypesection="msdn">
+                    <h1>Top 20 MSDN Search Results</h1>
+
+                    <div class="eventsWidget msdnSearch">
+                        <ul data-rss="@msdnRssFeedUrl" data-redirect="@msdnRedirectUrl">
+                            @* list of search results here from js *@
+                        </ul>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <input type="hidden" id="ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
+        if (!searchResults.Any()) {
+            <section class="col-md-8 col-lg-8 search-page search-not-found" id="search-results">
+                There are no search results found matching the search criteria.
+            </section>
+
+        }
+    }
+    <div id="top-link-block" class="hidden hidden-md">
+        <div class="top-link" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+            <a href="#"> <i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
+        </div>
+    </div><!-- /top-link-block -->
+</div>

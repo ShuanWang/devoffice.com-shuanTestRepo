@@ -1,0 +1,102 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.Core.Title.Models
+@using Orchard.MediaLibrary.Fields
+@using Orchard.Utility.Extensions;
+
+@{
+    //Image Properties
+    var imageField = (MediaLibraryPickerField)Model.ContentField;
+    var imagePart = imageField.MediaParts.FirstOrDefault();
+
+    //Page Properties
+    var page = Model.ContentItem;
+    var titlePart = (TitlePart)page.TitlePart;
+    var description = page.BannerWithDescriptionPagePart;
+    var profileImage = "";
+    if (description.TopBannerThumbnailImage.MediaParts.Count > 0)
+    { profileImage = description.TopBannerThumbnailImage.MediaParts[0].MediaUrl; }
+
+
+}
+
+@using (Script.Head())
+{
+    <style type="text/css" scoped>
+        #content {
+            max-width: 100%;
+            padding: 0;
+        }
+    </style>
+}
+
+@*if the page has no description, etc in banner...*@
+@if (imagePart != null && !String.IsNullOrEmpty(imagePart.MediaUrl) && description.TopBannerDescription.Value == null)
+{
+    <section class="row banner-image media-library-picker-field" aria-label="@titlePart.Title Banner">
+        @*<img src="@imagePart.MediaUrl" alt="@titlePart.Title Banner Image" />*@
+        <div style="background-image:url('@imagePart.MediaUrl')" class="row banner-image banner-with-description media-library-picker-field" id="banner-image" aria-label="@titlePart.Title Banner">
+            <div class="no-description-banner-contents">
+                <div class="banner-text container-fluid">
+                    <h2 class="no-description-banner-title">@titlePart.Title</h2>
+                </div>
+                </div>
+        </div>
+    </section>
+}
+
+@*if the page should display the box with description, etc in banner...*@
+@if (!String.IsNullOrEmpty(description.TopBannerDescription.Value) && !String.IsNullOrEmpty(titlePart.Title))
+{
+    <div style="background-image:url('@imagePart.MediaUrl')" class="row banner-image banner-with-description media-library-picker-field" id="banner-image" aria-label="@titlePart.Title Banner">
+        
+        @*<img src="@imagePart.MediaUrl" />*@
+
+        <!-- banner content box -->
+        <div class='container-fluid banner-contents-container'>
+            <div class='banner-contents'>
+
+                <div class="banner-text" id="banner-text">
+
+                    <h2 class="banner-title ff-semilight pk-ellipsis" data-lines="1">
+                        @titlePart.Title
+                    </h2>
+
+                    <div class="banner-description description ff-semilight pk-ellipsis" 
+                        data-lines="3" data-threshholds='[{"under": 1450, "row": 2}]'>
+                            @Html.Raw(@description.TopBannerDescription.Value)
+                    </div>
+                </div>
+                
+                @if (!String.IsNullOrEmpty(description.TopBannerLink.Value)) {
+                    <div class="banner-link">
+                        <a href="@description.TopBannerLink.Value">
+                            @if (!String.IsNullOrEmpty(description.TopBannerLinkText.Value)) {
+                                @description.TopBannerLinkText.Value
+                            }
+                            else {
+                                @T("Learn more")
+                            }
+                        
+                            <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+        <!-- profile image -->
+        @if (!String.IsNullOrEmpty(profileImage))
+        {
+            <img class="banner-thumbnail" src="@profileImage" alt="@titlePart.Title Thumbnail Image" />
+        }
+        
+
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel('pause');
+    });
+</script>

@@ -1,0 +1,103 @@
+﻿@model DevOffice.Common.ViewModels.GettingStartedTab
+
+
+<!-- First Tab panes -->
+<div class="spage-prime-content tab-content">
+    <!-- Sub Nav tabs -->
+    <ul class="row spage-sub-content" role="tablist">
+
+        <div>
+            @Html.Raw(Model.FirstBlockContent)
+        </div>
+        
+        @if (Model.FirstBlockScreenshots1.Any()) {
+            <li class="screenshot-box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <h4>@Model.FirstBlockTitle1</h4>
+                @foreach (var screenshot in Model.FirstBlockScreenshots1) {
+                    <div class="spage-sub-icon">
+                        <a href="@screenshot.ImageUrl">
+                            <img src="@screenshot.Image" alt="@screenshot.Title icon" />
+                            <span>@screenshot.Title</span>
+                        </a>
+                    </div>
+                }
+            </li>
+        }
+        @if (Model.FirstBlockScreenshots2.Any())
+        {
+            <li class="screenshot-box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <h4>@Model.FirstBlockTitle2</h4>
+                @foreach (var screenshot in Model.FirstBlockScreenshots2)
+                {
+                    <div class="spage-sub-icon">
+                        <a href="@screenshot.ImageUrl">
+                            <img src="@screenshot.Image" alt="@screenshot.Title icon" />
+                            <span>@screenshot.Title</span>
+                        </a>
+                    </div>
+                }
+            </li>
+        }
+        @if (Model.FirstBlockScreenshots3.Any())
+        {
+            <li class="screenshot-box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <h4>@Model.FirstBlockTitle3</h4>
+                @foreach (var screenshot in Model.FirstBlockScreenshots3)
+                {
+                    <div class=" spage-sub-icon">
+                        <a href="@screenshot.ImageUrl">
+                            <img src="@screenshot.Image" alt="@screenshot.Title icon" />
+                            <span>@screenshot.Title</span>
+                        </a>
+                    </div>
+                }
+            </li>
+        }
+        @if (Model.FirstBlockScreenshots4.Any())
+        {
+            <li class="screenshot-box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <h4>@Model.FirstBlockTitle4</h4>
+                @foreach (var screenshot in Model.FirstBlockScreenshots4)
+                {
+                    <div class="spage-sub-icon">
+                        <a href="@screenshot.ImageUrl">
+                            <img src="@screenshot.Image" alt="@screenshot.Title icon" />
+                            <span>@screenshot.Title</span>
+                        </a>
+                    </div>
+                }
+            </li>
+        }
+        @if (Model.FirstBlockScreenshots5.Any())
+        {
+            <li class="screenshot-box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <h4>@Model.FirstBlockTitle5</h4>
+                @foreach (var screenshot in Model.FirstBlockScreenshots5)
+                {
+                    <div class=" spage-sub-icon">
+                        <a href="@screenshot.ImageUrl">
+                            <img src="@screenshot.Image" alt="@screenshot.Title icon" />
+                            <span>@screenshot.Title</span>
+                        </a>
+                    </div>
+                }
+            </li>
+        }
+        @if (Model.FirstBlockScreenshots6.Any())
+        {
+            <li class="screenshot-box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <h4>@Model.FirstBlockTitle6</h4>
+                @foreach (var screenshot in Model.FirstBlockScreenshots6)
+                {
+                    <div class=" spage-sub-icon">
+                        <a href="@screenshot.ImageUrl">
+                            <img src="@screenshot.Image" alt="@screenshot.Title icon" />
+                            <span>@screenshot.Title</span>
+                        </a>
+                    </div>
+                }
+            </li>
+        }
+    </ul>
+</div>
+

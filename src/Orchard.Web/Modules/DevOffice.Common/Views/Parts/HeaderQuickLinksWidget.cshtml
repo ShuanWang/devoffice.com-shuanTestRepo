@@ -1,0 +1,29 @@
+﻿@using FluentNHibernate.Utils
+@model DevOffice.Common.ViewModels.QuickLinksViewModel
+@{
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+}
+
+<div class="quickLinksHeader" role="menubar" aria-label="Quick Links">
+    @if (Model.QuickLinks != null) {
+        <div class="text"></div>
+        <ul>
+            @foreach (var quickLink in Model.QuickLinks) {
+                if (!String.IsNullOrEmpty(quickLink.ExternalLink))
+                {
+                    if (!quickLink.ExternalLink.Contains(baseUrl) && !quickLink.ExternalLink.StartsWith("/")) {
+                        external = "_blank";
+                    }
+                }
+                <li class="quickLink" role="button" aria-label="HeaderQuickLink-@quickLink.Title.Replace(" ", "")-DetailLink">
+                    <a href="@quickLink.ExternalLink" target="@external" role="link" id="HeaderQuickLink-@quickLink.Title.Replace(" ", "")-DetailLink">
+                        <img src="@quickLink.SmallImage" alt="@quickLink.Title Image" />
+                        <div class="title"><span class="hiddenTitle">@quickLink.Title</span></div>
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</div>

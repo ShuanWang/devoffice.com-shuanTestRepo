@@ -1,0 +1,94 @@
+﻿@model DevOffice.Common.ViewModels.GettingStartedTab
+
+
+<!-- Tab panes -->
+<div class="tab-content sp-tabStyle-content">
+    
+    @Html.Raw(Model.FirstBlockContent)
+
+    <!-- Sub Nav tabs -->
+    <ul class="nav nav-tabs sp-tabStyle-tabs" role="tablist">
+        
+        @*System should chek weather these are available*@
+        @if (!string.IsNullOrEmpty(Model.FirstBlockIcon1))
+        {
+            <li class="col-xs-2 col-sm-2 active">
+                <a href="#subTab1" class="firstblock-subtab" role="tab" data-toggle="tab"><span><img src="@Model.FirstBlockIcon1" alt="@Model.FirstBlockTitle1" /></span></a>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(Model.FirstBlockIcon2))
+        {
+            <li class="col-xs-2 col-sm-2">
+                <a href="#subTab2" class="firstblock-subtab" role="tab" data-toggle="tab"><span><img src="@Model.FirstBlockIcon2" alt="@Model.FirstBlockTitle2 Image" /></span></a>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(Model.FirstBlockIcon3))
+        {
+            <li class="col-xs-2 col-sm-2">
+                <a href="#subTab3" class="firstblock-subtab" role="tab" data-toggle="tab"><span><img src="@Model.FirstBlockIcon3" alt="@Model.FirstBlockTitle3 Image" /></span></a>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(Model.FirstBlockIcon4))
+        {
+            <li class="col-xs-2 col-sm-2">
+                <a href="#subTab4" class="firstblock-subtab" role="tab" data-toggle="tab"><span><img src="@Model.FirstBlockIcon4" alt="@Model.FirstBlockTitle4 Image" /></span></a>
+            </li>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.FirstBlockIcon5))
+        {
+            <li class="col-xs-2 col-sm-2">
+                <a href="#subTab5" class="firstblock-subtab" role="tab" data-toggle="tab"><span><img src="@Model.FirstBlockIcon5" alt="@Model.FirstBlockTitle5 Image" /></span></a>
+            </li>
+        }
+        @if (!string.IsNullOrEmpty(Model.FirstBlockIcon6))
+        {
+            <li class="col-xs-2 col-sm-2">
+                <a href="#subTab6" class="firstblock-subtab" role="tab" data-toggle="tab"><span><img src="@Model.FirstBlockIcon6" alt="@Model.FirstBlockTitle6 Image" /></span></a>
+            </li>
+        }
+    </ul>
+
+    <!-- Sub Tab panes -->
+    <div class="tab-content spage-tab-content">
+
+        <div class="tab-pane active" id="subTab1">
+            @foreach (var screenshot in Model.FirstBlockScreenshots1)
+            {
+                <a href="@screenshot.ImageUrl"><img class="img-responsive" src="@screenshot.Image" alt="@screenshot.Title Image" /></a>
+            }
+        </div>
+        <div class="tab-pane" id="subTab2">
+            @foreach (var screenshot in Model.FirstBlockScreenshots2)
+            {
+                <a href="@screenshot.ImageUrl"><img class="img-responsive" src="@screenshot.Image" alt="@screenshot.Title Image" /></a>
+            }
+        </div>
+        <div class="tab-pane" id="subTab3">
+            @foreach (var screenshot in Model.FirstBlockScreenshots3)
+            {
+                <a href="@screenshot.ImageUrl"><img class="img-responsive" src="@screenshot.Image" alt="@screenshot.Title Image" /></a>
+            }
+        </div>
+        <div class="tab-pane" id="subTab4">
+            @foreach (var screenshot in Model.FirstBlockScreenshots4)
+            {
+                <a href="@screenshot.ImageUrl"><img class="img-responsive" src="@screenshot.Image" alt="@screenshot.Title Image" /></a>
+            }
+        </div>
+        <div class="tab-pane" id="subTab5">
+            @foreach (var screenshot in Model.FirstBlockScreenshots5)
+            {
+                <a href="@screenshot.ImageUrl"><img class="img-responsive" src="@screenshot.Image" alt="@screenshot.Title Image" /></a>
+            }
+        </div>
+        <div class="tab-pane" id="subTab6">
+            @foreach (var screenshot in Model.FirstBlockScreenshots6)
+            {
+                <a href="@screenshot.ImageUrl"><img class="img-responsive" src="@screenshot.Image" alt="@screenshot.Title Image" /></a>
+            }
+        </div>
+
+    </div>
+
+</div>

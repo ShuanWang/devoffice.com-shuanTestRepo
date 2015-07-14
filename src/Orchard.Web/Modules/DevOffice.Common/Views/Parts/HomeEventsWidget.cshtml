@@ -1,0 +1,90 @@
+﻿@using DevOffice.Common.ViewModels;
+@{
+    var viewModel = Model.ViewModel;
+
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+    int eventOrder = 0;
+    var styleClass = "";
+    var flipTileText = "";
+    var titlePrefix = "";
+}
+
+@*col-lg-3 col-md-6 col-sm-6  col-sm-12*@
+<div class="homeEventsWidget" aria-label="Events" id="events">
+
+    <h1 role="heading">Events</h1>
+    <div class="events-widget-body">
+
+        @foreach (var taxonomyEventItem in viewModel.TaxonomyEvents)
+        {
+            eventOrder = eventOrder + 1;
+            if (eventOrder == 1)
+            {
+                styleClass = "upcoming-events";
+                flipTileText = "Register Now";
+            }
+            else if (eventOrder == 2)
+            {
+                styleClass = "third-party-events";
+                flipTileText = "Register Now";
+            }
+            else if (eventOrder == 3)
+            {
+                styleClass = "recent-events";
+                flipTileText = "More Details";
+                titlePrefix = "Top 3";
+            }
+
+            <ul class="eventlist @styleClass" role="list" aria-label="@taxonomyEventItem.Title">
+
+                @*<h3 role="heading">@titlePrefix @taxonomyEventItem.Title.ToUpper()</h3>*@
+                @foreach (var eventItem in taxonomyEventItem.Events)
+                {
+                    if (!string.IsNullOrEmpty(eventItem.ExternalLink))
+                    {
+                        if (!eventItem.ExternalLink.Contains(baseUrl) && !eventItem.ExternalLink.StartsWith("/"))
+                        {
+                            external = "_blank'";
+                        }
+                    }
+
+                    // creating unique link Id's for Microsoft tracking
+                    string[] detailLink = { "Home", taxonomyEventItem.Title.Replace(" ", ""), @eventItem.Title.Replace(" ", ""), @flipTileText.Replace(" ", "") };
+                    var detailLinkId = string.Join("-", detailLink);
+
+
+                    <li class="event" role="listitem" aria-label="@eventItem.Title">
+                        <a data-bind="attr: { href: Url }" href="@eventItem.ExternalLink" target="@external" role="link" id="@detailLinkId">
+                            <div class="event">
+                                <div class="event-info">
+                                    <div class="date">
+                                        <div class="month">@eventItem.Month</div>
+                                        <div class="day">@eventItem.Date</div>
+                                        <div class="year">@eventItem.Year.Substring(0, 2)@eventItem.Year.Substring(2, 2)</div>
+                                    </div>
+                                    <div class="details">
+                                        <div class="name cp1">@eventItem.Title</div>
+                                        <p class="loc caps1">@eventItem.Location</p>
+                                    </div>
+                                </div>
+                                @*<div class="register-now">
+                                        <div class="desc">@Html.Raw(eventItem.SubText)</div>
+                                        <div class="regnow-text-cntr caps1">@flipTileText</div>
+                                    </div>*@
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+
+    </div>
+
+    <div class="row read-more">
+        <a class="see-more home-see-more" href="/events" id="HomeToEvents-SeeMoreLink">See more events<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow"></a>
+
+    </div>
+
+</div>

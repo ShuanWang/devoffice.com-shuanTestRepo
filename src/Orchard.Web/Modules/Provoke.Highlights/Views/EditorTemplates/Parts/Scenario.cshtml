@@ -1,0 +1,61 @@
+﻿
+@using Newtonsoft.Json
+@using Provoke.Highlights.ViewModels
+@model ScenarioViewModel
+
+@{
+    
+    Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap.min.css");
+    Style.Include("/Modules/Provoke.Highlights/Styles/provoke-highlights-admin.css");
+    Style.Include("/Modules/Provoke.Highlights/Styles/provoke-highlights.css");
+
+    Script.Include("/Modules/Provoke.Highlights/Scripts/provoke-highlights.js");
+
+
+    var tasks = Model.TasksJson;
+    var viewModelJson = JsonConvert.SerializeObject(Model);
+    
+    Model.IsAdminView = true;
+
+}
+
+<hr />
+<script>
+    var moduleHighlights = {};
+    moduleHighlights.rawTasks = @(Html.Raw(Model.TasksJson));
+    moduleHighlights.mediaUrl = '@HttpUtility.JavaScriptStringEncode(Url.Action("Index", "Admin", new {area = "Orchard.MediaLibrary", dialog = true}))';
+</script>
+
+<div class="highlights-admin" ng-controller="moduleController"
+     ng-init="registerModules([@viewModelJson])" ng-cloak>
+
+    <div ng-repeat="module in modules track by $index" class="highlight-container"
+         ng-controller='highlightController' ng-init="initTasks(module)" data-moduleuid="{{module.uid}}"
+         ng-show="module.uid == currentModuleUid">
+
+        <div class='highlight-info-container'>
+            <fieldset>
+                @Html.LabelFor(m => m.Title, T("Scenario title"))
+                @Html.TextBoxFor(m => m.Title, new { @class = "text" })
+            </fieldset>
+            <fieldset>
+                @Html.LabelFor(m => m.Description, T("Scenario description"))
+                @Html.TextBoxFor(m => m.Description, new { @class = "text highlight-description-textarea" })
+            </fieldset>
+
+        </div>
+
+        @{
+            Html.RenderPartial(Url.Content("Parts/HighlightPartial"), Model);
+            Html.RenderPartial(Url.Content("EditorTemplates/Parts/RelatedResourcesPartial"), Model.RelatedResources);
+        }
+
+    </div>
+
+</div>
+
+<div class="alert alert-warning alert-dismissable message message-Warning tasks-message" style="display: none;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="glyphicon glyphicon-warning-sign"></div>
+    <div>You need to save your changes.</div>
+</div>

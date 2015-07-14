@@ -1,0 +1,57 @@
+﻿<?xml version="1.0"?>
+<Orchard>
+  <Recipe>
+    <Name>Dev Office</Name>
+    <Description>Base recipe for the Microsoft Dev Office project</Description>
+    <Author>Provoke Solutions</Author>
+    <WebSite>http://www.provokesolutions.com/</WebSite>
+    <Tags></Tags>
+    <Version>1.0</Version>
+  </Recipe>
+
+  <Feature enable="Orchard.Alias,Orchard.Autoroute,Orchard.ContentTypes,Orchard.Fields,TinyMce,
+                   Orchard.MediaLibrary,Orchard.Taxonomies,Orchard.PublishLater,Orchard.jQuery,Orchard.Widgets,
+                   UrlAlternates,Orchard.Scripting,Orchard.Scripting.Lightweight,Orchard.OutputCache,
+                   SysCache,Orchard.ImportExport,Sunkist.FeaturedItemSlider,DevOffice.Common,DevOffice.Events,Orchard.Search,Lucene" />
+
+  <Metadata>
+    <Types>
+      <Page ContentTypeSettings.Draftable="True" TypeIndexing.Indexes="Search">
+        <TitlePart/>
+        <TagsPart />
+        <LocalizationPart />
+        <AutoroutePart />
+        <MenuPart />
+      </Page>
+      <StepPage ContentTypeSettings.Draftable="True" ContentTypeSettings.Creatable="True" TypeIndexing.Indexes="Search">
+        <TitlePart/>
+        <BodyPart/>
+        <TagsPart />
+        <LocalizationPart />
+        <AutoroutePart />
+        <MenuPart />
+        <CommonPart />
+      </StepPage>
+    </Types>
+    <Parts>
+      <BodyPart BodyPartSettings.FlavorDefault="html" />
+    </Parts>
+  </Metadata>
+
+  <Settings>
+    <SiteSettingsPart PageSize="5" PageTitleSeparator = " - " />
+  </Settings>
+
+  <Migration features="*" />
+
+  <Command>
+    layer create Default /LayerRule:"true" /Description:"The widgets in this layer are displayed on all pages"
+    layer create Authenticated /LayerRule:"authenticated" /Description:"The widgets in this layer are displayed when the user is authenticated"
+    layer create Anonymous /LayerRule:"not authenticated" /Description:"The widgets in this layer are displayed when the user is anonymous"
+    layer create Disabled /LayerRule:"false" /Description:"The widgets in this layer are never displayed"
+    layer create TheHomepage /LayerRule:"url '~/'" /Description:"The widgets in this layer are displayed on the home page"
+    site setting set baseurl
+    theme activate "Dev Office"
+  </Command>
+ 
+</Orchard>

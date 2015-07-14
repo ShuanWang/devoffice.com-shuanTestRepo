@@ -1,0 +1,26 @@
+﻿<Placement>
+  <!-- Customize where the shapes are rendered -->
+  <Place Fields_Commom_Text-Subtitle="-"/>
+
+  <Place Fields_MediaLibraryPicker="-"/>
+  <Place Parts_Common_Metadata="-"></Place>
+
+  <Match ContentType="Page">
+    <Place Fields_MediaLibraryPicker-BannerImage="Content:1"/>
+  </Match>
+  <Match ContentType="PartnerReqsPage">
+    <Place Parts_Title="-"/>
+  </Match>
+  <Match ContentType="OverviewPage">
+    <Place Parts_Title="-"/>
+  </Match>
+
+  <Match Path="/programs/officecloudstorageform">
+    <Place Fields_MediaLibraryPicker-BannerImage="-"/>
+  </Match>
+
+  <Place Fields_Common_Text-Description="-"/>
+  <Place Fields_Common_Text="-"/>
+  <Place Parts_SingleBlogWidget="Content:10"/>
+
+</Placement>

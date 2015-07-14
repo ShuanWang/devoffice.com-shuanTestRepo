@@ -1,0 +1,52 @@
+﻿<nav class="col navbar navbar-default navbar-static-top" id="nav" role="navigation" aria-label="Main menu">
+    <div class=""> @*container-fluid*@
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a href="/"><img class="menu-logo" src="/Themes/DevOffice/Content/Images/devOffice_logo.png" /></a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="menu-text">Menu</div>
+
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-1" role="menubar">
+        <ul class="nav navbar-nav">
+            @if (Model.Menu.Items != null)
+            {
+                var mainItems = (IList<dynamic>)Enumerable.Cast<dynamic>(Model.Menu.Items);
+                foreach (var mainItem in mainItems)
+                {
+                    var subItems = (IList<dynamic>)Enumerable.Cast<dynamic>(mainItem.Items);
+
+                    @*<li aria-label="@mainItem.Text.Text" class="@(mainItem.Selected ? "current" : "")" role="menuitem">*@
+                    <li aria-label="@mainItem.Text.Text" class="dropdown-toggle@(mainItem.Selected ? " current" : "")@((mainItem.Items != null && mainItem.Items.Count > 0) ? " dropdown" : "")@(mainItem.Selected && subItems.Any() ? " dropActive" : "")" role="menuitem">
+                        @*removed open tag to avoid submenu loading open on new page*@
+                    @if (mainItem.Items != null && mainItem.Items.Count > 0)
+                    {
+                        <a href="@mainItem.Href">@Html.Raw(mainItem.Text.Text)<span class="dropIcon"></span></a>
+                        <ul class="dropdown-menu">
+                            @foreach (var subItem in subItems)
+                            {
+                                <li aria-label="@Html.Raw(subItem.Text.Text)" role="menuitem" class="@(subItem.Selected ? "current" : "")">
+                                    <a href="@subItem.Href">@Html.Raw(subItem.Text.Text)</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <a href="@mainItem.Href">@Html.Raw(mainItem.Text.Text)</a>
+                    }
+                </li>
+                }
+            }
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
+

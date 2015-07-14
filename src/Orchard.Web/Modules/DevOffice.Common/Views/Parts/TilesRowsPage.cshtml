@@ -1,0 +1,224 @@
+﻿@using DevOffice.Common.ViewModels;
+@{
+    SectionsWithTilesPageViewModel viewModel = Model.ViewModel;
+}
+
+@if (!string.IsNullOrEmpty(viewModel.BannerImage))
+{
+    <div class="row banner-image">
+        <img src="@viewModel.BannerImage">
+    </div>
+}
+
+<div id='devCenter-outlook'>
+
+    <!-- Top Row -->
+    <div class='row page-section'>
+        <div class='container-fluid'>
+
+            @{
+                var topRowClass = !string.IsNullOrEmpty(Model.ViewModel.Image) ? "col-sm-7" : "col-sm-12";
+            }
+            <div class='@topRowClass'>
+
+                <!-- Top row title -->
+                <h1 class='ellipsis'>@viewModel.Title</h1>
+
+
+                <!-- Top row body text -->
+                <div class='page-body-text'>
+                    @Html.Raw(@viewModel.Body)
+                </div>
+
+                <!-- Top row link -->
+                @*@if (!string.IsNullOrEmpty(viewModel.ExternalLink) && !string.IsNullOrEmpty(viewModel.LinkText))
+                    {
+                        <div class='row link-box'>
+                            <a href="@viewModel.ExternalLink">
+                                <div class='col-lg-12 col-md-12'>
+                                    <span>
+                                        @viewModel.LinkText
+                                    </span>
+                                    <i class="icon_seemore"></i>
+                                </div>
+                            </a>
+                        </div>
+                    }*@
+            </div>
+
+            <!-- Top row image -->
+            @if (!string.IsNullOrEmpty(Model.ViewModel.Image))
+            {
+                <div class='col-sm-5 page-image-column hidden-xs'>
+                    <img src="@viewModel.Image" alt="Outlook" />
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Outlook Features / Extend Outlook -->
+    <div class='row page-section'>
+        <div class='container-fluid'>
+
+            <!-- Outlook Features -->
+            <div class='col-md-6 col-lg-6'>
+
+                <!-- Left column title and body text -->
+                <h2 class='page-subtitle'>@viewModel.Section1Title</h2>
+                <div class='page-body-text'>@Html.Raw(@viewModel.Section1Body)</div>
+
+                <!-- Left column tiles -->
+                @foreach (var tile in viewModel.Section1Tiles)
+                {
+                    <li class="event-box-details collapse in" role="listitem">
+                        <div class="code-event">
+                            <div class="event-info">
+                                <div class="code-title">
+                                    <div class="event-icon-container col-xs-3">
+                                        <div class='event-icon'>
+                                            <img src="@tile.Icon" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <div class='name autoheight cp1'>@tile.Title</div>
+                                        <div data-pane="" class="description ellipsis">@tile.Description</div>
+                                    </div>
+                                    @if (!String.IsNullOrEmpty(@tile.Url))
+                                    {
+                                        <br />
+                                        <div class="pull-right tile-link-container">
+                                            <a href="@tile.Url">@(!String.IsNullOrEmpty(tile.LinkText) ? tile.LinkText : "Learn More") <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
+</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+                <!-- Left column link -->
+                @if (!string.IsNullOrEmpty(Model.ViewModel.Section1ExternalLink) &&
+                    !string.IsNullOrEmpty(Model.ViewModel.Section1LinkText))
+                {
+                    <div class='page-body-link'>
+                        <a href="@viewModel.Section1ExternalLink">
+                            @viewModel.Section1LinkText
+                            <i class="icon_seemore"></i>
+
+                        </a>
+                    </div>
+                }
+            </div>
+
+            <!-- Extend Outlook -->
+            <div class='col-md-6 col-lg-6'>
+
+                <h2 class='page-subtitle'>@Model.ViewModel.Section2Title</h2>
+                <div class='page-body-text'>@Html.Raw(@Model.ViewModel.Section2Body)</div>
+
+                @foreach (var tile in viewModel.Section2Tiles)
+                {
+                    <li class="event-box-details collapse in" role="listitem">
+                        <div class="code-event">
+                            <div class="event-info">
+                                <div class="code-title">
+                                    <div class="event-icon-container col-xs-3">
+                                        <div class='event-icon'>
+                                            <img src="@tile.Icon" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <div class='name autoheight cp1'>@tile.Title</div>
+                                        <div data-pane="" class="description ellipsis">@tile.Description</div>
+                                    </div>
+                                    @if (!String.IsNullOrEmpty(@tile.Url)) {
+                                        <br />
+                                        <div class="pull-right tile-link-container">
+                                            <a href="@tile.Url">@(!String.IsNullOrEmpty(tile.LinkText) ? tile.LinkText : "Learn More") <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
+</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.ViewModel.Section2ExternalLink) &&
+                    !string.IsNullOrEmpty(Model.ViewModel.Section2LinkText))
+                {
+                    <div class='page-body-link'>
+                        <a href="@Model.ViewModel.Section2ExternalLink">
+                            @Model.ViewModel.Section2LinkText
+                            <i class="icon_seemore"></i>
+                        </a>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+    @if (viewModel.PartnerLogos != null && viewModel.PartnerLogos.Any())
+    {
+        <!-- Partner logos -->
+        <div class='row page-section hidden-xs hidden-sm'>
+            <div class="container-fluid">
+
+                <div class="col-md-12 col-lg-12">
+                    <h2>Join the OneDrive partner community</h2>
+
+                    <div class='logos-section'>
+
+                        @foreach (var logo in viewModel.PartnerLogos)
+                        {
+                            <img class="partner-logo" src="@logo" />
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Resource cards -->
+    <div class='row page-section'>
+        <div class="resources-section container-fluid">
+
+            @foreach (var resource in viewModel.Resources)
+            {
+                <div class="col-md-3 col-xs-12 resource-container">
+
+                    <div class="resource-header">
+
+                        <h3 class="resource-title">
+                            <img class="resource-image" src="@resource.Image" />
+                            @resource.Title
+                        </h3>
+
+                    </div>
+
+                    <div class="page-body-text">
+                        @resource.SubText
+                    </div>
+
+                    <div class='page-body-link'>
+                        <a href="@resource.LinkUrl">
+                            @resource.LinkText<i class="icon_seemore"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>  <!-- #devCenter-outlook -->
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            $('.ellipsis').ellipsis({ row: 2 });
+        });
+    })(jQuery);
+</script>

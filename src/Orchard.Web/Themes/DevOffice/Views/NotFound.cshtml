@@ -1,0 +1,26 @@
+﻿@{
+    Script.Include("../Scripts/plax.js").AtFoot();
+}
+
+<div class="four_oh_four">
+    <div class="Mobile_FOF">
+        <img src="/Themes/DevOffice/Content/Images/FOF.png">
+    </div>
+    <div id="Parallax">
+        <img id="Man" src="/Themes/DevOffice/Content/Images/man.png" width="320" height="304" data-xrange="40" data-yrange="20">
+        <img id="Bubble" src="/Themes/DevOffice/Content/Images/speach_bubble.png" width="200" height="161" data-xrange="20" data-yrange="10">
+        <img id="Cloud_One" src="/Themes/DevOffice/Content/Images/cloud_one.png" width="100" height="62" data-xrange="20" data-yrange="40">
+        <img id="Cloud_Two" src="/Themes/DevOffice/Content/Images/cloud_two.png" width="144" height="90" data-xrange="20" data-yrange="40">
+        <img id="Cloud_Three" src="/Themes/DevOffice/Content/Images/cloud_three.png" width="68" height="25" data-xrange="20" data-yrange="40">
+    </div>
+</div>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $('img').plaxify()
+          $.plax.enable()
+      })
+    </script>
+}

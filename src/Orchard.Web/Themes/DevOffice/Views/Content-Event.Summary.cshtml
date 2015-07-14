@@ -1,0 +1,61 @@
+﻿@using Orchard.Utility.Extensions;
+@{
+    if (Model.Title != null)
+    {
+        Layout.Title = Model.Title;
+    }
+
+    Model.Classes.Add("content-item");
+
+    var contentTypeClassName = ((string)Model.ContentItem.ContentType).HtmlClassify();
+    Model.Classes.Add(contentTypeClassName);
+
+
+    dynamic eventItem = Model.ContentItem;
+
+    // creating unique link Id's for Microsoft tracking
+    string[] detailLink = { eventItem.TitlePart.Title.Replace(" ", ""), "DetailLink" };
+    var detailLinkId = string.Join("-", detailLink);
+
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+    var url = "";
+}
+
+<li class="col-md-4 col-sm-6 collapse event-box-details search-event hide" role="listitem" aria-label="@eventItem.TitlePart.Title">
+    
+        <div class="event">
+            <div class="event-info">
+                @{
+                    url = eventItem.EventPart.ExternalLink.Value;
+                    if (!string.IsNullOrEmpty(url)) {
+                        if (!url.Contains(baseUrl) && !url.StartsWith("/")) {
+                            external = "_blank";
+                        }
+                    }
+                }
+
+                <div class="date code-title">
+                    <div class="month">@eventItem.EventPart.StartDate.DateTime.ToString("MMM").ToUpper()</div>
+                    <div class="row">
+                        <div class="day">@eventItem.EventPart.StartDate.DateTime.ToString("dd")</div>
+                        <div class="year">
+                            <div>@eventItem.EventPart.StartDate.DateTime.ToString("yyyy").Substring(0, 2)</div>
+                            <div>@eventItem.EventPart.StartDate.DateTime.ToString("yyyy").Substring(2, 2)</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="details">
+                    <div class="name cp1">@eventItem.TitlePart.Title</div>
+                    <p class="loc caps1">@eventItem.EventPart.Location.Value</p>
+                </div>
+            </div>
+            <div class="register-now">
+                <div data-pane="@detailLinkId" class="desc">@Html.Raw(eventItem.EventPart.SubText.Value)</div>
+            </div>
+        </div>
+    
+
+</li>

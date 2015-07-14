@@ -1,0 +1,88 @@
+{
+  "images": [
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorBottomCenter.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 1,
+      "offsetY": 1
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorBottomLeft.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 1,
+      "offsetY": 14
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorBottomRight.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 1,
+      "offsetY": 27
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorLeftBottom.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 1,
+      "offsetY": 40
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorLeftCenter.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 1,
+      "offsetY": 66
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorLeftTop.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 1,
+      "offsetY": 92
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorRightBottom.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 1,
+      "offsetY": 118
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorRightCenter.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 1,
+      "offsetY": 144
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorRightTop.png",
+      "width": 12,
+      "height": 25,
+      "offsetX": 1,
+      "offsetY": 170
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorTopCenter.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 1,
+      "offsetY": 196
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorTopLeft.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 1,
+      "offsetY": 209
+    },
+    {
+      "name": "/Modules/Provoke.Highlights/Styles/Images/stepAnchorTopRight.png",
+      "width": 25,
+      "height": 12,
+      "offsetX": 1,
+      "offsetY": 222
+    }
+  ]
+}

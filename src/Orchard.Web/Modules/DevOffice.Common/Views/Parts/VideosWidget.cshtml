@@ -1,0 +1,83 @@
+﻿@model DevOffice.Common.ViewModels.VideoViewModel
+
+@{
+    var itemOrder = 0;
+    var styleClass = "";
+}
+
+<div class="eventsWidget container-fluid">
+
+    @foreach (var taxonomyVideoItem in Model.TaxonomyVideoItems)
+    {
+        // re-using Events page class names / styles
+        itemOrder = itemOrder + 1;
+        if (itemOrder == 1)
+        {
+            styleClass = "upcoming-events";
+        }
+        else if (itemOrder == 2)
+        {
+            styleClass = "third-party-events";
+        }
+        else if (itemOrder == 3)
+        {
+            styleClass = "recent-events";
+        }
+
+        // creating unique link Id's for Microsoft tracking
+        string[] seeMoreLink = { taxonomyVideoItem.Title.Replace(" ", ""), "SeeMoreLink" };
+        var seeMoreLinkId = string.Join("-", seeMoreLink);
+
+        <h1>@taxonomyVideoItem.Title</h1>
+        <div class="row">
+            <ul class="col-md-12 eventlist @styleClass" role="list" aria-label="@taxonomyVideoItem.Title">
+
+                @foreach (var videoItem in taxonomyVideoItem.VideoItems)
+                {
+                    // creating unique link Id's for Microsoft tracking
+                    string[] detailLink = { taxonomyVideoItem.Title.Replace(" ", ""), videoItem.Title.Replace(" ", ""), "DetailLink" };
+                    var detailLinkId = string.Join("-", detailLink);
+
+                    <li class="col-md-4 col-sm-6 collapse event-box-details" role="listitem" aria-label="@videoItem.Title">
+
+                        <div class="code-event">
+                            <div class="event-info">
+                                <div class="code-title">
+                                    <div class="event-icon col-xs-4">
+                                        <img src="@videoItem.Image" alt="@videoItem.Title Icon" class="img-responsive">
+                                    </div>
+                                    <div class="col-xs-8 name cp1"> @videoItem.Title</div>
+
+                                    <div class="col-xs-8 event-links">
+                                        <a data-bind="attr: { href: Url }" href="#" role="link" id="@detailLinkId" class="pull-right ff-semibold js-video-tile" data-videoid="@videoItem.VideoId">WATCH<img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                                    </div>
+                                </div>
+                                @if (!string.IsNullOrEmpty(@videoItem.SubText))
+                                {
+                                    <div class="col-lg-12 description">@videoItem.SubText</div>
+                                }
+                            </div>
+
+                        </div>
+
+                        <script type="text/html" id="@(videoItem.VideoId + "_embed")">
+                            @Html.Raw(videoItem.EmbedCode)
+                        </script>
+                    </li>
+                }
+                <a class="showMoreButton col-md-2 col-xs-12 see-more pull-right" href="#" role="button" id="@seeMoreLinkId">See more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" /></a>
+            </ul>
+        </div>
+    }
+
+    <div id="videoModal">
+        <div id="videoInner">
+            <div id="videoRow">
+                <div id="videoCol">
+                    <div id="videoContainer"></div>
+                    <a id="videoClose" href="#"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

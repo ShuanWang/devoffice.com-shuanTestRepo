@@ -1,0 +1,31 @@
+﻿
+@model DevOffice.Common.Models.ArticlesWidgetPart
+
+<fieldset>
+    <legend>Article Widget</legend>
+
+    <div class="editor-label">
+        <label>Blog Post RSS Url</label>
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.BlogPostsRssUrl)
+        @Html.ValidationMessageFor(model => model.BlogPostsRssUrl)
+    </div>
+
+    <div class="editor-label">
+        <label>Articles RSS Url</label>
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.ArticlesRssUrl)
+        @Html.ValidationMessageFor(model => model.ArticlesRssUrl)
+    </div>
+    
+    <div class="editor-label">
+        <label>MVP Blog Post RSS Url</label>
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.MvpBlogsRssUrl)
+        @Html.ValidationMessageFor(model => model.MvpBlogsRssUrl)
+    </div>
+
+</fieldset>

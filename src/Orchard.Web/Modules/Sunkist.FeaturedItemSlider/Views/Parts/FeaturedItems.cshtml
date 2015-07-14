@@ -1,0 +1,114 @@
+﻿@using Castle.Core.Internal
+@using Sunkist.FeaturedItemSlider.Models;
+
+@{
+
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+}
+
+@if (Model.FeaturedItems.Count > 0)
+{
+    <div aria-label="Carousel">
+        <div id="carousel" class="carousel slide">
+            <div class="carousel-inner">
+                @foreach (FeaturedItemViewModel featuredItem in Model.FeaturedItems)
+                {
+                    bool useSeparateLink = featuredItem.SeparateLink;
+                    bool hasLink = !String.IsNullOrWhiteSpace(featuredItem.LinkUrl);
+                    bool itemIsLinked = hasLink && !useSeparateLink;
+
+                    if (hasLink)
+                    {
+                        if (!featuredItem.LinkUrl.Contains(baseUrl) && !featuredItem.LinkUrl.StartsWith("/"))
+                        {
+                            external = "_blank";
+                        }
+                    }
+                    <div class="item @(featuredItem.SlideNumber == 1 ? "active" : "")" style="background-image: url('@featuredItem.ImagePath')">
+                        @*<img src="@featuredItem.ImagePath" class="carousel-img-mobile img-responsive" style="width: 100%;" role="img">*@
+                        <div class="featuredItem carousel-caption container-fluid" >
+                            <div class="featureTextBox">
+                                <div class="featureTextBox-row row">
+                                    <div class='featureTextBoxDescription'>
+                                        @if (Model.Group.ShowSlideNumbers)
+                                        {
+                                            <p class="slideNumbers">@featuredItem.SlideNumber of @Model.FeaturedItems.Count</p>
+                                        }
+                                        <h1 role="heading">
+                                            @if (itemIsLinked)
+                                            {
+                                                @:<a href="@featuredItem.LinkUrl" target="@external" role="link" id="FeaturedItem-@featuredItem.Headline-DetailLink">
+                                            }
+                                            @Html.Raw(featuredItem.Headline)
+                                            @if (itemIsLinked)
+                                            {
+                                                @:</a>
+                                            }
+                                        </h1>
+
+
+                                        @if (!featuredItem.DescriptionImagePaths.IsNullOrEmpty())
+                                        {
+                                            foreach (var image in featuredItem.ImageLinks)
+                                            {
+                                                <div>
+                                                    <a target="_blank" href="@image.ImageUrl"> <img src="@image.Image" /></a>
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <h5 role="heading" class="pk-ellipsis" data-lines="3">
+                                                @Html.Raw(featuredItem.SubHeadline)
+                                            </h5>
+                                        }
+
+                                        @if (hasLink && useSeparateLink)
+                                        {
+                                            <a class="see-more home-see-more" href="@featuredItem.LinkUrl" target="@external" role="link"
+                                               id="FeaturedItem-@featuredItem.Headline-LearnMoreLink">
+                                                @featuredItem.LinkText
+                                                @*<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png"
+                                                     role="img" alt="see more arrow" />*@
+                                                <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow">
+                                            </a>
+                                        }
+                                    </div>
+
+                                    @if (!String.IsNullOrEmpty(featuredItem.FeaturedImagePath))
+                                    {
+                                        <div class='featuredItemImage'>
+                                            <img src="@featuredItem.FeaturedImagePath" height="140" width="140" />
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (Model.FeaturedItems.Count > 1)
+            {
+                <a class="left carousel-control" href="#carousel" role="button" data-slide="prev" style="background: none;">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel" role="button" data-slide="next" style="background: none;">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+
+                @*<div class="tab-bg"</div>*@
+                <ol class="carousel-indicators">
+                    @for (var i = 0; i < Model.FeaturedItems.Count; i++)
+                    {
+                        <li data-target="#carousel" data-slide-to="@i" class="tab @if (i == 0) {<text> active</text>}">
+                            @Model.FeaturedItems[i].Headline
+                        </li>
+                    }
+                </ol>
+            }
+        </div>
+    </div>
+}

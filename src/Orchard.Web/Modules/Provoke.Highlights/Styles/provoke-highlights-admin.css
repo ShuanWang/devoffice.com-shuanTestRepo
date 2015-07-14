@@ -1,0 +1,141 @@
+﻿.highlights-admin {
+    padding: 30px 0;
+}
+
+.highlights-admin .highlight-container [contenteditable=true] {
+    cursor: text;
+    border: 1px dashed rgba(0, 0, 0, 0.25) !important;
+    margin: -1px;
+}
+
+.highlights-admin .highlight-info-container {
+    margin-bottom: 50px;
+}
+
+
+
+/* ADMIN TAB */
+.highlight-container .task-header .taskTabs .tab .tab-drag-handle,
+.highlight-container provoke-draggable.step-tooltip .drag-handle {
+    height: 20px;
+    position: absolute;
+    background: url('Images/drag_icon.png') no-repeat center center;
+    background-size: contain;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: move;
+}
+.highlight-container .task-header .taskTabs .tab .tab-drag-handle {
+    width: calc(100% + 1px);
+    left: 0;
+    top: -20px;
+    background-color: rgb(230, 230, 230);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-top:1px solid rgba(0, 0, 0, 0.1);
+}
+.highlight-container provoke-draggable.step-tooltip .drag-handle {
+    border: none;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.highlight-container .task-header .taskTabs .tab.selected .tab-drag-handle {
+    background-color: #e84024;
+    color: #ffffff;
+}
+
+.highlight-container .task-header .taskTabs .tab.tab-new {
+    background-color: rgb(242, 242, 242);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* TODO: ADMIN ONLY */
+.highlight-container .task-header .taskTabs .tab.tab-new:hover {
+    background-color: rgb(230, 230, 230);
+}
+.highlight-container .task-header .taskTabs .tab.tab-new .title {
+    display: block;
+    height: 20px;
+    margin-top: 50%;
+    color: #333333;
+}
+.highlight-container .task-header .taskTabs .tab.tab-new:hover .title {
+    color: #000000;
+}
+
+/** STEP LIST EDITOR */
+.highlight-container .step-list-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    font-size: 15px;
+    color: #333;
+    text-align: left;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.highlight-container .step-list-container .step-list-title {
+    text-transform: uppercase;
+}
+.highlight-container .step-list-container .step-list-item.step-list-add {
+    padding-top: 35px;
+}
+.highlight-container .step-list-container .step-list-item {
+    display: inline-block;
+    vertical-align: top;
+    height: 120px;
+    width: 120px;
+    background-color: rgb(242, 242, 242);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    position: relative;
+}
+.highlight-container .step-list-container .step-list-item:hover {
+    color: #333333;
+    background-color: rgb(220, 220, 220);
+}
+.highlight-container .step-list-container .step-list-item.selected {
+    background-color: rgba(232, 64, 35, 0.85);
+    color: #ffffff;
+}
+.highlight-container .step-list-container .step-list-item .step-list-item-drag-handle {
+    background: url('Images/drag_icon.png') no-repeat center center;
+    background-size: contain;
+    width: 15px;
+    height: 20px;
+    padding: 5px;
+    cursor: move;
+    display: inline-block;
+    vertical-align: top;
+}
+.highlight-container .step-list-container .step-list-item .step-list-item-remove {
+    position: absolute;
+    font-size: 10px;
+    top: 5px;
+    right: 5px;
+    color: #333;
+}
+.highlight-container .step-list-container .step-list-item.selected .step-list-item-remove:hover {
+    color: #333;
+}
+.highlight-container .step-list-container .step-list-item .step-list-item-remove:hover {
+    color: #e84024;
+}
+.highlight-container .step-list-container .step-list-item.selected .step-list-item-remove {
+    color: #fff;
+}
+.highlight-container .step-list-container .step-list-item .step-list-item-image {
+    position: absolute !important;
+    bottom: 0;
+    right: 5px;
+    height: 20px;
+    width: 20px;
+    top: auto;
+}
+.highlight-container .step-list-container .step-list-item.selected .step-list-item-image:hover {
+    color: #333333;
+}
+.highlight-container .step-list-container .step-list-item .step-list-item-image:hover {
+    color: #e84024;
+}

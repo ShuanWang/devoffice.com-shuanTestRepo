@@ -1,0 +1,62 @@
+﻿@using Orchard.Utility.Extensions;
+@{
+    if (Model.Title != null)
+    {
+        Layout.Title = Model.Title;
+    }
+
+    Model.Classes.Add("content-item");
+
+    var contentTypeClassName = ((string)Model.ContentItem.ContentType).HtmlClassify();
+    Model.Classes.Add(contentTypeClassName);
+
+    var patternsAndPracticesItem = Model.ContentItem;
+
+    var image = "";
+    if (patternsAndPracticesItem.PatternsAndPracticesPart.Icon.Ids.Length > 0)
+    {
+        image = patternsAndPracticesItem.PatternsAndPracticesPart.Icon.MediaParts[0].MediaUrl;
+    }
+
+    string[] detailLink = { patternsAndPracticesItem.TitlePart.Title.Replace(" ", ""), "DetailLink" };
+    var detailLinkId = string.Join("-", detailLink);
+    
+    string[] moreInfo = { patternsAndPracticesItem.TitlePart.Title.Replace(" ", ""), "MoreInfoLink" };
+    var moreInfoId = string.Join("-", moreInfo);
+
+
+        
+
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+    var url = "";
+}
+
+<li class="col-md-6 col-sm-6 collapse event-box-details hide" role="listitem" aria-label="@patternsAndPracticesItem.TitlePart.Title">
+    <div class="code-event">
+        <div class="event-info">
+            @{
+                url = patternsAndPracticesItem.PatternsAndPracticesPart.ExternalLink.Value;
+                if (!string.IsNullOrEmpty(url)) {
+                    if (!url.Contains(baseUrl) && !url.StartsWith("/")) {
+                        external = "_blank";
+                    }
+                }
+            }
+            <div class="code-title">
+                <div class="event-icon col-xs-4">
+                    <img src="@image" alt="@patternsAndPracticesItem.TitlePart.Title Icon" class="img-responsive" />
+                </div>
+                <div class="col-xs-8 name cp1">@patternsAndPracticesItem.TitlePart.Title</div>
+                <div class="col-xs-8 event-links">
+                    <a data-bind="attr: { href: Url }" href="@patternsAndPracticesItem.PatternsAndPracticesPart.ExternalLink.Value" target="@external" role="link" id="@detailLinkId" class="pull-right ff-semibold">SHOW THE CODE <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                </div>
+            </div>
+        </div>
+        <div class="register-now">
+            <div data-pane="@detailLinkId" class="desc">@Html.Raw(patternsAndPracticesItem.PatternsAndPracticesPart.SubText.Value)</div>
+        </div>
+
+    </div>
+</li>

@@ -1,0 +1,71 @@
+﻿@using Newtonsoft.Json
+@using DevOffice.Common.ViewModels;
+@model Provoke.Highlights.ViewModels.HighlightsViewModel
+
+
+
+@{
+    var viewModelJson = JsonConvert.SerializeObject(Model.Scenarios);
+
+    Style.Include("/Modules/Provoke.Highlights/Styles/provoke-highlights.css");
+
+    // provoke-highlights.js should already be included in Layout.cshtml
+    Script.Include("/Modules/Provoke.Highlights/Scripts/angular-contenteditable.js");
+    Script.Include("/Modules/Provoke.Highlights/Scripts/provoke-highlights.js");
+
+}
+@if (Model.Scenarios.Any())
+{
+
+    <div class="highlights-main" ng-controller="moduleController" ng-init="registerModules(@viewModelJson)" ng-cloak>
+
+        <div class='highlight-title-container row'>
+            <div class='container-fluid'>
+                <h1 class="highlight-title">@Model.Title</h1>
+            </div>
+        </div>
+
+        <div class="white-block row">
+            <div class='container-fluid'>
+                <div> @Html.Raw(@Model.PageIntro)</div>
+            </div>
+        </div>
+
+        @{ var index = 0; }
+
+        <h2 class="lab-intro container-fluid"> @Model.LabIntro</h2>
+
+        <!-- non-admin only: naviagate between multiple modules in the browser -->
+        <div class='highlight-module-tabs container-fluid'>
+
+            <div ng-repeat="module in modules track by $index" class='tab' ng-class="{selected: module.uid == currentModuleUid}"
+                 ng-click="moduleTabClick(module)" data-moduleuid="{{module.uid}}">
+                <h2 class='tab-heading'>{{module.title}}</h2>
+                <h3 class='title'>{{module.description}}</h3>
+                <div class="highlight-module-tab-indicator"></div>
+            </div>
+
+        </div>
+
+        <div ng-repeat="module in modules track by $index" class="highlight-container container-fluid"
+             ng-controller='highlightController' ng-init="initTasks(module)" data-moduleuid="{{module.uid}}"
+             ng-show="module.uid == currentModuleUid">
+
+
+            @{ Html.RenderPartial(Url.Content("Parts/HighlightPartial"), Model.Scenarios[index]); }
+
+        </div>
+        <div class="white-block row">
+            <div class="container-fluid">
+                @Html.Raw(@Model.RelatedResourcesIntro)
+                <div class="resources-container">
+                    @{ Html.RenderPartial(Url.Content("Parts/RelatedResourcesPartial"), Model.Scenarios[index]); }
+                </div>
+            </div>
+        </div>
+
+        @{ index++; }
+
+    </div>
+
+}

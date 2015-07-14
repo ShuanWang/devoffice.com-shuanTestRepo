@@ -1,0 +1,9 @@
+﻿Name: DevOffice.Events
+AntiForgery: enabled
+Author: Provoke Solutions
+Website: http://www.provokesolutions.com/
+Version: 1.8
+OrchardVersion: 1.8
+Description: For Event items and related functions in Dev Office
+FeatureDescription:
+Dependencies:

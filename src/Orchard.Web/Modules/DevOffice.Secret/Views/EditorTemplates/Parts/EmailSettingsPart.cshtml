@@ -1,0 +1,73 @@
+@model DevOffice.Secret.Models.EmailSettingsPart
+@using Orchard.ContentManagement;
+
+@{ Layout.Title = T("Edit EmailSettingsPart").ToString(); }
+
+<fieldset>
+    <legend>@T("Email settings")</legend>
+        <div>
+            @Html.LabelFor(m => m.SendGridAccountName, @T("SendGrid Account Name"))
+           @Html.TextBoxFor(m => m.SendGridAccountName, new { @class = "text medium"})
+            @Html.ValidationMessageFor(m => m.SendGridAccountName, "*")
+        </div>
+    <div>
+        @Html.LabelFor(m => m.SendGridAccountPassword, @T("SendGrid Account Password"))
+        @Html.TextBoxFor(m => m.SendGridAccountPassword, new { @class = "text medium", @type = "password" })
+        @Html.ValidationMessageFor(m => m.SendGridAccountPassword, "*")
+    </div>
+    <h4>@T("Manage Activity API Form Email")</h4>
+    <div>
+        @Html.LabelFor(m => m.ActivityFeedApiFromEmailAddress, @T("Manage Activity From Email Address"))
+        @Html.TextBoxFor(m => m.ActivityFeedApiFromEmailAddress, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.ActivityFeedApiFromEmailAddress, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ActivityFeedApiFromEmailTitle, @T("Manage Activity From Email Title"))
+        @Html.TextBoxFor(m => m.ActivityFeedApiFromEmailTitle, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.ActivityFeedApiFromEmailTitle, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ActivityFeedApiEmailSubject, @T("Manage Activity API Form Email Subject"))
+        @Html.TextBoxFor(m => m.ActivityFeedApiEmailSubject, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.ActivityFeedApiEmailSubject, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ActivityFeedApiEmailText, @T("Manage Activity API Form Email Text"))
+        @Html.TextAreaFor(m => m.ActivityFeedApiEmailText, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.ActivityFeedApiEmailText, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.ActivityFeedApiEmailHtml, @T("Manage Activity API Form Email Html"))
+        @Html.TextAreaFor(m => m.ActivityFeedApiEmailHtml, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.ActivityFeedApiEmailHtml, "*")
+    </div>
+
+    <h4>@T("Cloud Storage Form Email")</h4>
+    <div>
+        @Html.LabelFor(m => m.CloudStorageFromEmailAddress, @T("Cloud Storage From Email Address"))
+        @Html.TextBoxFor(m => m.CloudStorageFromEmailAddress, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.CloudStorageFromEmailAddress, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.CloudStorageFromEmailTitle, @T("Cloud Storage From Email Title"))
+        @Html.TextBoxFor(m => m.CloudStorageFromEmailTitle, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.CloudStorageFromEmailTitle, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.CloudStorageEmailSubject, @T("Cloud Storage Form Email Subject"))
+        @Html.TextBoxFor(m => m.CloudStorageEmailSubject, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.CloudStorageEmailSubject, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.CloudStorageEmailText, @T("Cloud Storage Form Email Text"))
+        @Html.TextAreaFor(m => m.CloudStorageEmailText, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.CloudStorageEmailText, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.CloudStorageEmailHtml, @T("Cloud Storage Form Email Html"))
+        @Html.TextAreaFor(m => m.CloudStorageEmailHtml, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m => m.CloudStorageEmailHtml, "*")
+    </div>
+
+</fieldset>
+

@@ -1,0 +1,123 @@
+﻿/*
+@import this file directly into your existing Scss files to use these mixins
+*/
+@mixin sprite-DevOffice-Content-Icons-icon_back() {
+/* You may have to set 'display: block' */
+	width: 30px;
+	height: 31px;
+	background: url('site_icons.png') 0 0;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_computer() {
+/* You may have to set 'display: block' */
+	width: 40px;
+	height: 40px;
+	background: url('site_icons.png') 0 -31px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_doc() {
+/* You may have to set 'display: block' */
+	width: 46px;
+	height: 57px;
+	background: url('site_icons.png') 0 -71px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_downarrow() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 8px;
+	background: url('site_icons.png') 0 -128px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_downarrow_hover() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 8px;
+	background: url('site_icons.png') 0 -136px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_filter() {
+/* You may have to set 'display: block' */
+	width: 14px;
+	height: 14px;
+	background: url('site_icons.png') 0 -144px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_minus() {
+/* You may have to set 'display: block' */
+	width: 13px;
+	height: 11px;
+	background: url('site_icons.png') 0 -158px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_mobile() {
+/* You may have to set 'display: block' */
+	width: 40px;
+	height: 40px;
+	background: url('site_icons.png') 0 -169px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_MVA() {
+/* You may have to set 'display: block' */
+	width: 106px;
+	height: 57px;
+	background: url('site_icons.png') 0 -209px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_office() {
+/* You may have to set 'display: block' */
+	width: 40px;
+	height: 40px;
+	background: url('site_icons.png') 0 -266px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_plus() {
+/* You may have to set 'display: block' */
+	width: 13px;
+	height: 11px;
+	background: url('site_icons.png') 0 -306px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_ppt() {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 25px;
+	background: url('site_icons.png') 0 -317px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_samples() {
+/* You may have to set 'display: block' */
+	width: 57px;
+	height: 57px;
+	background: url('site_icons.png') 0 -342px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_search() {
+/* You may have to set 'display: block' */
+	width: 14px;
+	height: 14px;
+	background: url('site_icons.png') 0 -399px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_sharepoint() {
+/* You may have to set 'display: block' */
+	width: 40px;
+	height: 40px;
+	background: url('site_icons.png') 0 -413px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_tablet() {
+/* You may have to set 'display: block' */
+	width: 40px;
+	height: 40px;
+	background: url('site_icons.png') 0 -453px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_uparrow() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 8px;
+	background: url('site_icons.png') 0 -493px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_view() {
+/* You may have to set 'display: block' */
+	width: 13px;
+	height: 10px;
+	background: url('site_icons.png') 0 -501px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_word() {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 25px;
+	background: url('site_icons.png') 0 -511px;
+}
+@mixin sprite-DevOffice-Content-Icons-icon_xls() {
+/* You may have to set 'display: block' */
+	width: 26px;
+	height: 25px;
+	background: url('site_icons.png') 0 -536px;
+}

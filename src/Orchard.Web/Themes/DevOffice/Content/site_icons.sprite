@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sprite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://vswebessentials.com/schemas/v1/sprite.xsd">
+  <settings>
+    <!--Determines if the sprite image should be automatically optimized after creation/update.-->
+    <optimize>true</optimize>
+    <!--Determines the orientation of images to form this sprite. The value must be vertical or horizontal.-->
+    <orientation>vertical</orientation>
+    <!--File extension of sprite image.-->
+    <outputType>png</outputType>
+    <!--Determin whether to generate/re-generate this sprite on building the solution.-->
+    <runOnBuild>false</runOnBuild>
+    <!--Use full path to generate unique class or mixin name in CSS, LESS and SASS files. Consider disabling this if you want class names to be filename only.-->
+    <fullPathForIdentifierName>true</fullPathForIdentifierName>
+    <!--Use absolute path in the generated CSS-like files. By default, the URLs are relative to sprite image file (and the location of CSS, LESS and SCSS).-->
+    <useAbsoluteUrl>false</useAbsoluteUrl>
+    <!--Specifies a custom subfolder to save files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectory />
+    <!--Specifies a custom subfolder to save CSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForCss />
+    <!--Specifies a custom subfolder to save LESS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForLess />
+    <!--Specifies a custom subfolder to save SCSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForScss />
+  </settings>
+  <!--The order of the <file> elements determines the order of the images in the sprite.-->
+  <files>
+    <file>/DevOffice/Content/Icons/icon_back.png</file>
+    <file>/DevOffice/Content/Icons/icon_computer.png</file>
+    <file>/DevOffice/Content/Icons/icon_doc.png</file>
+    <file>/DevOffice/Content/Icons/icon_downarrow.png</file>
+    <file>/DevOffice/Content/Icons/icon_downarrow_hover.png</file>
+    <file>/DevOffice/Content/Icons/icon_filter.png</file>
+    <file>/DevOffice/Content/Icons/icon_minus.png</file>
+    <file>/DevOffice/Content/Icons/icon_mobile.png</file>
+    <file>/DevOffice/Content/Icons/icon_MVA.png</file>
+    <file>/DevOffice/Content/Icons/icon_office.png</file>
+    <file>/DevOffice/Content/Icons/icon_plus.png</file>
+    <file>/DevOffice/Content/Icons/icon_ppt.png</file>
+    <file>/DevOffice/Content/Icons/icon_samples.png</file>
+    <file>/DevOffice/Content/Icons/icon_search.png</file>
+    <file>/DevOffice/Content/Icons/icon_sharepoint.png</file>
+    <file>/DevOffice/Content/Icons/icon_tablet.png</file>
+    <file>/DevOffice/Content/Icons/icon_uparrow.png</file>
+    <file>/DevOffice/Content/Icons/icon_view.png</file>
+    <file>/DevOffice/Content/Icons/icon_word.png</file>
+    <file>/DevOffice/Content/Icons/icon_xls.png</file>
+  </files>
+</sprite>

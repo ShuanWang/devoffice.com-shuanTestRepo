@@ -1,0 +1,52 @@
+﻿@using Orchard.Utility.Extensions;
+@{
+    if (Model.Title != null) {
+        Layout.Title = Model.Title;
+    }
+
+    Model.Classes.Add("content-item");
+    
+    var contentTypeClassName = ((string)Model.ContentItem.ContentType).HtmlClassify();
+    Model.Classes.Add(contentTypeClassName);
+    
+    
+    var videoItem = Model.ContentItem;
+    
+    var image = "";
+    if (videoItem.VideoItemPart.Image.Ids.Length > 0)
+    {
+        image = videoItem.VideoItemPart.Image.MediaParts[0].MediaUrl;
+    }
+
+    string[] detailLink = { videoItem.TitlePart.Title.Replace(" ", ""), "DetailLink" };
+    var detailLinkId = string.Join("-", detailLink);
+
+}
+
+<li class="col-md-6 col-sm-6 collapse event-box-details hide" role="listitem" aria-label="@videoItem.TitlePart.Title">
+    <div class="code-event">
+        <div class="event-info">
+
+            <div class="code-title">
+                <div class="event-icon col-xs-4">
+                    <img src="@image" alt="@videoItem.TitlePart.Title Icon" class="img-responsive" />
+                </div>
+                <div class="col-xs-8 name cp1">@videoItem.TitlePart.Title</div>
+                <div class="col-xs-8 event-links">
+                    <a data-bind="attr: { href: Url }" href="#" class="js-video-tile pull-right" data-videoid="@videoItem.Id" role="link" id="@detailLinkId" class="pull-right ff-semibold">WATCH<img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                    
+                    @*<a data-bind="attr: { href: Url }" href="#" class="js-video-tile pull-right" data-videoid="@videoItem.Id" role="link" id="@detailLinkId">WATCH <i class="icon_view"></i> </a>*@
+                    @* <a href="#" data-id="@detailLinkId" class="more"><p>MORE INFO</p> <i class="icon_plus"></i></a>*@
+
+                </div>
+            </div>
+        </div>
+        <div class="register-now">
+            <div data-pane="@detailLinkId" class="desc">@Html.Raw(videoItem.VideoItemPart.SubText.Value)</div>
+        </div>
+
+    </div>
+    <script type="text/html" id="@(videoItem.Id + "_embed")">
+        @Html.Raw(videoItem.VideoItemPart.EmbedCode.Value)
+    </script>
+</li>

@@ -1,0 +1,9 @@
+﻿@using DevOffice.Common.ViewModels
+@model  List<ContentTypeResults>
+@{
+    var contentItems = Model[0];
+    contentItems.ContentItems.Classes.Add("hide");
+}
+@foreach (var result in contentItems.ContentItems) {
+    @Display(result)
+}

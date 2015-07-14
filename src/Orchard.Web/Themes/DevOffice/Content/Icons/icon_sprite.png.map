@@ -1,0 +1,354 @@
+{
+  "images": [
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_back.png",
+      "width": 30,
+      "height": 31,
+      "offsetX": 0,
+      "offsetY": 0
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_doc.png",
+      "width": 46,
+      "height": 57,
+      "offsetX": 0,
+      "offsetY": 31
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_downarrow.png",
+      "width": 12,
+      "height": 8,
+      "offsetX": 0,
+      "offsetY": 88
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_downarrow_hover.png",
+      "width": 12,
+      "height": 8,
+      "offsetX": 0,
+      "offsetY": 96
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_filter.png",
+      "width": 14,
+      "height": 14,
+      "offsetX": 0,
+      "offsetY": 104
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_minus.png",
+      "width": 13,
+      "height": 11,
+      "offsetX": 0,
+      "offsetY": 118
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_MVA.png",
+      "width": 106,
+      "height": 57,
+      "offsetX": 0,
+      "offsetY": 129
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_office.png",
+      "width": 40,
+      "height": 40,
+      "offsetX": 0,
+      "offsetY": 186
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_plus.png",
+      "width": 11,
+      "height": 21,
+      "offsetX": 0,
+      "offsetY": 226
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_samples.png",
+      "width": 57,
+      "height": 57,
+      "offsetX": 0,
+      "offsetY": 247
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_search.png",
+      "width": 14,
+      "height": 14,
+      "offsetX": 0,
+      "offsetY": 304
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_seemore.png",
+      "width": 28,
+      "height": 28,
+      "offsetX": 0,
+      "offsetY": 318
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_uparrow.png",
+      "width": 12,
+      "height": 8,
+      "offsetX": 0,
+      "offsetY": 346
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_view.png",
+      "width": 13,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 354
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_collapse.png",
+      "width": 13,
+      "height": 11,
+      "offsetX": 0,
+      "offsetY": 364
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_expand.png",
+      "width": 13,
+      "height": 11,
+      "offsetX": 0,
+      "offsetY": 375
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_share.png",
+      "width": 15,
+      "height": 15,
+      "offsetX": 0,
+      "offsetY": 386
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_envelope.png",
+      "width": 32,
+      "height": 32,
+      "offsetX": 0,
+      "offsetY": 401
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/slick-next-prev.png",
+      "width": 87,
+      "height": 124,
+      "offsetX": 0,
+      "offsetY": 433
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_externalLink_grey.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 557
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_handsOnLab_grey.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 567
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_handsOnLab_orange.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 592
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_msdn_grey.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 617
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_msdn_orange.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 642
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_rss_grey.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 667
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_pptx_grey.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 677
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_pptx_orange.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 702
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_twitter_grey.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 727
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_externalLink_grey_25x25.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 737
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_externalLink_orange_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 762
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_externalLink_orange_25x25.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 772
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_handsOnLab_grey_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 797
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_handsOnLab_orange_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 807
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_msdn_grey_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 817
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_msdn_orange_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 827
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_pptx_grey_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 837
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_pptx_orange_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 847
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_rss_grey_25x25.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 857
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_rss_orange_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 882
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_rss_orange_25x25.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 892
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_twitter_grey_25x25.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 917
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_twitter_orange_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 942
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_twitter_orange_25x25.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 952
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_video_grey_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 977
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_video_orange_10x10.png",
+      "width": 10,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 987
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_video_grey.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 997
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/icon_video_orange.png",
+      "width": 25,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 1022
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/devOffice_search_orange_15x15.png",
+      "width": 15,
+      "height": 15,
+      "offsetX": 0,
+      "offsetY": 1047
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png",
+      "width": 13,
+      "height": 15,
+      "offsetX": 0,
+      "offsetY": 1062
+    },
+    {
+      "name": "/Themes/DevOffice/Content/Icons/devOffice_sort_updown_orange_13x15.png",
+      "width": 13,
+      "height": 15,
+      "offsetX": 0,
+      "offsetY": 1077
+    }
+  ]
+}

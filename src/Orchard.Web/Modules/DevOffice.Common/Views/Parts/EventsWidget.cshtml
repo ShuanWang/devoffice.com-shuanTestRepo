@@ -1,0 +1,80 @@
+﻿@model DevOffice.Common.ViewModels.EventsViewModel
+
+@{
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+    
+    var eventOrder = 0;
+    var styleClass = "";
+    var flipTileText = "";
+}
+
+<div class="eventsWidget container-fluid" aria-label="Events">
+    @foreach (var taxonomyEventItem in Model.TaxonomyEvents) {
+        eventOrder = eventOrder + 1;
+        if (eventOrder == 1) {
+            styleClass = "upcoming-events";
+            flipTileText = "Register Now";
+        }
+        else if (eventOrder == 2) {
+            styleClass = "third-party-events";
+            flipTileText = "Register Now";
+        }
+        else if (eventOrder == 3) {
+            styleClass = "recent-events";
+            flipTileText = "More Details";
+        }
+
+        // creating unique link Id's for Microsoft tracking
+        string[] seeMoreLink = { taxonomyEventItem.Title.Replace(" ", ""), "SeeMoreLink" };
+        var seeMoreLinkId = string.Join("-", seeMoreLink);
+        
+        <h1 role="heading">@taxonomyEventItem.Title</h1>
+        <div class="row @styleClass">
+            <ul class="eventlist col-md-12" role="list" aria-label="@taxonomyEventItem.Title">
+                @foreach (var eventItem in taxonomyEventItem.Events)
+                {
+                    if (!string.IsNullOrEmpty(eventItem.ExternalLink))
+                    {
+                        if (!eventItem.ExternalLink.Contains(baseUrl) && !eventItem.ExternalLink.StartsWith("/")) {
+                            external = "_blank";
+                        }
+                    }
+
+                    // creating unique link Id's for Microsoft tracking
+                    string[] detailLink = { taxonomyEventItem.Title.Replace(" ", ""), @eventItem.Title.Replace(" ", ""), @flipTileText.Replace(" ", "") };
+                    var detailLinkId = string.Join("-", detailLink);
+                    
+                    <li class="col-md-4 col-sm-6 collapse event-box-details" role="listitem" aria-label="@eventItem.Title">
+                        <a data-bind="attr: { href: Url }" href="@eventItem.ExternalLink" target="@external" role="link" id="@detailLinkId">
+                            <div class="event">
+                                <div class="event-info">
+                                    <div class="date">
+                                        <div class="month">@eventItem.Month</div>
+                                        <div class="row">
+                                            <div class="day">@eventItem.Date</div>
+                                            <div class="year"><div>@eventItem.Year.Substring(0, 2)</div><div>@eventItem.Year.Substring(2, 2)</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="details">
+                                        <div class="name cp1">@eventItem.Title</div>
+                                        <p class="loc caps1">@eventItem.Location</p>
+                                    </div>
+                                </div>
+                                <div class="register-now">
+                                    <div class="desc">@Html.Raw(eventItem.SubText)</div>
+                                    <div class="regnow-text-cntr caps1">@flipTileText</div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </li>
+                }
+                <a class="showMoreButton col-md-offset-10 col-md-2 col-xs-12 see-more pull-right" href="#" role="button" id="@seeMoreLinkId">See more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" /></a>
+            </ul>
+
+        </div>
+    }
+
+</div>

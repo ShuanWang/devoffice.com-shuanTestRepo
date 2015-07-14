@@ -1,0 +1,8 @@
+﻿<Placement>
+  <Place Parts_Scenario_Edit="Content:10"/>
+  <Place Parts_Scenario ="Content:1"/>
+
+  <Place Parts_HighlightsWidget="Content:1"/>
+  <Place Fields_ContentPicker-HighlightPicker="-" />
+
+</Placement>

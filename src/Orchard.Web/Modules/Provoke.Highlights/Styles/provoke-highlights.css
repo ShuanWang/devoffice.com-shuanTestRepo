@@ -1,0 +1,490 @@
+﻿/***************************************************************/
+
+/*Hightlight Widget
+***************************************************************/
+.highlights-main {
+    height: auto;
+    min-height: 500px;
+}
+.highlight-container {
+    margin-bottom: 50px;
+    position: relative;
+    width: 978px;
+    height: auto;
+}
+
+.highlight-container.container-fluid {
+    padding: 0 0 0 10px;
+}
+.highlight-module-tabs {
+    margin-bottom: 30px;
+}
+.highlight-container.highlight-container-admin {
+    /*margin-left: 0;
+    margin-right: 0;*/
+}
+
+.highlight-container .task-header {
+    display: block;
+    margin: 0;
+    border-bottom: 3px solid #e84024;
+}
+
+.highlight-container h2.scenario-title {
+    font-size: 0.5em;
+    color: #505050;
+}
+
+.highlight-container .task-header .taskTabs {
+    height: auto;
+    min-height: 150px;
+    z-index: 100;
+    position: relative;
+}
+.highlight-container .task-header .taskTabs .tab {
+    float: left;
+    width: 12.5%;
+    text-align: center;
+    box-sizing: border-box;
+    height: 150px;
+    padding: 10px;
+    position: relative;
+    background-color: rgb(242, 242, 242);
+    cursor: pointer;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.highlight-container .task-header .taskTabs .tab:nth-child(1) {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+.highlight-container provoke-draggable.step-tooltip .drag-handle .step-tooltip-anchor-position {
+    position: absolute;
+    right: 0;
+    margin: 4px;
+    cursor: pointer;
+}
+.highlight-container .task-header .taskTabs .tab .tab-drag-handle .tab-remove {
+    position: absolute;
+    cursor: pointer;
+    height: 20px;
+    margin: 2px;
+    right: 0;
+}
+.highlight-container .task-header .taskTabs .tab .tab-drag-handle .tab-remove:hover {
+    color: #fff;
+}
+
+.highlight-container .task-header .taskTabs .tab.selected {
+    cursor: pointer;
+    background-color: #e84024;
+}
+
+.highlight-container .task-header .taskTabs .tab:hover,
+.highlight-container .task-header .taskTabs .tab:hover .tab-drag-handle {
+    background-color: #e84024;
+    opacity: 0.90;
+}
+
+.highlight-container .task-header .taskTabs .tab * {
+    display: block;
+    text-align: center;
+}
+
+.highlight-container .task-header .taskTabs .tab .tab-heading {
+    color: #505050;
+    font-size: 1.8em;
+    margin: 5px 0 !important;
+    padding: 0;
+}
+.highlight-container .task-header .taskTabs .tab:hover .tab-heading,
+.highlight-container .task-header .taskTabs .tab.selected .tab-heading {
+    color: #ffffff;
+}
+
+.highlight-container .task-header .taskTabs .tab .title {
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: #e84024;
+    font-family: 'Segoe UI bold','Segoe UI',Tahoma,Helvetica,sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+.highlight-container .task-header .taskTabs .tab.selected .title,
+.highlight-container .task-header .taskTabs .tab:hover .title {
+    color: #ffffff;
+}
+
+.highlight-container .task-header .taskTabs .tab p.duration {
+    color: #505050;
+    position: absolute;
+    width: calc(100% - 20px);
+    bottom: 15px;
+    font-style: italic;
+}
+.highlight-container .task-header .taskTabs .tab.selected .duration,
+.highlight-container .task-header .taskTabs .tab:hover .duration {
+    color: #cccccc;
+}
+
+/* HIGHLIGHT DESCRIPTION CONTAINER */
+.highlight-description-container {
+    padding: 10px;
+    margin-top: 1px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.highlight-container .task-container {
+    display: block;
+    height: auto;
+    min-height: 550px;
+    min-width: 968px;
+    box-sizing: border-box;
+    margin-top: -1px;
+    position: relative;
+}
+.highlight-container .task-step-container {
+    height: 550px;
+    width: 966px;
+    box-sizing: border-box;
+    margin-top: -1px;
+    background-color: rgb(242, 242, 242);
+    position: relative;
+}
+.highlight-container .task-step-empty {
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: calc(50% - 15px);
+}
+.highlight-container .step-container {
+    position: relative;
+    width: 967px;
+    min-height: 549px;
+    height: auto;
+}
+
+.highlight-container .step-container.selected-step {
+    display: block;
+}
+
+.highlight-container .step-container .addImage {
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.highlight-container .step-container .addImage:hover {
+    opacity: 1;
+}
+.highlight-container .step-container .instruction a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.highlight-container .step-container .step-tooltip {
+    width: 300px;
+    padding: 15px;
+    color: #ffffff;
+    background-color: #e84024;
+    position: absolute !important;
+    z-index: 10;
+    box-shadow: 0px 0px 10px #000;
+}
+/* TODO */
+.highlight-container .step-container .step-tooltip .tooltipPointer {
+    position: absolute;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorTopLeft,
+.highlight-container .step-container .step-tooltip .stepAnchorTopCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorTopRight,
+.highlight-container .step-container .step-tooltip .stepAnchorBottomRight,
+.highlight-container .step-container .step-tooltip .stepAnchorBottomCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorBottomLeft {
+    width: 25px;
+    height: 12px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorRightTop,
+.highlight-container .step-container .step-tooltip .stepAnchorRightCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorRightBottom,
+.highlight-container .step-container .step-tooltip .stepAnchorLeftBottom,
+.highlight-container .step-container .step-tooltip .stepAnchorLeftCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorLeftTop {
+    width: 12px;
+    height: 25px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorBottomCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorBottomLeft,
+.highlight-container .step-container .step-tooltip .stepAnchorBottomRight,
+.highlight-container .step-container .step-tooltip .stepAnchorLeftBottom,
+.highlight-container .step-container .step-tooltip .stepAnchorLeftCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorLeftTop,
+.highlight-container .step-container .step-tooltip .stepAnchorRightBottom,
+.highlight-container .step-container .step-tooltip .stepAnchorRightCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorRightTop,
+.highlight-container .step-container .step-tooltip .stepAnchorTopCenter,
+.highlight-container .step-container .step-tooltip .stepAnchorTopLeft,
+.highlight-container .step-container .step-tooltip .stepAnchorTopRight {
+    background-image: url('Images/stepAnchor.png');
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorBottomCenter {
+    bottom: -11px;
+    left: calc(50% - 12.5px);
+    background-position: -1px -1px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorBottomLeft {
+    bottom: -11px;
+    left: 0;
+    background-position: -1px -14px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorBottomRight {
+    bottom: -12px;
+    right: 0;
+    background-position: 1px -28px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorLeftBottom {
+    left: -11px;
+    bottom: 0;
+    background-position: -1px -40px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorLeftCenter {
+    left: -11px;
+    top: calc(50% - 12.5px);
+    background-position: -1px -66px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorLeftTop {
+    left: -11px;
+    top: 0;
+    background-position: -1px -94px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorRightBottom {
+    right: -11px;
+    bottom: 0;
+    background-position: -1px -117px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorRightCenter {
+    right: -11px;
+    top: calc(50% - 12.5px);
+    background-position: -1px -144px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorRightTop {
+    top: 0;
+    right: -11px;
+    background-position: -1px -170px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorTopCenter {
+    top: -12px;
+    left: calc(50% - 12.5px);
+    background-position: 0 -195px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorTopLeft {
+    top: -12px;
+    left: -2px;
+    background-position: 0 -195px;
+}
+
+.highlight-container .step-container .step-tooltip .stepAnchorTopRight {
+    top: -12px;
+    right: 0;
+    background-position: 0 -195px;
+}
+
+
+
+.highlight-container .step-container .step-tooltip .detail {
+    padding-bottom: 20px;
+}
+
+.highlight-container .step-container .step-tooltip .detail .title {
+    opacity: 0.5;
+}
+
+.highlight-container .step-container .step-tooltip .detail .instruction {
+    font-size: 1.1em;
+    line-height: 1.4;
+    margin-top: 10px;
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex {
+    overflow: hidden;
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex div {
+    float: left;
+    margin-top: 1px;
+    opacity: 0.5;
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex a {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex span.step-icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    opacity: 0.5;
+    vertical-align: middle;
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex a:hover {
+    opacity: 1;
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex span.previous-step,
+.highlight-container .step-container .step-tooltip .stepIndex span.next-step {
+    cursor: pointer;
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex span.previous-step span.previous-step-icon {
+    margin-right: 5px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTUzMzE1MTQ4NjY0MTFFNDk1MzRBQjdDODE4QTA0QzUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTUzMzE1MTU4NjY0MTFFNDk1MzRBQjdDODE4QTA0QzUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxNTMzMTUxMjg2NjQxMUU0OTUzNEFCN0M4MThBMDRDNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxNTMzMTUxMzg2NjQxMUU0OTUzNEFCN0M4MThBMDRDNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkBFP88AAAFCSURBVHjatJWxSgNBEIb3LhBEDkLAgIilcHmC1BYeVhY+QYqDvIxb+AJW9gZS5CkCKQJWwSY2iRaCnc36L8zizzF7WSEZ+IrMzfw3Mze7yY1izrkCTMAc7Nyf7cTnnxUmxRBYg0+333xM3SbUBc+UsAUWVKAUKvFtKc7ndDVBFrNtLclILItqbQYbR0TOwKDhG1NezW8LM7MRsUvwCpag13hmaaaFkS8WZlYoYkOwoUoelPbDTCdG1kCtDr4R+CCxKThR4kKVc0N7VjWCbsA3iT2BTmQkVdhTQwklBdyDH24TZC1fvQyBeSRmDb7o9wXIU09GrOUr8E5VztQFbrTs37oQ/y0HZVnmq7wGb+K6Ay9IOlU0Q+4iZW38Dq6p0sd9a5Oy2OdgJfRbF/sfR2+QdPSOcjkc5fo6+AV7qL+AXwEGAP/eFHX2YmGuAAAAAElFTkSuQmCC');
+}
+
+.highlight-container .step-container .step-tooltip .stepIndex span.next-step span.next-step-icon {
+    margin-left: 5px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDlDMzlERkQ4NjY0MTFFNEIwQ0M4MTBGNDdCNjNFOUYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDlDMzlERkU4NjY0MTFFNEIwQ0M4MTBGNDdCNjNFOUYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowOUMzOURGQjg2NjQxMUU0QjBDQzgxMEY0N0I2M0U5RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowOUMzOURGQzg2NjQxMUU0QjBDQzgxMEY0N0I2M0U5RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkOhXHMAAAE8SURBVHjaYmDAAv7//88DxGlAvA2IX/1HgFdQMZAcDwMxAKgwGYjf/CcMQGqS8RnEBsSLkTS8BOIeIHYFYnUodoWKvURSB9LDhs1AZMN68HkJGiQ9yIZi8yYMxKPJiQKxCA6D45H0JSPbBguzHjQN/EB8HoivAbEMDkN7kMKUhwEaY7Aw40FT3I3kgsdArIHD+7AwTWOAJgMM10EVcwDxeiRDXwOxGR5XbmNASmeuOLzEDMRzkQz9DMQuaGpcYemUAUmhOp5YZUTz/i8gDkSSV4dJMDEQB0DqpJD4H4D4Di7bCXkZlOA3IbnuCRCr4PIyyOYzUHF3LIZxAal1QOwLFboHxA6MjIzoroPpPUMo2UxActkdbGkRW7LBl7AFgfgyFEsQlbCJzHqiRGc9mhQONCm+qF7AUqsKAAgwAOEjFHNrZgSbAAAAAElFTkSuQmCC');
+}
+
+.highlight-container .step-container .step-tooltip a.readmore {
+    background-position: right 3px;
+    margin-top: 20px;
+    color: #ffffff;
+    padding-right: 25px;
+    opacity: 0.5;
+}
+
+.highlight-container .step-container .step-tooltip a.readmore:hover {
+    opacity: 1;
+}
+
+.highlight-container .step-container .imageContainer {
+    width: 968px;
+    height: 549px;
+    overflow: hidden;
+}
+
+.highlight-container .step-container .imageContainer img {
+    width: 968px;
+    height: 549px;
+    position: relative;
+    display: block;
+}
+
+
+/** HIGHLIGHT MODULE NAVIGATION */
+.highlight-module-tabs.container-fluid {
+    padding: 0 0 0 10px;
+}
+.highlight-module-tabs .tab {
+    float: left;
+    text-align: center;
+    width: calc(16.6667% - 20px);
+    margin-right: 20px;
+    box-sizing: border-box;
+    height: 150px;
+    padding: 10px;
+    position: relative;
+    background-color: rgb(242, 242, 242);
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.highlight-module-tabs:nth-child(6) {
+    margin-right: 0;
+}
+.highlight-module-tabs .tab.selected {
+    background-color: #e84024;
+    color: #fff;
+}
+.highlight-module-tabs .tab.selected .highlight-module-tab-indicator {
+    width: 25px;
+    height: 12px;
+    position: absolute;
+    bottom: -11px;
+    left: calc(50% - 12.5px);
+    background: url('Images/stepAnchor.png') -1px -1px;
+}
+.highlight-module-tabs .tab:hover {
+    background-color: #e84024;
+    opacity: 0.9;
+}
+.highlight-module-tabs .tab .title {
+    color: #505050;
+    font-family: 'Segoe UI light','Segoe UI',Tahoma,Helvetica,sans-serif;
+    font-weight: 200;
+    font-size: 1.8em;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+.highlight-module-tabs .tab.selected .tab-heading,
+.highlight-module-tabs .tab.selected .title,
+.highlight-module-tabs .tab:hover .tab-heading,
+.highlight-module-tabs .tab:hover .title {
+    color: #fff;
+}
+.highlight-module-tabs .tab .title {
+    text-transform: uppercase;
+    color: #e84024;
+    font-family: 'Segoe UI bold','Segoe UI',Tahoma,Helvetica,sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    height: 40px;
+    padding: 5px 0;
+    line-height: 1.1;
+}
+
+.highlight-module-tabs .tab .tab-heading,
+.highlight-module-tabs .tab .title {
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+
+/*Non-module page styles*/
+.highlights-main .white-block p {
+    font-weight: 400;
+}
+.highlights-main .white-block.row {
+    background-color: #ffffff;
+}
+.highlights-main .highlight-title-container .container-fluid,
+.highlights-main .white-block .container-fluid, 
+.highlights-main .lab-intro {
+    padding: 30px 10px;
+}
+
+.highlights-main .white-block .resources-container {
+    padding-top: 30px;
+}
+.highlights-main .white-block .resources-container .single-resource {
+    padding-left: 0;
+    padding-bottom:10px
+}
+.highlights-main .white-block .resources-container .link-title {
+    padding-left: 8px;
+    padding-right: 0;
+    overflow: hidden;
+    height: 40px;
+}
+.highlights-main .highlight-title {
+    font-size: 42px;
+} 

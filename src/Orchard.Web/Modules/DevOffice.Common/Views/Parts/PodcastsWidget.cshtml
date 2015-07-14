@@ -1,0 +1,183 @@
+﻿@using System.Web.UI.WebControls
+@using DevOffice.Common.Models
+@using DevOffice.Common.ViewModels;
+
+@{
+    Script.Include("trainingPage.js").AtFoot();
+    var viewModel = Model.ViewModel;
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+    var trainingItemOrder = 0;
+    var styleClass = "";
+    //var type = viewModel.Type;
+    var viewLableText = "LISTEN";
+
+}
+
+
+<div class=" container-fluid">
+    <div class="row">
+        <div id='nav-column' class='col-lg-4 col-md-4'>
+            <nav id='side-nav'>
+                <ul class='nav' id="left-side-nav">
+                    @foreach (var taxonomyTrainingItem in viewModel.TaxonomyTrainingItems)
+                    {
+                        <li>
+                            <a href='#@taxonomyTrainingItem.SafeTitle'>
+                                @taxonomyTrainingItem.Title
+                            </a>
+                        </li>
+                    }
+                    <li>
+                        <a href="#">
+                            Back to top
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-8 podcastsWidget">
+
+            @foreach (var taxonomyTrainingItem in viewModel.TaxonomyTrainingItems)
+            {
+
+                // re-using Events page class names / styles
+                trainingItemOrder = trainingItemOrder + 1;
+                if (trainingItemOrder == 1)
+                {
+                    styleClass = "upcoming-events";
+                }
+                else if (trainingItemOrder == 2)
+                {
+                    styleClass = "third-party-events";
+                }
+                else if (trainingItemOrder == 3)
+                {
+                    styleClass = "recent-events";
+                }
+
+
+
+                // creating unique link Id's for Microsoft tracking
+                //string[] seeMoreLink = { taxonomyTrainingItem.Title.Replace(" ", ""), "SeeMoreLink" };
+                //var seeMoreLinkId = string.Join("-", seeMoreLink);
+
+                <h1 class="category-title" id='@taxonomyTrainingItem.SafeTitle'>@taxonomyTrainingItem.Title</h1>
+                <div class="row">
+                    <ul class="col-md-12 podcastsList clearfix @styleClass" role="list" aria-label="@taxonomyTrainingItem.Title">
+
+                        @foreach (var trainingItem in taxonomyTrainingItem.TrainingItems)
+                        {
+                            var permalinkTag = trainingItem.Id.ToString();
+                            if (!string.IsNullOrEmpty(trainingItem.ExternalLink))
+                            {
+                                if (!trainingItem.ExternalLink.Contains(baseUrl) && !trainingItem.ExternalLink.StartsWith("/"))
+                                {
+                                    external = "_blank";
+                                }
+                            }
+
+                            if (!string.IsNullOrEmpty(trainingItem.PermalinkTag))
+                            {
+                                permalinkTag = trainingItem.PermalinkTag.Replace(" ", "_").Replace(".", "_").Replace(",", "_").Replace("?", "_");
+                            }
+
+                            // creating unique link Id's for Microsoft tracking
+                            string[] detailLink = { taxonomyTrainingItem.Title.Replace(" ", ""), @trainingItem.Title.Replace(" ", ""), "DetailLink" };
+                            var detailLinkId = string.Join("-", detailLink);
+
+                            string[] moreInfoLink = { taxonomyTrainingItem.Title.Replace(" ", ""), @trainingItem.Title.Replace(" ", ""), "MoreInfo" };
+                            var moreInfoId = string.Join("-", moreInfoLink);
+
+
+
+                            <li class="col-lg-12 event-box-details" role="listitem" aria-label="@trainingItem.Title" id="@permalinkTag">
+
+                                <div class="code-event">
+                                    <div class="event-info">
+                                        <div class="code-title">
+                                            <div class="podcast-img col-xs-2">
+                                                @{
+                                                    if (trainingItem.Image == "")
+                                                    {
+                                                        <a data-bind="attr: { href: Url }" href="@trainingItem.ExternalLink" target="@external">
+                                                            <img src="/Media/Default/Training/podcast.png" alt="@trainingItem.Title Icon" class="img-responsive" />
+                                                        </a>
+                                                    }
+
+                                                    else
+                                                    {
+                                                        <a data-bind="attr: { href: Url }" href="@trainingItem.ExternalLink" target="@external">
+                                                            <img src="@trainingItem.Image" alt="@trainingItem.Title Icon" class="img-responsive" />
+                                                        </a>
+                                                    }
+                                                }
+                                            </div>
+                                            <div class="podcast-info pull-right">
+                                                <div class="col-xs-12 name autoheight cp1">@trainingItem.Title</div>
+                                            </div>
+                                            <div class="podcast-description pull-right">
+                                                <div class="col-xs-12">
+                                                    <div class="description col-xs-12">
+                                                        @if (!string.IsNullOrEmpty(@trainingItem.SubText))
+                                                        {
+                                                            @trainingItem.SubText
+                                                        }
+                                                        <div class="col-xs-12 event-links podcast-links">
+
+                                                            <div class="col-xs-6 podcast-date ff-semibold"> @trainingItem.DatePublished.ToString("MMM dd, yyyy")</div>
+                                                            @if (!string.IsNullOrEmpty(@trainingItem.ExternalLink))
+                                                            {
+                                                                <div class="col-xs-6 podcast-link">
+
+                                                                    <a data-bind="attr: { href: Url }" href="@trainingItem.ExternalLink" target="@external" role="link" id="@detailLinkId" class="pull-right ff-semibold">@viewLableText <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- RSS, Twitter, Website links -->
+                                    @if (trainingItem.Links.Count > 0)
+                                    {
+                                        <div class="related-resources row">
+                                            <div class="col-sm-2 resource-text">
+                                                Resources
+                                            </div>
+                                            <div class="col-sm-10 resource-row">
+                                                <div class="row">
+                                                    @foreach (var link in ((IList<RelatedLinkRecord>)@trainingItem.Links).Take(6))
+                                                    {
+                                                        var iconClass = "icon_" + link.Type + "_codeSample";
+
+                                                        <div class="resource-line col-xs-3">
+                                                            <a href="@link.Url">
+
+                                                                <div class="@iconClass link-icon col-xs-3"></div>
+                                                                <div class="link-title col-xs-9">@link.Title</div>
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div id="top-link-block" class="hidden hidden-md">
+            <div class="top-link" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                <a href="#"> <i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
+            </div>
+        </div><!-- /top-link-block -->
+    </div>
+</div>

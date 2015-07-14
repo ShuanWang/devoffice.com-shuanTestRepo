@@ -1,0 +1,42 @@
+﻿@model DevOffice.Common.ViewModels.CommunityViewModel
+
+@{
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+}
+@*col-lg-3 col-md-6 col-sm-6  col-sm-12*@
+<div class="homeCommunityWidget " aria-label="Community" id="community">
+
+    <h1 role="heading">Community</h1>
+        <div class="communitySection">
+            @if (Model.CommunityItems != null)
+            {
+                <ul role="list">
+                    @foreach (var communityItem in Model.CommunityItems)
+                    {
+                        if (!string.IsNullOrEmpty(communityItem.ExternalLink))
+                        {
+                            if (!communityItem.ExternalLink.Contains(baseUrl) && !communityItem.ExternalLink.StartsWith("/"))
+                            {
+                                external = "_blank";
+                            }
+                        }
+                        <li class="communityWidgetItem" role="listitem" aria-label="@communityItem.Title">
+                            <div class="community-widget-section">
+                                <a href="@communityItem.ExternalLink" class="community-heading" target="@external" role="link" id="HomeCommunityItem-@communityItem.Title.Replace(" ", "")-DetailLink">
+                                    <h2>@communityItem.Title</h2>
+                                    <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow" />
+                                </a>
+                                <div class="community-text">@Html.Raw(@communityItem.SubText)</div>
+                                @*<div class="learn-more-row row">
+                                    <a href="@communityItem.ExternalLink" class="see-more-article pull-right" role="link" target="@external">See more</a>
+                                </div>*@
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+
+</div>

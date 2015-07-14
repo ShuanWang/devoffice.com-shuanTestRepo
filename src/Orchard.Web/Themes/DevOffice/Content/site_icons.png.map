@@ -1,0 +1,144 @@
+{
+  "images": [
+    {
+      "name": "/DevOffice/Content/Icons/icon_back.png",
+      "width": 30,
+      "height": 31,
+      "offsetX": 0,
+      "offsetY": 0
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_computer.png",
+      "width": 40,
+      "height": 40,
+      "offsetX": 0,
+      "offsetY": 31
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_doc.png",
+      "width": 46,
+      "height": 57,
+      "offsetX": 0,
+      "offsetY": 71
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_downarrow.png",
+      "width": 12,
+      "height": 8,
+      "offsetX": 0,
+      "offsetY": 128
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_downarrow_hover.png",
+      "width": 12,
+      "height": 8,
+      "offsetX": 0,
+      "offsetY": 136
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_filter.png",
+      "width": 14,
+      "height": 14,
+      "offsetX": 0,
+      "offsetY": 144
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_minus.png",
+      "width": 13,
+      "height": 11,
+      "offsetX": 0,
+      "offsetY": 158
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_mobile.png",
+      "width": 40,
+      "height": 40,
+      "offsetX": 0,
+      "offsetY": 169
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_MVA.png",
+      "width": 106,
+      "height": 57,
+      "offsetX": 0,
+      "offsetY": 209
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_office.png",
+      "width": 40,
+      "height": 40,
+      "offsetX": 0,
+      "offsetY": 266
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_plus.png",
+      "width": 13,
+      "height": 11,
+      "offsetX": 0,
+      "offsetY": 306
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_ppt.png",
+      "width": 26,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 317
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_samples.png",
+      "width": 57,
+      "height": 57,
+      "offsetX": 0,
+      "offsetY": 342
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_search.png",
+      "width": 14,
+      "height": 14,
+      "offsetX": 0,
+      "offsetY": 399
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_sharepoint.png",
+      "width": 40,
+      "height": 40,
+      "offsetX": 0,
+      "offsetY": 413
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_tablet.png",
+      "width": 40,
+      "height": 40,
+      "offsetX": 0,
+      "offsetY": 453
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_uparrow.png",
+      "width": 12,
+      "height": 8,
+      "offsetX": 0,
+      "offsetY": 493
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_view.png",
+      "width": 13,
+      "height": 10,
+      "offsetX": 0,
+      "offsetY": 501
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_word.png",
+      "width": 26,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 511
+    },
+    {
+      "name": "/DevOffice/Content/Icons/icon_xls.png",
+      "width": 26,
+      "height": 25,
+      "offsetX": 0,
+      "offsetY": 536
+    }
+  ]
+}

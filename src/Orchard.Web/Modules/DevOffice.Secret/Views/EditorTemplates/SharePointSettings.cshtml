@@ -1,0 +1,53 @@
+﻿@model DevOffice.Secret.Models.SharePointSettingsPart
+<fieldset>
+    <legend>@T("SharePoint Settings")</legend>
+
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Username)">@T("User Name")</label>
+        @Html.TextBoxFor(m => m.Username, new { @class = "text medium" })
+        <span class="hint">@T("Enter the SharePoint tenant email.")</span>
+    </div>
+    
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Password)">@T("Password")</label>
+        @Html.TextBoxFor(m => m.Password, new { @class = "text medium", @type = "password" })
+        <span class="hint">@T("Enter the SharePoint tenant Password.")</span>
+    </div>
+    
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ContainingWebUrl)">@T("Containing Web Url")</label>
+        @Html.TextBoxFor(m => m.ContainingWebUrl, new { @class = "text medium" })
+        <span class="hint">@T("Enter the SharePoint tenant Containing Web Url.")</span>
+    </div>
+    
+    <div>
+        <label for="@Html.FieldIdFor(m => m.TargetListName)">@T("Target List Name")</label>
+        @Html.TextBoxFor(m => m.TargetListName, new { @class = "text medium" })
+        <span class="hint">@T("Enter the SharePoint Target List Name.")</span>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.TargetListItemMetaType)">@T("Target List Item Content Type for WOPI Submissions")</label>
+        @Html.TextBoxFor(m => m.TargetListItemMetaType, new { @class = "text medium" })
+        <span class="hint">@T("Enter the SharePoint tenant Target List Item Content Type for WOPI Submissions.")</span>
+    </div>
+   
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ApiSubmission_ContainingWebUrl)">@T("API Submission Containing Web Url")</label>
+        @Html.TextBoxFor(m => m.ApiSubmission_ContainingWebUrl, new { @class = "text medium" })
+        <span class="hint">@T("Enter the SharePoint tenant  Web Url for API Submissions.")</span>
+    </div>
+
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ApiSubmission_TargetListName)">@T("API Submissions Target List Name")</label>
+        @Html.TextBoxFor(m => m.ApiSubmission_TargetListName, new { @class = "text medium" })
+        <span class="hint">@T("Enter the SharePoint Target List Name for API Submissions.")</span>
+    </div>
+    
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ApiSubmission_TargetListItemMetaType)">@T("Target List Item Content Type for API Submissions")</label>
+        @Html.TextBoxFor(m => m.ApiSubmission_TargetListItemMetaType, new { @class = "text medium" })
+        <span class="hint">@T("Enter the SharePoint tenant Target List Item Content Type for API Submissions.")</span>
+    </div>
+
+
+</fieldset>

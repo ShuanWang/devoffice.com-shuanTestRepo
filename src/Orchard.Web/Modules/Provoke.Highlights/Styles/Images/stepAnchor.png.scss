@@ -1,0 +1,75 @@
+﻿/*
+@import this file directly into your existing Scss files to use these mixins
+*/
+@mixin sprite-stepAnchorBottomCenter() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') -1px -1px;
+}
+@mixin sprite-stepAnchorBottomLeft() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') -1px -14px;
+}
+@mixin sprite-stepAnchorBottomRight() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') -1px -27px;
+}
+@mixin sprite-stepAnchorLeftBottom() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') -1px -40px;
+}
+@mixin sprite-stepAnchorLeftCenter() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') -1px -66px;
+}
+@mixin sprite-stepAnchorLeftTop() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') -1px -92px;
+}
+@mixin sprite-stepAnchorRightBottom() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') -1px -118px;
+}
+@mixin sprite-stepAnchorRightCenter() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') -1px -144px;
+}
+@mixin sprite-stepAnchorRightTop() {
+/* You may have to set 'display: block' */
+	width: 12px;
+	height: 25px;
+	background: url('stepAnchor.png') -1px -170px;
+}
+@mixin sprite-stepAnchorTopCenter() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') -1px -196px;
+}
+@mixin sprite-stepAnchorTopLeft() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') -1px -209px;
+}
+@mixin sprite-stepAnchorTopRight() {
+/* You may have to set 'display: block' */
+	width: 25px;
+	height: 12px;
+	background: url('stepAnchor.png') -1px -222px;
+}

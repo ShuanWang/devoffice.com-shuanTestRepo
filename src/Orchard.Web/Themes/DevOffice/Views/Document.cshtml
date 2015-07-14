@@ -1,0 +1,84 @@
+﻿@using Orchard.Mvc.Html;
+@using Orchard.UI.Resources;
+
+@{
+    RegisterLink(new LinkEntry { Type = "image/x-icon", Rel = "shortcut icon", Href = Url.Content("~/Themes/DevOffice/Content/favicon.ico") });
+    Script.Include("html5.js").UseCondition("lt IE 9").AtHead();
+    Script.Include("redirectSearch.min.js").AtHead();
+
+    string title = Convert.ToString(Model.Title);
+    string siteName = Convert.ToString(WorkContext.CurrentSite.SiteName);
+}
+
+<!DOCTYPE html>
+<html lang="@WorkContext.CurrentCulture" class="static @Html.ClassForPage()">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="application-name" content="Microsoft Content Hub">
+    <meta name="viewport" content="width=device-width, user-scalable=1, target-densitydpi=device-dpi">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="PRAGMA" content="NO-CACHE">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <title>@Html.Title(title, siteName)</title>
+    <script type="text/javascript">
+        (function () {
+            if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                var msViewportStyle = document.createElement("style");
+                msViewportStyle.appendChild(
+                    document.createTextNode("@@-ms-viewport{width:auto!important}")
+                );
+                document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+            }
+        })();
+    </script>
+    <script src="//cdn.optimizely.com/js/2209430092.js"></script>
+    @Display(Model.Head)
+</head>
+
+<body>
+    @* Layout is in the Body *@
+    @Display(Model.Body)
+    @Display(Model.Tail)
+   
+    @*PROD AddThis*@
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53e944d61ebade5f" async="async"></script>
+    
+    @*TEST AddThis*@
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    @*<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53e3cb3f0e219bbc" async="async"></script>*@
+    
+
+    @* Tracking code Begins *@
+    <script type="text/JavaScript">
+            var varSegmentation = 0;
+            var varClickTracking = 1;
+            var varCustomerTracking = 1;
+            var varAutoFirePV = 1;
+            var Route = "50000";
+            var Ctrl = "SD300";
+            document.write("<script type='text/javascript' src='" + (window.location.protocol) + "//c.microsoft.com/ms.js'" + "'><\/script>");
+        </script>
+        <noscript><img alt="" width="1" height="1" src="http://c.microsoft.com/trans_pixel.aspx"/></noscript>
+    @* Tracking code Ends *@
+
+    @* Google Analytics Code *@
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-54271502-1', 'auto');
+        ga('require', 'displayfeatures');
+        ga('require', 'linkid', 'linkid.js');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

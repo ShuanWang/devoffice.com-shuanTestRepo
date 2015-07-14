@@ -1,0 +1,15 @@
+﻿@using DevOffice.Common.ViewModels;
+
+@{
+    Style.Require("Search");
+}
+
+<div class="search-form-block hidden-xs col pull-right">
+    @using (Html.BeginForm("index", "search", new { area = "DevOffice.Common" }, FormMethod.Get, new { @class = "search-form" }))
+    {
+        <fieldset>
+            @Html.TextBox("q", (SearchViewModel)Model.ViewModel.Query, new {aria_label = "search"})
+            <button type="submit">@T("Search")</button>
+        </fieldset>
+    }
+</div>

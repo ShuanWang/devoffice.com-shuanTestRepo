@@ -1,0 +1,67 @@
+﻿<Placement>
+  <!-- Customize where the shapes are rendered -->
+
+  <Place Parts_AppsWidget="Content:5" />
+  <Place Parts_ArticlesWidget="Content:5" />
+  <Place Parts_HomeCommunityWidget="Content:6" />
+  <Place Parts_HomeEventsWidget="Content:7" />
+  <Place Parts_FeedbackWidget="Content:5" />
+  <Place Parts_HeaderQuickLinksWidget="Header:10" />
+  <Place Parts_HomeQuickLinksWidget="Content:1" />
+  <Place Parts_CommunityWidget="Content:10" />
+  <Place Parts_TrainingWidget="Content:10" />
+  <Place Parts_PodcastsWidget="Content:10" />
+  <Place Parts_VideosWidget="Content:10" />
+  <Place Parts_EventsWidget="Content:10" />
+  <Place Parts_ResourcesWidget="Content:10" />
+  <Place Parts_CodeSamplesWidget="Content:10" />
+  <Place Parts_SolutionWidget="Content:1"/>
+  <Place Parts_GettingStartedWidget="Content:10"/>
+  <Place Parts_PatternsAndPracticesWidget="Content:10"/>
+  <Place Parts_DevOfficeSearchForm="Content:1"/>
+  <Place Parts_BannerWidget="Content:5"/>
+
+  <Place Parts_SingleBlogWidget="Content:10"/>
+
+
+
+
+  <Place Parts_HomeArticlesWidget="Content:7" />
+  <Place Parts_NewArticlesWidget="Content:7" />
+  
+  <Place Parts_ArticlesWidgetPart_Edit="Content:7.5"/>
+
+  <Place Parts_Steps_Edit="Content:4" />
+  <Place Parts_Steps="Content:4" />
+  
+  <Place Parts_TilesRowsPage="Content:1"/>
+  <Place Parts_TilesColumnsPage="Content:1"/>
+  <Place Parts_OverviewPage="Content:1"/>
+  
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_QuickLinksPart="-"/>
+    <Place Parts_Steps="-" />
+    <Place Parts_TilesRowsPage="-"/>
+    <Place Parts_TilesColumnsPage="-"/>
+  </Match>
+
+  <Place Fields_MediaLibraryPicker="-"/>
+
+  <Place Parts_RelatedLinks_Edit="Content:10" />
+
+  <Match ContentType="SectionsWithTilesPage">
+    <Place Parts_Title="-"/>
+    <Place Fields_enumeration="-"/>
+    <Place Fields_ContentPicker="-"/>
+    <Place Fields_MediaLibraryPicker-BannerImage="-"/>
+  </Match>
+
+  <Match DisplayType="SummaryAdmin">
+    <Place Fields_Common_DateTime="Content:1"/>
+  </Match>
+
+  <Match ContentType="Highlight">
+    <Place Parts_Title="-"/>
+  </Match>
+
+</Placement>

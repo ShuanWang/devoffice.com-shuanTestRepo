@@ -1,0 +1,238 @@
+﻿@using DevOffice.Common.ViewModels
+@using Newtonsoft.Json
+@model DevOffice.Common.ViewModels.TrainingViewModel
+
+@{
+    Script.Include("trainingController.min.js");
+    Script.Include("jquery.lazyload.min.js").AtHead();
+    Script.Include("stickyBox.min.js").AtFoot();
+    //this is added to the head tag to help with SEO
+    AppendMeta("fragment", "!", "");
+}
+@*render mode for search crawls*@
+
+@if (HttpContext.Current.Request.QueryString.ToString().ToLower().Contains("_escaped_fragment_="))
+{
+    <ul>
+        @foreach (Training training in Model.AllTrainingItems)
+        {
+            <li>
+                <article>
+                    <h3>@training.Title</h3>
+                    <p>@training.SubText</p>
+                    <a href="@training.ExternalLink">@training.ExternalLink</a>
+                    @foreach (RelatedLink link in training.Links)
+                    {
+                        <ul>
+                            <li>
+                                <a href="@link.Url">@link.Title</a>
+                            </li>
+                        </ul>
+                    }
+                </article>
+            </li>
+
+        }
+
+    </ul>
+
+}
+        else {
+
+<div ng-controller="trainingController" ng-init="model = @JsonConvert.SerializeObject(Model); trainingItemsToShow = []">
+
+
+
+    @*Top viewed block*@
+    <div class="top-viewed" ng-show="topViewed.length > 0">
+        <div class="container-fluid">
+            <h2>Top Viewed</h2>
+            <ul class="row">
+                <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="topViewedItem in topViewed">
+                    <a ng-show="topViewedItem.Title.split(' ').length > 1" href="{{topViewedItem.ExternalLink}}">{{topViewedItem.Title}}</a>
+                    <a ng-show="topViewedItem.Title.split(' ').length <= 1" href="{{topViewedItem.ExternalLink}}" style="word-break:break-all">{{topViewedItem.Title}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+    @*Filter box*@
+    <div class="codeSamplesWidget container-fluid">
+
+        <div class="col-sm-12 col-md-4 nopad code-filter panel-group" id="accordion">
+            <div id="sticky-anchor"></div>
+            <div id="sticky">
+                <div class="" id="affix-patterns-and-pracs">
+                    <div class="pnp-search-container">
+                        <input ng-model="searchText" class="pnp-search" placeholder="Search"><img class="pnp-search-icon" src="/Themes/DevOffice/Content/Icons/devOffice_search_orange_15x15.png" />
+                    </div>
+                    <div style="height:10px;background-color:#f2f2f2;"></div>
+                    
+                    <div id='nav-column' class='col-lg-4 col-md-4' style="padding:0;">
+                        <nav class='side-nav'>
+                             <ul class='nav' id="">
+
+                                 <li ng-repeat="taxonomy in model.TaxonomyNames" >
+                                     <a ng-class="{active: selectedTypes.indexOf(taxonomy.toLowerCase()) != -1}" class="training-nav-link"  value="taxonomy.replace(/[^0-9a-z-]/g, '')" ng-click="updateSelectedTypes(taxonomy.toLowerCase())" ng-model="selectedTypes">
+                                         {{taxonomy}}
+                                     </a>
+                                 </li>
+                </ul>
+            </nav>
+        </div>
+                    
+                    
+                    
+                  
+                </div>
+            </div>
+            </div>
+
+        <div id="top-link-block" class="hidden hidden-md">
+            <div class="top-link" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                <a href="#"> <i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
+            </div>
+        </div><!-- /top-link-block -->
+
+        <div class="container-fluid" id="training-page">
+            <div class="row">
+               
+
+
+
+                <div class="col-md-8  col-sm-12 ">
+
+
+
+
+                    <div id="OrderedResults" class="bg-sorter">
+                        <div class="row filter-bar">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <span class="pull-left  ff-light sorter-label">Sort by:</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <a ng-click="orderByViews()" class="bg-white f-gray  ff-light sorter popular">
+                                    Most popular
+                                    <img id="mostPopularIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                    <img id="mostPopularIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <a ng-click="orderByDate()" class="bg-white f-gray  ff-light pull-right sorter recent">
+                                    Most recent
+                                    <img id="mostRecentIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                    <img id="mostRecentIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li ng-repeat="trainingItem in currListSlice" class="col-lg-12 event-box-details" role="listitem" aria-label="{{trainingItem.Title}}" id="">
+                            <div class="code-event">
+                                <div class="event-info">
+                                    <div class="code-title">
+                                        <div class="event-icon col-xs-2">
+                                            <img src="{{trainingItem.Image}}" alt="{{trainingItem.Title}} Icon" class="img-responsive" />
+                                        </div>
+                                        <div class="col-xs-7 name autoheight cp1">{{trainingItem.Title}}</div>
+                                        <div class="col-xs-3 name autoheight cp1 updated-date">{{trainingItem.FullStartDate.ToString("MMM dd, yyy")}}</div>
+                                        <div class="col-xs-10">
+                                            <div class="description">
+                                                <span ng-show="trainingItem.SubText.length > 0">{{trainingItem.SubText}}</span>
+                                                <div class="col-xs-12 event-links training-links ff-semibold">
+                                                    <span ng-show="trainingItem.ViewCount > 1 || trainingItem.ViewCount <= 0">{{trainingItem.ViewCount}} views</span>
+                                                    <span ng-show="trainingItem.ViewCount == 1">{{trainingItem.ViewCount}} view</span>
+                                                    <a data-bind="attr: { href: Url }" href="{{trainingItem.ExternalLink}}" target="{{trainingItem.External}}" role="link" id="{{trainingItem.TechnicalTitle}}" class="pull-right" ng-click="updateViewCount(trainingItem.Id, 'training')">LEARN <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div ng-show="trainingItem.Links.length > 0" class="related-resources row">
+                                    <div class="col-sm-2 resource-text">
+                                        Resources
+                                    </div>
+                                    <div class="col-sm-10 resource-row">
+                                        <div class="row">
+
+
+                                            <div ng-repeat="link in trainingItem.Links" class="resource-line col-xs-3">
+                                                <a ng-show="link.Type == 'handsOnLab'" href="hands-on-labs/{{trainingItem.Id}}">
+
+                                                    <div class="link-icon col-xs-3 {{'icon_'+link.Type+'_codeSample'}}"></div>
+                                                    <div class="link-title col-xs-9">{{link.Title}}</div>
+                                                </a>
+                                                    <a ng-show="link.Type != 'handsOnLab'" href="{{link.Url}}">
+
+                                                        <div class="link-icon col-xs-3 {{'icon_'+link.Type+'_codeSample'}}"></div>
+                                                        <div class="link-title col-xs-9">{{link.Title}}</div>
+                                                    </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*}*@
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="pull-right paging-container" ng-show="pageCount()> 1">
+                        <a class="page-number" ng-show="currentPage > 1" ng-click="updatePagination(currentPage - 1)" class="prev-link ff-semibold">
+                            <img class="see-more-icon podcast-see-more-icon flipped" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                            <span class="hidden-xs">Previous</span>
+                        </a>
+                        <a class="page-number" ng-show="showFirstPage" ng-click="updatePagination(1)">1</a>
+                        <span class="page-number" ng-show="showStartEllipsis">...</span>
+                        <span class="page-number" ng-repeat="i in pagingRange">
+                            <a ng-show="i==currentPage" class="circled-page paging"> {{i}}</a>
+                            <a ng-hide="i==currentPage" ng-click="updatePagination(i)" class="paging">{{i}}</a>
+                        </span>
+                        <span class="page-number" ng-show="showEndEllipsis">...</span>
+                        <a class="page-number" ng-show="showLastPage" ng-click="updatePagination(pageCount())">{{pageCount()}}</a>
+                        <a ng-show="currentPage < pageCount()" ng-click="updatePagination(currentPage + 1)" class="next-link ff-semibold">
+                            <span class="hidden-xs">
+                                Next
+                            </span>
+                            <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                        </a>
+                    </div>
+
+                    <ul ng-show="trainingItemsToShow.length <= 0" class="col-md-12 eventlist upcoming-events" role="list">
+                        <li class="container collapse in no-results-message-container">
+                            <h4 class="col-md-12 bg-primary no-results-message">There are no items that match your filter selection.</h4>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <div id="top-link-block" class="hidden hidden-md">
+                <div class="top-link" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                    <a href="#"> <i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
+                </div>
+            </div><!-- /top-link-block -->
+        </div>
+    </div>
+</div>
+        }

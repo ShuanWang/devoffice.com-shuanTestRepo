@@ -1,0 +1,338 @@
+﻿@using DevOffice.Common.ViewModels
+
+@{
+    //Script.Include("redirectSearch.js").AtHead();
+    Script.Include("codeSamplesController.js");
+    CodeSamplesViewModel model = Model.ViewModel;
+
+    Script.Include("CodeSamplesFilter.min.js");
+    Script.Include("jquery.lazyload.min.js").AtHead();
+    Script.Include("stickyBox.js").AtFoot();
+
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+
+    //this is added to the head tag to help with SEO
+    AppendMeta("fragment", "!", "");
+
+
+}
+
+@*render mode for search crawls*@
+
+@if (HttpContext.Current.Request.QueryString.ToString().ToLower().Contains("_escaped_fragment_="))
+{
+    <ul>
+        @foreach (CodeSample sample in model.CodeSamples)
+        {
+            <li>
+                <article>
+                    <h3>@sample.Title</h3>
+                    <p>@sample.SubText</p>
+                    <a href="@sample.ExternalLink">@sample.ExternalLink</a>
+                    @foreach (RelatedLink link in sample.Links)
+                    {
+                        <ul>
+                            <li>
+                                <a href="@link.Url">@link.Title</a>
+                            </li>
+                        </ul>
+                    }
+                </article>
+            </li>
+        }
+    </ul>
+}
+else
+{
+
+    <input type="hidden" id="ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
+    <div class="full-container-search" ng-controller="codeSamplesController" ng-init="model = @Json.Encode(model); codeSamplesToShow = []">
+        <div class="top-viewed" ng-show="topViewed.length > 0">
+            <div class="container-fluid">
+                <h2>Top Viewed</h2>
+                <ul class="row">
+                    <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="topViewed in topViewedCodeSamples">
+                        <a ng-show="topViewed.Title.split(' ').length > 1" href="{{topViewed.ExternalLink}}">{{topViewed.Title}}</a>
+                        <a ng-show="topViewed.Title.split(' ').length <= 1" href="{{topViewed.ExternalLink}}" style="word-break:break-all">{{topViewed.Title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="codeSamplesWidget container-fluid">
+
+            <div class="col-sm-12 col-md-4 nopad code-filter panel-group" id="accordion">
+                <div id="sticky-anchor"></div>
+                <div id="sticky">
+                    <div class="panel panel-default">
+
+                        <div class="pnp-search-container">
+                            <input ng-model="searchText" class="pnp-search" placeholder="Search"><img class="pnp-search-icon" src="/Themes/DevOffice/Content/Icons/devOffice_search_orange_15x15.png" />
+                        </div>
+                        <div style="height:10px;background-color:#f2f2f2;"></div>
+                        <div class="filter-box-header panel-heading">
+
+                            <h4>
+                                <i class="icon_filter"></i>
+                                Filters
+                            </h4>
+                            <button type="button" class="clearfilters filter-button" ng-click="clearFilters()">Clear</button>
+                        </div>
+
+
+                        <div class="container-fluid" ng-view>
+
+                            <div class="filter-list-container row" id="accordion" role="tablist" aria-multiselectable="true">
+
+                                @* Collapsible - Type Filters*@
+                                <div class="filter-list clearfix panel panel-default">
+                                    <h3 class="filter-category " ng-class="{active: selectedTypesCount > 0}">
+                                        <a data-toggle="collapse" href="#types" data-parent="#accordion" aria-expanded="true" aria-controls="types" class="collapsed">
+                                            <span class="filter-category-icon icon_expand"></span>Types
+                                        </a>
+                                        <span ng-show="selectedTypesCount > 0" class="filter-list-count" style="">{{selectedTypesCount}}</span>
+                                    </h3>
+
+                                    <ul class="col-xs-12 panel-collapse collapse" id="types" role="tabpanel" aria-labelledby="Code Samples Types">
+
+                                        <li style="padding:0 5px;" ng-repeat="type in model.Types" class="col-md-6 col-sm-4 col-xs-12">
+                                            <input style="margin-right:5px" type="checkbox" value="{{type}}" ng-click="updateSelectedTypes(type)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(type.toLowerCase()) != -1" />
+                                            {{type}}
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                
+                             
+                                
+
+                                @* Collapsible - Language Filters*@
+                                <div class="filter-list clearfix panel panel-default">
+                                    <h3 class="filter-category" ng-class="{active: selectedLanguagesCount > 0}">
+                                        <a data-toggle="collapse" href="#languages" data-parent="#accordion" aria-expanded="False" aria-controls="languages">
+                                            <span class="filter-category-icon icon_expand"></span>Language
+                                        </a>
+                                        <span ng-show="selectedLanguagesCount > 0" class="filter-list-count" style="">{{selectedLanguagesCount}}</span>
+                                    </h3>
+
+                                    <ul class="col-xs-12 panel-collapse collapse" id="languages" role="tabpanel" aria-labelledby="Code Samples Languages">
+                                        <li style="padding:0 5px;" ng-repeat="language in model.Languages" class="col-md-6 col-sm-4 col-xs-12">
+                                            <input style="margin-right:5px" type="checkbox" value="{{language}}" ng-click="updateSelectedTypes(language)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(language.toLowerCase()) != -1" />
+                                            {{language}}
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                @* Collapsible - Service Filters*@
+                                <div class="filter-list clearfix panel panel-default">
+                                    <h3 class="filter-category " ng-class="{active:selectedServicesCount > 0}">
+                                        <a data-toggle="collapse" href="#services" data-parent="#accordion" aria-expanded="False" aria-controls="services">
+                                            <span class="filter-category-icon icon_expand"></span>Services
+                                        </a>
+                                        <span ng-show="selectedServicesCount > 0" class="filter-list-count" style="">{{selectedServicesCount}}</span>
+                                    </h3>
+                                    <ul class="col-xs-12 panel-collapse collapse" id="services" role="tabpanel" aria-labelledby="Code Samples Services">
+                                        <li style="padding:0 5px;" ng-repeat="service in model.Services" class="col-md-6 col-sm-4 col-xs-12">
+                                            <input style="margin-right:5px" type="checkbox" value="{{service}}" ng-click="updateSelectedTypes(service)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(service.toLowerCase()) != -1" />
+                                            {{service}}
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                @* Collapsible - Platform Filters*@
+                                <div class="filter-list clearfix panel panel-default">
+                                    <h3 class="filter-category " ng-class="{active: selectedPlatformsCount > 0}">
+                                        <a data-toggle="collapse" href="#platforms" data-parent="#accordion" aria-expanded="False" aria-controls="platforms">
+                                            <span class="filter-category-icon icon_expand"></span>Platform
+                                        </a>
+                                        <span ng-show="selectedPlatformsCount > 0" class="filter-list-count" style="">{{selectedPlatformsCount}}</span>
+                                    </h3>
+                                    <ul class="col-xs-12 panel-collapse collapse" id="platforms" role="tabpanel" aria-labelledby="Code Samples Platforms">
+                                        <li style="padding:0 5px;" ng-repeat="platform in model.Platforms" class="col-md-6 col-sm-4 col-xs-12">
+                                            <input style="margin-right:5px" type="checkbox" value="{{platform}}" ng-click="updateSelectedTypes(platform)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(platform.toLowerCase()) != -1" />
+                                            {{platform}}
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                @* Collapsible - Source Repository Filters*@
+                                <div class="filter-list clearfix panel panel-default">
+                                    <h3 class="filter-category " ng-class="{active: selectedSourcesCount > 0}">
+                                        <a data-toggle="collapse" href="#sources" data-parent="#accordion" aria-expanded="False" aria-controls="sources">
+                                            <span class="filter-category-icon icon_expand"></span>Source
+                                        </a>
+                                        <span ng-show="selectedSourcesCount > 0" class="filter-list-count" style="">{{selectedSourcesCount}}</span>
+                                    </h3>
+                                    <ul class="col-xs-12 panel-collapse collapse" id="sources" role="tabpanel" aria-labelledby="Code Samples Source Repositories">
+                                        <li style="padding:0 5px;" ng-repeat="source in model.SourceReps" class="col-md-6 col-sm-4 col-xs-12">
+                                            <input style="margin-right:5px" type="checkbox" value="{{source}}" ng-click="updateSelectedTypes(source)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(source.toLowerCase()) != -1" />
+                                            {{source}}
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                @* Collapsible - Product Filters*@
+                                <div class="filter-list clearfix panel panel-default">
+                                    <h3 class="filter-category" ng-class="{active: selectedProductsCount > 0}">
+                                        <a data-toggle="collapse" href="#products" data-parent="#accordion" aria-expanded="False" aria-controls="produts">
+                                            <span class="filter-category-icon icon_expand"></span>Products
+                                        </a>
+                                        <span ng-show="selectedProductsCount > 0" class="filter-list-count" style="">{{selectedProductsCount}}</span>
+                                    </h3>
+                                    <ul class="col-xs-12 panel-collapse collapse" id="products" role="tabpanel" aria-labelledby="Code Samples Products">
+                                        <li style="padding:0 5px;" ng-repeat="product in model.Products" class="col-md-6 col-sm-4 col-xs-12">
+                                            <input style="margin-right:5px" type="checkbox" value="{{product}}" ng-click="updateSelectedTypes(product)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(product.toLowerCase()) != -1" />
+                                            {{product}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="filter-box-header panel-heading share-button">
+                            <h4>
+                                <i class="icon_share"></i>
+                                <a href="#" tabindex="0" id="shareUrl">Share this filtered results link</a>
+                            </h4>
+                        </div>
+
+                        <div class="sharelink-container" style="display:none">
+
+                            @*<div id="sharelink-txt">Choose filters and hit apply</div>*@
+                            <textarea id="sharelink-txt" value="Choose filters and hit apply" readonly></textarea>
+                            <div class="social-share-container">
+                                <div class="addthis_custom_sharing" data-url="http://dev.office.com/" id="code-sample-social">
+                                </div>
+                                <a class="icon_envelope share-email" href="#" title="Email"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div id="top-link-block" class="hidden hidden-md">
+                    <div class="top-link" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                        <a href="#"> <i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
+                    </div>
+                </div><!-- /top-link-block -->
+
+                <div class="col-sm-12 col-md-8 nopad" id="CodeSamplesList">
+
+
+                    <div id="OrderedResults" class="bg-sorter">
+                        <div class="row filter-bar">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <span class="pull-left ff-light sorter-label">Sort by:</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <a ng-click="orderByViews()" class="bg-white f-gray  ff-light sorter popular">
+                                    Most popular
+                                    <img id="mostPopularIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                    <img id="mostPopularIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <a ng-click="orderByDate()" class="bg-white f-gray  ff-light pull-right sorter recent">
+                                    Most recent
+                                    <img id="mostRecentIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                    <img id="mostRecentIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <ul ng-show="codeSamplesToShow.length > 0" class="col-md-12 eventlist upcoming-events" role="list" aria-label="Code Samples">
+
+                        <li ng-repeat="codeSample in currListSlice" class="col-lg-12 event-box-details collapse in" role="listitem" aria-label="{{codeSample.Title}}" id="permalinkTag">
+                            <div class="code-event">
+                                <div class="event-info">
+                                    <div class="code-title">
+                                        <div class="event-icon code-sample col-xs-2">
+
+                                            <img ng-show="codeSample.Image.length > 0" src="{{codeSample.Image}}" alt="{{codeSample.Title}} Icon" class="img-responsive" />
+
+                                        </div>
+                                        <div class="col-xs-10 name cp1" style="height:35px;">{{codeSample.Title}}</div>
+                                        <div class="register-now height40 col-md-10 col-sm-8 col-xs-10">
+                                            <div data-pane="detailLinkId" class="description height40">{{codeSample.SubText}}</div>
+
+                                        </div>
+                                        <div class="col-xs-10 event-links">
+                                            <span class="col-xs-12 col-sm-3" style="padding-left:0;" ng-show="codeSample.ViewCount > 1 || codeSample.ViewCount <= 0">{{codeSample.ViewCount}} views</span>
+                                            <span class="col-xs-12 col-sm-3" style="padding-left:0;" ng-show="codeSample.ViewCount == 1">{{codeSample.ViewCount}} view</span>
+                                            <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
+                                            <a data-bind="attr: { href: Url }" href="{{codeSample.ExternalLink}}" target="{{codeSample.External}}" role="link" id="{{codeSample.TechnicalTitle}}" class="pull-right ff-semibold" ng-click="updateViewCount(codeSample.Id, 'code-samples')">VIEW<img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"></a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="details">
+
+                                    </div>
+                                </div>
+
+
+                                <div ng-show="codeSample.Links.length > 0" class="related-resources row">
+                                    <div class="col-sm-2 resource-text">
+                                        Resources
+                                    </div>
+                                    <div class="col-sm-10 resource-row">
+                                        <div class="row">
+                                            <div ng-repeat="link in codeSample.Links" class="resource-line col-xs-3">
+                                                <a href="{{link.Url}}">
+
+                                                    <div class="link-icon col-xs-3 {{'icon_'+link.Type+'_codeSample'}}"></div>
+                                                    <div class="link-title col-xs-9">{{link.Title}}</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <div class="pull-right paging-container" ng-show="pageCount() > 1">
+                        <a class="page-number" ng-show="currentPage> 1" ng-click="updatePagination(currentPage - 1)" class="prev-link ff-semibold">
+                            <img class="see-more-icon podcast-see-more-icon flipped" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                            <span class="hidden-xs">Previous</span>
+                        </a>
+                        <a class="page-number" ng-show="showFirstPage" ng-click="updatePagination(1)">1</a>
+                        <span class="page-number" ng-show="showStartEllipsis">...</span>
+                        <span class="page-number" ng-repeat="i in pagingRange">
+                            <a ng-show="i==currentPage" class="circled-page paging"> {{i}}</a>
+                            <a ng-hide="i==currentPage" ng-click="updatePagination(i)" class="paging">{{i}}</a>
+                        </span>
+                        <span class="page-number" ng-show="showEndEllipsis">...</span>
+                        <a class="page-number" ng-show="showLastPage" ng-click="updatePagination(pageCount())">{{pageCount()}}</a>
+                        <a ng-show="currentPage < pageCount()" ng-click="updatePagination(currentPage + 1)" class="next-link ff-semibold">
+                            <span class="hidden-xs">
+                                Next
+                            </span>
+                            <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                        </a>
+                    </div>
+
+
+                    <ul ng-show="codeSamplesToShow.length <= 0" class="col-md-12 eventlist upcoming-events" role="list">
+                        <li class="container collapse in no-results-message-container">
+                            <h4 class="col-md-12 bg-primary no-results-message">There are no code samples that match your filter selection.</h4>
+                        </li>
+                    </ul>
+
+                    </div>
+         
+            </div>
+
+        </div>
+
+
+
+}

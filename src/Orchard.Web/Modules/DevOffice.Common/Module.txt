@@ -1,0 +1,19 @@
+﻿Name: DevOffice.Common
+AntiForgery: enabled
+Author: Provoke Solutions
+Website: http://www.provokesolutions.com/
+Version: 4.0
+OrchardVersion: 1.8
+Description: Common content types, fields and instantiation of items in Dev Office
+FeatureDescription:
+Category: DevOffice
+Dependencies: Orchard.Autoroute, Orchard.ContentTypes, Orchard.Fields, Orchard.MediaLibrary, Orchard.Taxonomies, Orchard.jQuery, Orchard.Projections, UrlAlternates, Sunkist.FeaturedItemSlider
+Features:
+	DevOffice.Common.SEO:
+		Description: SEO releated features for DevOffice Site
+		Category: DevOffice
+		Dependencies: DevOffice.Common, Vandelay.Meta, WebAdvanced.Sitemap
+	DevOffice.Common.Search:
+		Description: Search releated features for DevOffice Site
+		Category: DevOffice
+		Dependencies: DevOffice.Common, Orchard.Search, Lucene

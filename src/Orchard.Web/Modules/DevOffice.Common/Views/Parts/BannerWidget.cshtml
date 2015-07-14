@@ -1,0 +1,16 @@
+﻿@using DevOffice.Common.ViewModels
+
+@{
+    BannerViewModel banner = Model.ViewModel;
+}
+
+<div class="banner-widget-wrapper">
+    <div class="container-fluid">
+        <div class="col-xs-12 col-md-9 banner-widget-body ff-light">
+            @banner.BodyText
+        </div>
+        <div class="col-xs-12 col-md-3 banner-widget-link-container ff-bold">
+            <a class="banner-widget-link" style="color:@banner.LinkTextColor; background-color:@banner.LinkBackgroundColor;" data-bind="attr: { href: Url }" href="@banner.ExternalLink" target="_blank">@banner.ExternalLinkText</a>
+        </div>
+    </div>
+</div>

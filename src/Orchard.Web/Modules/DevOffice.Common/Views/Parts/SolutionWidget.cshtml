@@ -1,0 +1,183 @@
+﻿@using DevOffice.Common.ViewModels
+
+@{
+    SolutionViewModel model = Model.ViewModel;
+    Script.Include("SolutionsFilter.js").AtFoot();
+    Script.Include("slick.js").AtFoot();
+    Style.Include("slick.css").AtFoot();
+    
+    var request = HttpContext.Current.Request;
+    var baseUrl = request.Url.Host;
+    var external = "_self";
+
+    var solutionItemOrder = 0;
+    var styleClass = "";
+
+    var typesCount = model.SelectedTypes.Count();
+    var selectedDevicesCount = model.SelectedDevices.Count();
+    var selectedPrimaryWorkloadInvokedCount = model.SelectedPrimaryWorkloadInvoked.Count();
+    var selectedIdentityIntegrationMethodCount = model.SelectedIdentityIntegrationMethod.Count();
+
+}
+
+<div class="solutions-tab moreInfoWidget container-fluid">
+    
+    
+
+    <input type="hidden" id="ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
+
+    <div class="nopad code-filter panel-group" >
+        <div class="panel panel-default">
+
+            <div class="filter-box-header filter-panel-heading" id="accordion">
+
+                <h4>
+                    <i class="icon_filter"></i>
+                    Filters
+                </h4>
+                <button type="reset" id="solution-applyfilter" class="filter-clear-button filter-button">Apply</button>
+                <button type="button" id="solution-clearfilter" class="clearfilters filter-button" data-toggle="button">Clear</button>
+
+            </div>
+            <div class="container-fluid">
+                <div class="filter-list-container row">
+
+                    @* Collapsible - Devices Filters*@
+                    <div class="filter-list clearfix col-lg-4">
+                        <h3 class="filter-category @if (model.SelectedDevices.Any()) { <text> active </text> }">
+                            Device
+                            <span class="filter-list-count" @if (selectedDevicesCount == 0) { <text> style="display:none" </text>                }>@selectedDevicesCount</span>
+                        </h3>
+
+                        <ul class="col-xs-12">
+                            @foreach (var filterOption in model.Devices)
+                            {
+                                <li class="col-md-6 col-sm-4 col-xs-12 filter-category-item device @if (model.SelectedDevices.Contains(filterOption.ToLower())) {
+                                                                                                         <text>active</text>
+                                                                                                     }">@filterOption</li>
+                            }
+                        </ul>
+                    </div>
+
+                    @* Collapsible - Primary workload invoked Filters*@
+                    <div class="filter-list clearfix col-lg-4">
+                        <h3 class="filter-category @if (model.SelectedPrimaryWorkloadInvoked.Any()) { <text> active </text> }">
+                            Primary Workload Invoked
+                            <span class="filter-list-count" @if (selectedPrimaryWorkloadInvokedCount == 0) { <text> style="display:none" </text>                 }>@selectedPrimaryWorkloadInvokedCount</span>
+                        </h3>
+                        <ul class="col-xs-12">
+                            @foreach (var filterOption in model.PrimaryWorkloadInvoked)
+                            {
+                                <li class="col-md-6 col-sm-4 col-xs-12 filter-category-item language @if (model.SelectedPrimaryWorkloadInvoked.Contains(filterOption.ToLower())) {
+                                                                                                         <text>active</text>
+                                                                                                     }">@filterOption</li>
+                            }
+                        </ul>
+                    </div>
+
+                    @* Collapsible - Identity Integration Filters*@
+                    <div class="filter-list clearfix col-lg-4">
+                        <h3 class="filter-category @if (model.SelectedIdentityIntegrationMethod.Any()) { <text> active </text>  }">
+                            Identity Integration Method
+                            <span class="filter-list-count" @if (selectedIdentityIntegrationMethodCount == 0) { <text> style="display:none" </text>                }>@selectedIdentityIntegrationMethodCount</span>
+                        </h3>
+                        <ul class="col-xs-12">
+                            @foreach (var filterOption in model.IdentityIntegrationMethod)
+                            {
+                                <li class="col-md-6 col-sm-4 col-xs-12 filter-category-item language @if (model.SelectedIdentityIntegrationMethod.Contains(filterOption.ToLower())) {
+                                                                                                         <text>active</text>
+                                                                                                     }">@filterOption</li>
+                            }
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            
+
+            <div class="filter-box-header panel-heading">
+                <div class="row">
+                    
+                    <h4 class="col-md-6"><a href="javascript:void(0);" tabindex="0" id="allresults">View all results</a></h4>
+                    <h4 class ="col-md-6"><a href="javascript:void(0);" taxindex="1" id="onebyone">View results one by one</a></h4>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <div id="solutions-three-columns">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            @foreach (var solution in model.TaxonomySolutions)
+            {
+                <li class="col-xs-4 col-sm-4 @(model.TaxonomySolutions.IndexOf(solution) == 0 ? "active" : string.Empty)">
+                    <a href="#@solution.Title.Replace(" ", string.Empty).ToLower()" role="tab" data-toggle="tab">@solution.Title.ToUpper()</a>
+
+                </li>
+            }
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            @{
+                foreach (TaxonomySolution taxonomySolutions in model.TaxonomySolutions)
+                {
+
+                    <div class="tab-pane @(model.TaxonomySolutions.IndexOf(taxonomySolutions) == 0 ? "active" : string.Empty)" id="@taxonomySolutions.Title.Replace(" ", string.Empty).ToLower()">
+                        <ul class="moreinfo-list container-fluid eventlist @styleClass" role="list" aria-label="@taxonomySolutions.Title">
+
+                            @{
+                                //create 3 list of solutions to display column by column instead of row by row
+                                //to fix mis-alignment with expandable more-info boxes
+
+                                var column1Solutions = new List<Solution>();
+                                var column2Solutions = new List<Solution>();
+                                var column3Solutions = new List<Solution>();
+
+                                for (int i = 0; i < taxonomySolutions.Solutions.OrderBy(x => x.Ordering).Count(); i += 3)
+                                {
+                                    column1Solutions.Add(taxonomySolutions.Solutions[i]);
+
+                                    if (i + 1 < taxonomySolutions.Solutions.Count())
+                                    {
+                                        column2Solutions.Add(taxonomySolutions.Solutions[i + 1]);
+                                    }
+
+                                    if (i + 2 < taxonomySolutions.Solutions.Count())
+                                    {
+                                        column3Solutions.Add(taxonomySolutions.Solutions[i + 2]);
+                                    }
+                                }
+
+                            }
+                            <div>
+                                @Html.Partial("Parts/SolutionColumnList", column1Solutions)
+                            </div>
+                            <div>
+                                @Html.Partial("Parts/SolutionColumnList", column2Solutions)
+                            </div>
+                            <div>
+                                @Html.Partial("Parts/SolutionColumnList", column3Solutions)
+                            </div>
+
+
+                        </ul>
+                    </div>
+
+                }
+            }
+        </div>
+
+        <br />
+    </div>
+
+    @*This div is injected into by SolutionsFilter.js *@
+    <div id="tinderesque-solutions">
+        
+    </div>
+</div>
+
+

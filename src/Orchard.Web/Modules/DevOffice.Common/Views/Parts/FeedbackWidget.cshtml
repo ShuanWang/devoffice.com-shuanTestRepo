@@ -1,0 +1,50 @@
+﻿@{
+    Script.Include("feedback.js");
+}
+<div class="container-fluid" id="feedbackWidget">
+    <div class="row" data-bind="visible: feedbackView() == 'notSubmitted'">
+        <div class="feedback-two-column col-md-8" >
+            <div class="row">
+                <div class="feedback-two-column-first col-md-7 col-xs-6">
+                    <h1>Was this helpful?</h1>
+                </div>
+                <div class="feedback-two-column-second col-md-5 col-xs-6">
+                    <span class="feedbackWidget-text white">Your feedback about this content is important. Let us know what you think.</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 button-controls">
+            <button type="button" class="btn" data-bind="click: yesClicked" role="button">Yes</button>
+            <button type="button" class="btn" data-bind="click: noClicked" role="button">No</button>
+        </div>
+    </div>
+    <div data-bind="visible: feedbackView() == 'submitting'" style="display:none;">
+        <div class="row">
+            <fieldset>
+                <div class="col-md-6">
+                    <h1><label for="feedbackcontent">Additional feedback?</label></h1>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea id="feedbackContent" name="feedbackcontent" rows="4" data-bind="value:feedbackContent" aria-label="Additional feedback?"></textarea>
+                            <input type="hidden" name="__RequestVerificationToken" value="@Html.AntiForgeryTokenValueOrchard()" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 button-controls">
+                            <button type="button" class="btn small" data-bind="click: submitClicked" role="button">Submit</button>
+                            <button type="button" class="btn small" data-bind="click: skipThisClicked" role="button">Skip this</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row" data-bind="visible: feedbackView() == 'submitted'" style="display:none;">
+        <div class="col-md-4">
+            <h1>Thank you!</h1>
+            <span class="white">We appreciate your feedback.</span>
+        </div>
+    </div>
+</div>

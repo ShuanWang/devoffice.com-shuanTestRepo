@@ -1,0 +1,58 @@
+﻿@using FluentNHibernate.Utils
+@model DevOffice.Common.ViewModels.GitHubViewModel
+@{
+    Style.Include("Styles/github-styles.min.css").AtHead();
+
+    string[] detailLink = { Model.Title.Replace(" ", ""), "DetailLink" };
+    var detailLinkId = string.Join("-", detailLink);
+
+    Layout.Title = Model.Title;
+
+}
+
+<section class="row banner-image media-library-picker-field" aria-label="Code Samples Banner">
+    <div style="background-image:url('/Media/Default/Banners/Banners_300x1900/devOffice_training_header_1900x300.png')" class="row banner-image banner-with-description media-library-picker-field" id="banner-image" aria-label="Training Banner">
+        <div class="no-description-banner-contents">
+            <div class="banner-text container-fluid">
+                <h2 class="no-description-banner-title">Hands on Labs</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid codesamplesdetail-wrapper">
+
+    <div class="row code-samples-top-wrapper">
+        <a class="col-md-4 col-sm-6 col-xs-7" style="padding:10px" href="/training">
+            Go back to Training
+            <span class="icon_back"></span>
+        </a>
+        <a class="col-md-4 col-sm-6 col-xs-12 see-more" href="@Model.ExternalLink" target="_blank"
+           style="width:205px;padding:10px; background-color:white;">
+            See this in <img src="/Themes/DevOffice/Content/Images/github.png" style="height:15px;margin:0 5px 4px 2px" />
+            <span class="icon_seemore"></span>
+        </a>
+    </div>
+    <div class="row codesampledetail" style="font-weight: 400;">
+        <li class="col-md-4 col-sm-12 event-box-details" role="listitem" aria-label="@Model.Title">
+            <div class="code-event">
+                <div class="event-info" style="background-color:#ccc; ">
+
+                    <div class="code-title">
+                        <div class="event-icon col-xs-4">
+                            <img src="@Model.Icon" alt="@Model.Title Icon" class="img-responsive" />
+                        </div>
+                        <div class="col-xs-8 cp1" style="padding-top:10px;padding-bottom:10px; font-size:16px;">@Model.Title</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="col-md-8 col-sm-12 content-box">
+            <div data-pane="@detailLinkId" class="desc">@Html.Raw(Model.Content)</div>
+        </li>
+    </div>
+    <br />
+    <div class="tab-footer">
+        <div>@Html.Raw(Model.HTMLData)</div>
+    </div>
+</div>

@@ -1,0 +1,615 @@
+﻿@using DevOffice.Common.Models;
+@model DevOffice.Common.ViewModels.StepsEditorViewModel
+
+@{
+    Style.Include("steps-admin.css");
+
+    Script.Require("jQuery");
+    Script.Require("jQueryUI");
+    Script.Require("jQueryUI_Sortable").AtFoot();
+    Script.Include("steps-admin.js").AtFoot();
+    
+    //Media Library Picker
+    Style.Include("media-library-picker-admin.css");
+    Script.Require("jQueryColorBox").AtFoot();
+    Style.Require("jQueryColorBox");
+}
+
+<fieldset class="step-part">
+    <h1>@T("Page Sections")</h1>
+    
+    <div class="steps-save-message">
+        <div class="message message-Warning">@T("You need to save your changes.")</div>
+    </div>
+    
+    <div id="steps-@Html.FieldIdFor(m => m.Steps)" class="steps-container">
+        
+        @foreach (var step in Model.Steps) {
+            <div class="collapsible">
+                <div class="collapsible-header step-header">
+                    <div class="collapsible-toggle left collapsed step-sort-handle"></div>
+                    <h2 class="collapsible-title">@step.Title</h2><input type="hidden" value="@step.Title" />
+                </div>
+                <div class="collapsible-content" style="display:none">
+                    <div class="step-content">
+                        <div class="left-image-container">
+                            <img class="left-image" src="@step.LeftImage" /><input type="hidden" value="@step.LeftImage" />
+                        </div>
+                        <div class="description-container">
+                            <span class="step-description">@Html.Raw(step.Description)</span><input type="hidden" value="@step.Description" />
+                        </div>
+                        <div class="right-image-container">
+                            <img class="right-image" src="@step.RightImage" /><input type="hidden" value="@step.RightImage" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="step-actions">
+                        <span class="button grey btn-edit">@T("Edit")</span>
+                        <span class="button grey btn-remove">@T("Remove")</span>
+                    </div>
+                    <br />
+                    <legend>@T("Steps")</legend>
+                    <table style="width: 100%;" class="items substeps-container">
+                        <colgroup id="sortable" />
+                        <colgroup id="descriptionCol" />
+                        <colgroup id="actionsCol" />
+                        <thead>
+                            <tr>
+                                <th style="width:5%"></th>
+                                <th style="width: 75%;">Description</th>
+                                <th style="width: 20%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var substep in step.Substeps)
+                            {
+                                <tr>
+                                    <td class="substep-sort-handle"></td>
+                                    <td>@Html.Raw(substep.Description)<input type="hidden" value='@Html.Raw(substep.Description)' /></td>
+                                    <td class="substep-actions">
+                                        <span class="button grey btn-edit">@T("Edit")</span>
+                                        <span class="button grey btn-remove">@T("Remove")</span>
+                                        <input type="hidden" value="@substep.Id" />
+                                        <input type="hidden" value="@substep.Position" />
+                                        <input type="hidden" value="@substep.CreateDate" />
+                                        <input type="hidden" value="@substep.IsDeleted.ToString().ToLowerInvariant()" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr class="substep-save-message">
+                                <td colspan="5">
+                                    <div class="message message-Warning">@T("You need to save your changes.")</div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <table class="item new-substep">
+                        <thead>
+                            <tr>
+                                <th colspan="5"><h3>@T("Add a new Step")</h3></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <textarea class="new-substep-description html tinymce"></textarea>
+                                    <span class="hint">The description of the step</span>
+                                    <span class="btn-add-substep button">@T("Add Step")</span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="step-data">
+                    <input type="hidden" value="@step.Id" />
+                    <input type="hidden" value="@step.Position" />
+                    <input type="hidden" value="@step.CreateDate" />
+                    <input type="hidden" value="@step.IsDeleted.ToString()" />
+                </div>
+            </div>
+        }
+
+    </div>
+    
+    <table class="item new-step">
+        <thead>
+            <tr>
+                <th colspan="5"><h2>@T("Add a new Section")</h2></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td>
+                    <input class="new-step-title" type="text" />
+                    <span class="hint">The section Title</span>
+                </td>
+                <td style="width:25px" />
+                <td class="media-library-picker-container">
+                    <span class="button btn-add-image">@T("Add Left Image")</span>
+                    <span class="hint">The Left Image of the section</span>
+                </td>
+                <td style="width:25px" />
+                <td class="media-library-picker-container">
+                    <span class="button btn-add-image">@T("Add Right Image")</span>
+                    <span class="hint">The Right Image of the section</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <textarea class="new-step-description"></textarea>
+                    <span class="hint">The body of the section</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="btn-add-step button">@T("Add Section")</span></td>
+            </tr>
+        </tfoot>
+    </table>
+
+</fieldset>
+
+@using (Script.Foot()) {
+    <script type="text/javascript">
+    (function ($) {
+
+        // Sections/Steps
+        ////////////////////
+        var stepsContainer = $('#steps-@Html.FieldIdFor(m => m.Steps)');
+
+        function initializeSortable() {
+            stepsContainer.sortable({
+                handle: '.step-sort-handle',
+                update: function (event, ui) {
+                    $('div.steps-save-message').show();
+                    regenerateStepNamesAndIds();
+                }
+            });
+            stepsContainer.children().each(function (index, el) {
+                var substepContainer = $($(el).find('div.collapsible-content').find('table.substeps-container tbody'));
+                substepContainer.sortable({
+                    handle: '.substep-sort-handle',
+                    update: function (event, ui) {
+                        substepContainer.find('tr.substep-save-message').show();
+                        regenerateStepNamesAndIds();
+                    }
+                });
+            });
+        }
+
+        function regenerateStepNamesAndIds() {
+            stepsContainer.children().each(function(index, el) {
+                var position = index + 1;
+                var element = $(el);
+
+                var titleNameTemplate = 'Steps.Steps[' + index + '].Title';
+                var descriptionNameTemplate = 'Steps.Steps[' + index + '].Description';
+                var leftImageNameTemplate = 'Steps.Steps[' + index + '].LeftImage';
+                var rightImageNameTemplate = 'Steps.Steps[' + index + '].RightImage';
+                var idNameTemplate = 'Steps.Steps[' + index + '].Id';
+                var positionNameTemplate = 'Steps.Steps[' + index + '].Position';
+                var createDateNameTemplate = 'Steps.Steps[' + index + '].CreateDate';
+                var isDeletedNameTemplate = 'Steps.Steps[' + index + '].IsDeleted';
+
+                var titleHidden = element.find('h2.collapsible-title').siblings('input[type="hidden"]').attr('name', titleNameTemplate);
+                var descriptionHidden = element.find('div.collapsible-content').find('span.step-description').next('input[type="hidden"]').attr('name', descriptionNameTemplate);
+                var leftImageHidden = element.find('div.collapsible-content').find('img.left-image').next('input[type="hidden"]').attr('name', leftImageNameTemplate);
+                var rightImageHidden = element.find('div.collapsible-content').find('img.right-image').next('input[type="hidden"]').attr('name', rightImageNameTemplate);
+                var idHidden = $(element.find('div.step-data').find('input[type="hidden"]')[0]).attr('name', idNameTemplate);
+                var positionHidden = $(element.find('div.step-data').find('input[type="hidden"]')[1]).attr('name', positionNameTemplate).val(position);
+                var createDateHidden = $(element.find('div.step-data').find('input[type="hidden"]')[2]).attr('name', createDateNameTemplate);
+                var isDeletedHidden = $(element.find('div.step-data').find('input[type="hidden"]')[3]).attr('name', isDeletedNameTemplate);
+
+                var substepContainer = $(element.find('div.collapsible-content').find('table.substeps-container tbody'));
+
+                regenerateSubstepNamesAndIds(substepContainer, index);
+            });
+        }
+
+        regenerateStepNamesAndIds();
+        initializeSortable();
+
+        //new step template
+        var newStepTemplate = '';
+        newStepTemplate += '<div class="collapsible"><div class="collapsible-header step-header"><div class="collapsible-toggle left collapsed"></div>';
+        newStepTemplate += '<h2 class="collapsible-title">{{ Title }}</h2><input type="hidden" value="{{ Title }}" /></div>';
+        newStepTemplate += '<div class="collapsible-content" style="display:none"><div class="step-content">';
+        newStepTemplate += '<div class="left-image-container"><img class="left-image" src="{{ LeftImage }}" /><input type="hidden" value="{{ LeftImage }}" /></div>';
+        newStepTemplate += '<div class="description-container"><span class="step-description">{{ Description }}</span><input type="hidden" value="{{ Description }}" /></div>';
+        newStepTemplate += '<div class="right-image-container"><img class="right-image" src="{{ RightImage }}" /><input type="hidden" value="{{ RightImage }}" /></div></div><br />';
+        newStepTemplate += '<div class="step-actions"><span class="button grey btn-edit">@T("Edit")</span><span class="button grey btn-remove">@T("Remove")</span>';
+        newStepTemplate += '</div><br /><legend>@T("Steps")</legend><table style="width: 100%;" class="items substeps-container">';
+        newStepTemplate += '<colgroup id="sortable" /><colgroup id="descriptionCol" /><colgroup id="actionsCol" />';
+        newStepTemplate += '<thead><tr><th style="width:5%"></th><th style="width: 75%;">Description</th><th style="width: 20%;">Actions</th></tr></thead>';
+        newStepTemplate += '<tbody></tbody>';
+        newStepTemplate += '<tfoot><tr class="substep-save-message"><td colspan="5"><div class="message message-Warning">@T("You need to save your changes.")';
+        newStepTemplate += '</div></td></tr></tfoot></table>';
+        newStepTemplate += '<table class="item new-substep"><thead><tr><th colspan="5"><h3>@T("Add a new Step")</h3></th></tr></thead>';
+        newStepTemplate += '<tfoot><tr><td><textarea class="new-substep-description html tinymce"></textarea><span class="hint">The description of the step</span>';
+        newStepTemplate += '<span class="btn-add-substep button">@T("Add Step")</span></td></tr></tfoot></table></div>';
+        newStepTemplate += '<div class="step-data"><input type="hidden" value="-1" /><input type="hidden" value="0" />';
+        newStepTemplate += '<input type="hidden" value="@DateTime.UtcNow" /><input type="hidden" value="False" /></div></div>';
+
+        function restoreStepContent(container) {
+            var stepContainer = $(container);
+
+            var oldHeader = $(stepContainer.find('.step-header'));
+            oldHeader.removeClass('collapsible-header');
+            oldHeader.addClass('collapsible-header');
+            var oldDetailsContainer = $(stepContainer.find('.collapsible-content').find('.step-content'));
+
+            var oldHeaderContent = oldHeader.data('content');
+            var oldDetailsContainerContent = oldDetailsContainer.data('content');
+
+            oldHeader.html(oldHeaderContent);
+            oldDetailsContainer.html(oldDetailsContainerContent);
+        }
+
+        $('table.new-step').on('click', 'span.btn-add-step', function(evt) {
+
+            var newTitle = $('table.new-step .new-step-title');
+            var newDescription = $('table.new-step .new-step-description');
+            var newLeftImage = $('table.new-step .media-library-picker-container')[0];
+            var newLeftImageHidden = $(newLeftImage).find('input[type="hidden"]');
+            var newRightImage = $('table.new-step .media-library-picker-container')[1];
+            var newRightImageHidden = $(newRightImage).find('input[type="hidden"]');
+
+            var trimmedTitle = $.trim(newTitle.val());
+            var trimmedDescription = $.trim(newDescription.val());
+            var trimmedLeftImage = $.trim(newLeftImageHidden.val());
+            var trimmedRightImage = $.trim(newRightImageHidden.val());
+
+            if (!trimmedTitle) {
+                evt.preventDefault();
+                //TODO: notify required fields
+                return false;
+            }
+
+            var newStep = newStepTemplate.replace(new RegExp("{{ Title }}", 'g'), trimmedTitle).replace(new RegExp("{{ Description }}", 'g'), trimmedDescription).replace(new RegExp("{{ LeftImage }}", 'g'), trimmedLeftImage).replace(new RegExp("{{ RightImage }}", 'g'), trimmedRightImage);
+            var newStepDom = $(newStep);
+
+            $(stepsContainer).append(newStepDom);
+            regenerateStepNamesAndIds();
+            initializeSortable();
+
+            //clear fields
+            newTitle.val('');
+            newDescription.val('');
+            $(newLeftImage).html('<span class="button btn-add-image">@T("Add Left Image")</span><span class="hint">The Left Image of the section</span>');
+            $(newRightImage).html('<span class="button btn-add-image">@T("Add Right Image")</span><span class="hint">The Right Image of the section</span>');
+
+            $('div.steps-save-message').show();
+
+        });
+
+        //EDIT or SAVE Step
+        stepsContainer.on('click', '.step-actions span.btn-edit', function (evt) {
+
+            var isEdit = $(this).text() == 'Edit';
+            var trackContainer = $($(this).closest('div.collapsible'));
+            var removeButtonSibling = $(this).next('.btn-remove');
+
+            var titleContainer = $(trackContainer.find('.step-header'));
+            var detailsContainer = $(trackContainer.find('.collapsible-content').find('.step-content'));
+
+            if (isEdit) {
+                $(this).text('Save');
+                removeButtonSibling.text('Cancel');
+                removeButtonSibling.data('save-pair', $(this));
+
+                //prevent collapsible while editing
+                titleContainer.removeClass('collapsible-header');
+
+                var oldTitleValue = titleContainer.find('input[type="hidden"]').val();
+                var oldDescriptionValue = detailsContainer.find('span.step-description').next('input[type="hidden"]').val();
+                var oldLeftImageValue = detailsContainer.find('img.left-image').next('input[type="hidden"]').val();
+                var oldRightImageValue = detailsContainer.find('img.right-image').next('input[type="hidden"]').val();
+
+                var oldTitleContent = titleContainer.html();
+                var oldDetailsContent = detailsContainer.html();
+
+                titleContainer.empty().data('content', oldTitleContent);
+                detailsContainer.empty().data('content', oldDetailsContent);
+
+                var titleField = $('<input type="text" />').val(oldTitleValue).appendTo(titleContainer);
+                $('<span class="hint">The Section title</span>').appendTo(titleContainer);
+
+                var leftImageField = '';
+                var rightImageField = '';
+
+                if (oldLeftImageValue) {
+                    leftImageField = '<div class="media-library-picker-container left-image"><div class="media-library-picker-item"><div class="thumbnail"><div class="media-thumbnail media-thumbnail-image mime-type-image-jpeg"><img src="{{ OldLeftImage }}"></div></div></div><input type="hidden" value="{{ OldLeftImage }}"><span class="button btn-remove-image">@T("Remove Image")</span><span class="hint">The Left Image of the section</span></div>'.replace(new RegExp("{{ OldLeftImage }}", 'g'), oldLeftImageValue);
+                } else {
+                    leftImageField = '<div class="media-library-picker-container left-image"><span class="button btn-add-image">@T("Add Left Image")</span><span class="hint">The Left Image of the section</span></div>';
+                }
+
+                if (oldRightImageValue) {
+                    rightImageField = '<div class="media-library-picker-container right-image"><div class="media-library-picker-item"><div class="thumbnail"><div class="media-thumbnail media-thumbnail-image mime-type-image-jpeg"><img src="{{ OldRightImage }}"></div></div></div><input type="hidden" value="{{ OldRightImage }}"><span class="button btn-remove-image">@T("Remove Image")</span><span class="hint">The Right Image of the section</span></div>'.replace(new RegExp("{{ OldRightImage }}", 'g'), oldRightImageValue);
+                } else {
+                    rightImageField = '<div class="media-library-picker-container right-image"><span class="button btn-add-image">@T("Add Right Image")</span><span class="hint">The Right Image of the section</span></div>';
+                }
+
+                var descriptionField = '<br /><textarea>{{ OldDescription }}</textarea>'.replace(new RegExp("{{ OldDescription }}", 'g'), oldDescriptionValue);
+                var descriptionFieldHint = '<span class="hint">The body of the section</span>';
+
+                detailsContainer.html(leftImageField + rightImageField + descriptionField + descriptionFieldHint);
+
+                return;
+            }
+
+            $(this).text('Edit');
+            removeButtonSibling.text('Remove');
+
+            var newTitleValue = $.trim(titleContainer.find('input[type="text"]').val());
+            var newDescriptionValue = $.trim(detailsContainer.find('textarea').val());
+            var newLeftImageValue = $.trim(detailsContainer.find('div.media-library-picker-container.left-image').find('input[type="hidden"]').val());
+            var newRightImageValue = $.trim(detailsContainer.find('div.media-library-picker-container.right-image').find('input[type="hidden"]').val());
+
+            var title = '<div class="collapsible-toggle left"></div><h2 class="collapsible-title">{{ NewTitle }}</h2><input type="hidden" value="{{ NewTitle }}"></div>'.replace(new RegExp("{{ NewTitle }}", 'g'), newTitleValue);
+            var description = '<div class="description-container"><span class="step-description">{{ NewDescription }}</span><input type="hidden" value="{{ NewDescription }}" /></div>'.replace(new RegExp("{{ NewDescription }}", 'g'), newDescriptionValue);
+            var leftImage = '<div class="left-image-container"><img class="left-image" src="{{ NewLeftImage }}" /><input type="hidden" value="{{ NewLeftImage }}" /></div>'.replace(new RegExp("{{ NewLeftImage }}", 'g'), newLeftImageValue);
+            var rightImage = '<div class="right-image-container"><img class="right-image" src="{{ NewRightImage }}" /><input type="hidden" value="{{ NewRightImage }}" /></div>'.replace(new RegExp("{{ NewRightImage }}", 'g'), newRightImageValue);
+
+            titleContainer.html(title);
+            titleContainer.removeClass('collapsible-header');
+            titleContainer.addClass('collapsible-header');
+            detailsContainer.html(leftImage + description + rightImage);
+
+            regenerateStepNamesAndIds();
+            initializeSortable();
+
+            $('div.steps-save-message').show();
+
+        });
+
+        //REMOVE or CANCEL EDIT Step
+        stepsContainer.on('click', '.step-actions span.btn-remove', function (evt) {
+
+            var isRemove = $(this).text() == 'Remove';
+            var stepContainer = $($(this).closest('div.collapsible'));
+
+            //Remove
+            if (isRemove) {
+                stepContainer.hide();
+                var stepDeletedElement = $(stepContainer.find('div.step-data')).find('input[type="hidden"]')[3];
+                $(stepDeletedElement).val('True');
+
+                regenerateStepNamesAndIds();
+                initializeSortable();
+
+                $('div.steps-save-message').show();
+
+                return;
+            }
+
+            //Cancel
+            var savePair = $(this).data('save-pair');
+            savePair.text('Edit');
+            $(this).text('Remove');
+            restoreStepContent(stepContainer);
+
+            regenerateStepNamesAndIds();
+            initializeSortable();
+
+        });
+
+        // Substeps
+        ////////////////////
+        function regenerateSubstepNamesAndIds(substepContainer, stepIndex) {
+            substepContainer.children().each(function (index, el) {
+                var position = index + 1;
+                var element = $(el);
+
+                var descriptionNameTemplate = 'Steps.Steps[' + stepIndex + '].Substeps[' + index + '].Description';
+                var idNameTemplate = 'Steps.Steps[' + stepIndex + '].Substeps[' + index + '].Id';
+                var positionNameTemplate = 'Steps.Steps[' + stepIndex + '].Substeps[' + index + '].Position';
+                var createDateNameTemplate = 'Steps.Steps[' + stepIndex + '].Substeps[' + index + '].CreateDate';
+                var isDeletedNameTemplate = 'Steps.Steps[' + stepIndex + '].Substeps[' + index + '].IsDeleted';
+
+                var descriptionHidden = $($(element.find('td')[1]).find('input[type="hidden"]')).attr('name', descriptionNameTemplate);
+                var idHidden = $($(element.find('td')[2]).find('input[type="hidden"]')[0]).attr('name', idNameTemplate);
+                var positionHidden = $($(element.find('td')[2]).find('input[type="hidden"]')[1]).attr('name', positionNameTemplate).val(position);
+                var createDateHidden = $($(element.find('td')[2]).find('input[type="hidden"]')[2]).attr('name', createDateNameTemplate);
+                var isDeletedHidden = $($(element.find('td')[2]).find('input[type="hidden"]')[3]).attr('name', isDeletedNameTemplate);
+            });
+        }
+
+        //new substep template
+        var newSubstepTemplate = '';
+        newSubstepTemplate += "<tr><td class='substep-sort-handle'></td><td>{{ SubstepDescription }}<input type='hidden' value='{{ SubstepDescription }}' /></td>";
+        newSubstepTemplate += '<td class="substep-actions"><span class="button grey btn-edit">@T("Edit")</span>';
+        newSubstepTemplate += '<span class="button grey btn-remove">@T("Remove")</span><input type="hidden" value="-1" />';
+        newSubstepTemplate += '<input type="hidden" value="0" /><input type="hidden" value="@DateTime.UtcNow" />';
+            newSubstepTemplate += '<input type="hidden" value="False" /></td></tr>';
+
+            function restoreSubstepContent(row) {
+                var tr = $(row);
+
+                var oldDescription = $(tr.find('td')[1]);
+                var oldDescriptionContent = oldDescription.data('content');
+                oldDescription.html(oldDescriptionContent);
+
+            }
+
+            stepsContainer.on('click', 'span.btn-add-substep', function (evt) {
+                var newSubstepContainer = $($(this).parent().parent().parent().parent());
+                var substepContainer = $(newSubstepContainer.siblings('table.substeps-container'));
+
+                var newDescriptionRichTextId = $(newSubstepContainer.find('.new-substep-description')).attr("Id");
+                var newDescription = $("#" + newDescriptionRichTextId + "_ifr").contents().find('#tinymce.mceContentBody').html();
+                var trimmedDescription = $.trim(newDescription);
+
+                if (!trimmedDescription) {
+                    evt.preventDefault();
+                    //TODO: notify required fields
+                    return false;
+                }
+
+                var newSubstep = newSubstepTemplate.replace(new RegExp("{{ SubstepDescription }}", 'g'), trimmedDescription);
+                var newSubstepDom = $(newSubstep);
+
+                substepContainer.append(newSubstepDom);
+                regenerateStepNamesAndIds();
+                initializeSortable();
+
+                //clear fields
+                $("#" + newDescriptionRichTextId + "_ifr").contents().find('#tinymce.mceContentBody').html('<p><br data-mce-bogus="1"></p>');
+
+                substepContainer.find('tr.substep-save-message').show();
+            });
+
+            //EDIT Substep
+            stepsContainer.on('click', '.substep-actions span.btn-edit', function (evt) {
+
+                var isEdit = $(this).text() == 'Edit';
+                var tr = $($(this).parent().parent());
+                var removeButtonSibling = $(this).next('span.btn-remove');
+
+                if (isEdit) {
+                    $(this).text('Save');
+                    removeButtonSibling.text('Cancel');
+                    removeButtonSibling.data('save-pair', $(this));
+
+                    var oldDescription = $(tr.find('td')[1]);
+                    var oldDescriptionValue = oldDescription.find('input[type="hidden"]').val();
+                    var oldDescriptionContent = oldDescription.html();
+                    oldDescription.empty().data('content', oldDescriptionContent);
+
+                    var descriptionField = $('<textarea class="html tinymce edit-description-textarea"></textarea>').val(oldDescriptionValue).appendTo(oldDescription);
+                    $('<span class="hint">The description of the step</span>').appendTo(oldDescription);
+
+                    tinyMCE.init({
+                        theme: "advanced",
+                        schema: "html5",
+                        mode: "specific_textareas",
+                        editor_selector: /(edit-description-textarea)/,
+                        plugins: "fullscreen,autoresize,searchreplace,inlinepopups" + mediaPlugins.substr(2),
+                        theme_advanced_toolbar_location: "top",
+                        theme_advanced_toolbar_align: "left",
+                        theme_advanced_buttons1: "search,replace,|,cut,copy,paste,|,undo,redo" + mediaPlugins + ",|,link,unlink,charmap,emoticon,codeblock,|,bold,italic,|,numlist,bullist,formatselect,|,code,fullscreen,",
+                        theme_advanced_buttons2: "",
+                        theme_advanced_buttons3: "",
+                        convert_urls: false,
+                        valid_elements: "*[*]",
+                        // shouldn't be needed due to the valid_elements setting, but TinyMCE would strip script.src without it.
+                        extended_valid_elements: "script[type|defer|src|language]"
+                    });
+
+                    return;
+                }
+
+                var newDescriptionId = $(tr.find('td')[1]).find('textarea').attr("Id");
+                var newDescription = $("#" + newDescriptionId + "_ifr").contents().find('#tinymce.mceContentBody').html();
+                var trimmedDescription = $.trim(newDescription);
+                
+
+                //VALIDATION
+                if (!trimmedDescription) {
+                    evt.preventDefault();
+                    //TODO: notify required fields
+                    return false;
+                }
+
+                var description = "{{ Description }}<input type='hidden' value='{{ Description }}' />".replace(new RegExp('{{ Description }}', 'g'), trimmedDescription);
+                $(tr.find('td')[1]).html(description);
+
+                regenerateStepNamesAndIds();
+                initializeSortable();
+
+                $(this).text('Edit');
+                removeButtonSibling.text('Remove');
+                tr.parent().siblings('tfoot').find('tr.substep-save-message').show();
+            });
+
+            //REMOVE Subtep
+            stepsContainer.on('click', '.substep-actions span.btn-remove', function (evt) {
+
+                var isRemove = $(this).text() == 'Remove';
+                var substepContainer = $($(this).parent().parent());
+
+                //Remove
+                if (isRemove) {
+                    substepContainer.hide();
+                    var stepDeletedElement = $($(this).parent()).find('input[type="hidden"]')[3];
+                    $(stepDeletedElement).val('True');
+
+                    regenerateStepNamesAndIds();
+                    initializeSortable();
+
+                    $('tr.substep-save-message').show();
+
+                    return;
+                }
+
+                //Cancel
+                var savePair = $(this).data('save-pair');
+                $(savePair).text('Edit');
+                $(this).text('Remove');
+                restoreSubstepContent(substepContainer);
+
+                regenerateStepNamesAndIds();
+                initializeSortable();
+
+            });
+
+            //Cutom Media Library Picker
+            ////////////////////
+            $('table.new-step, #steps-@Html.FieldIdFor(m => m.Steps)').on('click', 'span.btn-add-image, div.media-library-picker-item', function (evt) {
+
+            var oldText = $(this).text();
+            var oldHint = $(this).siblings('span.hint').text();
+
+            var imageContainer = $(this).parent();
+            var url = '@HttpUtility.JavaScriptStringEncode(Url.Action("Index", "Admin", new {area = "Orchard.MediaLibrary", dialog = true}))';
+            $.colorbox({
+                href: url,
+                iframe: true,
+                reposition: true,
+                width: "100%",
+                height: "100%",
+                onLoad: function() { // hide the scrollbars from the main window
+                    $('html, body').css('overflow', 'hidden');
+                    $('#cboxClose').remove();
+                },
+                onClosed: function() {
+                    $('html, body').css('overflow', '');
+                    var selectedData = $.colorbox.selectedData;
+                    if (selectedData == null) // Dialog cancelled, do nothing
+                        return;
+
+                    var newThumbnailDom = '<div class="media-library-picker-item"><div class="thumbnail">{{ SelectedThumbnail }}</div></div><input type="hidden" value="{{ SelectedValue }}" /><span class="button btn-remove-image">@T("Remove Image")</span><span class="hint">{{ OldHint }}</span>'.replace(new RegExp("{{ SelectedThumbnail }}", 'g'), selectedData[0].thumbnail).replace(new RegExp("{{ SelectedValue }}", 'g'), selectedData[0].resource).replace(new RegExp("{{ OldHint }}", 'g'), oldHint);
+                    $(imageContainer).html(newThumbnailDom);
+
+                    var removeButton = $(imageContainer).find('span.btn-remove-image');
+                    $(removeButton).data('old-text', oldText);
+                    $(removeButton).data('old-hint', oldHint);
+                }
+            });
+
+        });
+
+        $('table.new-step, #steps-@Html.FieldIdFor(m => m.Steps)').on('click', 'span.btn-remove-image', function (evt) {
+            var mediaContainer = $(this).parent();
+            var oldText = $(this).data('old-text');
+            var oldHint = $(this).data('old-hint');
+
+            if (typeof oldText == 'undefined' || typeof oldHint == 'undefined') {
+                oldText = 'Add Left Image';
+                oldHint = 'The Left Image of the section';
+
+                if ($(this).parent().hasClass('right-image')) {
+                    oldText = 'Add Right Image';
+                    oldHint = 'The Right Image of the section';
+                }
+            }
+
+            var replacementDom = '<span class="button btn-add-image">{{ OldText }}</span><span class="hint">{{ OldHint }}</span>'.replace(new RegExp("{{ OldText }}", 'g'), oldText).replace(new RegExp("{{ OldHint }}", 'g'), oldHint);
+            mediaContainer.html(replacementDom);
+        });
+
+    })(jQuery);
+
+
+    </script>
+}

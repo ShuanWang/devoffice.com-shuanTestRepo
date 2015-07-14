@@ -1,0 +1,86 @@
+﻿@using DevOffice.Common.ViewModels;
+
+@{
+    List<BlogPost> viewModel = Model;
+}
+
+@foreach (var article in viewModel)
+{
+
+    <li class="col-lg-6 col-md-6 col-sm-12 col-xs-12 " role="listitem" aria-label="@article.Title">
+
+        <div class="blog-container">
+
+            <div class="blog-img">
+                @if (!string.IsNullOrEmpty(@article.Image))
+                {
+                    <img src="@article.Image" alt="@article.Title" class="img-responsive" />
+                }
+                else
+                {
+                    <img src="/Themes/DevOffice/Content/Images/blogs_missingpic_140x140.png" alt="@article.Title Icon" class="img-responsive" />
+                }
+            </div>
+
+    <div class="blog-info pull-right">
+        @if (String.IsNullOrEmpty(@article.Link))
+        { 
+           
+            <a data-bind="attr: { href: Url }" href="/blogs/blog?id=@article.Id" class="body-title-link" role="link" >
+                <div class="col-md-12 blog-title pk-ellipsis" data-lines="2">
+                    @article.Title
+                </div>
+            </a>
+        }
+        else { 
+                <a data-bind="attr: { href: Url }" href="@article.Link" class="body-title-link" role="link" target="_blank">
+                    <div class="col-md-12 blog-title pk-ellipsis" data-lines="2">
+                        @article.Title
+                    </div>
+                </a>
+        }
+                <div class="blog-right-side height40 col-md-12">
+                    <div class="blog-by ff-semilight pk-ellipsis" data-lines="1">by @article.Author</div>
+                    <div class="blog-description ff-semilight height40 pk-ellipsis" data-lines="2">@article.Description</div>
+                    @*<div class="row">
+
+                        @if (@article.Topics.Count > 0)
+                        {
+                            <div class="col-md-12 blog-topics hidden-xs hidden-sm">Topic: @string.Join(", ", @article.Topics)</div>
+                        }
+
+                    </div>*@
+                </div>
+                
+                <div class="blog-date ff-semibold"> @article.DatePublished.ToString("MMM dd, yyyy")</div>
+
+                <div class="blog-link">
+
+                    <!-- READ Link -->
+@if (String.IsNullOrEmpty(@article.Link))
+        {
+                    <a data-bind="attr: { href: Url }" href="/blogs/blog?id=@article.Id"
+                       role="link" class="pull-right" >
+                        READ
+                        <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
+                    </a>
+        }
+                else
+                {
+     <a data-bind="attr: { href: Url }" href="@article.Link"
+                     role="link" class="pull-right" target="_blank">
+                    READ
+                    <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
+                </a>
+                }
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </li>
+}
+
+

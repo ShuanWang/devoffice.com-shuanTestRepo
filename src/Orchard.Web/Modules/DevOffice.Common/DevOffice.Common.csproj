@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C445D6F-54A1-41BE-9226-776DE8E5B784}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevOffice.Common</RootNamespace>
+    <AssemblyName>DevOffice.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\htmlagilitypack\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\newtonsoft.json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Orchard.Widgets">
+      <HintPath>..\Orchard.Widgets\bin\Orchard.Widgets.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\aspnetwebapi\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\howImage1.png" />
+    <Content Include="Content\Images\howImage2.png" />
+    <Content Include="Content\Images\howImage3.png" />
+    <Content Include="Content\Images\howImage4.png" />
+    <Content Include="Content\Images\migrateImage1.png" />
+    <Content Include="Content\Images\migrateImage2.png" />
+    <Content Include="Content\Images\migrateImage3.png" />
+    <Content Include="Content\Images\migrateImage4.png" />
+    <Content Include="Content\Images\migrateImage5.png" />
+    <Content Include="Content\Images\migrateImage6.png" />
+    <Content Include="Content\Images\slick-next-prev.png" />
+    <Content Include="Content\Images\stepsImage1.png" />
+    <Content Include="Content\Images\stepsImage2.png" />
+    <Content Include="Content\Images\stepsImage3.png" />
+    <Content Include="Content\Images\stepsImage4.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\blogs-showmore.min.js">
+      <DependentUpon>blogs-showmore.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\blogs-showmore.js" />
+    <Content Include="Scripts\codeSamplesController.js" />
+    <Content Include="Scripts\codeSamplesController.min.js">
+      <DependentUpon>codeSamplesController.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\CodeSamplesFilter.js" />
+    <Content Include="Scripts\CodeSamplesFilter.min.js">
+      <DependentUpon>CodeSamplesFilter.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\feedback.js" />
+    <Content Include="Content\Web.config" />
+    <Content Include="Scripts\CodeSamplesFilter.min.js.map">
+      <DependentUpon>CodeSamplesFilter.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\blogs-showmore.min.js.map">
+      <DependentUpon>blogs-showmore.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\codeSamplesController.min.js.map">
+      <DependentUpon>codeSamplesController.min.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.lazyload.js" />
+    <Content Include="Scripts\jquery.lazyload.min.js">
+      <DependentUpon>jquery.lazyload.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\rssArticlesWidget.js" />
+    <Content Include="Scripts\rssArticlesWidget.min.js">
+      <DependentUpon>rssArticlesWidget.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\search-showmore.js" />
+    <Content Include="Scripts\search-showmore.min.js">
+      <DependentUpon>search-showmore.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\slick.js" />
+    <Content Include="Scripts\SolutionsFilter.js" />
+    <Content Include="Scripts\steps-admin.js" />
+    <Content Include="Scripts\stickyBox.js" />
+    <Content Include="Scripts\stickyBox.min.js">
+      <DependentUpon>stickyBox.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\topTenController.js" />
+    <Content Include="Scripts\topTenController.min.js">
+      <DependentUpon>topTenController.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\trainingController.js" />
+    <Content Include="Scripts\trainingController.min.js">
+      <DependentUpon>trainingController.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\trainingPage.js" />
+    <Content Include="Scripts\trainingPage.min.js">
+      <DependentUpon>trainingPage.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\video-modal.js" />
+    <Content Include="Styles\github-styles.css" />
+    <Content Include="Styles\github-styles.min.css">
+      <DependentUpon>github-styles.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Images\expand.png" />
+    <Content Include="Styles\Images\move.gif" />
+    <Content Include="Styles\Images\triangleShadow.png" />
+    <Content Include="Styles\media-library-picker-admin.css" />
+    <Content Include="Styles\RelatedLinksStyles.css" />
+    <Content Include="Styles\slick.css" />
+    <Content Include="Styles\steps-admin.css" />
+    <Content Include="Templates\Apps.html" />
+    <Content Include="Templates\Footer.html" />
+    <Content Include="Views\Parts\ArticlesWidget.cshtml" />
+    <Content Include="Views\Parts\FeedbackWidget.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\ArticlesWidget.Edit.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\rssArticlesWidget.min.js.map">
+      <DependentUpon>rssArticlesWidget.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\search-showmore.min.js.map">
+      <DependentUpon>search-showmore.min.js</DependentUpon>
+    </Content>
+    <Content Include="Views\CodeSamplesFilter\GitHubCodeSamplesDetailPage.cshtml" />
+    <Content Include="Views\CodeSamplesFilter\GitHubPatternsAndPracticesDetailPage.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.js.map">
+      <DependentUpon>jquery-1.10.2.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\stickyBox.min.js.map">
+      <DependentUpon>stickyBox.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\trainingController.min.js.map">
+      <DependentUpon>trainingController.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\trainingPage.min.js.map">
+      <DependentUpon>trainingPage.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\topTenController.min.js.map">
+      <DependentUpon>topTenController.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.lazyload.min.js.map">
+      <DependentUpon>jquery.lazyload.min.js</DependentUpon>
+    </Content>
+    <Content Include="Views\CodeSamplesFilter\GitHubHandsOnLabDetailPage.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\RelatedLinks.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\Steps.cshtml" />
+    <None Include="Views\Parts\AppsWidget.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Scripts\Web.config" />
+    <Content Include="Styles\Web.config" />
+    <Content Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Module.txt" />
+    <Content Include="Views\Parts\HeaderQuickLinksWidget.cshtml" />
+    <Content Include="Views\Parts\HomeQuickLinksWidget.cshtml" />
+    <Content Include="Views\Parts\EventsWidget.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Parts\HomeCommunityWidget.cshtml" />
+    <Content Include="Views\Parts\CommunityWidget.cshtml" />
+    <Content Include="Views\Parts\TrainingWidget.cshtml" />
+    <Content Include="Views\Parts\HomeEventsWidget.cshtml" />
+    <Content Include="Views\Parts\Steps.cshtml" />
+    <Content Include="Views\Parts\VideosWidget.cshtml" />
+    <Content Include="Views\Parts\ResourcesWidget.cshtml" />
+    <Content Include="Views\Parts\CodeSamplesWidget.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Parts\DevOfficeSearchForm.cshtml" />
+    <Content Include="Views\Parts\GettingStartedWidget.cshtml" />
+    <Content Include="Views\Search\ListMore.cshtml" />
+    <Content Include="Views\Parts\SolutionWidget.cshtml" />
+    <Content Include="Views\Parts\PatternsAndPracticesWidget.cshtml" />
+    <Content Include="Views\Parts\GettingStartedTabStyle.cshtml" />
+    <Content Include="Views\Parts\GettingStartedBoxStyle.cshtml" />
+    <Content Include="Views\Parts\SolutionColumnList.cshtml" />
+    <Content Include="Views\Parts\SolutionsSwipeWidget.cshtml" />
+    <Content Include="Views\Parts\PodcastsWidget.cshtml" />
+    <Content Include="Views\Parts\TilesColumnsPage.cshtml" />
+    <Content Include="Views\Parts\TilesRowsPage.cshtml" />
+    <Content Include="Views\Parts\HomeArticlesWidget.cshtml" />
+    <Content Include="Views\Parts\NewArticlesWidget.cshtml" />
+    <Content Include="Views\Parts\NewArticlesWidgetList.cshtml" />
+    <Content Include="Views\Parts\BannerWidget.cshtml" />
+    <Content Include="Views\Parts\SingleBlogWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Autoroute\Orchard.Autoroute.csproj">
+      <Project>{66fccd76-2761-47e3-8d11-b45d0001ddaa}</Project>
+      <Name>Orchard.Autoroute</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Caching\Orchard.Caching.csproj">
+      <Project>{7528bf74-25c7-4abe-883a-443b4eec4776}</Project>
+      <Name>Orchard.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Fields\Orchard.Fields.csproj">
+      <Project>{3787dde5-e5c8-4841-bda7-dcb325388064}</Project>
+      <Name>Orchard.Fields</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Forms\Orchard.Forms.csproj">
+      <Project>{642A49D7-8752-4177-80D6-BFBBCFAD3DE0}</Project>
+      <Name>Orchard.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Indexing\Orchard.Indexing.csproj">
+      <Project>{ea2b9121-ef54-40a6-a53e-6593c86ee696}</Project>
+      <Name>Orchard.Indexing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.MediaLibrary\Orchard.MediaLibrary.csproj">
+      <Project>{73a7688a-5bd3-4f7e-adfa-ce36c5a10e3b}</Project>
+      <Name>Orchard.MediaLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Projections\Orchard.Projections.csproj">
+      <Project>{5531e894-d259-45a3-aa61-26dbe720c1ce}</Project>
+      <Name>Orchard.Projections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Search\Orchard.Search.csproj">
+      <Project>{4be4eb01-ac56-4048-924e-2ca77f509aba}</Project>
+      <Name>Orchard.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Taxonomies\Orchard.Taxonomies.csproj">
+      <Project>{e649ea64-d213-461b-87f7-d67035801443}</Project>
+      <Name>Orchard.Taxonomies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sunkist.FeaturedItemSlider\Sunkist.FeaturedItemSlider.csproj">
+      <Project>{fd2eac7b-5d9b-4a39-9b3a-20458dced11f}</Project>
+      <Name>Sunkist.FeaturedItemSlider</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\ShowMore\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminMenu.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CodeSamplesFilterController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\ShowMoreController.cs" />
+    <Compile Include="Controllers\SolutionsFilterController.cs" />
+    <Compile Include="Controllers\ViewCountController.cs" />
+    <Compile Include="Drivers\AppsWidgetDriver.cs" />
+    <Compile Include="Drivers\ArticlesDriver.cs" />
+    <Compile Include="Drivers\ArticlesWidgetDriver.cs" />
+    <Compile Include="Drivers\BannerWidgetDriver.cs" />
+    <Compile Include="Drivers\CommunityWidgetDriver.cs" />
+    <Compile Include="Drivers\DevOfficeSearchFormPartDriver.cs" />
+    <Compile Include="Drivers\GettingStartedWidgetDriver.cs" />
+    <Compile Include="Drivers\HomeArticlesWidgetDriver.cs" />
+    <Compile Include="Drivers\HomeEventsWidgetDriver.cs" />
+    <Compile Include="Drivers\FeedbackWidgetDriver.cs" />
+    <Compile Include="Drivers\EventsWidgetDriver.cs" />
+    <Compile Include="Drivers\HomeCommunityWidgetDriver.cs" />
+    <Compile Include="Drivers\HomeQuickLinksWidgetDriver.cs" />
+    <Compile Include="Drivers\HeaderQuickLinksWidgetDriver.cs" />
+    <Compile Include="Drivers\SingleBlogWidgetDriver.cs" />
+    <Compile Include="Drivers\SectionsWithTilesPageDriver.cs" />
+    <Compile Include="Drivers\PatternsAndPracticesWidgetDriver.cs" />
+    <Compile Include="Drivers\RelatedLinksDriver.cs" />
+    <Compile Include="Drivers\ResourcesWidgetDriver.cs" />
+    <Compile Include="Drivers\SolutionWidgetDriver.cs" />
+    <Compile Include="Drivers\StepDriver.cs" />
+    <Compile Include="Drivers\CodeSamplesWidgetDriver.cs" />
+    <Compile Include="Drivers\PodcastsWidgetDriver.cs" />
+    <Compile Include="Drivers\VideosWidgetDriver.cs" />
+    <Compile Include="Drivers\TrainingWidgetDriver.cs" />
+    <Compile Include="Handlers\ArticlesWidgetHandler.cs" />
+    <Compile Include="Handlers\RelatedLinksHandler.cs" />
+    <Compile Include="Handlers\StepPartHandler.cs" />
+    <Compile Include="Migration.cs" />
+    <Compile Include="Models\AppsWidgetPart.cs" />
+    <Compile Include="Models\ArticlesPart.cs" />
+    <Compile Include="Models\ArticlesWidgetPart.cs" />
+    <Compile Include="Models\CodeSamplesWidgetPart.cs" />
+    <Compile Include="Models\CommunityWidgetPart.cs" />
+    <Compile Include="Models\DevOfficeSearchFormPart.cs" />
+    <Compile Include="Models\GettingStartedWidgetPart.cs" />
+    <Compile Include="Models\HomeArticlesPart.cs" />
+    <Compile Include="Models\HomeCommunityWidgetPart.cs" />
+    <Compile Include="Models\FeedbackInformationRecord.cs" />
+    <Compile Include="Models\FeedbackWidgetPart.cs" />
+    <Compile Include="Models\EventsPart.cs" />
+    <Compile Include="Models\HomeEventsPart.cs" />
+    <Compile Include="Models\HomeQuickLinksPart.cs" />
+    <Compile Include="Models\HeaderQuickLinksPart.cs" />
+    <Compile Include="Models\SectionsWithTilesPagePart.cs" />
+    <Compile Include="Models\PatternsAndPracticesWidgetPart.cs" />
+    <Compile Include="Models\PodcastsWidgetPart.cs" />
+    <Compile Include="Models\RelatedLink.cs" />
+    <Compile Include="Models\RelatedLinks.cs" />
+    <Compile Include="Models\ResourcesWidgetPart.cs" />
+    <Compile Include="Models\BannerWidgetPart.cs" />
+    <Compile Include="Models\SingleBlogWidgetPart.cs" />
+    <Compile Include="Models\SolutionWidgetPart.cs" />
+    <Compile Include="Models\StepPart.cs" />
+    <Compile Include="Models\TrainingWidgetPart.cs" />
+    <Compile Include="Models\VideosWidgetPart.cs" />
+    <Compile Include="Models\ViewCountRecord.cs" />
+    <Compile Include="Routes.cs" />
+    <Compile Include="Services\ICommonDataService.cs" />
+    <Compile Include="Services\CommonDataService.cs" />
+    <Compile Include="Services\IRssDataService.cs" />
+    <Compile Include="Services\ISearchService.cs" />
+    <Compile Include="Services\RssDataService.cs" />
+    <Compile Include="Services\IStepDataService.cs" />
+    <Compile Include="Services\SearchService.cs" />
+    <Compile Include="Services\StepDataService.cs" />
+    <Compile Include="Helpers\TimeoutWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Templates\FileSystemTemplateProvider.cs" />
+    <Compile Include="ViewModels\ArticlesViewModel.cs" />
+    <Compile Include="ViewModels\BannerViewModel.cs" />
+    <Compile Include="ViewModels\BlogPostsViewModel.cs" />
+    <Compile Include="ViewModels\CodeSamplesViewModel.cs" />
+    <Compile Include="ViewModels\GettingStartedViewModel.cs" />
+    <Compile Include="ViewModels\OverviewPageViewModel.cs" />
+    <Compile Include="ViewModels\SectionsWithTilesPageViewModel.cs" />
+    <Compile Include="ViewModels\PatternsAndPracticesViewModel.cs" />
+    <Compile Include="ViewModels\RelatedLinksViewModel.cs" />
+    <Compile Include="ViewModels\ResourcesViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\SolutionViewModel.cs" />
+    <Compile Include="ViewModels\StepsDisplayViewModel.cs" />
+    <Compile Include="ViewModels\StepsEditorViewModel.cs" />
+    <Compile Include="ViewModels\VideoViewModel.cs" />
+    <Compile Include="ViewModels\TrainingViewModel.cs" />
+    <Compile Include="ViewModels\CommunityViewModel.cs" />
+    <Compile Include="ViewModels\EventsViewModel.cs" />
+    <Compile Include="ViewModels\QuickLinksViewModel.cs" />
+    <Compile Include="ViewModels\ViewCountApiViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Placement.info" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
+    <PropertyGroup>
+      <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
+    </PropertyGroup>
+    <!-- If this is an area child project, uncomment the following line:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Child" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    -->
+    <!-- If this is an area parent project, uncomment the following lines:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Parent" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    <CopyAreaManifests ManifestPath="$(AreasManifestDir)" CrossCopy="false" RenameViews="true" />
+    -->
+  </Target>
+  <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>45979</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://orchard.codeplex.com</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

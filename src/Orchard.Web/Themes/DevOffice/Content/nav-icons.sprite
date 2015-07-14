@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sprite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://vswebessentials.com/schemas/v1/sprite.xsd">
+  <settings>
+    <!--Determines if the sprite image should be automatically optimized after creation/update.-->
+    <optimize>true</optimize>
+    <!--Determines the orientation of images to form this sprite. The value must be vertical or horizontal.-->
+    <orientation>vertical</orientation>
+    <!--File extension of sprite image.-->
+    <outputType>gif</outputType>
+    <!--Determin whether to generate/re-generate this sprite on building the solution.-->
+    <runOnBuild>false</runOnBuild>
+    <!--Use full path to generate unique class or mixin name in CSS, LESS and SASS files. Consider disabling this if you want class names to be filename only.-->
+    <fullPathForIdentifierName>true</fullPathForIdentifierName>
+    <!--Use absolute path in the generated CSS-like files. By default, the URLs are relative to sprite image file (and the location of CSS, LESS and SCSS).-->
+    <useAbsoluteUrl>false</useAbsoluteUrl>
+    <!--Specifies a custom subfolder to save files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectory />
+    <!--Specifies a custom subfolder to save CSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForCss />
+    <!--Specifies a custom subfolder to save LESS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForLess />
+    <!--Specifies a custom subfolder to save SCSS files to. By default, compiled output will be placed in the same folder and nested under the original file.-->
+    <outputDirectoryForScss />
+  </settings>
+  <!--The order of the <file> elements determines the order of the images in the sprite.-->
+  <files>
+    <file>/DevOffice/Content/Images/ajax-loader.gif</file>
+    <file>/DevOffice/Content/Images/checkboxWithTick.png</file>
+    <file>/DevOffice/Content/Images/Close.png</file>
+    <file>/DevOffice/Content/Images/devOfficeLogo.png</file>
+    <file>/DevOffice/Content/Images/devOfficeLogoSmall.png</file>
+    <file>/DevOffice/Content/Images/icon-arrow-right.png</file>
+    <file>/DevOffice/Content/Images/microsoftLogo.png</file>
+    <file>/DevOffice/Content/Images/nav-icons.gif</file>
+    <file>/DevOffice/Content/Images/nav_downarrow.png</file>
+    <file>/DevOffice/Content/Images/nav_downarrow_hover.png</file>
+    <file>/DevOffice/Content/Images/nav_uparrow.png</file>
+    <file>/DevOffice/Content/Images/quickLinksClose.png</file>
+    <file>/DevOffice/Content/Images/quickLinksOpen.png</file>
+    <file>/DevOffice/Content/Images/search.png</file>
+    <file>/DevOffice/Content/Images/seeMoreIcon.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerCodeSamplesPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerCommunityPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerEventsPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerHowPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerMigratePage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerPodcastsPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerTrainingPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerVideosPage-1.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerVideosPage-old.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerVideosPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/headerWhyPage.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Banners/ResourcesHeader.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Build/howImage1.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Build/howImage2.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Build/howImage3.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Build/howImage4.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Community/msdnForums.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Community/O365TNYammer.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Community/stackOverflowForum.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Community/uservoiceLogo.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Community/wpDeveloperForum.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/Media-Play-02-1.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/Media-Play-02.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/Media-Play-02_Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/pillar-1-left.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/pillar-1-right.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/pillar-2-left.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/pillar-2-right.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/pillar-3-left.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/pillar-3-right.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/stepsImage1.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/stepsImage2.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/stepsImage3.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Opportunity/stepsImage4.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/Code.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/Code_Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/CommuityLinks-White.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/CommunityLinks-Orange-Small.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/Document-01.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/Documentation.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/Documentation_Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/Documentation_Orange_Small-1.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/Documentation_Orange_Small.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/downloadTools.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/downloadToolsBig.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/getCodeSamples.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/getCodeSamplesBig.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/getDevCenterApp.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/getDevCenterAppBig.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/previewTheOs.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/previewTheOsBig.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/submitApps.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/submitAppsBig.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/TrainingQuickLink.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/TrainingQuickLink_Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/TrainingQuickLink_Orange_Small.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/watchVideos.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Quick Links/watchVideosBig.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Slider/image1.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Slider/image2.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Slider/image3.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Slider/image4.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Slider/image5.jpg</file>
+    <file>/DevOffice/Content/SyncContent/Media/Slider/image6.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Slider/PollEverywhere.PNG</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Article-Orange-100x100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Article-Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Article-White-100x100-old.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Article-White-100x100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Article-White.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code-Orange-100x100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code-Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code-White-100x100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code-White.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code_100-1.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code_100-2.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code_100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Code_Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Podcast-White-100x100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Video-Orange-100x100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Video-Orange.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Video-White-100x100-old.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Video-White-100x100.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Training/Video-White.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Transformation/migrateImage1.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Transformation/migrateImage2.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Transformation/migrateImage3.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Transformation/migrateImage4.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Transformation/migrateImage5.png</file>
+    <file>/DevOffice/Content/SyncContent/Media/Transformation/migrateImage6.png</file>
+  </files>
+</sprite>
