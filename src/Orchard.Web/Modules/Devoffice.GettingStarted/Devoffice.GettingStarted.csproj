@@ -133,9 +133,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery.cookie.min.js" />
     <Content Include="Scripts\jquery.json-view.min.js" />
-    <Content Include="Scripts\json.js" />
     <Content Include="Scripts\jszip-utils.js" />
     <Content Include="Scripts\jszip.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -143,7 +141,8 @@
     <Content Include="Scripts\registerApp.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\try-it-out.js" />
+    <Content Include="Scripts\tryitout.js" />
+    <Content Include="Scripts\userPlatformManager.js" />
     <Content Include="Scripts\websiteContent.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />

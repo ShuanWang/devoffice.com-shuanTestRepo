@@ -1,4 +1,70 @@
-﻿<div id="main" style="background-color:#f4f4f4;" class="container-fluid">
+﻿@{
+    Script.Include("navBar.js").AtHead();
+    Script.Include("userPlatformManager.js").AtHead(); //TBD: we need to refractor this file
+    Script.Include("modernizr-2.6.2.js").AtHead(); //TBD: Do we need this?
+    Script.Include("respond.js").AtHead(); //TBD: Do we need this?
+    Script.Include("respond.min.js").AtHead(); //TBD: Do we need this?
+    Script.Include("gettingStarted.js").AtHead(); //TBD: Do we need this?
+
+    Script.Include("registerApp.js").AtFoot();
+    Script.Include("embeddedCodeSample.js").AtFoot();
+    Script.Include("FileSaver.js").AtFoot();
+    Script.Include("jquery.json-view.min.js").AtFoot();
+    Script.Include("jszip.js").AtFoot();
+    Script.Include("tryitout.js").AtFoot();
+    Script.Include("websiteContent.js").AtFoot();
+}
+<script>
+    var platformId = null;
+    var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
+
+    $(document).scroll(function () {
+        cardTracker.updateScroll();
+    });
+    var userDontWantToSign = false;
+    $(document).ready(function () {
+        // initialize progress tracker
+        cardTracker.init(1.0);
+
+
+        function elementIDs() { };
+        elementIDs.services = "serviceOptions";
+        elementIDs.urlValue = "urlValue";
+        elementIDs.invokeurlBtn = "invokeurlBtn";
+        elementIDs.responseBody = "responseBody";
+        elementIDs.parameterDetails = "parameterDetails";
+        elementIDs.responseBodyContainer = "parameterDetails";
+        elementIDs.sandBoxOptions = "sandBoxOptions";
+
+        function elementClasses() { };
+        elementClasses.CodeContainer = "code-container";
+
+        TryItOut(elementIDs, elementClasses);
+
+        //attach to platform filters
+        //TBD: temp code
+        $("#pickPlatform ul li a").click(function () { selectPlatform(this) });
+        $('#startCoding ul li a').click(function () { startCodingContentDisplay(this) });
+        $('#post-download-instructions').hide();
+
+        //TBD need to define proper card id
+        var tryitOutCardId = "2";
+        $('#loginLink').click(function () {
+            document.cookie = "current-card=" + tryitOutCardId + "; path=/";
+        });
+
+        $('#loginLink-tocontinue').click(function () {
+            document.cookie = "current-card=" + window.location.href + "; path=/";
+        });
+        $('#app-reg-signin-later').click(function () {
+            cardTracker.removeAllBlockingCards();
+            ga('send', 'event', 'O365path-Rest', 'Signin-Later');
+        });
+    });
+
+
+</script>
+<div id="main" style="background-color:#f4f4f4;" class="container-fluid">
     <div id="myNavBar"></div>
     <div id="o365-progressTrackerContainer">
         @Html.Partial("./O365/_Intro")

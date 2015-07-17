@@ -81,7 +81,7 @@ function CardTracker(cardsContainerID, navBarID) {
 	
 	//@	cardIndex: index of the card to store in cookie
 	function savestepToCache(cardIndex) {
-		$.cookie('currentCardIndex', cardIndex, {expires:7,path:'/'});
+		//$.cookie('currentCardIndex', cardIndex, {expires:7,path:'/'});
 	}
 	
 	// returns the card index from cookie
