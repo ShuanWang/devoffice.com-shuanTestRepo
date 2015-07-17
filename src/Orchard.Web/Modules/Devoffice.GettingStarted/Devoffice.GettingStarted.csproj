@@ -174,6 +174,7 @@
     <Compile Include="Models\ApiWidgetPart.cs" />
     <Compile Include="Models\AddinsWidgetPart.cs" />
     <Compile Include="Models\RegisterAppModel.cs" />
+    <Compile Include="Routes.cs" />
     <Compile Include="Utils\AppRegistration.cs" />
     <Compile Include="Utils\AppScopes.cs" />
     <Compile Include="Utils\Base64UrlDecoder.cs" />
@@ -211,7 +212,6 @@
     <Content Include="Views\O365\reg.cshtml" />
     <Content Include="Views\O365\_Layout.cshtml" />
     <Content Include="Views\O365\_LoginPartial.cshtml" />
-    <Content Include="Views\O365\_LoginToContinue.cshtml" />
     <Content Include="Views\O365\_NextStep.cshtml" />
     <Content Include="Views\O365\_RegisterApp.cshtml" />
     <Content Include="Views\O365\_Setup.cshtml" />

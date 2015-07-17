@@ -62,9 +62,6 @@
             document.cookie = "current-card=" + tryitOutCardId + "; path=/";
         });
 
-        $('#loginLink-tocontinue').click(function () {
-            document.cookie = "current-card=" + window.location.href + "; path=/";
-        });
         $('#app-reg-signin-later').click(function () {
             cardTracker.removeAllBlockingCards();
             ga('send', 'event', 'O365path-Rest', 'Signin-Later');

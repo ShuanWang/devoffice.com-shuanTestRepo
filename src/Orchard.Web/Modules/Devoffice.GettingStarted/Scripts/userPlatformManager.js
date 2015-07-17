@@ -43,7 +43,6 @@ function startCodingContentDisplay(selectedItem) {
 }
 
 function setRedirectUri(platformId) {
-    signOnUrlField
     switch (platformId) {
         case "option-ruby":
             $("#redirectUriField").val("http://localhost:3000");
