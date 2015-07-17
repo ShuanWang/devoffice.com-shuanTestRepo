@@ -1,0 +1,322 @@
+<h1 id="getting-started-with-the-outlook-mail-api-and-python">Getting Started with the Outlook Mail API and Python</h1>
+<p>The purpose of this guide is to walk through the process of creating a simple Python web app that retrieves messages in Office 365. The source code in this repository is what you should end up with if you follow the steps outlined here.</p>
+<h2 id="create-the-app">Create the app</h2>
+<p>Let's dive right in! Open a command prompt and set the current directory to a location where you want to store your code. Run the following command to create a new Django project.</p>
+<pre><code>django-admin.py startproject python_tutorial
+</code></pre>
+<p>This creates a new subdirectory called <code>python_tutorial</code>. Change your command prompt's current directory to this new subdirectory and run the following command to verify that everything is working.</p>
+<pre><code>python manage.py runserver
+</code></pre>
+<p>Once the server starts, open a web browser and browse to http://127.0.0.1:8000/. You should see a success message.</p>
+<p><img alt="The default Django welcome page." src="https://raw.githubusercontent.com/jasonjoh/python_tutorial/master/readme-images/django_welcome.PNG" /></p>
+<p>As the success message suggests, let's add an app to our new project. On the command prompt, run the following command.</p>
+<pre><code>python manage.py startapp tutorial
+</code></pre>
+<p>This creates a new subdirectory under the <code>python_tutorial</code> directory and a number of files. </p>
+<p>Open the <code>.\python_tutorial\settings.py</code> file and add the new <code>tutorial</code> app to the <code>INSTALLED_APPS</code> setting.</p>
+<h3 id="new-value-of-installed_apps-in-python_tutorialsettingspy">New value of <code>INSTALLED_APPS</code> in <code>.\python_tutorial\settings.py</code></h3>
+<pre><code>INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'tutorial',
+)
+</code></pre>
+<p>Save your changes. From the command line, run the following command to initialize the database for the app.</p>
+<pre><code>python manage.py migrate
+</code></pre>
+<p>Let's add a bit of code to the app just to make sure that it is working. Open the <code>.\tutorial\views.py</code> file and add the following function.</p>
+<h3 id="home-function-in-the-tutorialviewspy-file"><code>home</code> function in the <code>.\tutorial\views.py</code> file</h3>
+<pre><code>from django.http import HttpResponse, HttpResponseRedirect
+def home(request):
+  return HttpResponse("Welcome to the tutorial.")
+</code></pre>
+<p>Create a new file in the <code>tutorial</code> directory called <code>urls.py</code>. Add the following code to this file.</p>
+<h3 id="contents-of-the-tutorialurlspy-file">Contents of the <code>.\tutorial\urls.py</code> file</h3>
+<pre><code>from django.conf.urls import patterns, url 
+from tutorial import views
+urlpatterns = patterns('', 
+  # The home view ('/tutorial/') 
+  url(r'^$', views.home, name='home'), 
+  # Explicit home ('/tutorial/home/') 
+  url(r'^home/$', views.home, name='home'), 
+)
+</code></pre>
+<p>Finally, open the <code>.\python_tutorial\urls.py</code> file and add the following lines above the <code>url(r'^admin/', include(admin.site.urls)),</code> line.</p>
+<h3 id="new-lines-in-python_tutorialurlspy">New lines in <code>.\python_tutorial\urls.py</code></h3>
+<pre><code># Invoke the home view in the tutorial app by default
+url(r'^$', 'tutorial.views.home', name='home'),
+# Defer any URLS to the /tutorial directory to the tutorial app
+url(r'^tutorial/', include('tutorial.urls', namespace='tutorial')),
+</code></pre>
+<p>If you're familiar with Django development, this isn't anything new for you. If not, all we've done here is tell Django how to route requests to the tutorial app. Django looks first in the <code>.\python_tutorial\urls.py</code> file. The new lines we added there tell it to redirect requests to the root to the <code>home</code> view in the tutorial app, and also tells it to send any requests to <code>/tutorial/*</code> to the tutorial app.</p>
+<p>The entries in the <code>.\tutorial\urls.py</code> file tell Django to send requests to either <code>/tutorial</code> or <code>/tutorial/home</code> to the <code>home</code> view. Finally, the <code>home</code> function in <code>.\tutorial\views.py</code> returns a simple HTTP response.</p>
+<p>If you save all of your changes and navigate to http://127.0.0.1:8000 you should see "Welcome to the tutorial." Now that we've confirmed that the app is working, we're ready to do some real work.</p>
+<h2 id="designing-the-app">Designing the app</h2>
+<p>Our app will be very simple. When a user visits the site, they will see a link to log in and view their email. Clicking that link will take them to the Azure login page where they can login with their Office 365 account and grant access to our app. Finally, they will be redirected back to our app, which will display a list of the most recent email in the user's inbox.</p>
+<p>Let's begin by replacing the static message with a signon link. To do that, we'll modify the <code>home</code> function in <code>.\tutorial\views.py</code>. Update the <code>home</code> function to match the following.</p>
+<h3 id="updated-home-function">Updated <code>home</code> function</h3>
+<pre><code>def home(request):
+  sign_in_url = '#'
+  return HttpResponse('&lt;a href="' + sign_in_url +'"&gt;Click here to sign in and view your mail&lt;/a&gt;')
+</code></pre>
+<p>As you can see, our home page will be very simple. For now, the link doesn't do anything, but we'll fix that soon.</p>
+<h2 id="implementing-oauth2">Implementing OAuth2</h2>
+<p>Our goal in this section is to make the link on our home page initiate the <a href="https://msdn.microsoft.com/en-us/library/azure/dn645542.aspx">OAuth2 Authorization Code Grant flow with Azure AD</a>. To make things easier, we'll use the <a href="http://docs.python-requests.org/en/latest/">Requests: HTTP for Humans</a> library to handle all of our HTTP requests. At your command prompt, enter the following command.</p>
+<pre><code>pip install requests
+</code></pre>
+<p>Now the library is installed and ready to use. Create a new file in the <code>tutorial</code> directory called <code>authhelper.py</code>. We'll start here by defining a function to generate the login URL.</p>
+<h3 id="contents-of-the-tutorialauthhelperpy-file">Contents of the <code>.\tutorial\authhelper.py</code> file</h3>
+<pre><code>from urllib.parse import quote, urlencode
+# Client ID and secret
+client_id = 'YOUR CLIENT ID'
+client_secret = 'YOUR CLIENT SECRET'
+# Constant strings for OAuth2 flow
+# The OAuth authority
+authority = 'https://login.microsoftonline.com'
+# The authorize URL that initiates the OAuth2 client credential flow for admin consent
+authorize_url = '{0}{1}'.format(authority, '/common/oauth2/authorize?{0}')
+# The token issuing endpoint
+token_url = '{0}{1}'.format(authority, '/common/oauth2/token')
+def get_signin_url(redirect_uri):
+  # Build the query parameters for the signin url
+  params = { 'client_id': client_id,
+             'redirect_uri': redirect_uri,
+             'response_type': 'code',
+             'prompt': 'login',
+           }
+  signin_url = authorize_url.format(urlencode(params))
+  return signin_url
+</code></pre>
+<p>The first thing we do here is define our client ID and secret. The values of <code>clientId</code> and <code>clientSecret</code> are just placeholders, so we need to generate valid values.</p>
+<h3 id="generate-a-client-id-and-secret">Generate a client ID and secret</h3>
+<p>Head over to https://dev.outlook.com/appregistration to quickly get a client ID and secret. Use the following details to register.</p>
+<p>In Step 2:</p>
+<ul>
+    <li><strong>App Name:</strong> python-tutorial</li>
+    <li><strong>App Type:</strong> Server-side Web app</li>
+    <li><strong>Redirect URI:</strong> http://127.0.0.1:8000</li>
+    <li><strong>Home Page URL:</strong> http://127.0.0.1:8000</li>
+    <li><strong>Secret Valid For:</strong> 1 year</li>
+</ul>
+<p>Be sure to replace <code>http://127.0.0.1:8000</code> with your correct web server address if you are using a different server.</p>
+<p><img alt="The Step 2 section of the App Registration Tool." src="https://raw.githubusercontent.com/jasonjoh/python_tutorial/master/readme-images/registration-step2.PNG" /></p>
+<p>In Step 3, select <code>Read mail</code>. If you plan on going beyond this tutorial and trying Calendar or Contacts API, go ahead and select additional permissions as well. For the purposes of this tutorial though, only <code>Read mail</code> is required.</p>
+<p><img alt="The Step 3 section of the App Registration Tool." src="https://raw.githubusercontent.com/jasonjoh/python_tutorial/master/readme-images/registration-step3.PNG" /></p>
+<p>After clicking the <strong>Register App</strong> button, copy your client ID and secret from the tool. Replace the <code>YOUR CLIENT ID</code> and <code>YOUR CLIENT SECRET</code> placeholders  in the <code>.\tutorial\authhelper.py</code> file with these values and save your changes.</p>
+<h3 id="back-to-coding">Back to coding</h3>
+<p>Now that we have actual values for the client ID and secret, let's put our new function to work. Modify the <code>home</code> function in the <code>.\tutorial\views.py</code> file to use the <code>get_signin_url</code> function to fill in the link. That function takes a parameter, <code>redirect_uri</code>. This value is used to set the URL in our app where Azure will redirect after signin is complete. Let's go ahead and create a placeholder view to act as our redirect target called <code>gettoken</code>.</p>
+<h4 id="updated-contents-of-tutorialviewspy">Updated contents of <code>.\tutorial\views.py</code></h4>
+<pre><code>from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from tutorial.authhelper import get_signin_url
+# Create your views here.
+def home(request):
+  redirect_uri = request.build_absolute_uri(reverse('tutorial:gettoken'))
+  sign_in_url = get_signin_url(redirect_uri)
+  return HttpResponse('&lt;a href="' + sign_in_url +'"&gt;Click here to sign in and view your mail&lt;/a&gt;')
+def gettoken(request):
+  return HttpResponse('gettoken view')
+</code></pre>
+<p>The view doesn't do much now, but we'll change that soon. Add this new view to the <code>.\tutorials\urls.py</code> file.</p>
+<h4 id="updated-contents-of-the-tutorialsurlspy-file">Updated contents of the <code>.\tutorials\urls.py</code> file</h4>
+<pre><code>from django.conf.urls import patterns, url 
+from tutorial import views
+urlpatterns = patterns('', 
+  # The home view ('/tutorial/') 
+  url(r'^$', views.home, name='home'), 
+  # Explicit home ('/tutorial/home/') 
+  url(r'^home/$', views.home, name='home'), 
+  # Redirect to get token ('/tutorial/gettoken/')
+  url(r'^gettoken/$', views.gettoken, name='gettoken'),
+)
+</code></pre>
+<p>Save your changes and browse to http://127.0.0.1:8000. If you hover over the link, it should look like:</p>
+<pre><code>https://login.microsoftonline.com/common/oauth2/authorize?client_id=&lt;SOME GUID&gt;&amp;response_type=code&amp;redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Ftutorial%2Fgettoken%2F&amp;prompt=login
+</code></pre>
+<p>The <code>&lt;SOME GUID&gt;</code> portion should match your client ID. Click on the link and (assuming you are not already signed in to Office 365 in your browser), you should be presented with a sign in page. Sign in with your Office 365 account. Your browser should redirect to back to the <code>gettoken</code> view. The view doesn't do anything yet, so let's fix that now.</p>
+<h3 id="exchanging-the-code-for-a-token">Exchanging the code for a token</h3>
+<p>The first thing we need to do is extract the authorization code from the request. When Azure redirects to our <code>gettoken</code> function, it includes a <code>code</code> query parameter, which contains the authorization code. Update the <code>gettoken</code> function to get this parameter's value and display it.</p>
+<h4 id="updated-gettoken-function-in-tutorialviewspy">Updated <code>gettoken</code> function in <code>.\tutorial\views.py</code></h4>
+<pre><code>def gettoken(request):
+  auth_code = request.GET['code']
+  return HttpResponse('Authorization code: {0}'.format(auth_code))
+</code></pre>
+<p>Save your changes and repeat the signin process in the app. Now instead of a static message, you should see the value of the authorization code printed on the screen. We're getting closer, but that's still not very useful. Let's actually do something with that code.</p>
+<p>First import the <code>requests</code> library by adding the following line to the top of <code>.\tutorial\authhelper.py</code>.</p>
+<pre><code>import requests
+</code></pre>
+<p>Now add another helper function to <code>authhelper.py</code> called <code>get_token_from_code</code>.</p>
+<h4 id="get_token_from_code-in-the-tutorialauthhelperpy-file"><code>get_token_from_code</code> in the <code>.\tutorial\authhelper.py</code> file</h4>
+<pre><code>def get_token_from_code(auth_code, redirect_uri):
+  # Build the post form for the token request
+  post_data = { 'grant_type': 'authorization_code',
+                'code': auth_code,
+                'redirect_uri': redirect_uri,
+                'resource': 'https://outlook.office365.com',
+                'client_id': client_id,
+                'client_secret': client_secret
+              }
+  r = requests.post(token_url, data = post_data)
+  try:
+    access_token = r.json()['access_token']
+    return access_token
+  except:
+    return 'Error retrieving token: {0} - {1}'.format(r.status_code, r.text)
+</code></pre>
+<p>Let's make sure that works. Modify the <code>gettoken</code> function in <code>views.py</code> to use this helper function and display the return value.</p>
+<h4 id="updated-gettoken-function-in-tutorialviewspy_1">Updated <code>gettoken</code> function in <code>.\tutorial\views.py</code></h4>
+<pre><code># Update import statement to include new function
+from tutorial.authhelper import get_signin_url, get_token_from_code
+def gettoken(request):
+  auth_code = request.GET['code']
+  redirect_uri = request.build_absolute_uri(reverse('tutorial:gettoken'))
+  access_token = get_token_from_code(auth_code, redirect_uri)
+  # Save the token in the session
+  request.session['access_token'] = access_token
+  return HttpResponse('Access token: {0}'.format(access_token))
+</code></pre>
+<p>If you save your changes, restart the server, and go through the sign-in process again, you should now see a long string of seemingly nonsensical characters. If everything's gone according to plan, that should be an access token. Copy the entire value and head over to http://jwt.calebb.net/. If you paste that value in, you should see a JSON representation of an access token. For details and alternative parsers, see <a href="https://github.com/jasonjoh/office365-azure-guides/blob/master/ValidatingYourToken.md">Validating your Office 365 Access Token</a>.</p>
+<p>Once you're convinced that the token is what it should be, we're ready to call the Mail API.</p>
+<h2 id="using-the-mail-api">Using the Mail API</h2>
+<p>Now that we can get an access token, we're in a good position to do something with the Mail API. Let's start by creating a <code>mail</code> view in <code>views.py</code>.</p>
+<h4 id="mail-function-in-tutorialviewspy"><code>mail</code> function in <code>.\tutorial\views.py</code></h4>
+<pre><code>def mail(request):
+  access_token = request.session['access_token']
+  # If there is no token in the session, redirect to home
+  if not access_token:
+    return HttpResponseRedirect(reverse('tutorial:home'))
+  else:
+    return HttpResponse('Access token found in session: {0}'.format(access_token))
+</code></pre>
+<p>Update the <code>urls.py</code> file to include an entry for the new view.</p>
+<h4 id="updated-contents-of-tutorialurlspy">Updated contents of <code>.\tutorial\urls.py</code></h4>
+<pre><code>from django.conf.urls import patterns, url 
+from tutorial import views
+urlpatterns = patterns('', 
+  # The home view ('/tutorial/') 
+  url(r'^$', views.home, name='home'), 
+  # Explicit home ('/tutorial/home/') 
+  url(r'^home/$', views.home, name='home'), 
+  # Redirect to get token ('/tutorial/gettoken/')
+  url(r'^gettoken/$', views.gettoken, name='gettoken'),
+  # Mail view ('/tutorial/mail/')
+  url(r'^mail/$', views.mail, name='mail'),
+)
+</code></pre>
+<p>Update the <code>gettoken</code> function to redirect to the <code>mail</code> view after saving the token in the session.</p>
+<h4 id="updated-gettoken-function-in-tutorialviewspy_2">Updated <code>gettoken</code> function in <code>.\tutorial\views.py</code></h4>
+<pre><code>def gettoken(request):
+  auth_code = request.GET['code']
+  redirect_uri = request.build_absolute_uri(reverse('tutorial:gettoken'))
+  access_token = get_token_from_code(auth_code, redirect_uri)
+  # Save the token in the session
+  request.session['access_token'] = access_token
+  return HttpResponseRedirect(reverse('tutorial:mail'))
+</code></pre>
+<p>For now all this does is read the token back from the cookie and display it. Save your changes, restart the server, and go through the signon process again. You should see the token displayed. Now that we know we have access to the token in the <code>mail</code> function, we're ready to call the Mail API.</p>
+<p>Create a new file in the <code>tutorial</code> directory called <code>outlookservice.py</code>. We'll implement all of our Mail API functions in this file. We'll start by creating a generic method for sending API requests called <code>make_api_call</code>.</p>
+<h4 id="contents-of-tutorialoutlookservicepy">Contents of <code>./tutorial/outlookservice.py</code></h4>
+<pre><code>import requests
+import uuid
+# Generic API Sending
+def make_api_call(method, url, token, payload = None, parameters = None):
+    # Send these headers with all API calls
+    headers = { 'User-Agent' : 'python_tutorial/1.0',
+                'Authorization' : 'Bearer {0}'.format(token),
+                'Accept' : 'application/json' }
+    # Use these headers to instrument calls. Makes it easier
+    # to correlate requests and responses in case of problems
+    # and is a recommended best practice.
+    request_id = str(uuid.uuid4())
+    instrumentation = { 'client-request-id' : request_id,
+                        'return-client-request-id' : 'true' }
+    headers.update(instrumentation)
+    response = None
+    if (method.upper() == 'GET'):
+        response = requests.get(url, headers = headers, params = parameters)
+    elif (method.upper() == 'DELETE'):
+        response = requests.delete(url, headers = headers, params = parameters)
+    elif (method.upper() == 'PATCH'):
+        headers.update({ 'Content-Type' : 'application/json' })
+        response = requests.patch(url, headers = headers, data = payload, params = parameters)
+    elif (method.upper() == 'POST'):
+        headers.update({ 'Content-Type' : 'application/json' })
+        response = requests.post(url, headers = headers, data = payload, params = parameters)
+    return response
+</code></pre>
+<p>This function uses the <code>requests</code> library to send API requests. It sets a standard set of headers on each requests, including client instrumentation.</p>
+<p>Now let's add a function that will use this function to implement a request to retrieve messages from the inbox. Create a new function in <code>outlookservice.py</code> called <code>get_my_messages</code>.</p>
+<h4 id="the-get_my_messages-function-in-tutorialoutlookservicepy">The <code>get_my_messages</code> function in <code>./tutorial/outlookservice.py</code></h4>
+<pre><code>def get_my_messages(access_token):
+  get_messages_url = outlook_api_endpoint.format('/Me/Messages')
+  # Use OData query parameters to control the results
+  #  - Only first 10 results returned
+  #  - Only return the DateTimeReceived, Subject, and From fields
+  #  - Sort the results by the DateTimeReceived field in descending order
+  query_parameters = {'$top': '10',
+                      '$select': 'DateTimeReceived,Subject,From',
+                      '$orderby': 'DateTimeReceived DESC'}
+  r = make_api_call('GET', get_messages_url, token, parameters = query_parameters)
+  if (r.status_code == requests.codes.ok):
+    return r.json()
+  else:
+    return "{0}: {1}".format(r.status_code, r.text)
+</code></pre>
+<p>Now we can modify the <code>mail</code> function to call this function and retrieve email. First, import the <code>get_my_messages</code> function by adding the following line to the top of <code>views.py</code>.</p>
+<pre><code>from tutorial.outlookservice import get_my_messages
+</code></pre>
+<p>Then update the <code>mail</code> function to call the new function.</p>
+<h4 id="new-version-of-the-mail-function-in-tutorialviewspy">New version of the <code>mail</code> function in <code>./tutorial/views.py</code></h4>
+<pre><code>def mail(request):
+  access_token = request.session['access_token']
+  # If there is no token in the session, redirect to home
+  if not access_token:
+    return HttpResponseRedirect(reverse('tutorial:home'))
+  else:
+    messages = get_my_messages(access_token)
+    return HttpResponse('Messages: {0}'.format(messages))
+</code></pre>
+<p>If you save the changes and sign into the app, you should now see a raw listing of the JSON response. </p>
+<h3 id="displaying-the-results">Displaying the results</h3>
+<p>While the current listing of messages confirms that the API calls are working, we can use Django templates to display the results in a more user-friendly fashion.</p>
+<p>Start by creating a new subdirectory in the <code>tutorial</code> directory called <code>templates</code>. In the <code>templates</code> directory, create a new subdirectory called <code>tutorial</code>. Finally, create a new file in this directory called <code>mail.html</code>, and add the following code.</p>
+<h4 id="contents-of-the-tutorialtemplatestutorialmailhtml-file">Contents of the <code>./tutorial/templates/tutorial/mail.html</code> file</h4>
+<pre><code>&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Your Email&lt;/h1&gt;
+    &lt;table width="100%" border="1"&gt;
+      &lt;tr&gt;
+        &lt;th&gt;From&lt;/th&gt;
+        &lt;th&gt;Subject&lt;/th&gt;
+        &lt;th&gt;Received&lt;/th&gt;
+      &lt;/tr&gt;
+      {% for message in messages %}
+        &lt;tr&gt;
+          &lt;td&gt;{{ message.From.EmailAddress.Name }}&lt;/td&gt;
+          &lt;td&gt;{{ message.Subject }}&lt;/td&gt;
+          &lt;td&gt;{{ message.DateTimeReceived }}&lt;/td&gt;
+        &lt;/tr&gt;
+      {% endfor %}
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Update the <code>mail</code> function in <code>views.py</code> to use this new template.</p>
+<h4 id="updated-mail-function-in-tutorialviewspy">Updated <code>mail</code> function in <code>./tutorial/views.py</code></h4>
+<pre><code>def mail(request):
+  access_token = request.session['access_token']
+  # If there is no token in the session, redirect to home
+  if not access_token:
+    return HttpResponseRedirect(reverse('tutorial:home'))
+  else:
+    messages = get_my_messages(access_token)
+    context = { 'messages': messages['value'] }
+    return render(request, 'tutorial/mail.html', context)
+</code></pre>
+<p>Save the changes and sign in to the app. You should now see a simple table of messages in your inbox.</p>
+<p><img alt="The finished app displaying the user's inbox." src="https://raw.githubusercontent.com/jasonjoh/python_tutorial/master/readme-images/inbox-listing.PNG" /></p>

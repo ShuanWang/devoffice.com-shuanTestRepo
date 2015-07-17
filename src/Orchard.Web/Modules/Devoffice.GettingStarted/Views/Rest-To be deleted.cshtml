@@ -1,0 +1,213 @@
+﻿<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://dev.office.com/Themes/DevOffice/WindowsDevFiles/css/10.min.css" rel="stylesheet" type="text/css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<link href="@Url.Content("~/Content/Site.css")" rel=stylesheet>
+<link href="https://dev.office.com/Themes/DevOffice/Styles/site.min.css" rel="stylesheet" type="text/css">
+
+@{
+    ViewBag.Title = "O365Path";
+}
+<!-- TBD: this gives error becasue we are compromising security by using CSS coming from http, where as current protocol is SSL
+<link href="http://dev.office.com/Themes/DevOffice/Styles/site.min.css" rel="stylesheet" type="text/css">
+-->
+@Scripts.Render("~/bundles/gettingstarted")
+<script>
+    var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
+
+    //var platformName = null;
+    var platformId = null;
+    $(document).scroll(function () {
+        cardTracker.updateScroll();
+    });
+    var userDontWantToSign = false;
+    $(document).ready(function () {
+        // initialize progress tracker
+        cardTracker.init(1.0);
+
+
+        function elementIDs() { };
+        elementIDs.services = "serviceOptions";
+        elementIDs.urlValue = "urlValue";
+        elementIDs.invokeurlBtn = "invokeurlBtn";
+        elementIDs.responseBody = "responseBody";
+        elementIDs.parameterDetails = "parameterDetails";
+        elementIDs.responseBodyContainer = "parameterDetails";
+        elementIDs.sandBoxOptions = "sandBoxOptions";
+
+        function elementClasses() { };
+        elementClasses.CodeContainer = "code-container";
+
+        TryItOut(elementIDs, elementClasses);
+
+        //attach to platform filters
+        //TBD: temp code
+        $("#pickPlatform ul li a").click(function () { selectPlatform(this) });
+        $('#startCoding ul li a').click(function () { startCodingContentDisplay(this) });
+        $('#post-download-instructions').hide();
+
+        //TBD need to define proper card id
+        var tryitOutCardId = "2";
+        $('#loginLink').click(function () {
+            document.cookie = "current-card=" + tryitOutCardId + "; path=/";
+        });
+
+        $('#loginLink-tocontinue').click(function () {
+            document.cookie = "current-card=" + window.location.href + "; path=/";
+        });
+        $('#app-reg-signin-later').click(function ()
+        {
+            cardTracker.removeAllBlockingCards();
+            ga('send', 'event', 'O365path-Rest', 'Signin-Later');
+        });
+    });
+
+
+    function updatePlatform(platform) {
+        //load content
+        if (platform == null || platform == undefined || platform=="#undefined" || platform=="") {
+            return;
+        }
+        $(platform).click();
+        $(platform).addClass("selected");
+    }
+
+    function SetAppTypeBasedOnPlatform(id) {
+        if (id == "option-ios" || id == "option-android") {
+            // update the app type in app registration
+            $("#appTypeField").val("Native App");
+
+            //disable the items
+            $("#signOnUrlFieldGroup").hide();
+            $("#appIdUriFieldGroup").hide();
+        }
+        else {
+            $("#appTypeField").val("Web App");
+            $("#signOnUrlFieldGroup").show();
+            $("#appIdUriFieldGroup").show();
+        }
+    }
+
+    function startCodingContentDisplay(selectedItem){
+        console.log(selectedItem.id);
+        console.log(platformId);
+        $(selectedItem).closest(".tabs").find(".selected").removeClass("selected");
+        if (selectedItem.id === 'option-QuickInstructions')
+        {
+            setDocumentationDivForPlatform(platformId, "gettingStartedFile", "write-code-from-scratch");
+            $("#use-starter-project").hide();
+            $("#write-code-from-scratch").show();
+            $("#editOnGithub").show();
+        }
+        else {
+            $("#use-starter-project").show();
+            $("#write-code-from-scratch").hide();
+            $("#editOnGithub").hide();
+
+        }
+        $(selectedItem).addClass("selected");
+    }
+
+    function setRedirectUri(platformId)
+    {
+        signOnUrlField
+        switch (platformId) {
+            case "option-ruby":
+                $("#redirectUriField").val("http://localhost:3000");
+                $("#signOnUrlField").val("http://localhost:3000");
+                break;
+            case "option-php":
+                $("#redirectUriField").val("http://localhost");
+                $("#signOnUrlField").val("http://localhost");
+                break;
+            default:
+                $("#redirectUriField").val("http://localhost:8000");
+                $("#signOnUrlField").val("http://localhost:8000");
+        }
+    }
+    function selectPlatform(platform) {
+
+        //load content
+        if (platform == null || platform == undefined ) {
+            return;
+        }
+        if ($("#SetupPlatform").css('display') == 'none') {
+            //cardTracker.removeBlockingCard();
+            $("#SetupPlatform").css('display', 'block');
+        }
+        else {
+            //remove selected from closes element
+            $(platform).closest(".tabs").find(".selected").removeClass("selected");
+        }
+        $(platform).addClass("selected");
+
+        //track platform clicked on
+        platformId = platform.id;
+        $('#post-download-instructions').hide();
+
+        //platformName = platform.innerText;
+        //save this platform info  on server
+        SetAppTypeBasedOnPlatform(platform.id);
+        setRedirectUri(platform.id);
+        if (selectPlatform.FirstTime == true) {
+            cardTracker.removeBlockingCard();
+        }
+        selectPlatform.FirstTime = false;
+
+
+        //fileType = setupFile //Hardcoded as this will not chnage ; divName is also Hardcoded
+        setDocumentationDivForPlatform(platformId, "setupFile", "ShowDocumentationDiv");
+
+        var urltosend = "/home/platform/" + platform.id;
+
+        /* Note: we dont need to do any error handling here*/
+        $.ajax({
+            url: urltosend,
+            type: "POST",
+            data: platformId,
+        });
+
+        ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
+    }
+
+    // add a static proeprty in selectPlatform
+    selectPlatform.FirstTime = true;
+</script>
+<style>
+</style>
+<body>
+    @Html.Partial("_DevOfficeComHeader")
+    <div id="main" style="background-color:#f4f4f4;">
+        <div id="myNavBar"></div>
+        <div id="o365-progressTrackerContainer">
+            @Html.Partial("_Intro")
+            @Html.Partial("_tryitout")
+            @Html.Partial("_Setup")
+            @Html.Partial("_SetupPlatform")
+            @{
+                GettingStarted_DevOfficeCom.Models.RegisterAppModel model = new GettingStarted_DevOfficeCom.Models.RegisterAppModel();
+
+                if (Session[GettingStarted_DevOfficeCom.Utils.Constants.userLoggedInStr] != null && (bool)Session[GettingStarted_DevOfficeCom.Utils.Constants.userLoggedInStr] == true)
+                {
+                    string userEmail = (string)Session[GettingStarted_DevOfficeCom.Utils.Constants.azureUserEmailTagStr];
+                    if (!string.IsNullOrEmpty(userEmail))
+                    {
+                        string[] splits = userEmail.Split('@');
+                        if (splits.Length == 2)
+                        {
+                            model.appIdUri = "http://" + splits[1] + "/" + splits[0] + "/Hello-O365";
+                        }
+                    }
+                }
+            }
+            @Html.Partial("_RegisterApp", model)
+            @Html.Partial("_SetupProject")
+            @Html.Partial("_NextStep")
+            <div class="sticky-bubble affix" hidden>
+                <a href="#" role="button"><font color="white">Give Feedback</font></a>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_DevOfficeComFooter")
+</body>
+@Scripts.Render("~/bundles/gettingstarted_AtEnd")

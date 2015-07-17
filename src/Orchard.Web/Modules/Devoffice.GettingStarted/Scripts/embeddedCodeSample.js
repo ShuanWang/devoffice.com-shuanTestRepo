@@ -1,0 +1,235 @@
+//Variables for error handling
+var inError = false;
+var zipHasContent = false;
+var selectedPlatformIndex = undefined; //to identify which platform is selected in reposList
+
+//repos in GitHub
+var reposList = {
+    "Platform": [
+        {
+            "Name": "option-ios",
+            "FileName": "O365-iOS-Connect-master\/objective-c\/O365-iOS-Connect\/AuthenticationManager.m",
+            "ClientIdStringToReplace": "ENTER_CLIENT_ID_HERE",
+            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
+            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "../../CodeSamples/O365-iOS-Connect-master.zip",
+            "GitHubRepoName": "O365-iOS-Connect.zip",
+            "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-iOS-Connect/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/OfficeDev/O365-iOS-Connect/"
+        },
+        {
+            "Name": "option-android",
+            "FileName": "O365-Android-Connect-master\/app\/src\/main\/java\/com\/microsoft\/office365\/connect\/Constants.java",
+            "ClientIdStringToReplace": "<Your client id here>",
+            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
+            "RedirectURLStringToReplace": "<Your redirect URI here>",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "../../CodeSamples/O365-Android-Connect-master.zip",
+            "GitHubRepoName": "O365-Android-Connect.zip",
+            "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Android-Connect/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Android-Connect"
+        },
+        {
+            "Name": "option-dotnet",
+            "FileName": "O365-Win-Snippets-master\/src\/App.xaml",
+            "ClientIdStringToReplace": "<!-- Add a client id here -->",
+            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
+            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "../../CodeSamples/O365-Win-Snippets-master.zip",
+            "GitHubRepoName": "O365-Win-Snippets",
+            "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Win-Snippets/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Win-Snippets"
+        },
+        {
+            "Name": "option-php",
+            "FileName": "php-tutorial\/oauth.php",
+            "ClientIdStringToReplace": "21a66e5f-74c5-4acb-a0ee-02814e3fe217",
+            "ClientSecretStringToReplace": "tqlvN4Skz4Ah7BVcttEpJLxilJ4V0h+EnrSmLAaYfmQ=",
+            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "../../CodeSamples/O365-PHP-tutorial-master.zip",
+            "GitHubRepoName": "O365-PHP-tutorial",
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/php-tutorial/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/php-tutorial"
+        },
+        {
+            "Name": "option-node",
+            "FileName": "node-tutorial-master\/authHelper.js",
+            "ClientIdStringToReplace": "YOUR CLIENT ID HERE",
+            "ClientSecretStringToReplace": "YOUR CLIENT SECRET HERE",
+            "RedirectURLStringToReplace": "http://localhost:8000",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "../../CodeSamples/O365-Node-tutorial-master.zip",
+            "GitHubRepoName": "O365-Node-tutorial",
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/node-tutorial/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/node-tutorial"
+        },
+        {
+            "Name": "option-python",
+            "FileName": "python_tutorial-master\/tutorial\/authhelper.py",
+            "ClientIdStringToReplace": "YOUR CLIENT ID",
+            "ClientSecretStringToReplace": "YOUR CLIENT SECRET",
+            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "../../CodeSamples/O365-Python-tutorial-master.zip",
+            "GitHubRepoName": "O365-Python-tutorial",
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/python_tutorial/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/python_tutorial"
+        },
+        {
+            "Name": "option-ruby",
+            "FileName": "o365-tutorial-master\/app\/helpers\/auth_helper.rb",
+            "ClientIdStringToReplace": "<YOUR CLIENT ID>",
+            "ClientSecretStringToReplace": "<YOUR CLIENT SECRET>",
+            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "../../CodeSamples/O365-Ruby-tutorial-master.zip",
+            "GitHubRepoName": "O365-Ruby-tutorial",
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial"
+        }
+    ]
+}
+
+function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appRedirectUrl, signOnUrl) {
+    try {
+        ga('send', 'event', 'DownloadCodeSample', 'Begin-' + platformName, platformName, 0);
+        _resetFlags();
+        _setPlatformSelectedIndex(platformName);
+
+        if (clientId === undefined || clientId === null)
+        {
+            throw new Error('ClientIdIsUndefnied');
+        }
+        $.support.cors = true; //this is required for IE support
+        if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
+            console.log('The File APIs are not fully supported in this browser.');
+            throw new Error('FileAPINotSupported');
+        }
+
+        if (typeof navigator !== "undefined" && /MSIE [1-9]\./.test(navigator.userAgent)) {
+            console.log('This IE version is not supported, please upgrade your browser');
+            throw new Error('IEUnsupportedVersion');
+        }
+
+        //Special case for Windows snippet
+        if (platformName === 'option-dotnet') {
+            clientId = "<x:String x:Key=\"ida:ClientID\">" + clientId + "</x:String>";
+        }
+
+        var zipFileName = reposList.Platform[selectedPlatformIndex].LocalZipFile;
+        JSZipUtils.getBinaryContent(zipFileName, function (err, data) {
+            if (err) {
+                throw new Error('ErrorReadingFiles');
+            }
+
+            var codeSampleZip = new JSZip(data); //
+            for (var nameOfFile in codeSampleZip.files) {
+                var file = codeSampleZip.files[nameOfFile]; //may be move it inside If clause
+
+                //if (nameOfFile.indexOf(reposList.Platform[selectedPlatformIndex].FileName) > 0)
+                if (nameOfFile === reposList.Platform[selectedPlatformIndex].FileName) {
+                    fileContent = file.asText();
+                    codeSampleZip.remove(nameOfFile);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientIdStringToReplace, clientId);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientSecretStringToReplace, clientSecret);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].RedirectURLStringToReplace, appRedirectUrl);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].SignOnURLStringToReplace, signOnUrl);
+                    codeSampleZip.file(nameOfFile, fileContent);
+                }
+            }
+            var content = codeSampleZip.generate({ type: "blob" });
+            saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
+            //if (navigator.msSaveOrOpenBlob !== undefined) {
+            //    navigator.msSaveOrOpenBlob(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
+            //}
+            //else {
+            //    location.href = "data:application/zip;base64," + content; return false;
+            //}
+            ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
+        });
+        _progressStatus(100)
+    }
+    catch (error) {
+        _errorHandlerDownloadSample(error);
+    }
+}
+
+function _setPlatformSelectedIndex(platformSelected) {
+    $.each(reposList, function (key, repos) {
+        $(repos).each(function (index, platform) {
+            if (platform.Name === platformSelected) {
+                selectedPlatformIndex = index;
+                return;
+            }
+        });
+    });
+}
+
+function ViewCodeSampleInGithub(platformName) {
+    var gitHubRepoLocation = "https://github.com/OfficeDev"; //onError it will redirect to Office Dev repo
+    $.each(reposList, function (key, repos) {
+        $(repos).each(function (index, platform) {
+            if (platform.Name === platformName) {
+                gitHubRepoLocation = platform.GitHubRepoUrl;
+                return;
+            }
+        });
+    });
+    window.open(gitHubRepoLocation, "_blank");
+    ga('send', 'event', 'DownloadCodeSample', 'ViewOnGithub-' + platformName);
+}
+
+
+
+//To be edited for production, elements name will be different.
+function _resetFlags() {
+    inError = false; zipHasContent = false; selectedPlatformIndex = undefined;
+    //document.getElementById("messageLabel").textContent = ''; document.getElementById("progressBar").textContent = '';
+    }
+
+//Need to improve this function to show error in UI. Show download link from GitHub if in Error.
+function _errorHandlerDownloadSample(error) {
+    var msg;
+    switch (error.message) {
+        case 'ClientIdIsUndefnied':
+            msg = 'Please sign-in and register app to get clientId.';
+            break;
+        case 'FileAPINotSupported':
+            msg = 'File APIs are not supported in your browser.';
+            break;
+        case 'ErrorReadingFiles':
+            msg = 'Error Reading file from source';
+            break;
+        case 'IEUnsupportedVersion':
+            msg = 'IE version smaller than 10 is not supported';
+            break;
+        default:
+            msg = 'Unknown Error'
+            break;
+    }
+
+    if (selectedPlatformIndex != undefined) {
+        msg = 'We delivered code sample zip from github without ClientId. ' + msg;
+        location.href = (reposList.Platform[selectedPlatformIndex].GitHubMasterZipUrl);
+
+        $('#post-download-instructions').html(msg)
+        $('#post-download-instructions').show();
+        return;
+
+    }
+    //document.getElementById("messageLabel").textContent = 'CodeSampleDownloadError: ' + msg
+    ga('send', 'event', 'DownloadCodeSample', 'Error-' + msg, '', 0);
+}
+
+
+//To Be Deleted: This function will be replaced with actuall progress bar function. This is added for testing only
+function _progressStatus(progressBar) {
+    if (progressBar >= 100) {
+        progressBar = 100;
+        setDocumentationDivForPlatform(platformId, 'postDownloadInstructions', 'post-download-instructions');
+    }
+//document.getElementById("progressBar").textContent = 'Download progress ' + progressBar + ' %.';
+}

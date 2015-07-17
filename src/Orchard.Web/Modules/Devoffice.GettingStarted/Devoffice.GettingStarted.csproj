@@ -48,11 +48,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -67,11 +73,85 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ajax_loader_blue_256.gif" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fabric.components.min.css" />
+    <Content Include="Content\fabric.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery.json-view.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Documentation\onerror.html" />
+    <Content Include="Documentation\rest-api\android\getting-started-Office-365-APIs-android.html" />
+    <Content Include="Documentation\rest-api\android\setup-android.html" />
+    <Content Include="Documentation\rest-api\dotnet\getting-started-Office-365-APIs-dotnet.html" />
+    <Content Include="Documentation\rest-api\dotnet\setup-dotnet.html" />
+    <Content Include="Documentation\rest-api\ios\getting-started-Office-365-APIs-ios.html" />
+    <Content Include="Documentation\rest-api\ios\setup-ios.html" />
+    <Content Include="Documentation\rest-api\javascript\getting-started-Office-365-APIs-javascript.html" />
+    <Content Include="Documentation\rest-api\javascript\setup-javascript.html" />
+    <Content Include="Documentation\rest-api\node\getting-started-Office-365-APIs-node.html" />
+    <Content Include="Documentation\rest-api\node\setup-node.html" />
+    <Content Include="Documentation\rest-api\php\getting-started-Office-365-APIs-php.html" />
+    <Content Include="Documentation\rest-api\php\setup-php.html" />
+    <Content Include="Documentation\rest-api\python\getting-started-Office-365-APIs-python.html" />
+    <Content Include="Documentation\rest-api\python\setup-python.html" />
+    <Content Include="Documentation\rest-api\ruby\getting-started-Office-365-APIs-ruby.html" />
+    <Content Include="Documentation\rest-api\ruby\setup-ruby.html" />
+    <Content Include="images\Capture7.png" />
+    <Content Include="images\devofficelogo.png" />
+    <Content Include="images\docusign.png" />
+    <Content Include="images\excelcontent.PNG" />
+    <Content Include="images\excellogo.png" />
+    <Content Include="images\exceltaskpane.PNG" />
+    <Content Include="images\linkedin.png" />
+    <Content Include="images\numbers.PNG" />
+    <Content Include="images\O365Overview.PNG" />
+    <Content Include="images\octocat.png" />
+    <Content Include="images\onedrivelogo.png" />
+    <Content Include="images\open.png" />
+    <Content Include="images\outlookcompose.PNG" />
+    <Content Include="images\outlooklogo.png" />
+    <Content Include="images\outlookread.PNG" />
+    <Content Include="images\packagetracker.png" />
+    <Content Include="images\pichit.PNG" />
+    <Content Include="images\poll.PNG" />
+    <Content Include="images\powerpointcontent.PNG" />
+    <Content Include="images\powerpointlogo.png" />
+    <Content Include="images\powerpointtaskpane.PNG" />
+    <Content Include="images\Progressbar.gif" />
+    <Content Include="images\save.png" />
+    <Content Include="images\sharepointlogo.png" />
+    <Content Include="images\wiki.PNG" />
+    <Content Include="images\wordlogo.png" />
+    <Content Include="images\wordtaskpane.PNG" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\embeddedCodeSample.js" />
+    <Content Include="Scripts\FileSaver.js" />
+    <Content Include="Scripts\gettingStarted.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.json-view.min.js" />
+    <Content Include="Scripts\json.js" />
+    <Content Include="Scripts\jszip-utils.js" />
+    <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\navBar.js" />
+    <Content Include="Scripts\registerApp.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\try-it-out.js" />
+    <Content Include="Scripts\websiteContent.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
     <Content Include="Module.txt" />
+    <Content Include="Views\Rest-To be deleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -88,14 +168,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppRegistrationController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\ProxyController.cs" />
     <Compile Include="Drivers\AddinsWidgetDriver.cs" />
     <Compile Include="Drivers\ApiWidgetDriver.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ApiWidgetPart.cs" />
     <Compile Include="Models\AddinsWidgetPart.cs" />
+    <Compile Include="Models\RegisterAppModel.cs" />
+    <Compile Include="Utils\AppRegistration.cs" />
+    <Compile Include="Utils\AppScopes.cs" />
+    <Compile Include="Utils\Base64UrlDecoder.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\RequestHelper.cs" />
+    <Compile Include="Utils\ServiceInfo.cs" />
+    <Compile Include="Utils\SettingsHelper.cs" />
+    <Compile Include="Utils\TokenHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Parts\AddinsWidget.cshtml" />
@@ -106,6 +199,43 @@
   <ItemGroup>
     <Content Include="Placement.info" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Intro.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_AppRegistrationForm.cshtml" />
+    <Content Include="Views\Shared\_AppRegistrationIntro.cshtml" />
+    <Content Include="Views\Shared\_FirstCall.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\reg.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginToContinue.cshtml" />
+    <Content Include="Views\Shared\_NextStep.cshtml" />
+    <Content Include="Views\Shared\_RegisterApp.cshtml" />
+    <Content Include="Views\Shared\_Setup.cshtml" />
+    <Content Include="Views\Shared\_SetupPlatform.cshtml" />
+    <Content Include="Views\Shared\_SetupProject.cshtml" />
+    <Content Include="Views\Shared\_tryitout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeSamples\O365-Android-Connect-master.zip" />
+    <Content Include="CodeSamples\O365-iOS-Connect-master.zip" />
+    <Content Include="CodeSamples\O365-Node-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-PHP-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-Python-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-Ruby-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-Win-Snippets-master.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

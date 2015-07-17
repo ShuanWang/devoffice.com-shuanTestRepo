@@ -1,0 +1,72 @@
+﻿<div class="card" id="2" name="Try it out">
+    <div class=""><h3>Try it out</h3></div>
+    <p>If you'd like, pick an API and click the <strong>Try</strong> button to see what you will get. If the call takes params,  try changing them to see what you will get. Connect to your own account data to make it more real.</p>
+    <hr />
+
+
+    <div class="">
+        @Html.Partial("_LoginPartial")
+    </div>
+    <br />
+        <div id="inputs" class="row">
+
+        <!-- Service Container-->
+        <div id="serviceContainer" class="col-md-3">
+            <div>
+                <strong>Pick a service to try</strong>
+            </div>
+            <div>
+                <select id="serviceOptions"></select>
+            </div>
+        </div>
+
+        <!-- Sandbox Container-->
+        <div id="sandBoxContainer" class="col-md-offset-2 col-md-2">
+            <div>
+                <strong>Sandbox Data</strong>
+            </div>
+            <div>
+                <select id="sandBoxOptions">
+                    <option value="sample_data">Sample Data</option>
+                    @{
+                        if (Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] != null &&
+                            (bool)Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] == true)
+                        {
+                    <option value="user_data" selected="selected">My Data</option>
+                        }
+                        else
+                        {
+                    <option value="user_data" disabled="disabled">My Data</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div id="challengeBox">
+        <div id="sampleURL">
+            <div id="urlValue" class="restCall"></div>
+        </div>
+    </div>
+    <div id="parameterDetails">
+    </div>
+    <div id="tryError" class="ms-font-color-error ms-font-l"></div>
+    <input type="button" class="button" value="Try" id="invokeurlBtn" />
+    <div id="response-container">
+        <div>
+            <pstyle ="float:left">
+                <p><strong>Response Body</strong></p>
+                
+        </div>
+        <div id="" class="lang-js json">
+            <pre class="prettyprint lang-js json code-container">
+            <code id="responseBody" class="prettyprint lang-js json">
+                        </code>
+                        </pre>
+        </div>
+    </div>
+    <p hidden>Looking for more? Make calls, and try sample code in our <a target="_blank" href="https://apisandbox.msdn.microsoft.com/">API Sandbox</a>.</p>
+</div><!--card-->
+
