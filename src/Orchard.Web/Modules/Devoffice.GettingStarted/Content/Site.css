@@ -1,0 +1,560 @@
+﻿html {
+    background-color: #f4f4f4;
+    background-image: -webkit-linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    background-image: linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+body {
+    margin: 0 auto;
+    padding: 2em 2em 4em;
+    background-color: #F4F4F4 !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    position:relative;
+}
+
+h1, h2, h4, h5, h6 {
+    color: #222;
+    font-weight: 600;
+    line-height: 1.3em;
+    margin-top:20px !important;
+}
+
+h3 {
+    color: #222;
+    font-weight: 600;
+    line-height: 1.3em;
+    margin-top:0px !important;
+    margin-bottom:20px;
+}
+
+h2 {
+    margin-top: 1.3em;
+}
+
+a {
+    cursor: pointer;
+}
+
+b, strong {
+    font-weight: 600;
+}
+
+samp {
+    display: none;
+}
+
+img {
+    -webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+    animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+    background: transparent;
+    border: 10px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    display: block;
+    margin: 1.3em auto;
+    max-width: 95%;
+}
+
+.ht {
+        height:800px;
+    }
+
+.code-container {
+    overflow: auto;
+    max-height: 250px;
+    min-width: 90%;
+}
+.restCall {
+    color: white;
+    padding: 20px;
+    padding-left: 20px;
+    background: #505050; 
+    word-wrap: break-word;
+}
+
+.loading {
+        background: url(@Url.Content("~/images/Progressbar.gif?v=635662838588689369")) no-repeat;
+        background-color: #ffffff;
+        background-position: 75px center;
+   }
+
+/* try it out */
+
+#invokeurlBtn {
+  color: white;
+  margin-bottom:20px;
+}
+
+#paramTable {
+  margin-bottom: 0px !important; /*set margin to 0 for param try it out table */   
+}
+
+.code-container {
+        overflow: auto;
+        max-height: 400px;
+    } 
+
+@-webkit-keyframes colorize {
+    0% {
+        -webkit-filter: grayscale(100%);
+    }
+    100% {
+        -webkit-filter: grayscale(0%);
+    }
+}
+
+@keyframes colorize {
+    0% {
+        filter: grayscale(100%);
+    }
+    100% {
+        filter: grayscale(0%);
+    }
+}
+
+.link {
+    text-decoration: underline !important;
+}
+
+.buffer {
+    height:450px;
+}
+
+
+.scroll-area {
+    margin-top:50px;
+}
+#main {
+    background-color:#f4f4f4;
+    position:relative;
+    width: 900px;
+    left:auto;
+    right:auto;
+    margin: 0px auto 0px auto; 
+
+}
+#toolbarContainer {
+    display: table;
+    table-layout: fixed;
+    width: 100%; 
+
+    text-align: center;
+    line-height: 3em;
+}
+.toolbar {
+
+   width: 100%;   
+}
+
+.card, .card-more {
+    
+    height:auto;
+    min-height:200px;
+    border-color:white;
+    background-color:white !important;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding: 40px 40px 40px 40px;
+    border: 1px solid #ddd;
+    
+}
+
+.card-question {
+
+    min-height:60%;
+    border-color:white;
+    background-color:white !important;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding: 40px 40px 40px 40px;
+     border: 1px solid #ddd;
+ 
+}
+
+
+blockquote {
+  padding: 5px 10px !important;
+  margin: 0 0 20px;
+  font-size: 12px !important;
+}
+
+
+ol li
+{
+    padding : 0px 20px 0px 0px;   
+}
+
+.sp-sub-zone {
+ background-color:white;
+    margin-top:10px;
+    margin-bottom: 10px;
+
+}
+.dot {
+ background-color:grey;
+    height: 7px;
+    width:7px;
+    border-radius: 50%;
+    position:relative;
+    left:50%;
+    right:50%;
+    top:7px;
+}
+.line {
+    margin-top:3px;
+    width:100%;
+    background-color:gainsboro;
+    height:2px;
+    position:absolute;
+    left:0px;
+}
+
+.loading {
+    background: url("../images/Progressbar.gif?v=635662838588689369") no-repeat !important;
+    background-color: #ffffff;
+    background-position: 75px center;
+    min-height:100px;
+    width:100%;
+}
+.octocatlogo {
+    height:20px;
+    border:0px;
+    margin:0px;
+    display:inline;
+}
+
+#progress {
+    margin: 0;
+    padding: 0;
+    list-style-type none;
+}
+#progress li {
+
+    display: inline-block;
+    text-align: center;
+    line-height: 3em;  
+}
+
+
+#branding {
+ max-height: 42px !important;   
+}
+
+#progress li.done {
+        color: black;
+        border-bottom: 4px solid #da3f26 !important;
+        transition: all .5s ease-in-out;
+        -webkit-transition:all .5s ease-in-out;
+        
+    }
+#progress li.todo {
+    color: silver; 
+    border-bottom: 4px solid silver;
+}
+
+
+
+.note {
+  background-color: #eee;
+  display: block;
+  padding: 20px 15px 10px;
+  margin-top: 5px;
+  position: relative;
+  border-left-width: 5px;
+  border-left-style: solid;
+  border-left-color: #89c402;
+}
+
+.hidden2 {
+ opacity:0;   
+}
+
+.visible2 {
+  opacity:1;  
+}
+/* this code is causing issue in alignment for navbar
+.video {
+    float:right;
+    width:400px;
+}
+*/
+#intro {
+    height:500px;
+}
+
+#introContent {
+    float:left;
+    display:inline;
+    width:450px
+    
+}
+
+
+/*NavBar CSS Styles*/
+.navbar {
+    background-color:#F4F4F4;
+    box-shadow: 0px 1px 1px solid black;
+}
+
+#navBarList {
+	margin:0px auto;
+	padding:0;
+	list-style-type: none;
+	position:relative;
+	width:900px;
+	height:50px;
+	background-color:#F4F4F4;
+	z-index:10000;
+	text-align:left;
+}
+
+#navBarList li {
+	display:inline-block;
+	text-align:center;
+	line-height: 3em;
+	border-bottom:4px solid silver;
+}
+
+#navBarList li.card-done {
+	color:black;
+	border-bottom:4px solid #da3f26;
+    transition: all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+}
+
+.cardTrackerContainer div.card {
+	float:left;
+    background-color:white;
+}
+#navBarList li a {
+    color:silver;
+}
+#navBarList li.card-done a {
+    color:#da3f26;
+    transition: all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+
+}
+    #navBarList {
+	margin:0px auto;
+	padding:0;
+	list-style-type: none;
+	position:relative;
+	width:900px;
+	height:50px;
+	background-color:#F4F4F4;
+	z-index:10000;
+	text-align:left;
+}
+
+    #navBarList li {
+	    display:inline-block;
+	    text-align:center;
+	    line-height: 3em;
+	    border-bottom:4px solid silver;
+    }
+
+   #navBarList li.card-done {
+	    color:black;
+	    border-bottom:4px solid #da3f26;
+        transition: all .2s ease-in-out;
+        -webkit-transition:all .2s ease-in-out;
+    }
+
+    .cardTrackerContainer div.card {
+	    float:left;
+        background-color:white;
+    }
+
+/* end NavBar CSS Styles*/
+
+.spacer40 {
+    height:40px;
+}
+
+.spacer30 {
+    height:30px;
+}
+
+.buttonCenter {
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+
+.spacer20 {
+    margin-top:20px;
+}
+
+.video2 {
+    margin-top:5px;
+    margin-right:20px;
+}
+
+.productsTable td {
+    margin-left:5px;
+    padding-left:10px;
+    padding-top:10px;
+}
+
+/* Button */
+.button {
+    background: #0078d7;
+    padding: 7px 12px; 
+    border-radius: 0px; 
+    border: 0px; 
+    border-image: none; 
+    color: white !important; 
+    min-width:70px;
+}
+
+.button:hover {
+    color: white;
+    border:0px;
+    background-color: #005a9e;
+}
+
+pre.response {
+    overflow:auto;
+    height:300px;
+}
+
+#challengeBox-details {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+#parameterDetails {
+  line-height: 16px;
+  background-color:#EEE;
+}
+
+/* tabs */
+.tabs {
+  display: inline-block;
+  margin: 20px auto 0;
+  font-size: 0;
+}
+
+.question .tabs {
+  margin: 30px auto 0;
+}
+
+.tabs li {
+  display: inline-block;
+  margin: 0;
+  font-size: 15px;
+}
+
+/*
+.tabs li:first-child a {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.tabs li:last-child a {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+*/
+
+.tabs li:nth-child(even) a {
+  margin: 0 -1px;
+}
+
+.tabs a {
+  color: #da3f26;
+  background-color: #fff;
+  padding: 10px 20px;
+  display: inline-block;
+  border: 1px solid #dddddd;
+  position: relative;
+  line-height: 1em;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -moz-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.question .tabs a {
+  background-color: #fcfcfc;
+}
+
+.tabs a:hover {
+  color: #da3f26;
+  border-color: #da3f26;
+  z-index: 10;
+}
+
+.tabs a.selected {
+  z-index: 20;
+  color: #fff;
+  background-color: #da3f26;
+  border-color: #da3f26;
+  outline: none;
+  
+}
+
+
+.sticky-bubble{
+	position:fixed;
+	left:87%;
+	background:#da3f26;
+	color:black;
+	font-size:15px;
+	padding:5px;
+	width:auto;
+	height:50px;
+	padding-top:10px;
+	text-align:center;
+	box-shadow: 2px 3px 5px #888;
+	float:left;
+}
+
+/*animate cards*/
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+
+        @-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+

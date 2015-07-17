@@ -1,0 +1,25 @@
+﻿<div id="signin-intro" class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-sm12">
+        <p>App registrations can be created and managed in the Azure Management Portal. But for this tutorial, let's keep things simple. You can create an app registration with a few simple clicks.</p>
+        <br />
+        <p>First, you need access to a <strong>admin</strong> user account in an Office 365 Subscription. This can be an existing subscription you have for your work or business, an Office 365 Developer Subscription, or you can start with a <a href="https://portal.office.com/Signup/Signup.aspx?OfferId=467eab54-127b-42d3-b046-3844b860bebf&dl=O365_BUSINESS_PREMIUM&alo=1&lc=1033&ali=1#0 " target="_blank">free 30-day trial</a>. Just bear in mind that whatever subscription you use to register your app will show as the publisher for that app when users are prompted to give consent.</p>
+        <br />
+    </div>
+</div>
+<div id="signin-options" class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-sm12 ms-u-md6">
+        <a id="app-reg-signin" class="button" href="#">
+            <span class="ms-Button-label">Sign in with your existing admin account</span>
+        </a>
+    </div>
+    <div class="ms-Grid-col ms-u-sm12 ms-u-md6">
+        <a href="https://portal.office.com/Signup/Signup.aspx?OfferId=467eab54-127b-42d3-b046-3844b860bebf&dl=O365_BUSINESS_PREMIUM&alo=1&lc=1033&ali=1#0" target="_blank" onclick="ga('send', 'event', 'O365path-Rest', 'Signin-CreateNewAccount');">Create a new Office 365 account</a>
+    </div>
+</div>
+<br />
+<a id="app-reg-signin-later" class="link-button">
+    <span class="ms-Button-label">No, I will sign in later</span>
+</a>
+<div class="ms-border-color-neutralDark ms-bg-color-error">
+    <p id="signin-error_msg" class="ms-font-color-error ms-font-l ">@ViewBag.SigninError</p>
+</div>

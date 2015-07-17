@@ -1,0 +1,5 @@
+﻿@if (Session[Devoffice.GettingStarted.Utils.Constants.accessTokenTagStr] == null)
+
+{
+        @Html.ActionLink("Please Sign in to continue", "_SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink-tocontinue" })
+}

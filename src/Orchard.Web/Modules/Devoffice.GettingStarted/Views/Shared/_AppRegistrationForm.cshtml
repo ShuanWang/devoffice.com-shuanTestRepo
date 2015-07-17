@@ -1,0 +1,107 @@
+﻿<br />
+<img src="~/Content/ajax_loader_blue_256.gif" id="registration-progress" hidden/>
+<div id="signed-in-display" class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-sm12">
+        <span class="ms-font-xl">Welcome, <strong>@Session[Devoffice.GettingStarted.Utils.Constants.azureUserTagStr]</strong>!</span>
+        <span class="ms-font-l">(Wrong account? No problem, <a href="@Url.Action("_SignOut", "Account")">logout</a> and try again.)</span>
+        <p>Now that you've logged in, you can create the app registration using the form below. We've already filled in default values that should work if you're following the tutorial.</p>
+        <br />
+    </div>
+</div>
+<div class="ms-Grid-row permissions-group">
+    <div id="registration-form" class="ms-Grid-col ms-u-sm12 ms-u-lg6 ms-border-color-neutralLight">
+        <div class="ms-TextField">
+            <label class="ms-Label" for="appName">App Name:</label>
+            <input id="appNameField" class="ms-TextField-field" type="text" name="appName" value="@Model.appName" />
+        </div>
+        <div class="ms-TextField hidden">
+            <label class="ms-Label" for="appType">App Type:</label>
+            <input id="appTypeField" class="ms-TextField-field" type="text" name="appType" value="Web App" disabled />
+        </div>
+        <div class="ms-TextField" id="signOnUrlFieldGroup">
+            <label class="ms-Label" for="signOnUrl">Sign on URL:</label>
+            <input id="signOnUrlField" class="ms-TextField-field" type="text" name="signOnUri" value="@Model.signOnUri" />
+        </div>
+        <div class="ms-TextField" id="appIdUriFieldGroup">
+            <label class="ms-Label" for="appIdUri">App ID URI:</label>
+            <input id="appIdUriField" class="ms-TextField-field" type="text" name="appIdUri" value="@Model.appIdUri" />
+        </div>
+        <div class="ms-TextField">
+            <label class="ms-Label" for="redirectUri">Redirect URI:</label>
+            <input id="redirectUriField" class="ms-TextField-field" type="text" name="redirectUri" value="@Model.redirectUri" />
+        </div>
+        <div>
+            <div class="ms-ChoiceFieldGroup-title">
+                <label class="ms-Label">Allow App to:</label>
+            </div>
+            <div>
+                <!--Read User mail-->
+                <input name="mailRead" class="ms-ChoiceField-input" id="mailRead" type="checkbox" checked />
+                <label class="ms-ChoiceField-field" for="mailRead"><span class="ms-Label">Read User mail</span></label>
+                
+                <!--Read and Write user mail-->
+                <input name="mailWrite" class="ms-ChoiceField-input" id="mailWrite" type="checkbox" checked />
+                <label class="ms-ChoiceField-field" for="mailWrite"><span class="ms-Label">Read and Write user mail</span></label>
+
+                <!--Send Mail as a user-->
+                <input name="mailSend" class="ms-ChoiceField-input" id="mailSend" type="checkbox" checked />
+                <label class="ms-ChoiceField-field" for="mailSend"><span class="ms-Label">Send Mail as a user</span></label>
+            </div>
+
+            <div>
+                <!--Read user Calendars-->
+                <input name="calendarRead" class="ms-ChoiceField-input" id="calendarRead" type="checkbox" />
+                <label class="" for="calendarRead"><span class="ms-Label">Read user calendars</span></label>
+
+                <!--Read and write user calendars-->
+                <input name="calendarWrite" class="ms-ChoiceField-input" id="calendarWrite" type="checkbox" />
+                <label class="" for="calendarWrite"><span class="ms-Label">Read and write user calendars</span></label>
+            </div>
+
+            <div>
+                <!--Read user Contacts-->
+                <input name="contactsRead" class="ms-ChoiceField-input" id="contactsRead" type="checkbox" />
+                <label class="ms-ChoiceField-field" for="contactsRead"><span class="ms-Label">Read user contacts</span></label>
+
+                <!--Read and write user Contacts-->
+                <input name="contactsWrite" class="ms-ChoiceField-input" id="contactsWrite" type="checkbox" />
+                <label class="ms-ChoiceField-field" for="contactsWrite"><span class="ms-Label">Read and write user contacts</span></label>
+            </div>
+            <div>
+                <!--Read user user files-->
+                <input name="filesRead" class="ms-ChoiceField-input" id="filesRead" type="checkbox" />
+                <label class="ms-ChoiceField-field" for="filesRead"><span class="ms-Label">Read user files</span></label>
+
+                <!--Read and write user files-->
+                <input name="filesWrite" class="ms-ChoiceField-input" id="filesWrite" type="checkbox" />
+                <label class="ms-ChoiceField-field" for="filesWrite"><span class="ms-Label">Read and write user files</span></label>
+            </div>
+        </div>
+        <button id="register-button" class="button" onclick="registerApp()">
+            <span class="ms-Button-label">Register App</span>
+        </button>
+    </div>
+    <div id="registration-result" class="ms-Grid-col ms-u-sm12 ms-u-lg5 ms-border-color-green hidden">
+        <div>
+            <p class="ms-font-l">Registration Successful</p>
+            <p class="ms-font-m">Save these values. We'll use them in the next section.</p>
+        </div>
+        <div class="ms-TextField">
+            <label class="ms-Label" for="clientId">Client ID:</label>
+            <input id="clientIdField" class="ms-TextField-field" type="text" name="clientId" value="" disabled />
+        </div>
+        <div class="ms-TextField" id="app-reg-client-secret">
+            <label class="ms-Label" for="clientSecret">Client Secret:</label>
+            <input id="clientSecretField" class="ms-TextField-field" type="text" name="clientSecret" value="" disabled />
+        </div>
+    </div>
+    <label id="progressBar"></label>
+    <label id="messageLabel"></label>
+    <div id="reg-error_display" hidden>
+        <p class="ms-font-color-error ms-font-l">The following error occurred while processing your request:</p>
+        <ul>
+            <li><p id="reg-error_msg" class="ms-font-color-error ms-font-l">err</p></li>
+        </ul>
+    </div>
+</div>
+
