@@ -200,28 +200,28 @@
     <Content Include="Placement.info" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Intro.cshtml" />
+    <Content Include="Views\O365\_Intro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_AppRegistrationForm.cshtml" />
-    <Content Include="Views\Shared\_AppRegistrationIntro.cshtml" />
-    <Content Include="Views\Shared\_FirstCall.cshtml" />
+    <Content Include="Views\O365\_AppRegistrationForm.cshtml" />
+    <Content Include="Views\O365\_AppRegistrationIntro.cshtml" />
+    <Content Include="Views\O365\_FirstCall.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\reg.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_LoginToContinue.cshtml" />
-    <Content Include="Views\Shared\_NextStep.cshtml" />
-    <Content Include="Views\Shared\_RegisterApp.cshtml" />
-    <Content Include="Views\Shared\_Setup.cshtml" />
-    <Content Include="Views\Shared\_SetupPlatform.cshtml" />
-    <Content Include="Views\Shared\_SetupProject.cshtml" />
-    <Content Include="Views\Shared\_tryitout.cshtml" />
+    <Content Include="Views\O365\Error.cshtml" />
+    <Content Include="Views\O365\reg.cshtml" />
+    <Content Include="Views\O365\_Layout.cshtml" />
+    <Content Include="Views\O365\_LoginPartial.cshtml" />
+    <Content Include="Views\O365\_LoginToContinue.cshtml" />
+    <Content Include="Views\O365\_NextStep.cshtml" />
+    <Content Include="Views\O365\_RegisterApp.cshtml" />
+    <Content Include="Views\O365\_Setup.cshtml" />
+    <Content Include="Views\O365\_SetupPlatform.cshtml" />
+    <Content Include="Views\O365\_SetupProject.cshtml" />
+    <Content Include="Views\O365\_tryitout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CodeSamples\O365-Android-Connect-master.zip" />

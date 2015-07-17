@@ -1,10 +1,10 @@
 ﻿<div id="main" style="background-color:#f4f4f4;" class="container-fluid">
     <div id="myNavBar"></div>
     <div id="o365-progressTrackerContainer">
-        @Html.Partial("_Intro")
-        @Html.Partial("_tryitout")
-        @Html.Partial("_Setup")
-        @Html.Partial("_SetupPlatform")
+        @Html.Partial("./O365/_Intro")
+        @Html.Partial("./O365/_tryitout")
+        @Html.Partial("./O365/_Setup")
+        @Html.Partial("./O365/_SetupPlatform")
         @{
             Devoffice.GettingStarted.Models.RegisterAppModel model = new Devoffice.GettingStarted.Models.RegisterAppModel();
 
@@ -21,9 +21,9 @@
                 }
             }
         }
-        @Html.Partial("_RegisterApp", model)
-        @Html.Partial("_SetupProject")
-        @Html.Partial("_NextStep")
+        @Html.Partial("./O365/_RegisterApp", model)
+        @Html.Partial("./O365/_SetupProject")
+        @Html.Partial("./O365/_NextStep")
         <div class="sticky-bubble affix" hidden>
             <a href="#" role="button"><font color="white">Give Feedback</font></a>
         </div>
