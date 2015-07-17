@@ -1,4 +1,13 @@
 ﻿@{
+    SetMeta(httpEquiv: "X-UA-Compatible", content: "IE=edge,chrome=1");
+
+    Style.Include("../Bootstrap/css/bootstrap.min.css");
+    Style.Include("../Bootstrap/css/bootstrap-theme.min.css");
+    Style.Include("gettingStarted.css");
+    Style.Include("jquery.json-view.min.css");
+
+    Script.Require("jQuery").AtHead();
+    Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead(); 
     Script.Include("navBar.js").AtHead();
     Script.Include("userPlatformManager.js").AtHead(); //TBD: we need to refractor this file
     Script.Include("modernizr-2.6.2.js").AtHead(); //TBD: Do we need this?
