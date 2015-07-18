@@ -3,12 +3,12 @@
 {
     <text>
             Signed in as @Session[Devoffice.GettingStarted.Utils.Constants.azureUserEmailTagStr]!
-            @Html.ActionLink("Sign out", "SignOut", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+            @Html.ActionLink(T("Sign out").ToString(), "SignOut", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, htmlAttributes: new { id = "loginLink" })
     </text>
 }
 else
 {
-    @Html.ActionLink("Sign in to try your data", "SignIn", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    @Html.ActionLink(T("Sign in to try your data").ToString(), "SignIn", "Account", routeValues: new { area="Devoffice.GettingStarted"}, htmlAttributes: new { id = "loginLink" })
 }
 <div class="ms-border-color-neutralDark ms-bg-color-error">
     <p id="signin-error_msg" class="ms-font-color-error ms-font-l">@ViewBag.SigninError</p>
