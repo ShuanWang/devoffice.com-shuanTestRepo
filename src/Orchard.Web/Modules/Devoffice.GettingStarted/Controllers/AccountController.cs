@@ -62,7 +62,7 @@ namespace Devoffice.GettingStarted.Controllers
         }
         #endregion
 
-        public ActionResult _SignIn()
+        public ActionResult SignIn()
         {
             string state = Guid.NewGuid().ToString();
             Session[Utils.Constants.stateTagStr] = state;
@@ -75,7 +75,7 @@ namespace Devoffice.GettingStarted.Controllers
             return redirect;
         }
 
-        public ActionResult _SignOut()
+        public ActionResult SignOut()
         {
             this.ClearSession();
             UriBuilder returnUri = new UriBuilder(Url.Action("rest", "Home", null, "http"));
