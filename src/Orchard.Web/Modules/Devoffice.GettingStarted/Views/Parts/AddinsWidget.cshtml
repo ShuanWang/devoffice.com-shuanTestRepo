@@ -1,3 +1,110 @@
-﻿<div class="container-fluid">
-    Add-ins
+﻿@{
+    Script.Include("addins.js");
+    Script.Include("navBar.js");
+}
+<div class="container-fluid">
+    <br>
+    <div id="main">
+        <div id="myNavBar"></div>S
+        <div id="o365-progressTrackerContainer">
+
+            <div class="card" id="intro" name="Intro">
+                <h3>Introduction to Office Add-ins (formerly Apps for Office)</h3>
+                <p>An add-in runs inside an Office application and can interact with the contents of the Office document using our rich JavaScript API.</p><br>
+                <div class="col-md-12">
+                    <img src="/images/equation2.PNG" height="200" style="border:0px" align="left" />
+                </div>
+                <div>
+                    <div>Under the hood, an add-in is simply a <b>web app</b> that you can <b>host anywhere</b>. Using a manifest.xml file, you tell us where your web app is located and how you want it to appear. We'll take care of making it show up within Office.</div>
+                </div>
+            </div>
+
+            <div class="card" id="selectapp" name="Select app" isblocking="true">
+                <h3>Select the Office app that you wish to build an add-in for:</h3>
+                <div class="btn-group btn-group-justified" role="group">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="selectClient('excel')"><img src="/images/excellogo.png" width="50" height="50" style="border:0px">Excel</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="selectClient('outlook')"><img src="/images/outlooklogo.png" width="50" height="50" style="border:0px">Outlook</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="selectClient('powerpoint')"><img src="/images/powerpointlogo.png" width="50" height="50" style="border:0px">PowerPoint</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="selectClient('word')"><img src="/images/wordlogo.png" width="50" height="50" style="border:0px">Word</button>
+                    </div>
+                    <!--
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="window.open('https://msdn.microsoft.com/en-us/library/office/dn605890.aspx', '_blank')"><img src="/images/accesslogo.png" width="50" height="50" style="border:0px">Access</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" onclick="window.open('https://msdn.microsoft.com/en-us/library/office/fp161143.aspx', '_blank')"><img src="/images/projectlogo.png" width="50" height="50" style="border:0px">Project</button>
+                    </div>
+                    -->
+                </div>
+
+            </div>
+
+            <div class="card" id="explore" name="Explore">
+                <div id="embedContents">
+
+                </div>
+                <!--Need to add [id='xlframe'] to the default embed tag-->
+                <div id='iframeLoading' class='loading' width="100%"></div>
+                <iframe id="xlframe" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+
+            <div class="card" id="choosetype" name="Choose add-in type" isblocking="true">
+                <h3>Choose add-in type</h3>
+                <p id="choose-title">Choose which kind of add-in you'd like to build.</p><br>
+
+                <div class="btn-group btn-group-justified" role="group">
+                    <div class="btn-group" role="group">
+                        <button id="option1button" type="button" class="btn btn-default" style='max-width: 400px; position: relative; padding:20px; visibility:hidden'>
+                            <h4 id="option1title" style="color:#BD3501;font-weight:bold;"></h4>
+                            <img id="option1img" style="border:0px; margin:20 0 20 0; display:block; margin-left:auto; margin-right:auto;">
+                            <p id="option1text" style="display:block; margin-left:auto; margin-right:auto;"></p>
+                        </button>
+                        <button id="option2button" type="button" class="btn btn-default" style='max-width: 400px; position: relative; padding:20px; visibility:hidden'>
+                            <h4 id="option2title" style="color:#BD3501;font-weight:bold;"></h4>
+                            <img id="option2img" style="border:0px; margin:20 0 20 0; display:block; margin-left:auto; margin-right:auto;">
+                            <p id="option2text" style="display:block; margin-left:auto; margin-right:auto;"></p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="build" name="Build">
+                <h3>Build</h3>
+                <p>An Add-in is pretty much a web app, so you can use whatever IDE you're most comfortable with. But as you're getting up to speed, we recommend starting with our playground for Add-ins. It's the quickest way to get started creating, editing and deploying an Office Add-in.</p><br>
+                <p>We've loaded a simple Add-in project into our playground for Add-ins that you can use to start building with.</p>
+                <br>
+                <img src="~/images/Build-VS.png" class="userHasVS" style="border:0px; margin:0 0 0 0;">
+                <img src="~/images/Build-nonVS.png" class="userHasNoVS" style="border:0px; margin:0 0 0 0;">
+                <br>
+                <p>
+                    When you get to our Add-ins playground, click on the Run button to see the Add-in working. (You need to sign in with your Microsoft account first). <span class="userHasVS">If you have visual studio and want to use it, click on the open in visual studio button to continue working from visual studio.</span>
+                    <h4><b><a id="more-playground" href="#" target="_blank">Start building using the playground for Add-ins&nbsp;&nbsp<img src="http://dev.office.com/Themes/DevOffice/Content/Images/seeMoreIcon.png" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
+                </p>
+
+            </div>
+            <div class="card" id="more" name="More resources">
+                <h3>More resources</h3>
+                <div style="margin-top:20px;">
+                    <ul id="moreResourcesList" style="line-height:2;">
+                        <li><a id="more-github" href="#" target="_blank">Download starter sample</a><div>Download a starter project that you can continue building with using the IDE of your choice.</div></li>
+                        <li><a href="https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx" target='_blank'>Reference</a><div>Reference documentation for the JavaScript API for add-ins.</div></li>
+                        <li><a href="http://dev.office.com/code-samples?filters=Apps%20for%20Office" target='_blank'>More code samples</a><div>A list of other useful samples that you can check out to help build your add-ins.</div></li>
+                        <li><a href="https://msdn.microsoft.com/EN-US/library/office/jj220073.aspx" target='_blank'>Design your add-in</a><div>Guidelines and tips to make your add-in gorgeous and easy to use.</div></li>
+                        <li><a href="https://msdn.microsoft.com/EN-US/library/office/fp123515.aspx" target='_blank'>Publish your add-in</a><div>Learn about the various methods you can use to deploy and publish your add-ins.</div></li>
+                    </ul>
+                </div>
+            </div><!--scroll area-->
+
+        </div><!--progresstrackercontainer-->
+    </div><!--main-->
+
+    <br><br>
+
 </div>

@@ -11,13 +11,23 @@ using Orchard.Widgets.Services;
 using Devoffice.GettingStarted.Models;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
+using Orchard.Autoroute.Models;
+using Orchard.Autoroute.Services;
+using Orchard.Core.Title.Models;
+using Orchard.Core.Common.Models;
+using Orchard.Core.Navigation.Services;
+
+
 
 namespace Devoffice.GettingStarted {
     [OrchardFeature("DevOffice.GettingStarted")]
 
-    public class Migrations : DataMigrationImpl {
+    public class Migrations : DataMigrationImpl
+    {
         private readonly IWidgetsService _widgetsService;
         private readonly IContentManager _contentManager;
+        private readonly IAutorouteService _autorouteService;
+        private readonly IMenuService _menuService;
         public Migrations(IContentManager contentManager,
                           IWidgetsService widgetsService)
         {
@@ -69,5 +79,40 @@ namespace Devoffice.GettingStarted {
 
             return 1;
         }
+
+        //public int UpdateFrom1()
+        //{
+        //    #region Create new pages - addins, apis
+
+        //    //Create Addins Page
+        //    var pageAddins = _contentManager.Create("Page");
+        //    pageAddins.As<TitlePart>().Title = "Addins";
+        //    pageAddins.As<BodyPart>().Text = String.Empty;
+
+        //    var pageAddinsArp = pageAddins.As<AutoroutePart>();
+        //    pageAddinsArp.DisplayAlias = "getting-started/addins";
+        //    _autorouteService.GenerateAlias(pageAddinsArp);
+        //    _autorouteService.PublishAlias(pageAddinsArp);
+
+        //    //Create Api Page
+        //    var pageApi = _contentManager.Create("Page");
+        //    pageApi.As<TitlePart>().Title = "Api";
+        //    pageApi.As<BodyPart>().Text = String.Empty;
+
+        //    var pageApiArp = pageApi.As<AutoroutePart>();
+        //    pageApiArp.DisplayAlias = "getting-started/api";
+        //    _autorouteService.GenerateAlias(pageApiArp);
+        //    _autorouteService.PublishAlias(pageApiArp);
+
+        //    #endregion
+        //    //update layer url
+        //    var addinsLayer = _widgetsService.GetLayers();
+        //    addinsLayer.LayerRule = "~\getting-started\addins";
+        //    ContentDefinitionManager.AlterPartDefinition(
+        //        typeof(AddinsWidgetPart).
+
+
+        //    return 2;
+        //}
     }
 }
