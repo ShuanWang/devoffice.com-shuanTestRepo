@@ -14,12 +14,10 @@ function SetAppTypeBasedOnPlatform(id) {
 
         //disable the items
         $("#signOnUrlFieldGroup").hide();
-        $("#appIdUriFieldGroup").hide();
     }
     else {
         $("#appTypeField").val("Web App");
         $("#signOnUrlFieldGroup").show();
-        $("#appIdUriFieldGroup").show();
     }
 }
 
@@ -52,12 +50,15 @@ function setRedirectUri(platformId) {
             $("#redirectUriField").val("http://localhost");
             $("#signOnUrlField").val("http://localhost");
             break;
+        case "option-dotnet":
+            $("#redirectUriField").val("http://localhost:10800");
+            $("#signOnUrlField").val("http://localhost:10800");
+            break;
         default:
             $("#redirectUriField").val("http://localhost:8000");
             $("#signOnUrlField").val("http://localhost:8000");
     }
 }
-
 function selectPlatform(platform) {
 
     //load content
@@ -67,6 +68,7 @@ function selectPlatform(platform) {
     if ($("#SetupPlatform").css('display') == 'none') {
         //cardTracker.removeBlockingCard();
         $("#SetupPlatform").css('display', 'block');
+        $("#SetupPlatform").addClass('animated fadeInUp');
     }
     else {
         //remove selected from closes element
@@ -84,8 +86,8 @@ function selectPlatform(platform) {
     setRedirectUri(platform.id);
     if (selectPlatform.FirstTime == true) {
         cardTracker.removeBlockingCard();
+        selectPlatform.FirstTime = false;
     }
-    selectPlatform.FirstTime = false;
 
 
     //fileType = setupFile //Hardcoded as this will not chnage ; divName is also Hardcoded
@@ -102,5 +104,6 @@ function selectPlatform(platform) {
 
     ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
 }
+
 // add a static proeprty in selectPlatform
 selectPlatform.FirstTime = true;

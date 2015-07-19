@@ -11,7 +11,48 @@ namespace Devoffice.GettingStarted.Utils
 {
     public static class AppRegistration
     {
+        public static Dictionary<string, string> UpdateWebAppRegistration(string token, string tenantId, string appName,
+    string signOnUri, string appIdUri, string redirectUri, bool multiTenant, bool twoYearSecret, List<Scopes> appScopes,
+    string existingAppId)
+        {
+            Dictionary<string, string> results = new Dictionary<string, string>();
 
+            var registrationManifest = new JObject(
+                                            new JProperty("availableToOtherTenants", multiTenant ? "True" : "False"),
+                                            new JProperty("displayName", appName),
+                                            new JProperty("homePage", signOnUri),
+                                            new JProperty("identifierUris",
+                                                new JArray(
+                                                    new JValue(appIdUri)
+                                                    )
+                                                ),
+                                            new JProperty("replyUrls",
+                                                new JArray(
+                                                    new JValue(redirectUri)
+                                                    )
+                                                ),
+                                            new JProperty("requiredResourceAccess", GenerateRequiredAccess(appScopes.ToArray()))
+                                            );
+
+            string payload = JsonConvert.SerializeObject(registrationManifest);
+
+            string result = UpdateAppRegistration(token, tenantId, payload, existingAppId);
+            if (result.StartsWith("ERROR"))
+            {
+                // Check for expired token and handle specially
+                // Implementing refresh can come later.
+                if (result.Contains("Authentication_ExpiredToken"))
+                {
+                    results.Add(Utils.Constants.errorMessageTagStr, "Your session has expired. Please logout and log in again.");
+                }
+                else
+                {
+                    results.Add(Utils.Constants.errorMessageTagStr, result);
+                }
+            }
+
+            return results;
+        }
         public static Dictionary<string, string> CreateWebAppRegistration(string token, string tenantId, string appName, 
             string signOnUri, string appIdUri, string redirectUri, bool multiTenant, bool twoYearSecret, List<Scopes> appScopes)
         {
@@ -114,6 +155,70 @@ namespace Devoffice.GettingStarted.Utils
                     }
                 }
             }
+        }
+
+        private static string GetErrorDetails(string response, System.Net.HttpStatusCode code)
+        {
+            try
+            {
+                dynamic errorDetails = JsonConvert.DeserializeObject(response);
+                return string.Format("ERROR: {0} - {1}", errorDetails["odata.error"]["code"],
+                     errorDetails["odata.error"]["message"]["value"]);
+            }
+            catch (JsonException)
+            {
+                return string.Format("ERROR: Request returned {0}", code);
+            }
+        }
+        private static string UpdateAppRegistration(string token, string tenantId, string payload, string appId)
+        {
+            #region Get applicaiton object
+            string appEndPoint = string.Format("https://graph.windows.net/{0}/applications?$filter=appId eq '{1}' &api-version=1.5", tenantId, appId);
+            string appidObject = null;
+            using (var client = new HttpClient())
+            {
+                var request = new HttpRequestMessage(HttpMethod.Get, appEndPoint);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                request.Headers.UserAgent.Add(new ProductInfoHeaderValue("OutlookDevPortal", "1.0"));
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = client.SendAsync(request).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+
+                if(!result.IsSuccessStatusCode) {
+                    return GetErrorDetails(resultContent, result.StatusCode);
+                }
+                dynamic appObject = (JObject.Parse(resultContent))["value"];
+                appidObject = appObject[0].objectId;
+            }
+	#endregion
+            #region Update the app info
+            
+            string graphEndpoint = string.Format("https://graph.windows.net/{0}/applications/{1}?api-version=1.5", tenantId, appidObject);
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(payload);
+                var method = new HttpMethod("PATCH");
+                content.Headers.ContentType.MediaType = "application/json";
+                var request = new HttpRequestMessage(method, graphEndpoint);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                request.Headers.UserAgent.Add(new ProductInfoHeaderValue("OutlookDevPortal", "1.0"));
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                request.Content = content;
+
+                var result = client.SendAsync(request).Result;
+                var resultContent = result.Content.ReadAsStringAsync().Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return resultContent; /* on success result content is empty string*/
+                }
+                else
+                {
+                    return GetErrorDetails(resultContent, result.StatusCode);
+                }
+            }
+            #endregion
         }
 
         private static string GenerateAppSecret()
@@ -232,6 +337,40 @@ namespace Devoffice.GettingStarted.Utils
                     registrationInfo.Add(Constants.clientIdTagStr, result);
             }
 
+            return registrationInfo;
+        }
+
+        public static Dictionary<string, string> UpdateNativeAppRegistration(string token, string tenantId,
+    string appName, string redirectUri, List<Scopes> appScopes, string existingAppId)
+        {
+            Dictionary<string, string> registrationInfo = new Dictionary<string, string>();
+
+            var registrationManifest = new JObject(
+                                            new JProperty("displayName", appName),
+                                            new JProperty("replyUrls",
+                                                new JArray(
+                                                    new JValue(redirectUri)
+                                                    )
+                                                ),
+                                            new JProperty("requiredResourceAccess", GenerateRequiredAccess(appScopes.ToArray()))
+                                            );
+
+            string payload = JsonConvert.SerializeObject(registrationManifest);
+
+            string result = UpdateAppRegistration(token, tenantId, payload, existingAppId);
+            if (result.StartsWith("ERROR"))
+            {
+                // Check for expired token and handle specially
+                // Implementing refresh can come later.
+                if (result.Contains("Authentication_ExpiredToken"))
+                {
+                    registrationInfo.Add(Constants.errorMessageTagStr, "Your session has expired. Please logout and log in again.");
+                }
+                else
+                {
+                    registrationInfo.Add(Constants.errorMessageTagStr, result);
+                }
+            }
             return registrationInfo;
         }
     }
