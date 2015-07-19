@@ -60,6 +60,11 @@ img {
     max-width: 95%;
 }
 
+.img {
+    margin-left:0px;
+    border:0px;
+}
+
 .ht {
         height:800px;
     }
@@ -98,6 +103,38 @@ img {
         overflow: auto;
         max-height: 400px;
     } 
+
+
+
+.httpVerb {
+    margin-right: 10px;
+}
+
+
+/* call out */
+.callout {
+    position:absolute;
+    right:-160px;
+    padding:20px;
+    background-color:white;
+    min-width:150px;
+    min-height:120px;
+}
+
+
+.callout::after {
+   content:"";
+   position: absolute;
+   right: 135px;  
+   width: 0;
+   height: 0;
+   border-top: 13px solid transparent;
+   border-right: 26px solid white;
+   border-bottom: 13px solid transparent;
+   
+}
+
+
 
 @-webkit-keyframes colorize {
     0% {
@@ -295,10 +332,47 @@ ol li
 }
 
 
+/*Responsive CSS Styles*/
+@media (max-width: 978px) {
+    body {
+
+        padding:initial;
+    }
+    #navBarList {
+        display:none !important;
+        height:0px;
+    }
+    #main {
+        width:auto;
+    }
+    .card, .card-question {
+        height:auto;
+        padding: 10px 10px 10px 10px;
+    }
+    .container {
+        padding-left:0px;
+        padding-right:0px;
+    }
+    
+    #paramTable, .callout
+    {
+        display:none;
+    }
+    #intro {
+        height:auto;
+    }
+
+    /*for create new account link*/
+    .ms-Grid-col {
+        clear:both;
+        margin-top:10px;
+        
+    }
+}
+
 /*NavBar CSS Styles*/
 .navbar {
     background-color:#F4F4F4;
-    box-shadow: 0px 1px 1px solid black;
 }
 
 #navBarList {
@@ -319,12 +393,34 @@ ol li
 	line-height: 3em;
 	border-bottom:4px solid silver;
 }
+/*
+#navBarList li::after {
+    position:absolute;
+    top: 100px;
+    left:50%;
+    width: 100px;
+    height: 100px;
+    background-color: silver;
+    color:red;
+}*/
 
 #navBarList li.card-done {
 	color:black;
 	border-bottom:4px solid #da3f26;
     transition: all .2s ease-in-out;
     -webkit-transition:all .2s ease-in-out;
+
+}
+
+#navBarList li.card-done::after {
+
+    width: 0;
+	height: 0;
+	border-top: 2px solid transparent;
+	border-left: 400px solid green;
+	border-bottom: 2px solid transparent;
+
+
 }
 
 .cardTrackerContainer div.card {
@@ -371,6 +467,10 @@ ol li
         background-color:white;
     }
 
+.navBar {
+    background-color:#F4F4F4;
+}
+
 /* end NavBar CSS Styles*/
 
 .spacer40 {
@@ -411,6 +511,9 @@ ol li
     border-image: none; 
     color: white !important; 
     min-width:70px;
+    margin-top:10px;
+    margin-bottom:10px;
+    white-space:nowrap;
 }
 
 .button:hover {
@@ -434,6 +537,9 @@ pre.response {
   background-color:#EEE;
 }
 
+.highlight {
+    border-color:red;
+}
 /* tabs */
 .tabs {
   display: inline-block;

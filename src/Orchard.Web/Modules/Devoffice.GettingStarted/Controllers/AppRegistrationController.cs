@@ -12,22 +12,32 @@ namespace Devoffice.GettingStarted.Controllers
 
         public ActionResult RegisterApp(Models.RegisterAppModel appInfo)
         {
-            //For Debug Purpose only
-            /*
-            Dictionary<string, string> registrationInfo = new Dictionary<string, string>();
-            registrationInfo.Add(Constants.clientIdTagStr, "client_id_goes_here");
-            registrationInfo.Add("client_secret", "secret_goes_here");
-            return Json(registrationInfo, JsonRequestBehavior.AllowGet);
-            */
+            #region For Debug Purpose only
+                        /*
+                        Dictionary<string, string> registrationInfo = new Dictionary<string, string>();
+                        registrationInfo.Add(Constants.clientIdTagStr, "client_id_goes_here");
+                        registrationInfo.Add("client_secret", "secret_goes_here");
+                        return Json(registrationInfo, JsonRequestBehavior.AllowGet);
+                        */
+            #endregion
+
+            #region Do error check
+            Dictionary<string, string> errorInfo = new Dictionary<string, string>();
 
             if (appInfo == null)
             {
-                throw new HttpException("Error, please provide app info");
+                errorInfo.Add(Utils.Constants.errorMessageTagStr, "App information can not be null");
+                return Json(errorInfo, JsonRequestBehavior.AllowGet);
             }
-            if ((bool)Session[Constants.userLoggedInStr] != true)
+            if (Session[Constants.userLoggedInStr] == null || (bool)Session[Constants.userLoggedInStr] != true)
             {
-                return null;
+                errorInfo.Add(Utils.Constants.errorMessageTagStr, "Your session has been expired, please sign out and sign in again");
+                return Json(errorInfo, JsonRequestBehavior.AllowGet);
             }
+            #endregion
+
+            #region Reading variables
+            Dictionary<string, string> results = null;
             string token = (string)Session[Constants.accessTokenTagStr];
             string tenantid = (string)Session[Constants.azureUserTenantIdTagStr];
 
@@ -35,6 +45,12 @@ namespace Devoffice.GettingStarted.Controllers
             string appName = appInfo.appName;
             string signOnUri = appInfo.signOnUri;
             string appIdUri = appInfo.appIdUri;
+            // append a guid in appid uri
+            if(appIdUri[appIdUri.Length-1] != '/')
+            {
+                appIdUri += "/";
+            }
+            appIdUri += Guid.NewGuid().ToString();
             string redirectUri = appInfo.redirectUri;
             List<Utils.Scopes> appScopes = new List<Utils.Scopes>() { Utils.Scopes.UserProfileRead };
             //TBD it is not the right way to include app scope
@@ -58,27 +74,55 @@ namespace Devoffice.GettingStarted.Controllers
             if (appInfo.includeMailSend)
                 appScopes.Add(Utils.Scopes.MailSend);
 
+            #endregion
+
+            #region Web App registration
             if (string.Equals("Web App", appInfo.appType, StringComparison.InvariantCultureIgnoreCase) == true)
             {
-                var results = Utils.AppRegistration.CreateWebAppRegistration(token,
-                    tenantid,
-                    appName, signOnUri, appIdUri, redirectUri, false, false, appScopes);
+                if (string.IsNullOrEmpty(appInfo.appId))
+                { /* Create new app*/
+                    results = Utils.AppRegistration.CreateWebAppRegistration(token,
+                                    tenantid,
+                                    appName, signOnUri, appIdUri, redirectUri, false, false, appScopes);
+                }
+                else { /* update the existing app*/
+                    results = Utils.AppRegistration.UpdateWebAppRegistration(token,
+                                    tenantid,
+                                    appName, signOnUri, appIdUri, redirectUri, false, false, appScopes, appInfo.appId);
+                }
+
                 return Json(results, JsonRequestBehavior.AllowGet);
             }
+            #endregion
+
+            #region Native App registration
             else if (string.Equals("Native App", appInfo.appType, StringComparison.InvariantCultureIgnoreCase) == true)
             {
-                var results = Utils.AppRegistration.CreateNativeAppRegistration(token,
-                    tenantid,
-                    appName, redirectUri, appScopes);
+                if (string.IsNullOrEmpty(appInfo.appId))
+                { /* Create new app*/
+                    results = Utils.AppRegistration.CreateNativeAppRegistration(token,
+                        tenantid, appName, redirectUri, appScopes);
+                }
+                else
+                { /* update the existing app*/
+                    results = Utils.AppRegistration.UpdateNativeAppRegistration(token,
+                                    tenantid, appName, redirectUri, appScopes, appInfo.appId);
+                }
                 return Json(results, JsonRequestBehavior.AllowGet);
             }
+            #endregion
+
+            #region Unknown Type
             else
             {
                 var dict = new Dictionary<string, string>();
                 dict.Add(Constants.errorTagStr, "Unknown app type has been passed");
                 return Json(dict, JsonRequestBehavior.AllowGet);
             }
+            #endregion
+
         }
+
 
     }
 }

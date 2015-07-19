@@ -24,9 +24,10 @@
     Script.Include("websiteContent.js").AtFoot();
 }
 <script>
-    var platformId = null;
     var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
 
+    //var platformName = null;
+    var platformId = null;
     $(document).scroll(function () {
         cardTracker.updateScroll();
     });
@@ -56,12 +57,14 @@
         $('#startCoding ul li a').click(function () { startCodingContentDisplay(this) });
         $('#post-download-instructions').hide();
 
-        //TBD need to define proper card id
-        var tryitOutCardId = "2";
+        var tryitOutCardId = "try-it-out";
         $('#loginLink').click(function () {
             document.cookie = "current-card=" + tryitOutCardId + "; path=/";
         });
 
+        $('#loginLink-tocontinue').click(function () {
+            document.cookie = "current-card=" + window.location.href + "; path=/";
+        });
         $('#app-reg-signin-later').click(function () {
             cardTracker.removeAllBlockingCards();
             ga('send', 'event', 'O365path-Rest', 'Signin-Later');
@@ -88,7 +91,7 @@
                     string[] splits = userEmail.Split('@');
                     if (splits.Length == 2)
                     {
-                        model.appIdUri = "http://" + splits[1] + "/" + splits[0] + "/Hello-O365";
+                        model.appIdUri = "http://" + splits[1] + "/" + splits[0] + "/";
                     }
                 }
             }

@@ -229,6 +229,7 @@ function TryItOut(elemIDs, elemClasses) {
 
     function invokeUrlOnUserData()
     {
+        $("#response-container").show("slow");
         invokeUrlBtnElem.prop("disabled", true).css("cursor", "default");
         responseCodeContainer.addClass('loading');
 
@@ -286,6 +287,8 @@ function TryItOut(elemIDs, elemClasses) {
     // invokes the URL
     function invokeUrlOnSampleData(url)
     {
+        $("#response-container").show("slow");
+
         //disable invoke btn
         invokeUrlBtnElem.prop("disabled", true).css("cursor", "default");
         responseCodeContainer.addClass('loading');

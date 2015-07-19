@@ -41,25 +41,24 @@
             "SetupFileFullPath": "\/Documentation\/rest-api\/php\/setup-php.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/php\/getting-started-Office-365-APIs-php.html",
             "GithubMDFileName": "rest-api\/php\/getting-started-Office-365-APIs-php.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package and run",
+            "PostDownloadInstructions": "To continue: Unzip downloaded package and navigate to your folder. Restart the php server and access the app at http://localhost/php-tutorial/home.php.",
         },
         {
             "Id": "option-python",
             "SetupFileFullPath": "\/Documentation\/rest-api\/python\/setup-python.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/python\/getting-started-Office-365-APIs-python.html",
             "GithubMDFileName": "rest-api\/python\/getting-started-Office-365-APIs-python.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package and run",
+            "PostDownloadInstructions": "To continue: Unzip downloaded package and run.",
         },
         {
             "Id": "option-ruby",
             "SetupFileFullPath": "\/Documentation\/rest-api\/ruby\/setup-ruby.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/ruby\/getting-started-Office-365-APIs-ruby.html",
             "GithubMDFileName": "rest-api\/ruby\/getting-started-Office-365-APIs-ruby.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package and run",
+            "PostDownloadInstructions": "To continue: Unzip downloaded package and navigate to your folder. Run <b>bundle install</b>. Then start the server by running <b>rails server</b> and navigate to http://localhost:3000.",
         }
     ]
 }
-
 function setDocumentationDivForPlatform(platformId, fileType, divName)
 {
     var documentationFullFilePath = "\/Documentation\/onerror.html";

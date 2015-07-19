@@ -14,6 +14,7 @@ namespace Devoffice.GettingStarted.Models
             this.signOnUri = "http://localhost:8000";
             this.appIdUri = "http://hello-O365";
             this.redirectUri = "http://localhost:8000";
+            this.appId = null;
         }
 
         public string appName { get; set; }
@@ -27,13 +28,13 @@ namespace Devoffice.GettingStarted.Models
         public bool includeMail { get; set; }
         public bool includeFiles { get; set; }
 
-
         public bool includeCalendarWrite { get; set; }
         public bool includeContactsWrite { get; set; }
         public bool includeMailWrite { get; set; }
         public bool includeFilesWrite { get; set; }
-
-
         public bool includeMailSend { get; set; }
+
+        public string appId { get; set; }
+
     }
 }
