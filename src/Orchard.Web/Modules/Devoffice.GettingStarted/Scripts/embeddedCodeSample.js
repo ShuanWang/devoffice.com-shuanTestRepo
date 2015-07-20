@@ -32,15 +32,15 @@ var reposList = {
         },
         {
             "Name": "option-dotnet",
-            "FileName": "O365-Win-Snippets-master\/src\/App.xaml",
-            "ClientIdStringToReplace": "<!-- Add a client id here -->",
+            "FileName": "dotnet-tutorial-master\/dotnet-tutorial\/Web.config",
+            "ClientIdStringToReplace": "</appSettings>",
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-Win-Snippets-master.zip",
-            "GitHubRepoName": "O365-Win-Snippets",
-            "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Win-Snippets/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Win-Snippets"
+            "LocalZipFile": "../../CodeSamples/O365-Win-tutorial-master.zip",
+            "GitHubRepoName": "O365-Win-Tutorial",
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial"
         },
         {
             "Name": "option-php",
@@ -110,15 +110,16 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
         }
 
         if (typeof navigator !== "undefined" && /MSIE [1-9]\./.test(navigator.userAgent)) {
-            console.log('This IE version is not supported, please upgrade your browser');
+            console.log('This IE version is not supported, please upgrade your browser.');
             throw new Error('IEUnsupportedVersion');
         }
 
         //Special case for Windows snippet
         if (platformName === 'option-dotnet') {
-            clientId = "<x:String x:Key=\"ida:ClientID\">" + clientId + "</x:String>";
+            clientId = "<add key=\"ida:ClientId\" value=\""+clientId+"\" />" +  
+            "<add key=\"ida:ClientSecret\" value=\""+clientSecret+"\" />" +
+            " </appSettings>";
         }
-
         var zipFileName = reposList.Platform[selectedPlatformIndex].LocalZipFile;
         JSZipUtils.getBinaryContent(zipFileName, function (err, data) {
             if (err) {
@@ -139,15 +140,23 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
                     fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].SignOnURLStringToReplace, signOnUrl);
                     codeSampleZip.file(nameOfFile, fileContent);
                 }
+                    //special case for iOS swift folder
+                    if (platformName === 'option-ios') 
+                    {
+                        if (nameOfFile === 'O365-iOS-Connect-master\/swift\/O365-iOS-Connect-Swift\/AuthenticationManager.swift') {
+                        fileContent = file.asText();
+                        codeSampleZip.remove(nameOfFile);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientIdStringToReplace, clientId);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientSecretStringToReplace, clientSecret);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].RedirectURLStringToReplace, appRedirectUrl);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].SignOnURLStringToReplace, signOnUrl);
+                        codeSampleZip.file(nameOfFile, fileContent);
+                    }
+            }
+
             }
             var content = codeSampleZip.generate({ type: "blob" });
-            saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
-            //if (navigator.msSaveOrOpenBlob !== undefined) {
-            //    navigator.msSaveOrOpenBlob(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
-            //}
-            //else {
-            //    location.href = "data:application/zip;base64," + content; return false;
-            //}
+            window.saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
         });
         _progressStatus(100)
@@ -195,16 +204,16 @@ function _errorHandlerDownloadSample(error) {
     var msg;
     switch (error.message) {
         case 'ClientIdIsUndefnied':
-            msg = 'Please sign-in and register app to get clientId.';
+            msg = 'Sign-in and register app so we can embed your client id, redirect uri and app secret into your app for you.';
             break;
         case 'FileAPINotSupported':
             msg = 'File APIs are not supported in your browser.';
             break;
         case 'ErrorReadingFiles':
-            msg = 'Error Reading file from source';
+            msg = 'Error Reading file from source.';
             break;
         case 'IEUnsupportedVersion':
-            msg = 'IE version smaller than 10 is not supported';
+            msg = 'IE version less than 10 is not supported.';
             break;
         default:
             msg = 'Unknown Error'
@@ -212,11 +221,12 @@ function _errorHandlerDownloadSample(error) {
     }
 
     if (selectedPlatformIndex != undefined) {
-        msg = 'We delivered code sample zip from github without ClientId. ' + msg;
+        msg = 'FYI - We downloaded an untouched sample from GitHub. ' + msg;
         location.href = (reposList.Platform[selectedPlatformIndex].GitHubMasterZipUrl);
 
         $('#post-download-instructions').html(msg)
         $('#post-download-instructions').show();
+        $('#post-download-instructions').addClass('animated fadeInUp');
         return;
 
     }

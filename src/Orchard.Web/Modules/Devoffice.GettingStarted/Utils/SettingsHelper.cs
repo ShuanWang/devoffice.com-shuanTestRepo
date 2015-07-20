@@ -21,10 +21,10 @@ namespace Devoffice.GettingStarted.Utils
 {
     public class SettingsHelper
     {
-        private static string _clientId = ConfigurationManager.AppSettings["ida:ClientId"] ?? ConfigurationManager.AppSettings["ida:ClientID"];
-        private static string _appKey = ConfigurationManager.AppSettings["ida:ClientSecret"] ?? ConfigurationManager.AppSettings["ida:AppKey"] ?? ConfigurationManager.AppSettings["ida:Password"];
-        
-        private static string _tenantId = ConfigurationManager.AppSettings["ida:TenantId"];
+        private static string _clientId = "d0414388-2d9f-4878-96d6-6ae25617c755";
+        private static string _appKey = "xEAagH5XaJonsPx/n7SCwLnh9KmM2Xlv6lXEgoqMDFA=";
+
+        private static string _tenantId = "ef087990-b502-49c3-a0e5-4e16a337c689";
         private static string _authorizationUri = "https://login.microsoftonline.com/common/oauth2/authorize";
         private static string _authority = "https://login.windows.net/{0}/";
 
