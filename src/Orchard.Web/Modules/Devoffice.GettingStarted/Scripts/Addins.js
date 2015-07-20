@@ -32,7 +32,7 @@ function iframeLoaded() {
 
 var taskPane = {
     'title': 'Task Pane',
-    'img': { 'excel': '/images/exceltaskpane2.PNG', 'word': '/images/wiki.PNG', 'powerpoint': '/images/pichit.PNG' },
+    'img': { 'excel': '/Modules/Devoffice.GettingStarted/images/exceltaskpane2.PNG', 'word': '/Modules/Devoffice.GettingStarted/images/wiki.PNG', 'powerpoint': '/Modules/Devoffice.GettingStarted/images/pichit.PNG' },
     'text': 'A Task Pane add-in appears next to the document.',
     'overlaytop': { 'excel': 'http://aka.ms/Fb7hmn', 'word': 'http://aka.ms/Rtbsj3', 'powerpoint': 'http://aka.ms/Y4lf7t' },
     'overlaybottom': 'https://github.com/OfficeDev/Add-in-TaskPane-Sample'
@@ -40,7 +40,7 @@ var taskPane = {
 
 var content = {
     'title': 'Content',
-    'img': { 'excel': '/images/excelcontent2.PNG', 'powerpoint': '/images/poll.PNG' },
+    'img': { 'excel': '/Modules/Devoffice.GettingStarted/images/excelcontent2.PNG', 'powerpoint': '/Modules/Devoffice.GettingStarted/images/poll.PNG' },
     'text': 'A Content add-in appears in-line with the document.',
     'overlaytop': { 'excel': 'http://aka.ms/Lgaz15', 'powerpoint': 'http://aka.ms/Pzs7nq' },
     'overlaybottom': 'https://github.com/OfficeDev/Add-in-Content-Starter'
@@ -48,7 +48,7 @@ var content = {
 
 var compose = {
     'title': 'Compose',
-    'img': '/images/outlookcompose.PNG',
+    'img': '/Modules/Devoffice.GettingStarted/images/outlookcompose.PNG',
     'text': 'Appears when the user is composing a new email',
     'overlaytop': 'http://aka.ms/Nahkwl',
     'overlaybottom': 'https://github.com/OfficeDev/Add-in-MailCompose-Sample'
@@ -56,7 +56,7 @@ var compose = {
 
 var read = {
     'title': 'Read',
-    'img': '/images/outlookread.PNG',
+    'img': '/Modules/Devoffice.GettingStarted/images/outlookread.PNG',
     'text': 'Appears when the user is reading an email message',
     'overlaytop': 'http://aka.ms/Wwq6m4',
     'overlaybottom': 'https://github.com/OfficeDev/Add-in-MailRead-Sample'

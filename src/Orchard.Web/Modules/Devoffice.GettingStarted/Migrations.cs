@@ -86,7 +86,7 @@ namespace Devoffice.GettingStarted {
 
         //    //Create Addins Page
         //    var pageAddins = _contentManager.Create("Page");
-`        //    pageAddins.As<TitlePart>().Title = "Addins";
+        //    pageAddins.As<TitlePart>().Title = "Addins";
         //    pageAddins.As<BodyPart>().Text = String.Empty;
 
         //    var pageAddinsArp = pageAddins.As<AutoroutePart>();

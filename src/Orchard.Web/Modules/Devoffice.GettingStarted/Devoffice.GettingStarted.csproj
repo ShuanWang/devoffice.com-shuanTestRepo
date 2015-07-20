@@ -76,6 +76,10 @@
     <Content Include="Content\fabric.components.min.css" />
     <Content Include="Content\fabric.min.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="images\Build-nonVS.png" />
+    <Content Include="images\Build-VS.png" />
+    <Content Include="images\equation2.PNG" />
+    <Content Include="Scripts\browserInfo.js" />
     <Content Include="Styles\jquery.json-view.min.css" />
     <Content Include="Documentation\onerror.html" />
     <Content Include="Documentation\rest-api\android\getting-started-Office-365-APIs-android.html" />
