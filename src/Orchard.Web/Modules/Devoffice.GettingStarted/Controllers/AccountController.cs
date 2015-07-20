@@ -114,7 +114,7 @@ namespace Devoffice.GettingStarted.Controllers
                 }
                 else
                 {
-                    var loginResults = TokenHelper.GetAccessTokenFromAuthCode(authCode, Url.Action("GetToken", "Account", null, Request.Url.Scheme));
+                    var loginResults = TokenHelper.GetAccessTokenFromAuthCode(authCode, Url.Action("GetToken", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, protocol:Request.Url.Scheme));
 
                     if (loginResults.ContainsKey(Constants.accessTokenTagStr))
                     {
@@ -138,8 +138,8 @@ namespace Devoffice.GettingStarted.Controllers
                 }
             }
 
-
-            UriBuilder returnUri = new UriBuilder(Url.Action("rest", "Home", null, Request.Url.Scheme));
+            UriBuilder returnUri = new UriBuilder(Request.Url.Scheme, Request.Url.Host, Request.Url.Port,
+                "/GettingStarted/api");
             if (string.IsNullOrEmpty(queryString))
             {
                 if (Request.Cookies["current-card"] != null)
