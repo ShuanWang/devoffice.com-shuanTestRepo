@@ -78,8 +78,10 @@ namespace Devoffice.GettingStarted.Controllers
         public ActionResult SignOut()
         {
             this.ClearSession();
-            UriBuilder returnUri = new UriBuilder(Url.Action("rest", "Home", null, "http"));
 
+            //TBD: once we log out we need to fallback to http protocol
+            UriBuilder returnUri = new UriBuilder(Request.Url.Scheme, Request.Url.Host, Request.Url.Port,
+                "/GettingStarted/api");
             if (Request.Cookies["current-card"] != null)
             {
                 string returnUrl = returnUri.ToString();
