@@ -354,7 +354,7 @@ function TryItOut(elemIDs, elemClasses) {
 
     // get service endpoint if user is authenticated
     $.ajax({
-        url: "/Account/IsAuthenticated",
+        url: "GettingStarted/Account/IsAuthenticated",
         async: true,
         type: 'GET',
         success: function (data, textStatus, xhr) {

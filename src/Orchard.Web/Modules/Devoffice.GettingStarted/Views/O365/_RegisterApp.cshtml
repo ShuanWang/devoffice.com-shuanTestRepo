@@ -38,12 +38,12 @@
     @if (Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] == null ||
         (bool)Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] == false)
     {
-        @Html.Partial("_AppRegistrationIntro")
+        @Html.Partial("./O365/_AppRegistrationIntro")
 
     }
     else
     {
-        @Html.Partial("_AppRegistrationForm")
+        @Html.Partial("./O365/_AppRegistrationForm")
 
     }
 </div>
