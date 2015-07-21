@@ -40,11 +40,12 @@ namespace Dev.Office.Com.GettingStarted
                new RouteDescriptor {
                     Priority = 5,
                     Route = new Route(
-                        "GettingStarted/proxy/{action}", // name of the page url
+                        "GettingStarted/proxy/{action}/{id}", // name of the page url
                         new RouteValueDictionary {
                             {"area", "Devoffice.GettingStarted"}, // name of the module
                             {"controller", "proxy"},
-                            {"action", "{action}"}
+                            {"action", "{action}"},
+                            {"id", UrlParameter.Optional}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {

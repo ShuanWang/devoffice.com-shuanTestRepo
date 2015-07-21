@@ -8,7 +8,7 @@ function TryItOut(elemIDs, elemClasses) {
             "serviceName":"Mail",
             "serviceEndPointUri": "https://outlook.office365.com/api/v1.0",
             "urlpart": "/me/folders/{0}/messages",
-            "serverAction": "/Proxy/EMail",
+            "serverAction": "/GettingStarted/Proxy/EMail",
             "authToken": "Bearer {token:https://outlook.office365.com/}",
             "parameters": [
                 {
@@ -24,7 +24,7 @@ function TryItOut(elemIDs, elemClasses) {
             "serviceName": "Calendar",
             "serviceEndPointUri": "https://outlook.office365.com/api/v1.0",
             "urlpart": "/me/events",
-            "serverAction": "/Proxy/Events",
+            "serverAction": "/GettingStarted/Proxy/Events",
             "authToken": "Bearer {token:https://outlook.office365.com/}",
             "parameters": [
             ] // end parameters
@@ -34,7 +34,7 @@ function TryItOut(elemIDs, elemClasses) {
             "serviceName": "Contacts",
             "serviceEndPointUri": "https://outlook.office365.com/api/v1.0",
             "urlpart": "/me/contacts",
-            "serverAction": "/Proxy/Contacts",
+            "serverAction": "/GettingStarted/Proxy/Contacts",
             "authToken": "Bearer {token:https://outlook.office365.com/}",
             "parameters": [
             ] // end parameters
@@ -44,7 +44,7 @@ function TryItOut(elemIDs, elemClasses) {
             "serviceName": "MyFiles",
             "serviceEndPointUri": "https://a830edad9050849NDA1-my.sharepoint.com/_api/v1.0/me",
             "urlpart": "/files/getByPath('{0}')/children",
-            "serverAction": "/Proxy/List Folder Contents",
+            "serverAction": "/GettingStarted/Proxy/ListFolderContents",
             "authToken": "Bearer {token:https://a830edad9050849NDA1-my.sharepoint.com/}",
             "parameters": [
                 {
@@ -212,7 +212,7 @@ function TryItOut(elemIDs, elemClasses) {
         //msgHolder.addClass('loading');;
         msgHolder.html("Getting the service endpoint...");
         $.ajax({
-            url: "/proxy/EndPoints",
+            url: "/gettingstarted/proxy/EndPoints",
             async:false,
             type: 'GET',
             success: function (data, textStatus, xhr) {
@@ -354,7 +354,6 @@ function TryItOut(elemIDs, elemClasses) {
 
     // initialize the parameters for the first time
     updateParams();
-
     // get service endpoint if user is authenticated
     $.ajax({
         url: "GettingStarted/Account/IsAuthenticated",
