@@ -53,8 +53,23 @@ namespace Dev.Office.Com.GettingStarted
                         },
                         new MvcRouteHandler()
                         ) // end new Route
-               }
-            }; // end new[]
+               },
+               new RouteDescriptor {
+                    Priority = 5,
+                    Route = new Route(
+                        "GettingStarted/{controller}/{action}", // name of the page url
+                        new RouteValueDictionary {
+                            {"area", "Devoffice.GettingStarted"}, // name of the module
+                            {"controller", "{controller}"},
+                            {"action", "{action}"}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area","Devoffice.GettingStarted"} // name of the module
+                        },
+                        new MvcRouteHandler()
+                        ) // end new Route
+               }            }; // end new[]
         } // end method
     }
 }
