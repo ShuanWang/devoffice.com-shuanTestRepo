@@ -40,10 +40,27 @@ namespace Dev.Office.Com.GettingStarted
                new RouteDescriptor {
                     Priority = 5,
                     Route = new Route(
-                        "GettingStarted/proxy/{action}", // name of the page url
+                        "GettingStarted/proxy/{action}/{id}", // name of the page url
                         new RouteValueDictionary {
                             {"area", "Devoffice.GettingStarted"}, // name of the module
                             {"controller", "proxy"},
+                            {"action", "{action}"},
+                            {"id", UrlParameter.Optional}
+                        },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                            {"area","Devoffice.GettingStarted"} // name of the module
+                        },
+                        new MvcRouteHandler()
+                        ) // end new Route
+               },
+               new RouteDescriptor {
+                    Priority = 5,
+                    Route = new Route(
+                        "GettingStarted/{controller}/{action}", // name of the page url
+                        new RouteValueDictionary {
+                            {"area", "Devoffice.GettingStarted"}, // name of the module
+                            {"controller", "{controller}"},
                             {"action", "{action}"}
                         },
                         new RouteValueDictionary(),
@@ -52,8 +69,7 @@ namespace Dev.Office.Com.GettingStarted
                         },
                         new MvcRouteHandler()
                         ) // end new Route
-               }
-            }; // end new[]
+               }            }; // end new[]
         } // end method
     }
 }
