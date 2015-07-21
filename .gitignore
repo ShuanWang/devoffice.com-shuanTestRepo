@@ -191,3 +191,10 @@ src/Orchard.Web/Modules/Orchard.DynamicForms/node_modules
 !lib/*/*.*
 */.vs/*
 
+# =========================
+# devofficecom specifics
+# =========================
+
+src/Orchard.Web/Modules/Provoke.Highlights/obj/Debug/*.cache
+src/Orchard.Web/Modules/Provoke.Highlights/bin/Orchard.Core.dll
+src/Orchard.Web/Modules/Provoke.Highlights/bin/Orchard.Framework.dll
