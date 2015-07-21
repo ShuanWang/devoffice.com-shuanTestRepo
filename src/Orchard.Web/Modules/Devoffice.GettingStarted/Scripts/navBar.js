@@ -28,10 +28,10 @@
 function CardTracker(cardsContainerID, navBarID) {
     var doneClassName = "card-done";
     var inScroll = false;
-    var inScrollMax = 0;
     var cardIDs = [];
     var blockingCards = [];
-	var navBarListID = "navBarList";
+    var animatedCards = [];
+    var navBarListID = "navBarList";
 	var navbarAnchorItemIDTag = "navbarAnchorItem";
 	var navItemIDTag = "navItem";
 	var cardsContainerID = cardsContainerID;
@@ -49,21 +49,17 @@ function CardTracker(cardsContainerID, navBarID) {
 		    if (i == blockingCards[0]+1) {
 		        break;
 		    }
-		    //UNDONE: is this code used?
-		    var top = $("#" + cardIDs[i]).position().top - $("#" + navBarID).height() - 10; 
-			var item = $(listItems[i]);
-			if(lastCardSaved===false && doctop <= top) {
-				savestepToCache(i-1);
-				lastCardSaved = true;
-			}
 		    //Show that the card is completed in navbar if it is in view
 			var elView = _viewPos(cardIDs[i]);
 			var inView = elView.inViewPartial;
 			var aboveTop = elView.aboveTop;
+			var aboveMiddle = elView.aboveMiddle;
+			var dontAnimate =  $("#" + cardIDs[i]).hasClass("dontAnimate");
 			console.log("Card " + cardIDs[i] + " -> inView: " + inView + " aboveTop: " + aboveTop);
-			if (inView && !aboveTop) {
+			if (aboveMiddle && !dontAnimate) {
 			    _animateCard(cardIDs[i]);
 		    }
+			var item = $(listItems[i]);
 			item.toggleClass(doneClassName, inView || aboveTop);
 		}
 		//sticky nav bar
@@ -73,42 +69,33 @@ function CardTracker(cardsContainerID, navBarID) {
 	
 	//@cardTrackerWidthFactor=> width of the card tracker nav bar
 	this.init = function (cardTrackerWidthFactor) {
-		$("#" + navBarID).addClass("navBar");
+	    $("#" + navBarID).addClass("cardNavBar");
 
-		buildCardTracker(cardTrackerWidthFactor);
-		_hideBlockingCards();
+	    buildCardTracker(cardTrackerWidthFactor);
+	    _hideBlockingCards();
 
-		//Add some animation when user clicks on a nav item
-		$(".navItem").click(function (e) {
-		    //e.preventDefault();
-            _showCard($(this).attr("href"));  //should be something like #2
-		});
-		startFromLastStep();
-	}
-	
-	//@	cardIndex: index of the card to store in cookie
-	function savestepToCache(cardIndex) {
-		//$.cookie('currentCardIndex', cardIndex, {expires:7,path:'/'});
-	}
-	
-	// returns the card index from cookie
-	function getstepFromCache() {
-		//return ($.cookie('currentCardIndex'));
+	    //Add some animation when user clicks on a nav item
+	    $(".navItem").click(function (e) {
+	        //e.preventDefault();
+	        _showCard($(this).attr("href"));  //should be something like #2
+	    });
+
+        //Don't animate the first card
+	    if (cardIDs.length > 0) {
+	        $("#" + cardIDs[0]).addClass("dontAnimate");
+	    };
+
+	    //Mark all cards that were in the view on load, so we don't animate them
+	    //for (i = 1; i < cardIDs.length; i++) {
+	    //    var elView = _viewPos(cardIDs[i]);
+	    //    var inView = elView.inViewPartial;
+	    //    var aboveTop = elView.aboveTop;
+	    //    if (inView || aboveTop) {
+	    //        $("#" + cardIDs[i]).addClass("dontAnimate");
+	    //    }
+	    //}
 	}
 
-	// starts from the last saved state
-	// if the last state is not present, it will start from 0.
-	function startFromLastStep()
-	{
-		var idx = getstepFromCache();
-		if(idx ===undefined || idx === "0") { /* no cookie found, start from 0*/
-			var listItems = $("#"+navBarListID+" li");			
-			$(listItems[0]).addClass(doneClassName); // this step is necessary, else, you will not see the the first item in nav bar
-			return;
-		}
-		document.getElementById(navbarAnchorItemIDTag+idx).click();
-	}
-	
 	// builds the card tracker
 	function buildCardTracker(cardTrackerWidthFactor) {
 
@@ -191,7 +178,12 @@ function CardTracker(cardsContainerID, navBarID) {
 				// set hef to its own card
 				var item = $("#" + navbarAnchorItemIDTag + "-" + cardIDs[startIndex]);
 				item.attr("href", "#" + cardIDs[startIndex]);
-				_showCard(cardIDs[startIndex]);
+				if (!scrolled) {
+					scrolled = true;
+				    _showCard(cardIDs[startIndex]);
+				} else {
+				    $("#" + cardIDs[startIndex]).show();
+				}
 			} else {
 				var item = $("#" + navbarAnchorItemIDTag + "-" + cardIDs[startIndex]);
 				item.attr("href", "#" + cardIDs[nextBlockingCardIndex]);
@@ -231,32 +223,28 @@ function CardTracker(cardsContainerID, navBarID) {
 	function _showCard(id) {
 		//set id to jquery element selector if not already
 		id = id[0] == "#" ?  id : "#" + id;
-	    var card = $(id);
-	    card.show({done: function() {
-	    	var navBar = $("#" + navBarID);	    	
-	        var navBarHeight = navBar.height();
-			var scrollTo = card.offset().top - navBarHeight - (!navBar.hasClass('navbar-fixed-top') ? navBarHeight : 0) ;
+		var card = $(id);
 
+	    //show the card
+		card.show();
 
-			inScrollMax = scrollTo;
-			if (!inScroll) {
-			    $({ myScrollTop: $(window).scrollTop() }).animate({ myScrollTop: scrollTo }, {
-			        duration: 800,
-			        easing: 'swing',
-			        step: function (val) {
-			            inScroll = val < inScrollMax;
-			            $(window).scrollTop(val);
-			        }
-			    });
-			}
-			//_animateCard(id);
-	    	}
-	    });
-	}
+        //scroll it to just under the navbar
+	    var navBar = $("#" + navBarID);	    	
+	    var navBarHeight = navBar.height() + 10;
+		var scrollTo = card.offset().top - navBarHeight - (!navBar.hasClass('navbar-fixed-top') ? navBarHeight : 0) ;
+
+        //move the scroll to the top and animate it over time
+		$("html,body").animate({
+		    duration: 1000,
+            scrollTop: scrollTo
+		});
+
+    }
 
 	this.showCardNoScroll = function (id) {
 		id = id[0] == "#" ?  id : "#" + id;	    
-	    $(id).show();
+		console.log("showCardNoScroll: " + id);
+		$(id).show();
 	}
 
     // Hide the specified card
@@ -270,7 +258,7 @@ function CardTracker(cardsContainerID, navBarID) {
 		id = id[0] == "#" ?  id : "#" + id;	    
 	    console.log("animating card " + id);
 	    var aniCard = $(id);
-	    aniCard.addClass("animated fadeInUp");
+	    aniCard.addClass("animated fadeInUp dontAnimate");
     }
 
 	this.removeAllBlockingCards = function () {
@@ -301,13 +289,15 @@ function CardTracker(cardsContainerID, navBarID) {
 		var elBottom = elTop + $el.height();
 		var topInView =  (elTop >= docViewTop) && (elTop <= docViewBottom);
 		var bottomInView = (elBottom >= docViewTop) && (elBottom <= docViewBottom);
+		var aboveMiddleTopInView = (elTop >= (docViewBottom - docViewTop) / 2);
 
 		var elVisible = _isVisible(id);
 
 		return { inViewFull: (topInView && bottomInView && elVisible),
 		    inViewPartial: ((topInView || bottomInView) && elVisible),
 		    aboveTop: (elBottom <= docViewTop),
-		    belowBottom: (elTop >= docViewBottom)
+		    belowBottom: (elTop >= docViewBottom),
+		    aboveMiddle: aboveMiddleTopInView
 		};
 	}
 

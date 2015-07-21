@@ -79,6 +79,8 @@
     <Content Include="images\Build-nonVS.png" />
     <Content Include="images\Build-VS.png" />
     <Content Include="images\equation2.PNG" />
+    <Content Include="images\excelcontent2.png" />
+    <Content Include="images\exceltaskpane2.png" />
     <Content Include="Scripts\browserInfo.js" />
     <Content Include="Styles\jquery.json-view.min.css" />
     <Content Include="Documentation\onerror.html" />
@@ -101,9 +103,7 @@
     <Content Include="images\Capture7.png" />
     <Content Include="images\devofficelogo.png" />
     <Content Include="images\docusign.png" />
-    <Content Include="images\excelcontent.PNG" />
     <Content Include="images\excellogo.png" />
-    <Content Include="images\exceltaskpane.PNG" />
     <Content Include="images\linkedin.png" />
     <Content Include="images\numbers.PNG" />
     <Content Include="images\O365Overview.PNG" />

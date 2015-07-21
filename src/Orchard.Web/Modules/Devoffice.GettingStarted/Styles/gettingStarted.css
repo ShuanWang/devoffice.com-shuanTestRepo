@@ -1,13 +1,13 @@
-﻿html {
+﻿/*html {
     background-color: #f4f4f4;
     background-image: -webkit-linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
     background-image: linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
     -webkit-font-smoothing: antialiased;
 }
+*/
 
 
-
-body {
+/*body {
     margin: 0 auto;
     padding: 2em 2em 4em;
     background-color: #F4F4F4 !important;
@@ -16,8 +16,9 @@ body {
     line-height: 1.5em;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
     position:relative;
-}
+}*/
 
+/*
 h1, h2, h4, h5, h6 {
     color: #222;
     font-weight: 600;
@@ -48,10 +49,11 @@ b, strong {
 samp {
     display: none;
 }
+*/
 
 img {
-    -webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
-    animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+    /*-webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
+    animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;*/
     background: transparent;
     border: 10px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;
@@ -60,6 +62,7 @@ img {
     max-width: 95%;
 }
 
+/*
 .img {
     margin-left:0px;
     border:0px;
@@ -68,43 +71,39 @@ img {
 .ht {
         height:800px;
     }
+*/
 
-.code-container {
-    overflow: auto;
-    max-height: 250px;
-    min-width: 90%;
-}
 .restCall {
     color: white;
     padding: 20px;
     padding-left: 20px;
-    background: #505050; 
+    background: #505050;
+    -ms-word-wrap: break-word;
     word-wrap: break-word;
 }
 
 .loading {
-        background: url(@Url.Content("~/images/Progressbar.gif?v=635662838588689369")) no-repeat;
-        background-color: #ffffff;
-        background-position: 75px center;
-   }
+    background: url("/Modules/Devoffice.GettingStarted/images/Progressbar.gif") no-repeat;
+    background-color: #ffffff;
+    background-position: 75px center;
+    width: 100%;
+}
 
 /* try it out */
 
 #invokeurlBtn {
-  color: white;
-  margin-bottom:20px;
+    color: white;
+    margin-bottom: 20px;
 }
 
 #paramTable {
-  margin-bottom: 0px !important; /*set margin to 0 for param try it out table */   
+    margin-bottom: 0px !important; /*set margin to 0 for param try it out table */
 }
 
 .code-container {
-        overflow: auto;
-        max-height: 400px;
-    } 
-
-
+    overflow: auto;
+    max-height: 400px;
+}
 
 .httpVerb {
     margin-right: 10px;
@@ -113,30 +112,28 @@ img {
 
 /* call out */
 .callout {
-    position:absolute;
-    right:-160px;
-    padding:20px;
-    background-color:white;
-    min-width:150px;
-    min-height:120px;
+    position: absolute;
+    right: -160px;
+    padding: 20px;
+    background-color: white;
+    min-width: 150px;
+    min-height: 120px;
 }
 
-
-.callout::after {
-   content:"";
-   position: absolute;
-   right: 135px;  
-   width: 0;
-   height: 0;
-   border-top: 13px solid transparent;
-   border-right: 26px solid white;
-   border-bottom: 13px solid transparent;
-   
-}
+    .callout::after {
+        content: "";
+        position: absolute;
+        right: 135px;
+        width: 0;
+        height: 0;
+        border-top: 13px solid transparent;
+        border-right: 26px solid white;
+        border-bottom: 13px solid transparent;
+    }
 
 
 
-@-webkit-keyframes colorize {
+/*@-webkit-keyframes colorize {
     0% {
         -webkit-filter: grayscale(100%);
     }
@@ -162,20 +159,28 @@ img {
     height:450px;
 }
 
-
 .scroll-area {
     margin-top:50px;
 }
+*/
+
 #main {
     background-color:#f4f4f4;
-    position:relative;
-    width: 900px;
+    /*position:relative;
+    width: 900px;*/
     left:auto;
     right:auto;
-    margin: 0px auto 0px auto; 
-
+    margin: 0 auto 0 auto; 
+    padding: 32px 32px 64px;
+    background-color: #F4F4F4 !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
 }
-#toolbarContainer {
+
+
+/*#toolbarContainer {
     display: table;
     table-layout: fixed;
     width: 100%; 
@@ -186,35 +191,31 @@ img {
 .toolbar {
 
    width: 100%;   
-}
+}*/
 
 .card, .card-more {
-    
-    height:auto;
-    min-height:200px;
-    border-color:white;
-    background-color:white !important;
-    margin-top:20px;
-    margin-bottom:20px;
+    height: auto;
+    min-height: 200px;
+    border-color: white;
+    background-color: white !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 40px 40px 40px 40px;
     border: 1px solid #ddd;
-    
 }
 
 .card-question {
-
-    min-height:60%;
-    border-color:white;
-    background-color:white !important;
-    margin-top:20px;
-    margin-bottom:20px;
+    min-height: 60%;
+    border-color: white;
+    background-color: white !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 40px 40px 40px 40px;
-     border: 1px solid #ddd;
- 
+    border: 1px solid #ddd;
 }
 
 
-blockquote {
+/*blockquote {
   padding: 5px 10px !important;
   margin: 0 0 20px;
   font-size: 12px !important;
@@ -232,6 +233,8 @@ ol li
     margin-bottom: 10px;
 
 }
+
+
 .dot {
  background-color:grey;
     height: 7px;
@@ -250,69 +253,62 @@ ol li
     position:absolute;
     left:0px;
 }
+    */
 
-.loading {
-    background: url("../images/Progressbar.gif?v=635662838588689369") no-repeat !important;
-    background-color: #ffffff;
-    background-position: 75px center;
-    min-height:100px;
-    width:100%;
-}
 .octocatlogo {
-    height:20px;
-    border:0px;
-    margin:0px;
-    display:inline;
+    border: 0;
+    margin: 0;
+    display: inline;
 }
 
 #progress {
     margin: 0;
     padding: 0;
-    list-style-type none;
+    list-style-type: none;
 }
-#progress li {
 
-    display: inline-block;
-    text-align: center;
-    line-height: 3em;  
-}
+    #progress li {
+        display: inline-block;
+        text-align: center;
+        line-height: 3em;
+    }
 
 
 #branding {
- max-height: 42px !important;   
+    max-height: 42px !important;
 }
 
 #progress li.done {
-        color: black;
-        border-bottom: 4px solid #da3f26 !important;
-        transition: all .5s ease-in-out;
-        -webkit-transition:all .5s ease-in-out;
-        
-    }
+    color: black;
+    border-bottom: 4px solid #da3f26 !important;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
 #progress li.todo {
-    color: silver; 
+    color: silver;
     border-bottom: 4px solid silver;
 }
 
-
-
 .note {
-  background-color: #eee;
-  display: block;
-  padding: 20px 15px 10px;
-  margin-top: 5px;
-  position: relative;
-  border-left-width: 5px;
-  border-left-style: solid;
-  border-left-color: #89c402;
+    background-color: #eee;
+    display: block;
+    padding: 20px 15px 10px;
+    margin-top: 5px;
+    position: relative;
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-left-color: #89c402;
 }
 
 .hidden2 {
- opacity:0;   
+    opacity: 0;
 }
 
 .visible2 {
-  opacity:1;  
+    opacity: 1;
 }
 /* this code is causing issue in alignment for navbar
 .video {
@@ -321,243 +317,252 @@ ol li
 }
 */
 #intro {
-    height:500px;
+    height: 500px;
 }
 
 #introContent {
-    float:left;
-    display:inline;
-    width:450px
-    
+    float: left;
+    display: inline;
+    width: 450px;
 }
 
 
 /*Responsive CSS Styles*/
 @media (max-width: 978px) {
     body {
+        padding: initial;
+    }
 
-        padding:initial;
-    }
     #navBarList {
-        display:none !important;
-        height:0px;
+        display: none !important;
+        height: 0px;
     }
+
     #main {
-        width:auto;
+        width: auto;
     }
+
     .card, .card-question {
-        height:auto;
+        height: auto;
         padding: 10px 10px 10px 10px;
     }
+
     .container {
-        padding-left:0px;
-        padding-right:0px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
-    
-    #paramTable, .callout
-    {
-        display:none;
+
+    #paramTable, .callout {
+        display: none;
     }
+
     #intro {
-        height:auto;
+        height: auto;
     }
 
     /*for create new account link*/
     .ms-Grid-col {
-        clear:both;
-        margin-top:10px;
-        
+        clear: both;
+        margin-top: 10px;
     }
 }
 
 /*NavBar CSS Styles*/
-.navbar {
-    background-color:#F4F4F4;
+.cardNavBar {
+    background-color: #F4F4F4;
 }
 
 #navBarList {
-	margin:0px auto;
-	padding:0;
-	list-style-type: none;
-	position:relative;
-	width:900px;
-	height:50px;
-	background-color:#F4F4F4;
-	z-index:10000;
-	text-align:left;
-}
-
-#navBarList li {
-	display:inline-block;
-	text-align:center;
-	line-height: 3em;
-	border-bottom:4px solid silver;
-}
-/*
-#navBarList li::after {
-    position:absolute;
-    top: 100px;
-    left:50%;
-    width: 100px;
-    height: 100px;
-    background-color: silver;
-    color:red;
-}*/
-
-#navBarList li.card-done {
-	color:black;
-	border-bottom:4px solid #da3f26;
-    transition: all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-
-}
-
-#navBarList li.card-done::after {
-
-    width: 0;
-	height: 0;
-	border-top: 2px solid transparent;
-	border-left: 400px solid green;
-	border-bottom: 2px solid transparent;
-
-
-}
-
-.cardTrackerContainer div.card {
-	float:left;
-    background-color:white;
-}
-#navBarList li a {
-    color:silver;
-}
-#navBarList li.card-done a {
-    color:#da3f26;
-    transition: all .2s ease-in-out;
-    -webkit-transition:all .2s ease-in-out;
-
-}
-    #navBarList {
-	margin:0px auto;
-	padding:0;
-	list-style-type: none;
-	position:relative;
-	width:900px;
-	height:50px;
-	background-color:#F4F4F4;
-	z-index:10000;
-	text-align:left;
+    margin: 0px auto;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    width: 900px;
+    height: 50px;
+    background-color: #F4F4F4;
+    z-index: 10000;
+    text-align: left;
 }
 
     #navBarList li {
-	    display:inline-block;
-	    text-align:center;
-	    line-height: 3em;
-	    border-bottom:4px solid silver;
+        display: inline-block;
+        text-align: center;
+        line-height: 3em;
+        border-bottom: 4px solid silver;
     }
 
-   #navBarList li.card-done {
-	    color:black;
-	    border-bottom:4px solid #da3f26;
-        transition: all .2s ease-in-out;
-        -webkit-transition:all .2s ease-in-out;
+        #navBarList li::after {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: silver;
+            color: red;
+        }
+
+        #navBarList li.card-done {
+            color: black;
+            border-bottom: 4px solid #da3f26;
+            -moz-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            -webkit-transition: all .2s ease-in-out;
+        }
+
+            #navBarList li.card-done::after {
+                width: 0;
+                height: 0;
+                border-top: 2px solid transparent;
+                border-left: 400px solid green;
+                border-bottom: 2px solid transparent;
+            }
+
+.cardTrackerContainer div.card {
+    float: left;
+    background-color: white;
+}
+
+/*#navBarList li a {
+    color: silver;
+}
+
+#navBarList li.card-done a {
+    color: #da3f26;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+}
+
+#navBarList {
+    margin: 0px auto;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    width: 900px;
+    height: 50px;
+    background-color: #F4F4F4;
+    z-index: 10000;
+    text-align: left;
+}
+
+    #navBarList li {
+        display: inline-block;
+        text-align: center;
+        line-height: 3em;
+        border-bottom: 4px solid silver;
     }
 
-    .cardTrackerContainer div.card {
-	    float:left;
-        background-color:white;
-    }
+        #navBarList li.card-done {
+            color: black;
+            border-bottom: 4px solid #da3f26;
+            -moz-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+            -webkit-transition: all .2s ease-in-out;
+        }
+
+.cardTrackerContainer div.card {
+    float: left;
+    background-color: white;
+}
 
 .navBar {
-    background-color:#F4F4F4;
+    background-color: #F4F4F4;
 }
+*/
+
 
 /* end NavBar CSS Styles*/
 
 .spacer40 {
-    height:40px;
+    height: 40px;
 }
 
 .spacer30 {
-    height:30px;
+    height: 30px;
 }
 
 .buttonCenter {
-    margin-left:auto;
-    margin-right:auto;
-    
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .spacer20 {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .video2 {
-    margin-top:5px;
-    margin-right:20px;
+    margin-top: 5px;
+    margin-right: 20px;
 }
 
 .productsTable td {
-    margin-left:5px;
-    padding-left:10px;
-    padding-top:10px;
+    margin-left: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 /* Button */
 .button {
     background: #0078d7;
-    padding: 7px 12px; 
-    border-radius: 0px; 
-    border: 0px; 
-    border-image: none; 
-    color: white !important; 
-    min-width:70px;
-    margin-top:10px;
-    margin-bottom:10px;
-    white-space:nowrap;
+    padding: 7px 12px;
+    border-radius: 0px;
+    border: 0px;
+    -moz-border-image: none;
+    -o-border-image: none;
+    -webkit-border-image: none;
+    border-image: none;
+    color: white !important;
+    min-width: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
 }
 
-.button:hover {
-    color: white;
-    border:0px;
-    background-color: #005a9e;
-}
+    .button:hover {
+        color: white;
+        border: 0px;
+        background-color: #005a9e;
+    }
 
 pre.response {
-    overflow:auto;
-    height:300px;
+    overflow: auto;
+    height: 300px;
 }
 
 #challengeBox-details {
-    margin-top:10px;
-    margin-bottom:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #parameterDetails {
-  line-height: 16px;
-  background-color:#EEE;
+    line-height: 16px;
+    background-color: #EEE;
 }
 
 .highlight {
-    border-color:red;
+    border-color: red;
 }
 /* tabs */
 .tabs {
-  display: inline-block;
-  margin: 20px auto 0;
-  font-size: 0;
+    display: inline-block;
+    margin: 20px auto 0;
+    font-size: 0;
 }
 
 .question .tabs {
-  margin: 30px auto 0;
+    margin: 30px auto 0;
 }
 
 .tabs li {
-  display: inline-block;
-  margin: 0;
-  font-size: 15px;
+    display: inline-block;
+    margin: 0;
+    font-size: 15px;
 }
 
-/*
+    /*
 .tabs li:first-child a {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -569,98 +574,120 @@ pre.response {
 }
 */
 
-.tabs li:nth-child(even) a {
-  margin: 0 -1px;
-}
+    .tabs li:nth-child(even) a {
+        margin: 0 -1px;
+    }
 
 .tabs a {
-  color: #da3f26;
-  background-color: #fff;
-  padding: 10px 20px;
-  display: inline-block;
-  border: 1px solid #dddddd;
-  position: relative;
-  line-height: 1em;
-  -webkit-transition: all 0.2s ease-in-out 0s;
-  -moz-transition: all 0.2s ease-in-out 0s;
-  -o-transition: all 0.2s ease-in-out 0s;
-  transition: all 0.2s ease-in-out 0s;
+    color: #da3f26;
+    background-color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 1px solid #dddddd;
+    position: relative;
+    line-height: 1em;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    -o-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
 }
 
 .question .tabs a {
-  background-color: #fcfcfc;
+    background-color: #fcfcfc;
 }
 
 .tabs a:hover {
-  color: #da3f26;
-  border-color: #da3f26;
-  z-index: 10;
+    color: #da3f26;
+    border-color: #da3f26;
+    z-index: 10;
 }
 
 .tabs a.selected {
-  z-index: 20;
-  color: #fff;
-  background-color: #da3f26;
-  border-color: #da3f26;
-  outline: none;
-  
+    z-index: 20;
+    color: #fff;
+    background-color: #da3f26;
+    border-color: #da3f26;
+    outline: none;
 }
 
 
-.sticky-bubble{
-	position:fixed;
-	left:87%;
-	background:#da3f26;
-	color:black;
-	font-size:15px;
-	padding:5px;
-	width:auto;
-	height:50px;
-	padding-top:10px;
-	text-align:center;
-	box-shadow: 2px 3px 5px #888;
-	float:left;
+.sticky-bubble {
+    position: fixed;
+    left: 87%;
+    background: #da3f26;
+    color: black;
+    font-size: 15px;
+    padding: 5px;
+    width: auto;
+    height: 50px;
+    padding-top: 10px;
+    text-align: center;
+    box-shadow: 2px 3px 5px #888;
+    float: left;
 }
 
 /*animate cards*/
 .animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 
-        @-webkit-keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        -moz-transform: translate3d(0, 100%, 0);
+        -ms-transform: translate3d(0, 100%, 0);
+        -o-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
 
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        transform: none;
+    }
 }
 
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        -moz-transform: translate3d(0, 100%, 0);
+        -ms-transform: translate3d(0, 100%, 0);
+        -o-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
 
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        transform: none;
+    }
 }
 
 .fadeInUp {
-  -webkit-animation-name: fadeInUp;
-  animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+    -moz-animation-name: fadeInUp;
+    -o-animation-name: fadeInUp;
+    animation-name: fadeInUp;
 }
 
+.imgSelectApp {
+    height: 50px;
+    width: 50px;
+    border: none;
+}
