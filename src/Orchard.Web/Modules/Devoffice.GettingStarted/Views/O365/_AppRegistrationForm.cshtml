@@ -4,7 +4,7 @@
     <div class="ms-Grid-col ms-u-sm12">
         <span class="ms-font-xl">Welcome, <strong>@Session[Devoffice.GettingStarted.Utils.Constants.azureUserTagStr]</strong>!</span>
         <span class="ms-font-l">(Wrong account? No problem, @Html.ActionLink(T("Sign out").ToString(), "SignOut", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, htmlAttributes: new { id = "signoutLink" })</span>
-        <p>Now that you've logged in, you can create the app registration using the form below. We've already filled in default values that should work if you're following the tutorial.</p>
+        <p>Now that you've signed in, you can create the app registration using the form below. We've already filled in default values that should work if you're following the tutorial.</p>
         <br />
     </div>
 </div>
@@ -101,25 +101,24 @@
 
             </div>
         </div>
-
+        <button id="register-button" class="button" onclick="registerApp()">
+            <span class="ms-Button-label">Register App</span>
+        </button>
     </form>
 </div>
-<button id="register-button" class="button" onclick="registerApp()">
-    <span class="ms-Button-label">Register App</span>
-</button>
-    <div id="registration-progress" class="code-container"></div>
+
+<div id="registration-progress" class="code-container"></div>
 <div id="registration-result" class="hidden note">
     <div>
-        <h3 class="ms-font-xl"><strong>Registration Successful!</strong></h3>
-        <br />
+        <h3><strong>Registration Successful!</strong></h3>
     </div>
     <div class="ms-TextField">
         <label class="" for="clientId">Client ID:</label>
-        <input id="clientIdField" class="ms-TextField-field" type="text" name="clientId" value="" disabled />
+        <input id="clientIdField" class="form-control" type="text" name="clientId" value="" disabled />
     </div>
     <div class="ms-TextField" id="app-reg-client-secret">
         <label class="" for="clientSecret">Client Secret:</label>
-        <input id="clientSecretField" class="ms-TextField-field" type="text" name="clientSecret" value="" disabled />
+        <input id="clientSecretField" class="form-control" type="text" name="clientSecret" value="" disabled />
     </div>
 </div>
 
