@@ -38,12 +38,15 @@ namespace Devoffice.GettingStarted.Controllers
             return View();
         }
 
+        [HttpPost]
         /// <summary>
         /// Sets up the platform for the current session
         /// </summary>
         /// <param name="platformName">name of the platform</param>
-        public void Platform(string platformName)
+        
+        public void Platform(string param)
         {
+            string platformName = param;
             if (!string.IsNullOrEmpty(platformName))
             {
                 Session[Constants.platformNameTagStr] = platformName;

@@ -93,11 +93,11 @@ function selectPlatform(platform) {
     //fileType = setupFile //Hardcoded as this will not chnage ; divName is also Hardcoded
     setDocumentationDivForPlatform(platformId, "setupFile", "ShowDocumentationDiv");
 
-    var urltosend = "/home/platform/" + platform.id;
+    var urltosend = "/GettingStarted/Main/platform/" + platform.id;
 
     /* Note: we dont need to do any error handling here*/
     $.ajax({
-        url: urltosend,
+        url: urltosend + getAntiForgeryTokenQuery(),
         type: "POST",
         data: platformId,
     });

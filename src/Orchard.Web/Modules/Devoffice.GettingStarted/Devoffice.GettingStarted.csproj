@@ -82,6 +82,7 @@
     <Content Include="images\excelcontent2.png" />
     <Content Include="images\exceltaskpane2.png" />
     <Content Include="Scripts\browserInfo.js" />
+    <Content Include="Scripts\Utils.js" />
     <Content Include="Styles\jquery.json-view.min.css" />
     <Content Include="Documentation\onerror.html" />
     <Content Include="Documentation\rest-api\android\getting-started-Office-365-APIs-android.html" />
