@@ -7,7 +7,8 @@
     Style.Include("jquery.json-view.min.css");
 
     Script.Require("jQuery").AtHead();
-    Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead(); 
+    Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead();
+    Script.Include("Utils.js").AtHead();
     Script.Include("navBar.js").AtHead();
     Script.Include("userPlatformManager.js").AtHead(); //TBD: we need to refractor this file
     Script.Include("modernizr-2.6.2.js").AtHead(); //TBD: Do we need this?
@@ -16,13 +17,15 @@
     Script.Include("gettingStarted.js").AtHead(); //TBD: Do we need this?
 
     Script.Include("registerApp.js").AtFoot();
-    Script.Include("embeddedCodeSample.js").AtFoot();
-    Script.Include("FileSaver.js").AtFoot();
-    Script.Include("jquery.json-view.min.js").AtFoot();
     Script.Include("jszip.js").AtFoot();
+    Script.Include("jszip-utils.js").AtFoot();
+    Script.Include("FileSaver.js").AtFoot();
+    Script.Include("embeddedCodeSample.js").AtFoot();
+    Script.Include("jquery.json-view.min.js").AtFoot();
     Script.Include("tryitout.js").AtFoot();
     Script.Include("websiteContent.js").AtFoot();
 }
+<meta http-equiv="Pragma" content="no-cache">
 
 <style>
     <!--
@@ -36,7 +39,6 @@
 
 <script>
     var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
-
     //var platformName = null;
     var platformId = null;
     $(document).scroll(function () {
@@ -85,6 +87,7 @@
 
 </script>
 <div id="main" class="container-fluid">
+    <input type="hidden" name="__RequestVerificationToken" id="o365ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
     <div id="myNavBar"></div>
     <div id="o365-progressTrackerContainer">
         @Html.Partial("./O365/_Intro")

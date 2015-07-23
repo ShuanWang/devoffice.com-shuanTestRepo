@@ -138,7 +138,7 @@ function registerApp() {
     registerAppParams.signonUri = signOnUrl;
     registerAppParams.redirectUri = redirectUri;
 
-    var actionUrl = "/GettingStarted/AppRegistration/RegisterApp";
+    var actionUrl = "/GettingStarted/AppRegistration/RegisterApp" + getAntiForgeryTokenQuery();
 
     var param = {
         "appName": appName,
@@ -159,7 +159,6 @@ function registerApp() {
     }
     $('#register-button').attr("disabled", "disabled");
     $('#registration-progress').addClass('loading');
-
     var json = JSON.stringify(param);//
     $.ajax({
         url: actionUrl,
