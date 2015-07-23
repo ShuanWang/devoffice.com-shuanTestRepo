@@ -126,11 +126,10 @@
     <Content Include="images\wordlogo.png" />
     <Content Include="images\wordtaskpane.PNG" />
     <Content Include="Scripts\addins.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\embeddedCodeSample.js" />
     <Content Include="Scripts\FileSaver.js" />
     <Content Include="Scripts\gettingStarted.js" />
+    <Content Include="packages.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -194,9 +193,6 @@
     <Compile Include="Utils\ServiceInfo.cs" />
     <Compile Include="Utils\SettingsHelper.cs" />
     <Compile Include="Utils\TokenHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Parts\AddinsWidget.cshtml" />

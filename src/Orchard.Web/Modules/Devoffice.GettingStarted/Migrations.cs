@@ -24,13 +24,15 @@ namespace Devoffice.GettingStarted {
 
     public class Migrations : DataMigrationImpl
     {
+        private readonly IAutorouteService _autorouteService;
         private readonly IWidgetsService _widgetsService;
         private readonly IContentManager _contentManager;
-        private readonly IAutorouteService _autorouteService;
         private readonly IMenuService _menuService;
         public Migrations(IContentManager contentManager,
-                          IWidgetsService widgetsService)
+                          IWidgetsService widgetsService,
+                          IAutorouteService autorouteService)
         {
+            _autorouteService = autorouteService;
             _contentManager = contentManager;
             _widgetsService = widgetsService;
         }
@@ -59,7 +61,7 @@ namespace Devoffice.GettingStarted {
             #endregion
 
             #region Create Office 365 APIs Widget
-            var apiLayer = _widgetsService.CreateLayer("Getting Started APIs", "The widgets in this layer are displayed on the Getting Started O365 API Pages", "url '~/GettingStarted/Api'");
+            var apiLayer = _widgetsService.CreateLayer("Getting Started APIs", "The widgets in this layer are displayed on the Getting Started Office 365 API Pages", "url '~/GettingStarted/Office365Api'");
             ContentDefinitionManager.AlterPartDefinition(
                 typeof(ApiWidgetPart).Name, cfg => cfg.Attachable());
 
@@ -71,7 +73,7 @@ namespace Devoffice.GettingStarted {
                     .WithSetting("Stereotype", "Widget")
                 );
 
-            var apiWidget = _widgetsService.CreateWidget(apiLayer.Id, "ApiWidget", "Getting Started O365 API Widget", "1", "Content");
+            var apiWidget = _widgetsService.CreateWidget(apiLayer.Id, "ApiWidget", "Getting Started Office 365 API Widget", "1", "Content");
             apiWidget.RenderTitle = false;
             apiWidget.Name = "ApiWidget";
             _contentManager.Publish(apiWidget.ContentItem);
@@ -80,39 +82,38 @@ namespace Devoffice.GettingStarted {
             return 1;
         }
 
-        //public int UpdateFrom1()
-        //{
-        //    #region Create new pages - addins, apis
+        public int UpdateFrom1()
+        {
 
-        //    //Create Addins Page
-        //    var pageAddins = _contentManager.Create("Page");
-        //    pageAddins.As<TitlePart>().Title = "Addins";
-        //    pageAddins.As<BodyPart>().Text = String.Empty;
+            #region Create new pages - addins, o365apis
 
-        //    var pageAddinsArp = pageAddins.As<AutoroutePart>();
-        //    pageAddinsArp.DisplayAlias = "getting-started/addins";
-        //    _autorouteService.GenerateAlias(pageAddinsArp);
-        //    _autorouteService.PublishAlias(pageAddinsArp);
+            //Create Addins Page
+            var pageAddins = _contentManager.Create("Page");
+            pageAddins.As<TitlePart>().Title = "Getting Started with Addins";
+            pageAddins.As<BodyPart>().Text = String.Empty;
 
-        //    //Create Api Page
-        //    var pageApi = _contentManager.Create("Page");
-        //    pageApi.As<TitlePart>().Title = "Api";
-        //    pageApi.As<BodyPart>().Text = String.Empty;
+            var pageAddinsArp = pageAddins.As<AutoroutePart>();
+            pageAddinsArp.DisplayAlias = "GettingStarted/Addins";
+            _autorouteService.GenerateAlias(pageAddinsArp);
+            _autorouteService.PublishAlias(pageAddinsArp);
 
-        //    var pageApiArp = pageApi.As<AutoroutePart>();
-        //    pageApiArp.DisplayAlias = "getting-started/api";
-        //    _autorouteService.GenerateAlias(pageApiArp);
-        //    _autorouteService.PublishAlias(pageApiArp);
+            _contentManager.Publish(pageAddins);
 
-        //    #endregion
-        //    //update layer url
-        //    var addinsLayer = _widgetsService.GetLayers();
-        //    addinsLayer.LayerRule = "~\getting-started\addins";
-        //    ContentDefinitionManager.AlterPartDefinition(
-        //        typeof(AddinsWidgetPart).
+            //Create Api Page
+            var pageApi = _contentManager.Create("Page");
+            pageApi.As<TitlePart>().Title = "Getting Started with Office 365 APIs";
+            pageApi.As<BodyPart>().Text = String.Empty;
 
+            var pageApiArp = pageApi.As<AutoroutePart>();
+            pageApiArp.DisplayAlias = "GettingStarted/Office365Api";
+            _autorouteService.GenerateAlias(pageApiArp);
+            _autorouteService.PublishAlias(pageApiArp);
 
-        //    return 2;
-        //}
+            _contentManager.Publish(pageApi);
+            #endregion
+
+            return 2;
+        }
+
     }
 }

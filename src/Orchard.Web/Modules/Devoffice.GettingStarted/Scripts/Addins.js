@@ -8,7 +8,11 @@ $(document).ready(function () {
 
     //early load xl addin iframe
     var xlFrameSrc = "https://onedrive.live.com/embed?cid=8D7305F0A8BFFBF0&resid=8D7305F0A8BFFBF0%21107&authkey=AIvgZ8lq1Fi31DU&em=2&AllowTyping=True&ActiveCell='Sheet1'!A20&wdDownloadButton=True";
-    $("#xlframe").css("display", "none").attr("src", xlFrameSrc).load(iframeLoaded);
+    $("#xlframe")
+        .css({ "display": "none" })
+        .attr("src", xlFrameSrc)
+        .height(600)
+        .load(iframeLoaded);
 
     //Do OS specific things
     if (!os().isWindows) {
@@ -27,7 +31,7 @@ $(document).scroll(function () {
 });
 
 function iframeLoaded() {
-    $("#iframeLoading").hide();
+    $("#iframeLoading").removeClass("loading");
 }
 
 var taskPane = {
@@ -88,7 +92,8 @@ function selectClient(selectedClient) {
 
     switch (selectedClient) {
         case 'excel':
-            //$('#embedContents').html("<h3>Explore the JavaScript API in Excel</h3><p>Below, you'll see an Excel Add-in that we've built. This add-in showcases a selection of the JavaScript API. Click on one of the tiles to explore the relevant method in the API.</p><br><p>You can download this add-in and launch it in your own version of Office from the <a href='https://store.office.com/api-tutorial-for-office-WA104077907.aspx?assetid=WA104077907' target='_blank'>Office Store.</a></p><br>");
+            $("#iframeLoading").toggle($("#iframeLoading").hasClass("loading"));
+
             setContent($('#embedContents'), "<h3>Explore the JavaScript API in Excel</h3><p>Below, you'll see an Excel Add-in that we've built. This add-in showcases a selection of the JavaScript API. Click on one of the tiles to explore the relevant method in the API.</p><br><p>You can download this add-in and launch it in your own version of Office from the <a href='https://store.office.com/api-tutorial-for-office-WA104077907.aspx?assetid=WA104077907' target='_blank'>Office Store.</a></p><br>");
 
             //show the add-in frame, which should be loading in the background
@@ -113,7 +118,7 @@ function selectClient(selectedClient) {
             break;
 
         case 'outlook':
-            setContent($('#embedContents'), "<h3>Explore Outlook Add-ins</h3><p>This short video shows you what an add-in is and gives a brief introduction to the JavaScript API that powers the add-ins model.</p><BR><iframe width='800' height='452' src='https://www.youtube.com/embed/Hov8f_VniCc' frameborder='0' allowfullscreen></iframe>");
+            setContent($('#embedContents'), "<h3>Explore Outlook Add-ins</h3><p>This short video shows you what an add-in is and gives a brief introduction to the JavaScript API that powers the add-ins model.</p><BR><iframe class='embed-responsive-item embed-responsive-16by9' height='400px' width='100%' src='https://www.youtube.com/embed/Hov8f_VniCc' frameborder='0' allowfullscreen></iframe>");
 
             $('#option1title').text(compose.title);
             $('#option1img').attr('src', compose.img);
@@ -135,7 +140,7 @@ function selectClient(selectedClient) {
 
         case 'powerpoint':
 
-            setContent($('#embedContents'), "<div><h3>Explore PowerPoint Add-ins</h3></div>This short video shows you what a PowerPoint Add-in looks like and gives a brief introduction to the JavaScript API that powers the add-ins model.<BR><BR><iframe width='800' height='452' src='https://www.youtube.com/embed/tFq_dl1yUUc' frameborder='0' allowfullscreen></iframe><BR><BR>For a full list of the APIs available, check out the <a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>reference documentation</a>.<BR>");
+            setContent($('#embedContents'), "<div><h3>Explore PowerPoint Add-ins</h3></div>This short video shows you what a PowerPoint Add-in looks like and gives a brief introduction to the JavaScript API that powers the add-ins model.<BR><BR><iframe class='embed-responsive-item embed-responsive-16by9' height='400px' width='100%' src='https://www.youtube.com/embed/tFq_dl1yUUc' frameborder='0' allowfullscreen></iframe><BR><BR>For a full list of the APIs available, check out the <a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>reference documentation</a>.<BR>");
 
             $('#option1title').text(content.title);
             $('#option1img').attr('src', content.img.powerpoint);
@@ -157,7 +162,7 @@ function selectClient(selectedClient) {
 
         case 'word':
 
-            setContent($('#embedContents'), "<div><h3>Explore Word Add-ins</h3></div>This short video shows you what a Word Add-in looks like and gives a brief introduction to the JavaScript API that powers the add-ins model.<BR><BR><iframe width='800' height='452' src='https://www.youtube.com/embed/S23rcdX96Wc' frameborder='0' allowfullscreen></iframe><BR><BR>For a full list of the APIs available, check out the <a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>reference documentation</a>.<BR>");
+            setContent($('#embedContents'), "<div><h3>Explore Word Add-ins</h3></div>This short video shows you what a Word Add-in looks like and gives a brief introduction to the JavaScript API that powers the add-ins model.<BR><BR><iframe class='embed-responsive-item embed-responsive-16by9' height='400px' width='100%' src='https://www.youtube.com/embed/S23rcdX96Wc' frameborder='0' allowfullscreen></iframe><BR><BR>For a full list of the APIs available, check out the <a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>reference documentation</a>.<BR>");
 
 
             $('#option1title').text(taskPane.title);
@@ -174,9 +179,12 @@ function selectClient(selectedClient) {
             break;
     }
     //removing the blocking card will show the next cards
-    cardTracker.removeBlockingCard();
-
-    cardTracker.showCardNoScroll("choosetype");
+    //Don't call removeBlockingCard again since it will remove the next blocking card
+    if (cardTracker.isInBlockingList("selectapp")) {
+        cardTracker.removeBlockingCard();
+    } else {
+        cardTracker.showCardNoScroll("choosetype");
+    }
 }
 
 function selectMore(selectedClient, selectedShape) {
@@ -217,8 +225,15 @@ function selectMore(selectedClient, selectedShape) {
             $('#more-playground').attr('href', read.overlaytop);
             break;
     }
-    cardTracker.removeBlockingCard();
-    cardTracker.showCard("build");
-    cardTracker.showCardNoScroll("more");
+
+    //removing the blocking card will show the next cards
+    //Don't call removeBlockingCard again since it will remove the next blocking card
+    if (cardTracker.isInBlockingList("choosetype")) {
+        cardTracker.removeBlockingCard();
+    } else {
+        cardTracker.showCard("build");
+        cardTracker.showCardNoScroll("more");
+    }
+
 }
 

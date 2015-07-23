@@ -43,7 +43,7 @@ function CardTracker(cardsContainerID, navBarID) {
 		var doctop = $(document).scrollTop();
 		var lastCardSaved = false;
 		var aniCard = -1;
-		console.log("----------start scroll-----------");
+		//console.log("----------start scroll-----------");
 		for (i=0; i<cardIDs.length; i++)
 		{
 		    if (i == blockingCards[0]+1) {
@@ -55,7 +55,7 @@ function CardTracker(cardsContainerID, navBarID) {
 			var aboveTop = elView.aboveTop;
 			var aboveMiddle = elView.aboveMiddle;
 			var dontAnimate =  $("#" + cardIDs[i]).hasClass("dontAnimate");
-			console.log("Card " + cardIDs[i] + " -> inView: " + inView + " aboveTop: " + aboveTop);
+			//console.log("Card " + cardIDs[i] + " -> inView: " + inView + " aboveTop: " + aboveTop);
 			if (aboveMiddle && !dontAnimate) {
 			    _animateCard(cardIDs[i]);
 		    }
@@ -308,5 +308,13 @@ function CardTracker(cardsContainerID, navBarID) {
 	    var el = $(id);
 
     	return $(el).is(":visible");
+	}
+
+	this.isInBlockingList = function (id) {
+	    if (blockingCards.length == 0) { return false; }
+	    var cardIndex = cardIDs.indexOf(id);
+	    var found = blockingCards.indexOf(cardIndex);
+	    console.log("isInBlockingList: " + found, "for: " + id);
+	    return (found != -1);
 	}
 }

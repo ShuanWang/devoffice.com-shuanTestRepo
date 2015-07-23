@@ -54,14 +54,15 @@ samp {
 }
 */
 
-img {
-    /*-webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
-    animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;*/
+
+.imgGS {
+    /*-webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;*/
+    /*animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;*/
     background: transparent;
     border: 10px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     display: block;
-    margin: 1.3em auto;
+    margin: 20px auto;
     max-width: 95%;
 }
 
@@ -508,6 +509,7 @@ ol li
 }
 
 /* Button */
+
 .button {
     background: #0078d7;
     padding: 7px 12px;
@@ -529,6 +531,7 @@ ol li
         border: 0px;
         background-color: #005a9e;
     }
+
 
 pre.response {
     overflow: auto;
@@ -693,4 +696,13 @@ pre.response {
     height: 50px;
     width: 50px;
     border: none;
+}
+
+.imgAddinType {
+
+    border:0px; 
+    margin:20 0 20 0; 
+    display:block; 
+    margin-left:auto; 
+    margin-right:auto;
 }
