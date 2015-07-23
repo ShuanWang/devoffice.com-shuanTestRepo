@@ -132,6 +132,7 @@
     <Content Include="Scripts\embeddedCodeSample.js" />
     <Content Include="Scripts\FileSaver.js" />
     <Content Include="Scripts\gettingStarted.js" />
+    <Content Include="CodeSamples\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

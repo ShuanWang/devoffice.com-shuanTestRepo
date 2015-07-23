@@ -25,7 +25,7 @@ var reposList = {
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
             "RedirectURLStringToReplace": "<Your redirect URI here>",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-Android-Connect-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Android-Connect-master.zip",
             "GitHubRepoName": "O365-Android-Connect.zip",
             "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Android-Connect/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Android-Connect"
@@ -37,7 +37,7 @@ var reposList = {
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-Win-tutorial-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Win-tutorial-master.zip",
             "GitHubRepoName": "O365-Win-Tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial"
@@ -49,7 +49,7 @@ var reposList = {
             "ClientSecretStringToReplace": "tqlvN4Skz4Ah7BVcttEpJLxilJ4V0h+EnrSmLAaYfmQ=",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-PHP-tutorial-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-PHP-tutorial-master.zip",
             "GitHubRepoName": "O365-PHP-tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/php-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/php-tutorial"
@@ -61,7 +61,7 @@ var reposList = {
             "ClientSecretStringToReplace": "YOUR CLIENT SECRET HERE",
             "RedirectURLStringToReplace": "http://localhost:8000",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-Node-tutorial-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Node-tutorial-master.zip",
             "GitHubRepoName": "O365-Node-tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/node-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/node-tutorial"
@@ -73,7 +73,7 @@ var reposList = {
             "ClientSecretStringToReplace": "YOUR CLIENT SECRET",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-Python-tutorial-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Python-tutorial-master.zip",
             "GitHubRepoName": "O365-Python-tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/python_tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/python_tutorial"
@@ -85,7 +85,7 @@ var reposList = {
             "ClientSecretStringToReplace": "<YOUR CLIENT SECRET>",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-Ruby-tutorial-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Ruby-tutorial-master.zip",
             "GitHubRepoName": "O365-Ruby-tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial"
