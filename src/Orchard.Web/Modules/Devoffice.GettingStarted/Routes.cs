@@ -57,11 +57,12 @@ namespace Dev.Office.Com.GettingStarted
                new RouteDescriptor {
                     Priority = 5,
                     Route = new Route(
-                        "GettingStarted/{controller}/{action}", // name of the page url
+                        "GettingStarted/{controller}/{action}/{param}", // name of the page url
                         new RouteValueDictionary {
                             {"area", "Devoffice.GettingStarted"}, // name of the module
                             {"controller", "{controller}"},
-                            {"action", "{action}"}
+                            {"action", "{action}"},
+                            {"param", UrlParameter.Optional}
                         },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {

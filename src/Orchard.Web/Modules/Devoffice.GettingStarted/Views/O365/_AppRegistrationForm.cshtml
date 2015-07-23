@@ -1,8 +1,9 @@
 ﻿<div>
+
 <div id="signed-in-display" class="ms-Grid-row">
     <div class="ms-Grid-col ms-u-sm12">
         <span class="ms-font-xl">Welcome, <strong>@Session[Devoffice.GettingStarted.Utils.Constants.azureUserTagStr]</strong>!</span>
-        <span class="ms-font-l">(Wrong account? No problem, <a href="@Url.Action("_SignOut", "Account")">logout</a> and try again.)</span>
+        <span class="ms-font-l">(Wrong account? No problem, @Html.ActionLink(T("Sign out").ToString(), "SignOut", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, htmlAttributes: new { id = "signoutLink" })</span>
         <p>Now that you've logged in, you can create the app registration using the form below. We've already filled in default values that should work if you're following the tutorial.</p>
         <br />
     </div>
