@@ -170,7 +170,7 @@ function registerApp() {
             if (registerAppParams.clientId !=null ) {
                 /* update case*/
                 if (data.error_message != undefined) {
-                    $('#registration-result .ms-font-xl').html("<strong>An error as been occured while updating the app</strong>");
+                    $('#registration-result .ms-font-xl').html("<strong>An error has been occured while updating the app</strong>");
                 }
                 else {
                     $('#registration-result .ms-font-xl').html("<strong>Application has been updated successfully</strong>");
@@ -192,7 +192,12 @@ function registerApp() {
                 cardTracker.removeBlockingCard();
             }
             else {
-                $('#reg-error_msg').text(data.error_message);
+                if (data.error_message.search("ForgeryToken") != -1) {
+                    $('#reg-error_msg').text("Error: it seems that you have stale cookies, please delete the cookies, close the browser and start again.");
+                }
+                else {
+                    $('#reg-error_msg').text(data.error_message);
+                }
                 $('#reg-error_display').show();
                 $('#reg-error_display').addClass('animated fadeInUp');
             }
