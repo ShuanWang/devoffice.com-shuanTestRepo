@@ -6,20 +6,23 @@
         <br />
     </div>
 </div>
-<div id="signin-options" class="ms-Grid-row">
-    <div class="ms-Grid-col ms-u-sm12 ms-u-md6">
+<div id="signin-options" class="row">
+    <div class="col-sm-6 col-lg-6">
         <a id="app-reg-signin" class="button" href="#">
             <span class="ms-Button-label">Sign in with your existing admin account</span>
         </a>
     </div>
-    <br />
-    <div class="ms-Grid-col ms-u-sm12 ms-u-md6">
+    <div class="cols-sm-6 col-lg-6 marginTop10">
         <a href="https://portal.microsoftonline.com/Signup/MainSignUp.aspx?OfferId=6881A1CB-F4EB-4db3-9F18-388898DAF510&DL=DEVELOPERPACK" target="_blank" onclick="ga('send', 'event', 'O365path-Rest', 'Signin-CreateNewAccount');">Create a new Office 365 account</a>
     </div>
 </div>
-<a id="app-reg-signin-later">
-    <span class="ms-Button-label">No, I will sign in later</span>
-</a>
+
+<div class="marginTop10">
+    <a id="app-reg-signin-later">
+        <span class="ms-Button-label">No, I will sign in later</span>
+    </a>
+
+</div>
 <div class="ms-border-color-neutralDark ms-bg-color-error">
     <p id="signin-error_msg" class="ms-font-color-error ms-font-l ">@ViewBag.SigninError</p>
 </div>
