@@ -42,7 +42,7 @@ namespace Devoffice.GettingStarted {
         {
 
             #region Create AddinsWidget
-            var addinsLayer = _widgetsService.CreateLayer("Getting Started Add-ins", "The widgets in this layer are displayed on the Getting Started Add-ins Pages", "url '~/GettingStarted/Addins'");
+            var addinsLayer = _widgetsService.CreateLayer("Getting Started Add-ins", "The widgets in this layer are displayed on the Getting Started Add-ins Pages", "url '~/Getting-Started/Addins'");
             ContentDefinitionManager.AlterPartDefinition(
                 typeof(AddinsWidgetPart).Name, cfg => cfg.Attachable());
 
@@ -61,7 +61,7 @@ namespace Devoffice.GettingStarted {
             #endregion
 
             #region Create Office 365 APIs Widget
-            var apiLayer = _widgetsService.CreateLayer("Getting Started APIs", "The widgets in this layer are displayed on the Getting Started Office 365 API Pages", "url '~/GettingStarted/Office365Api'");
+            var apiLayer = _widgetsService.CreateLayer("Getting Started APIs", "The widgets in this layer are displayed on the Getting Started Office 365 API Pages", "url '~/Getting-Started/Office365Api'");
             ContentDefinitionManager.AlterPartDefinition(
                 typeof(ApiWidgetPart).Name, cfg => cfg.Attachable());
 
@@ -82,38 +82,38 @@ namespace Devoffice.GettingStarted {
             return 1;
         }
 
-        public int UpdateFrom1()
-        {
+        //public int UpdateFrom1()
+        //{
 
-            #region Create new pages - addins, o365apis
+        //    #region Create new pages - addins, o365apis
 
-            //Create Addins Page
-            var pageAddins = _contentManager.Create("Page");
-            pageAddins.As<TitlePart>().Title = "Getting Started with Addins";
-            pageAddins.As<BodyPart>().Text = String.Empty;
+        //    //Create Addins Page
+        //    var pageAddins = _contentManager.Create("Page", VersionOptions.Published);
+        //    pageAddins.As<TitlePart>().Title = "Getting Started with Addins";
+        //    pageAddins.As<BodyPart>().Text = String.Empty;
+        //    _contentManager.Publish(pageAddins);
 
-            var pageAddinsArp = pageAddins.As<AutoroutePart>();
-            pageAddinsArp.DisplayAlias = "GettingStarted/Addins";
-            _autorouteService.GenerateAlias(pageAddinsArp);
-            _autorouteService.PublishAlias(pageAddinsArp);
+        //    var pageAddinsArp = pageAddins.As<AutoroutePart>();
+        //    pageAddinsArp.DisplayAlias = "Getting-Started/Addins";
+        //    _autorouteService.GenerateAlias(pageAddinsArp);
+        //    _autorouteService.PublishAlias(pageAddinsArp);
 
-            _contentManager.Publish(pageAddins);
 
-            //Create Api Page
-            var pageApi = _contentManager.Create("Page");
-            pageApi.As<TitlePart>().Title = "Getting Started with Office 365 APIs";
-            pageApi.As<BodyPart>().Text = String.Empty;
+        //    //Create Api Page
+        //    var pageApi = _contentManager.Create("Page", VersionOptions.Published);
+        //    pageApi.As<TitlePart>().Title = "Getting Started with Office 365 APIs";
+        //    pageApi.As<BodyPart>().Text = String.Empty;
+        //    _contentManager.Publish(pageApi);
 
-            var pageApiArp = pageApi.As<AutoroutePart>();
-            pageApiArp.DisplayAlias = "GettingStarted/Office365Api";
-            _autorouteService.GenerateAlias(pageApiArp);
-            _autorouteService.PublishAlias(pageApiArp);
+        //    var pageApiArp = pageApi.As<AutoroutePart>();
+        //    pageApiArp.DisplayAlias = "Getting-Started/Office365Api";
+        //    _autorouteService.GenerateAlias(pageApiArp);
+        //    _autorouteService.PublishAlias(pageApiArp);
 
-            _contentManager.Publish(pageApi);
-            #endregion
+        //    #endregion
 
-            return 2;
-        }
+        //    return 2;
+        //}
 
     }
 }
