@@ -170,7 +170,7 @@ function registerApp() {
             if (registerAppParams.clientId !=null ) {
                 /* update case*/
                 if (data.error_message != undefined) {
-                    $('#registration-result .ms-font-xl').html("<strong>An error has been occured while updating the app</strong>");
+                    $('#registration-result .ms-font-xl').html("<strong>"+data.error_message+"</strong>");
                 }
                 else {
                     $('#registration-result .ms-font-xl').html("<strong>Application has been updated successfully</strong>");
