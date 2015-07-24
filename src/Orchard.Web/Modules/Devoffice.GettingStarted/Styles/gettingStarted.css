@@ -311,6 +311,10 @@ ol li
     opacity: 0;
 }
 
+.hiddenCard {
+    display:none;
+}
+
 .visible2 {
     opacity: 1;
 }
@@ -696,6 +700,10 @@ pre.response {
     height: 50px;
     width: 50px;
     border: none;
+}
+
+.marginTop10 {
+    margin-top:10px;
 }
 
 .imgAddinType {
