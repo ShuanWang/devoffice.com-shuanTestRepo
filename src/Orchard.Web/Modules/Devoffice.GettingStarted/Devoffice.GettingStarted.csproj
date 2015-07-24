@@ -128,8 +128,6 @@
     <Content Include="images\wordlogo.png" />
     <Content Include="images\wordtaskpane.PNG" />
     <Content Include="Scripts\addins.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\embeddedCodeSample.js" />
     <Content Include="Scripts\FileSaver.js" />
     <Content Include="Scripts\gettingStarted.js" />
