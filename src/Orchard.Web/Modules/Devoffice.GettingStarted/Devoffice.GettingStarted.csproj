@@ -155,7 +155,6 @@
     <Content Include="Styles\Web.config" />
     <Content Include="Properties\AssemblyInfo.cs" />
     <Content Include="Module.txt" />
-    <Content Include="Views\Rest-To be deleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
