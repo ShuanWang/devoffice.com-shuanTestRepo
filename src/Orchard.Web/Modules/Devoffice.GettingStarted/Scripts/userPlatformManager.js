@@ -1,4 +1,5 @@
-﻿function updatePlatform(platform) {
+﻿// it fetches the user selected platform and updates the page
+function updatePlatform(platform) {
     //load content
     if (platform == null || platform == undefined || platform == "#undefined" || platform == "") {
         return;
@@ -7,6 +8,16 @@
     $(platform).addClass("selected");
 }
 
+// this function will be called when an app has been registered
+// successfully, so that user can not change the platform once the
+// app has been registered
+function disablePlatformSelection() {
+    var anchors = $("#pickPlatform ul li a");
+    for (var index = 0; index < anchors.length; ++index) {
+        anchors[index].disabled = true;
+    }
+    $("#pickPlatformDisableDiv").show();
+}
 function SetAppTypeBasedOnPlatform(id) {
     if (id == "option-ios" || id == "option-android") {
         // update the app type in app registration

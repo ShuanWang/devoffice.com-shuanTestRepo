@@ -190,6 +190,7 @@ function registerApp() {
                 registerAppParams.clientId = data.client_id;
                 registerAppParams.clientSecret = data.client_secret;
                 cardTracker.removeBlockingCard();
+                disablePlatformSelection();
             }
             else {
                 $('#reg-error_msg').text(data.error_message);
