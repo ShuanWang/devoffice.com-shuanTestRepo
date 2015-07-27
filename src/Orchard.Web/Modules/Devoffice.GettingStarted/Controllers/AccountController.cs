@@ -81,7 +81,7 @@ namespace Devoffice.GettingStarted.Controllers
 
             //TBD: once we log out we need to fallback to http protocol
             UriBuilder returnUri = new UriBuilder(Request.Url.Scheme, Request.Url.Host, Request.Url.Port,
-                "/GettingStarted/api");
+                "/Getting-Started/office365Apis");
             if (Request.Cookies["current-card"] != null)
             {
                 string returnUrl = returnUri.ToString();
@@ -141,7 +141,7 @@ namespace Devoffice.GettingStarted.Controllers
             }
 
             UriBuilder returnUri = new UriBuilder(Request.Url.Scheme, Request.Url.Host, Request.Url.Port,
-                "/GettingStarted/api");
+                "/Getting-Started/office365Apis");
             if (string.IsNullOrEmpty(queryString))
             {
                 if (Request.Cookies["current-card"] != null)
