@@ -67,7 +67,7 @@ namespace Devoffice.GettingStarted.Controllers
             string state = Guid.NewGuid().ToString();
             Session[Utils.Constants.stateTagStr] = state;
 
-            UriBuilder redirectUri = new UriBuilder(Url.Action("GetToken", "Account", null, "https"));
+            UriBuilder redirectUri = new UriBuilder(Url.Action("GetToken", "Account", null, "http"));
             Uri authUri = this.GetAuthorizationUri("https://graph.windows.net/", state, redirectUri.Uri.ToString());
 
             RedirectResult redirect = new RedirectResult(authUri.ToString());

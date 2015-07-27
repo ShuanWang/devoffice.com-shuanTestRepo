@@ -192,18 +192,21 @@ function registerApp() {
                 cardTracker.removeBlockingCard();
             }
             else {
-                if (data.error_message.search("ForgeryToken") != -1) {
-                    $('#reg-error_msg').text("Error: it seems that you have stale cookies, please delete the cookies, close the browser and start again.");
-                }
-                else {
-                    $('#reg-error_msg').text(data.error_message);
-                }
+                $('#reg-error_msg').text(data.error_message);
                 $('#reg-error_display').show();
                 $('#reg-error_display').addClass('animated fadeInUp');
             }
         },
         error: function (jqXHR, exception) {
-            $('#reg-error_msg').text(jqXHR.responseText);
+            var msg = "Status Code: " + jqXHR.status + "\n\r";
+            msg += "Status Text: " + jqXHR.statusText + "\n\r";
+            if (jqXHR.responseText.search("ForgeryToken") != -1) {
+                msg+="it seems that you have stale cookies, please delete the cookies, close the browser and start again."
+            }
+            else {
+                msg = jqXHR.responseText;
+            }
+            $('#reg-error_msg').text(msg);
             $('#reg-error_display').show();
             $('#reg-error_display').addClass('animated fadeInUp');
         },
