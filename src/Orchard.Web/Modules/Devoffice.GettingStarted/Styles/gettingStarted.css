@@ -409,6 +409,16 @@ ol li
     color: red;
 }
 
+#navBarList li a {
+    color:silver;
+}
+
+#navBarList li.card-done a {
+    color:#da3f26;
+    transition: all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+
+}
 #navBarList li.card-done {
     color: black;
     border-bottom: 4px solid #da3f26;
