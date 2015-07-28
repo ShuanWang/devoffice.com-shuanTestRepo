@@ -5,299 +5,299 @@ This is an example of how to use the image sprite in your own CSS files
 /* You may have to set 'display: block' */
 	width: 30px;
 	height: 31px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 0;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 0;
 }
 .icon_doc {
 /* You may have to set 'display: block' */
 	width: 46px;
 	height: 57px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -31px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -31px;
 }
 .icon_downarrow {
 /* You may have to set 'display: block' */
 	width: 12px;
 	height: 8px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -88px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -88px;
 }
 .icon_downarrow_hover {
 /* You may have to set 'display: block' */
 	width: 12px;
 	height: 8px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -96px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -96px;
 }
 .icon_filter {
 /* You may have to set 'display: block' */
 	width: 14px;
 	height: 14px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -104px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -104px;
 }
 .icon_minus {
 /* You may have to set 'display: block' */
 	width: 13px;
 	height: 11px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -118px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -118px;
 }
 .icon_MVA {
 /* You may have to set 'display: block' */
 	width: 106px;
 	height: 57px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -129px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -129px;
 }
 .icon_office {
 /* You may have to set 'display: block' */
 	width: 40px;
 	height: 40px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -186px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -186px;
 }
 .icon_plus {
 /* You may have to set 'display: block' */
 	width: 11px;
 	height: 21px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -226px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -226px;
 }
 .icon_samples {
 /* You may have to set 'display: block' */
 	width: 57px;
 	height: 57px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -247px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -247px;
 }
 .icon_search {
 /* You may have to set 'display: block' */
 	width: 14px;
 	height: 14px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -304px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -304px;
 }
 .icon_seemore {
 /* You may have to set 'display: block' */
 	width: 28px;
 	height: 28px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -318px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -318px;
 }
 .icon_uparrow {
 /* You may have to set 'display: block' */
 	width: 12px;
 	height: 8px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -346px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -346px;
 }
 .icon_view {
 /* You may have to set 'display: block' */
 	width: 13px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -354px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -354px;
 }
 .icon_collapse {
 /* You may have to set 'display: block' */
 	width: 13px;
 	height: 11px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -364px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -364px;
 }
 .icon_expand {
 /* You may have to set 'display: block' */
 	width: 13px;
 	height: 11px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -375px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -375px;
 }
 .icon_share {
 /* You may have to set 'display: block' */
 	width: 15px;
 	height: 15px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -386px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -386px;
 }
 .icon_envelope {
 /* You may have to set 'display: block' */
 	width: 32px;
 	height: 32px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -401px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -401px;
 }
 .slick-next-prev {
 /* You may have to set 'display: block' */
 	width: 87px;
 	height: 124px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -433px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -433px;
 }
 .icon_externalLink_grey {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -557px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -557px;
 }
 .icon_handsOnLab_grey {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -567px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -567px;
 }
 .icon_handsOnLab_orange {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -592px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -592px;
 }
 .icon_msdn_grey {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -617px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -617px;
 }
 .icon_msdn_orange {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -642px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -642px;
 }
 .icon_rss_grey {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -667px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -667px;
 }
 .icon_pptx_grey {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -677px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -677px;
 }
 .icon_pptx_orange {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -702px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -702px;
 }
 .icon_twitter_grey {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -727px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -727px;
 }
 .icon_externalLink_grey_25x25 {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -737px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -737px;
 }
 .icon_externalLink_orange_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -762px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -762px;
 }
 .icon_externalLink_orange_25x25 {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -772px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -772px;
 }
 .icon_handsOnLab_grey_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -797px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -797px;
 }
 .icon_handsOnLab_orange_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -807px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -807px;
 }
 .icon_msdn_grey_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -817px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -817px;
 }
 .icon_msdn_orange_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -827px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -827px;
 }
 .icon_pptx_grey_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -837px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -837px;
 }
 .icon_pptx_orange_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -847px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -847px;
 }
 .icon_rss_grey_25x25 {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -857px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -857px;
 }
 .icon_rss_orange_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -882px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -882px;
 }
 .icon_rss_orange_25x25 {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -892px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -892px;
 }
 .icon_twitter_grey_25x25 {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -917px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -917px;
 }
 .icon_twitter_orange_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -942px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -942px;
 }
 .icon_twitter_orange_25x25 {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -952px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -952px;
 }
 .icon_video_grey_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -977px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -977px;
 }
 .icon_video_orange_10x10 {
 /* You may have to set 'display: block' */
 	width: 10px;
 	height: 10px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -987px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -987px;
 }
 .icon_video_grey {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -997px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -997px;
 }
 .icon_video_orange {
 /* You may have to set 'display: block' */
 	width: 25px;
 	height: 25px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -1022px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -1022px;
 }
 .devOffice_search_orange_15x15 {
 /* You may have to set 'display: block' */
 	width: 15px;
 	height: 15px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -1047px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -1047px;
 }
 .devOffice_sort_updown_13x15 {
 /* You may have to set 'display: block' */
 	width: 13px;
 	height: 15px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -1062px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -1062px;
 }
 .devOffice_sort_updown_orange_13x15 {
 /* You may have to set 'display: block' */
 	width: 13px;
 	height: 15px;
-	background: url('/../Themes/DevOffice/Content/Icons/icon_sprite.png') 0 -1077px;
+	background: url('/D:\DEVOFFICEGIT\devofficecom\src\Orchard.Web\Themes\DevOffice\Content\Icons\icon_sprite.png') 0 -1077px;
 }
