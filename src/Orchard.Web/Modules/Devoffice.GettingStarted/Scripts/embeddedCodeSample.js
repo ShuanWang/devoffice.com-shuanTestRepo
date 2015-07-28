@@ -226,7 +226,7 @@ function _errorHandlerDownloadSample(error) {
 
         $('#post-download-instructions').html(msg)
         $('#post-download-instructions').show();
-        $('#post-download-instructions').addClass('animated fadeInUp');
+        //$('#post-download-instructions').addClass('animated fadeInUp');
         return;
 
     }

@@ -19,6 +19,8 @@ function disablePlatformSelection() {
     $("#pickPlatformDisableDiv").show();
 }
 function SetAppTypeBasedOnPlatform(id) {
+    //move setup card to the top so the user can see what they just clicked
+    cardTracker.showCard("setup");
     if (id == "option-ios" || id == "option-android") {
         // update the app type in app registration
         $("#appTypeField").val("Native App");
@@ -79,7 +81,7 @@ function selectPlatform(platform) {
     if ($("#SetupPlatform").css('display') == 'none') {
         //cardTracker.removeBlockingCard();
         $("#SetupPlatform").css('display', 'block');
-        $("#SetupPlatform").addClass('animated fadeInUp');
+        //$("#SetupPlatform").addClass('animated fadeInUp');
     }
     else {
         //remove selected from closes element
