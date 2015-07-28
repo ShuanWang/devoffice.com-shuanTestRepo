@@ -94,6 +94,12 @@ function CardTracker(cardsContainerID, navBarID) {
 	    //        $("#" + cardIDs[i]).addClass("dontAnimate");
 	    //    }
 	    //}
+
+	    // mark first card done
+	    var listItems = $("#" + navBarListID + " li");
+	    var item = $(listItems[0]);
+	    item.addClass(doneClassName);
+
 	}
 
 	// builds the card tracker
