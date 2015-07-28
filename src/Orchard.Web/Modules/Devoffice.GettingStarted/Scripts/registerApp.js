@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     // app name
     $("#appNameField").focusout(function () {
-        var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the appname.");
+        var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the app name.");
         if (appName != undefined) {
             // update the app id Uri
             var appidUri = $("#appIdUriField").val();
@@ -116,7 +116,7 @@ function registerApp() {
     var includeMailSend = $('#mailSend').is(':checked');
     var success = false;
     //do a frontend error check
-    var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the appname.");
+    var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the app name.");
     if (appName == undefined) {
         return;
     }
