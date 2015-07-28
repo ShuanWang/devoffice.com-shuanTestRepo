@@ -61,7 +61,7 @@ namespace Devoffice.GettingStarted {
             #endregion
 
             #region Create Office 365 APIs Widget
-            var apiLayer = _widgetsService.CreateLayer("Getting Started APIs", "The widgets in this layer are displayed on the Getting Started Office 365 API Pages", "url '~/Getting-Started/Office365Api'");
+            var apiLayer = _widgetsService.CreateLayer("Getting Started APIs", "The widgets in this layer are displayed on the Getting Started Office 365 API Pages", "url '~/Getting-Started/Office365Apis'");
             ContentDefinitionManager.AlterPartDefinition(
                 typeof(ApiWidgetPart).Name, cfg => cfg.Attachable());
 
@@ -106,7 +106,7 @@ namespace Devoffice.GettingStarted {
         //    _contentManager.Publish(pageApi);
 
         //    var pageApiArp = pageApi.As<AutoroutePart>();
-        //    pageApiArp.DisplayAlias = "Getting-Started/Office365Api";
+        //    pageApiArp.DisplayAlias = "Getting-Started/Office365Apis";
         //    _autorouteService.GenerateAlias(pageApiArp);
         //    _autorouteService.PublishAlias(pageApiArp);
 

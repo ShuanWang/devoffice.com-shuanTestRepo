@@ -185,7 +185,7 @@ function registerApp() {
                     $('#clientSecretField').val(data.client_secret);
                 }
                 $('#registration-result').removeClass('hidden');
-                $('#registration-result').addClass('animated fadeInUp');
+                //$('#registration-result').addClass('animated fadeInUp');
 
                 registerAppParams.clientId = data.client_id;
                 registerAppParams.clientSecret = data.client_secret;
@@ -195,7 +195,7 @@ function registerApp() {
             else {
                 $('#reg-error_msg').text(data.error_message);
                 $('#reg-error_display').show();
-                $('#reg-error_display').addClass('animated fadeInUp');
+                //$('#reg-error_display').addClass('animated fadeInUp');
             }
         },
         error: function (jqXHR, exception) {
@@ -209,7 +209,7 @@ function registerApp() {
             }
             $('#reg-error_msg').text(msg);
             $('#reg-error_display').show();
-            $('#reg-error_display').addClass('animated fadeInUp');
+            //$('#reg-error_display').addClass('animated fadeInUp');
         },
         complete: function (xhr) {
             $('#registration-progress').removeClass('loading');

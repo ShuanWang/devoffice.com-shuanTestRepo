@@ -261,10 +261,11 @@ function CardTracker(cardsContainerID, navBarID) {
 
 	function _animateCard(id) {
 	    //animate card
-		id = id[0] == "#" ?  id : "#" + id;	    
-	    console.log("animating card " + id);
-	    var aniCard = $(id);
-	    aniCard.addClass("animated fadeInUp dontAnimate");
+        //Per Keyur, removing animation completely
+		//id = id[0] == "#" ?  id : "#" + id;	    
+	    //console.log("animating card " + id);
+	    //var aniCard = $(id);
+	    //aniCard.addClass("animated fadeInUp dontAnimate");
     }
 
 	this.removeAllBlockingCards = function () {
