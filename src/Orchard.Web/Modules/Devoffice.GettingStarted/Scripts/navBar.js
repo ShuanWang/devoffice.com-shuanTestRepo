@@ -77,7 +77,7 @@ function CardTracker(cardsContainerID, navBarID) {
 	    //Add some animation when user clicks on a nav item
 	    $(".navItem").click(function (e) {
 	        //e.preventDefault();
-	        _showCard($(this).attr("href"));  //should be something like #2
+	        this.showCard($(this).attr("href"));  //should be something like #2
 	    });
 
         //Don't animate the first card
@@ -167,7 +167,9 @@ function CardTracker(cardsContainerID, navBarID) {
 	// this should be called everytime you need to remove the blocking card
 	// it shows the cards which are present between current and next blocking card
 	// updates the href link in the navbars 
-	this.removeBlockingCard=function() {
+	this.removeBlockingCard=function(scrollNextIntoView) {
+	    scrollNextIntoView = typeof scrollNextIntoView === 'boolean' && scrollNextIntoView;
+
 		var startIndex = blockingCards[0] + 1;// work on next one
 		var nextBlockingCardID="" ;
 		var nextBlockingCardIndex = cardIDs.length+1; // set it to max
@@ -185,8 +187,12 @@ function CardTracker(cardsContainerID, navBarID) {
 				var item = $("#" + navbarAnchorItemIDTag + "-" + cardIDs[startIndex]);
 				item.attr("href", "#" + cardIDs[startIndex]);
 				if (!scrolled) {
-					scrolled = true;
-				    _showCard(cardIDs[startIndex]);
+				    scrolled = true;
+				    if (scrollNextIntoView) {
+				        this.showCard(cardIDs[startIndex]);
+				    } else {
+				        this.showCardNoScroll(cardIDs[startIndex]);
+				    }
 				} else {
 				    $("#" + cardIDs[startIndex]).show();
 				}
@@ -223,10 +229,6 @@ function CardTracker(cardsContainerID, navBarID) {
 
     // Scroll the specified card into view
 	this.showCard = function (id) {
-	    _showCard(id);
-	}
-
-	function _showCard(id) {
 		//set id to jquery element selector if not already
 		id = id[0] == "#" ?  id : "#" + id;
 		var card = $(id);
@@ -249,7 +251,7 @@ function CardTracker(cardsContainerID, navBarID) {
 
 	this.showCardNoScroll = function (id) {
 		id = id[0] == "#" ?  id : "#" + id;	    
-		console.log("showCardNoScroll: " + id);
+		//console.log("showCardNoScroll: " + id);
 		$(id).show();
 	}
 
@@ -261,7 +263,8 @@ function CardTracker(cardsContainerID, navBarID) {
 
 	function _animateCard(id) {
 	    //animate card
-        //Per Keyur, removing animation completely
+
+	    //Removing animation for now
 		//id = id[0] == "#" ?  id : "#" + id;	    
 	    //console.log("animating card " + id);
 	    //var aniCard = $(id);
@@ -321,7 +324,7 @@ function CardTracker(cardsContainerID, navBarID) {
 	    if (blockingCards.length == 0) { return false; }
 	    var cardIndex = cardIDs.indexOf(id);
 	    var found = blockingCards.indexOf(cardIndex);
-	    console.log("isInBlockingList: " + found, "for: " + id);
+	    //console.log("isInBlockingList: " + found, "for: " + id);
 	    return (found != -1);
 	}
 }

@@ -98,7 +98,7 @@ function selectPlatform(platform) {
     SetAppTypeBasedOnPlatform(platform.id);
     setRedirectUri(platform.id);
     if (selectPlatform.FirstTime == true) {
-        cardTracker.removeBlockingCard();
+        cardTracker.removeBlockingCard(false);
         selectPlatform.FirstTime = false;
     }
 
