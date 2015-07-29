@@ -108,11 +108,15 @@ function selectPlatform(platform) {
 
     var urltosend = "/GettingStarted/Main/platform/" + platform.id;
 
+    var dataTosend = {
+        "platformid": platformId
+    };
+    dataTosend = AddAntiForgeryToken(dataTosend);
     /* Note: we dont need to do any error handling here*/
     $.ajax({
-        url: urltosend + getAntiForgeryTokenQuery(),
+        url: urltosend,
         type: "POST",
-        data: platformId,
+        data: dataTosend,
     });
 
     ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
