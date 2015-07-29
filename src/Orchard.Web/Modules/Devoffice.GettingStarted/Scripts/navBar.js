@@ -251,7 +251,7 @@ function CardTracker(cardsContainerID, navBarID) {
 
 	this.showCardNoScroll = function (id) {
 		id = id[0] == "#" ?  id : "#" + id;	    
-		console.log("showCardNoScroll: " + id);
+		//console.log("showCardNoScroll: " + id);
 		$(id).show();
 	}
 
@@ -263,7 +263,8 @@ function CardTracker(cardsContainerID, navBarID) {
 
 	function _animateCard(id) {
 	    //animate card
-        //Per Keyur, removing animation completely
+
+	    //Removing animation for now
 		//id = id[0] == "#" ?  id : "#" + id;	    
 	    //console.log("animating card " + id);
 	    //var aniCard = $(id);
@@ -323,7 +324,7 @@ function CardTracker(cardsContainerID, navBarID) {
 	    if (blockingCards.length == 0) { return false; }
 	    var cardIndex = cardIDs.indexOf(id);
 	    var found = blockingCards.indexOf(cardIndex);
-	    console.log("isInBlockingList: " + found, "for: " + id);
+	    //console.log("isInBlockingList: " + found, "for: " + id);
 	    return (found != -1);
 	}
 }
