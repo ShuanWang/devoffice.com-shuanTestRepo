@@ -720,4 +720,9 @@ pre.response {
 #introText {
     clear: both;
 }
+
+.btn-default {
+    background-image: none;
+}
 /* End Add-ins page CSS */
+

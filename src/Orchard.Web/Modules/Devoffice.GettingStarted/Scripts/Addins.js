@@ -67,11 +67,11 @@ var read = {
 };
 
 function enableOption1() {
-    $('#option1button').css('visibility', 'visible');
+    $('#option1button').show();
 }
 
 function enableOption2() {
-    $('#option2button').css('visibility', 'visible');
+    $('#option2button').show();
 }
 
 function setContent(div, html) {
@@ -81,8 +81,8 @@ function setContent(div, html) {
 }
 
 function selectClient(selectedClient) {
-    $('#option1').attr('style', 'visibility:hidden');
-    $('#option2').attr('style', 'visibility:hidden');
+    $('#option1button').hide();
+    $('#option2button').hide();
 
     cardTracker.hideCard("build");
     cardTracker.hideCard("more");
