@@ -1,8 +1,8 @@
 ﻿@{
     SetMeta(httpEquiv: "X-UA-Compatible", content: "IE=edge,chrome=1");
 
-    Style.Include("../Bootstrap/css/bootstrap.min.css");
-    Style.Include("../Bootstrap/css/bootstrap-theme.min.css");
+    Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap.min.css");
+    Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap-theme.min.css");
     Style.Include("gettingStarted.css");
     Style.Include("jquery.json-view.min.css");
     Style.Include("fabric.min.css");
@@ -69,7 +69,10 @@
 
         //attach to platform filters
         //TBD: temp code
-        $("#pickPlatform ul li a").click(function () { selectPlatform(this) });
+        $("#pickPlatform ul li a").click(function () {
+            cardTracker.showCard("setup");
+            selectPlatform(this);
+        });
         $('#startCoding ul li a').click(function () { startCodingContentDisplay(this) });
         $('#post-download-instructions').hide();
 

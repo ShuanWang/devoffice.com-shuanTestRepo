@@ -1,10 +1,11 @@
 ﻿@if (Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] != null &&
-    (bool)Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] == true)
+    (bool)Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] == true &&
+    @Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] != null)
 {
     <script>
         $(document).ready(function () {
             updatePlatform("#" + "@Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr]");
-        });
+        });            
     </script>
 }
 <div class="card-question" id="SetupPlatform" style="display:none" >
