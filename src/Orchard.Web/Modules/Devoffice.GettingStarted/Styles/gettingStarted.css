@@ -22,7 +22,7 @@
 h1, h2, h3, h4, h5, h6 {
     color: #222;
     font-weight: 600;
-    line-height: 20px;
+    /*line-height: 20px;*/
     margin-top:20px !important;
 }
 
@@ -170,7 +170,7 @@ samp {
     /*background-color: #F4F4F4 !important;*/
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    line-height: 24px;
+    /*line-height: 24px;*/
     /*box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);*/
 }
 
@@ -195,7 +195,7 @@ samp {
     background-color: white !important;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 40px 40px 40px 40px;
+    padding: 20px;
     border: 1px solid #ddd;
 }
 
@@ -327,7 +327,7 @@ ol li
 
 
 /*Responsive CSS Styles*/
-@media (max-width: 978px) {
+@media (max-width: 480px) {
     body {
         padding: initial;
     }
@@ -703,8 +703,8 @@ pre.response {
 
 /* Begin Add-ins page CSS */
 .imgSelectApp {
-    height: 50px;
-    width: 50px;
+    /*height: 50px;
+    width: 50px;*/
     border: none;
 }
 
@@ -724,5 +724,20 @@ pre.response {
 .btn-default {
     background-image: none;
 }
+
+.buildList {
+    padding-left: 20px;
+    list-style-type:decimal;
+}
+
 /* End Add-ins page CSS */
+
+/*numbered list*/
+.numberedList {
+	counter-reset: list-counter;
+}
+.numberedList dt:before {
+	content: counter(list-counter);
+	counter-increment: list-counter;
+}
 
