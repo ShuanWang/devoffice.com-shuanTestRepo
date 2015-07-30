@@ -40,7 +40,7 @@
                     <img class="img-responsive imgGS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/equation2.PNG")" height="200" style="border:0px" align="left" />
                 </div>
                 <div id="introText">
-                    <div>Under the hood, an add-in is simply a <b>web app</b> that you can <b>host anywhere</b>. Using a manifest.xml file, you tell us where your web app is located and how you want it to appear. We'll take care of making it show up within Office.</div>
+                    Under the hood, an add-in is simply a <b>web app</b> that you can <b>host anywhere</b>. Using a manifest.xml file, you tell us where your web app is located and how you want it to appear. We'll take care of making it show up within Office.
                 </div>
             </div>
 
@@ -48,16 +48,16 @@
                 <h3>Select the Office app that you wish to build an add-in for:</h3>
                 <div class="btn-group btn-group-justified" role="group">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" onclick="selectClient('excel')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/excellogo.png")">Excel</button>
+                        <button type="button" class="btn btn-default" onclick="selectClient('excel')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/excellogo50.png")"><span class="hidden-xs">Excel</span></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" onclick="selectClient('outlook')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/outlooklogo.png")">Outlook</button>
+                        <button type="button" class="btn btn-default" onclick="selectClient('outlook')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/outlooklogo50.png")"><span class="hidden-xs">Outlook</span></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" onclick="selectClient('powerpoint')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/powerpointlogo.png")">PowerPoint</button>
+                        <button type="button" class="btn btn-default" onclick="selectClient('powerpoint')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/powerpointlogo50.png")"><span class="hidden-xs">PowerPoint</span></button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" onclick="selectClient('word')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/wordlogo.png")">Word</button>
+                        <button type="button" class="btn btn-default" onclick="selectClient('word')"><img class="img-responsive imgGS imgSelectApp" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/wordlogo50.png")"><span class="hidden-xs">Word</span></button>
                     </div>
                     <!--
                     <div class="btn-group" role="group">
@@ -90,12 +90,12 @@
                         <button id="option1button" type="button" class="btn btn-default" style='max-width: 400px; position: relative; padding:20px'>
                             <h4 id="option1title" style="color:#BD3501;font-weight:bold;"></h4>
                             <img id="option1img" class="img-responsive imgGS imgAddinType">
-                            <p id="option1text" style="display:block; margin-left:auto; margin-right:auto; overflow:hidden"></p>
+                            <p id="option1text" class="hidden-xs" style="display:block; margin-left:auto; margin-right:auto; overflow:hidden"></p>
                         </button>
                         <button id="option2button" type="button" class="btn btn-default" style='max-width: 400px; position: relative; padding:20px'>
                             <h4 id="option2title" style="color:#BD3501;font-weight:bold;"></h4>
                             <img id="option2img" class="img-responsive imgGS imgAddinType">
-                            <p id="option2text" style="display: block; margin-left: auto; margin-right: auto; overflow: hidden"></p>
+                            <p id="option2text" class="hidden-xs" style="display: block; margin-left: auto; margin-right: auto; overflow: hidden"></p>
                         </button>
                     </div>
                 </div>
@@ -103,17 +103,32 @@
 
             <div class="card" id="build" name="5. Build">
                 <h3>Build</h3>
-                <p>An Add-in is pretty much a web app, so you can use whatever IDE you're most comfortable with. But as you're getting up to speed, we recommend starting with our playground for Add-ins. It's the quickest way to get started creating, editing and deploying an Office Add-in.</p><br>
-                <p>We've loaded a simple Add-in project into our playground for Add-ins that you can use to start building with.</p>
-                <br>
-                <img class="img-responsive imgGS userHasVS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/Build-VS.png")" class="userHasVS" style="border:0px; margin:0 0 0 0;">
-                <img class="img-responsive imgGS userHasNoVS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/Build-nonVS.png")" class="userHasNoVS" style="border:0px; margin:0 0 0 0;">
-                <br>
-                <p>
-                    When you get to our Add-ins playground, click on the Run button to see the Add-in working. (You need to sign in with your Microsoft account first). <span class="userHasVS">If you have visual studio and want to use it, click on the open in visual studio button to continue working from visual studio.</span>
-                    <h4><b><a id="more-playground" href="#" target="_blank">Start building using the playground for Add-ins&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
-                </p>
-
+                <div id="buildDefault">
+                    <p>An Add-in is pretty much a web app, so you can use whatever IDE you're most comfortable with. But as you're getting up to speed, we recommend starting with our playground for Add-ins. It's the quickest way to get started creating, editing and deploying an Office Add-in.</p><br>
+                    <p>We've loaded a simple Add-in project into our playground for Add-ins that you can use to start building with.</p>
+                    <br>
+                    <img class="img-responsive imgGS userHasVS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/Build-VS.png")" class="userHasVS" style="border:0px; margin:0 0 0 0;">
+                    <img class="img-responsive imgGS userHasNoVS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/Build-nonVS.png")" class="userHasNoVS" style="border:0px; margin:0 0 0 0;">
+                    <br>
+                    <p>
+                        When you get to our Add-ins playground, click on the Run button to see the Add-in working. (You need to sign in with your Microsoft account first). <span class="userHasVS">If you have visual studio and want to use it, click on the open in visual studio button to continue working from visual studio.</span>
+                        <h4><b><a id="more-playground" href="#" target="_blank">Start building using the playground for Add-ins&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
+                    </p>
+                </div>
+                <div id="buildWithGithubSample">
+                    <h4><b><a id="build-downloadFromGithub" href="#" target="_blank">Download the sample from GitHub&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
+                    <p>After you download the sample, follow the instructions in the readme to run it.</p><br />
+                    <p>Alternatively, you can build an add-in from scratch using Visual Studio:</p>
+                    <ol class="buildList">
+                        <li>If you don’t have Visual Studio, download the Community Edition for free.</li>
+                        <li><a href="http://aka.ms/OfficeDevToolsForVS2013" target="_blank">Install the Office Developer Tools for Visual Studio 2013.</a></li>
+                        <li>Create a new project: Select Templates > Visual C# > Office/SharePoint > Apps and choose App for Office (note: add-ins were formerly called Apps for Office). Choose the appropriate add-in type when prompted.</li>
+                    </ol>
+                    <img class="img-responsive imgGS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/AddinNewProjectVS.png")">
+                    <ol class="buildList" start="4">
+                        <li>After the project has been created, click the Start button or press F5 to run it.</li>
+                    </ol>
+                </div>
             </div>
             <div class="card" id="more" name="6. More resources">
                 <h3>More resources</h3>
