@@ -3,7 +3,7 @@
 <div id="signed-in-display" class="ms-Grid-row">
     <div class="ms-Grid-col ms-u-sm12">
         <span class="ms-font-xl">Welcome, <strong>@Session[Devoffice.GettingStarted.Utils.Constants.azureUserTagStr]</strong>!</span>
-        <span class="ms-font-l">(Wrong account? No problem, @Html.ActionLink(T("Sign out").ToString(), "SignOut", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, htmlAttributes: new { id = "signoutLink" })</span>
+        <span class="ms-font-l">(Wrong account? No problem, @Html.ActionLink(T("Sign out").ToString(), "SignOut", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, htmlAttributes: new { id = "signoutLink" }))</span>
         <p>Now that you've signed in, you can create the app registration using the form below. We've already filled in default values that should work if you're following the tutorial.</p>
         <br />
     </div>
@@ -114,11 +114,11 @@
     </div>
     <div class="ms-TextField marginTop10">
         <label class="" for="clientId">Client ID:</label>
-        <input id="clientIdField" class="form-control" type="text" name="clientId" value="" disabled />
+        <input id="clientIdField" class="form-control" type="text" name="clientId" value="" readonly style="cursor: text" />
     </div>
     <div class="ms-TextField marginTop10" id="app-reg-client-secret">
         <label class="" for="clientSecret">Client Secret:</label>
-        <input id="clientSecretField" class="form-control" type="text" name="clientSecret" value="" disabled />
+        <input id="clientSecretField" class="form-control" type="text" name="clientSecret" value="" readonly style="cursor: text" />
     </div>
 </div>
 
