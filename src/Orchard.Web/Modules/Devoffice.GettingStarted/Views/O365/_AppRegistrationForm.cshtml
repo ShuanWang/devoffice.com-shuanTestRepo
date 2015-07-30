@@ -11,7 +11,7 @@
 <div id="registration-form">
     <form role="form">
         <div class="form-group">
-            <label for="appName">App Name:</label>
+            <label for="appName" title="The name of the app your users will see when they grant permissions.">App Name:</label>
             <input id="appNameField" class="form-control" type="text" name="appName" placeholder="Enter your app name here." />
             <div id="app-name-error-div"class="ms-font-color-error ms-font-l"></div>
         </div>
@@ -20,7 +20,7 @@
             <input id="appTypeField" class="form-control" type="text" name="appType" value="Web App" disabled />
         </div>
         <div class="form-group" id="signOnUrlFieldGroup">
-            <label class="" for="signOnUrl">Sign on URL:</label>
+            <label class="" title="The URL where users will sign in to use your app." for="signOnUrl">Sign on URL:</label>
             <input id="signOnUrlField" class="form-control" type="text" name="signOnUri" value="@Model.signOnUri" />
             <div id="sign-onUrl-error-div" class="ms-font-color-error ms-font-l"></div>
         </div>
@@ -30,7 +30,7 @@
             <div id="app-id-uri-error-div" class="ms-font-color-error ms-font-l"></div>
         </div>
         <div class="form-group">
-            <label class="" for="redirectUri">Redirect URI:</label>
+            <label class="" title="The URL that Office will call after the authentication flow is complete." for="redirectUri">Redirect URI:</label>
             <input id="redirectUriField" class="form-control" type="text" name="redirectUri" value="@Model.redirectUri" />
             <div id="redirect-uri-error-div" class="ms-font-color-error ms-font-l"></div>
         </div>
