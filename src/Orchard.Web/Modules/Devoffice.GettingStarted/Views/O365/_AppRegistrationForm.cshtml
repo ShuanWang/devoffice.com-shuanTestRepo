@@ -11,8 +11,8 @@
 <div id="registration-form">
     <form role="form">
         <div class="form-group">
-            <label for="appName">App Name:</label>
-            <input id="appNameField" class="form-control" type="text" name="appName" placeholder="Enter your app name here." />
+            <label for="appName" title="The name of the app your users will see when they grant permissions.">App Name:</label>
+            <input id="appNameField" title="The name of the app your users will see when they grant permissions." class="form-control" type="text" name="appName" placeholder="Enter your app name here." />
             <div id="app-name-error-div"class="ms-font-color-error ms-font-l"></div>
         </div>
         <div class="form-group hidden">
@@ -20,8 +20,8 @@
             <input id="appTypeField" class="form-control" type="text" name="appType" value="Web App" disabled />
         </div>
         <div class="form-group" id="signOnUrlFieldGroup">
-            <label class="" for="signOnUrl">Sign on URL:</label>
-            <input id="signOnUrlField" class="form-control" type="text" name="signOnUri" value="@Model.signOnUri" />
+            <label class="" title="The URL where users will sign in to use your app." for="signOnUrl">Sign on URL:</label>
+            <input id="signOnUrlField" title="The URL where users will sign in to use your app." class="form-control" type="text" name="signOnUri" value="@Model.signOnUri" />
             <div id="sign-onUrl-error-div" class="ms-font-color-error ms-font-l"></div>
         </div>
         <div class="form-group" id="appIdUriFieldGroup" hidden>
@@ -30,8 +30,8 @@
             <div id="app-id-uri-error-div" class="ms-font-color-error ms-font-l"></div>
         </div>
         <div class="form-group">
-            <label class="" for="redirectUri">Redirect URI:</label>
-            <input id="redirectUriField" class="form-control" type="text" name="redirectUri" value="@Model.redirectUri" />
+            <label class="" title="The URL that Office will call after the authentication flow is complete." for="redirectUri">Redirect URI:</label>
+            <input id="redirectUriField" title="The URL that Office will call after the authentication flow is complete." class="form-control" type="text" name="redirectUri" value="@Model.redirectUri" />
             <div id="redirect-uri-error-div" class="ms-font-color-error ms-font-l"></div>
         </div>
         <div class="form-group">
@@ -49,50 +49,50 @@
                             <td>
                                 <div>
                                     <!--Read User mail-->
-                                    <input name="mailRead" class="ms-ChoiceField-input" id="mailRead" type="checkbox" checked />
-                                    <label class="ms-ChoiceField-field" for="mailRead"><span class="ms-Label">Read user mail</span></label><br />
+                                    <input name="mailRead" class="ms-ChoiceField-input" id="mailRead" type="checkbox" checked > Read user mail</input>
+                                    <br /><br />
 
                                     <!--Read and Write user mail-->
-                                    <input name="mailWrite" class="ms-ChoiceField-input" id="mailWrite" type="checkbox" checked />
-                                    <label class="ms-ChoiceField-field" for="mailWrite"><span class="ms-Label">Read and write user mail</span></label><br />
+                                    <input name="mailWrite" class="ms-ChoiceField-input" id="mailWrite" type="checkbox" checked > Read and write user mail</input>
+                                    <br /><br />
 
                                     <!--Send Mail as a user-->
-                                    <input name="mailSend" class="ms-ChoiceField-input" id="mailSend" type="checkbox" checked />
-                                    <label class="ms-ChoiceField-field" for="mailSend"><span class="ms-Label">Send mail as a user</span></label><br />
+                                    <input name="mailSend" class="ms-ChoiceField-input" id="mailSend" type="checkbox" checked /> Send mail as a user</input>
+                                    <br /><br />
                                 </div>
                             </td>
                             <td>
                                 <div>
                                     <!--Read user Calendars-->
-                                    <input name="calendarRead" class="ms-ChoiceField-input" id="calendarRead" type="checkbox" />
-                                    <label class="" for="calendarRead"><span class="ms-Label">Read user calendars</span></label><br />
+                                    <input name="calendarRead" class="ms-ChoiceField-input" id="calendarRead" type="checkbox" /> Read user calendars</input>
+                                    <br /><br />
 
                                     <!--Read and write user calendars-->
-                                    <input name="calendarWrite" class="ms-ChoiceField-input" id="calendarWrite" type="checkbox" />
-                                    <label class="" for="calendarWrite"><span class="ms-Label">Read and write user calendars</span></label><br />
+                                    <input name="calendarWrite" class="ms-ChoiceField-input" id="calendarWrite" type="checkbox" /> Read and write user calendars</input>
+                                    <br /><br />
                                 </div>
 
                             </td>
                             <td>
                                 <div>
                                     <!--Read user Contacts-->
-                                    <input name="contactsRead" class="ms-ChoiceField-input" id="contactsRead" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="contactsRead"><span class="ms-Label">Read user contacts</span></label><br />
+                                    <input name="contactsRead" class="ms-ChoiceField-input" id="contactsRead" type="checkbox" /> Read user contacts</input>
+                                    <br /><br />
 
                                     <!--Read and write user Contacts-->
-                                    <input name="contactsWrite" class="ms-ChoiceField-input" id="contactsWrite" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="contactsWrite"><span class="ms-Label">Read and write user contacts</span></label><br />
+                                    <input name="contactsWrite" class="ms-ChoiceField-input" id="contactsWrite" type="checkbox" /> Read and write user contacts</input>
+                                    <br /><br />
                                 </div>
                             </td>
                             <td>
                                 <div>
                                     <!--Read user user files-->
-                                    <input name="filesRead" class="ms-ChoiceField-input" id="filesRead" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="filesRead"><span class="ms-Label">Read user files</span></label><br />
+                                    <input name="filesRead" class="ms-ChoiceField-input" id="filesRead" type="checkbox" /> Read user files</input>
+                                    <br /><br />
 
                                     <!--Read and write user files-->
-                                    <input name="filesWrite" class="ms-ChoiceField-input" id="filesWrite" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="filesWrite"><span class="ms-Label">Read and write user files</span></label><br />
+                                    <input name="filesWrite" class="ms-ChoiceField-input" id="filesWrite" type="checkbox" /> Read and write user files</input>
+                                    <br /><br />
                                 </div>
                             </td>
                         </tr>
