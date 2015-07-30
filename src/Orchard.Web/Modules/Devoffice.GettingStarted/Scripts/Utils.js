@@ -15,7 +15,7 @@ function getAntiForgeryToken()
     if (forgeryToken == "") {
         forgeryToken = $('#o365ForgeryToken').val();
     }
-    return forgeryToken;
+    return antiForgeryToken; // coming from main page
 }
 
 function getCookie(cookieName) {

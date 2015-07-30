@@ -138,7 +138,7 @@ function registerApp() {
     registerAppParams.signonUri = signOnUrl;
     registerAppParams.redirectUri = redirectUri;
 
-    var actionUrl = "/GettingStarted/AppRegistration/RegisterApp" + getAntiForgeryTokenQuery();
+    var actionUrl = "/GettingStarted/AppRegistration/RegisterApp";
 
     var param = {
         "appName": appName,
@@ -157,15 +157,13 @@ function registerApp() {
         "includeMailSend": includeMailSend,
         "appId": registerAppParams.clientId,
     }
+
     $('#register-button').attr("disabled", "disabled");
     $('#registration-progress').addClass('loading');
-    var json = JSON.stringify(param);//
     $.ajax({
         url: actionUrl,
-        dataType: "json",
         type: "POST",
-        contentType:'application/json;charset-utf-8',
-        data: json,
+        data: AddAntiForgeryToken(param),
         success: function (data, textStatus, xhr) {
             if (registerAppParams.clientId !=null ) {
                 /* update case*/

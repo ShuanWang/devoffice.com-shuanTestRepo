@@ -11,11 +11,11 @@
     Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead();
     Script.Include("Utils.js").AtHead();
     Script.Include("navBar.js").AtHead();
-    Script.Include("userPlatformManager.js").AtHead(); //TBD: we need to refractor this file
+    Script.Include("userPlatformManager.js").AtHead();
     Script.Include("modernizr-2.6.2.js").AtHead(); //TBD: Do we need this?
     Script.Include("respond.js").AtHead(); //TBD: Do we need this?
     Script.Include("respond.min.js").AtHead(); //TBD: Do we need this?
-    Script.Include("gettingStarted.js").AtHead(); //TBD: Do we need this?
+    Script.Include("gettingStarted.js").AtHead();
 
     Script.Include("registerApp.js").AtFoot();
     Script.Include("jszip.js").AtFoot();
@@ -28,7 +28,7 @@
 }
 <title>Getting started with Office 365 REST APIs</title>
 
-<meta http-equiv="Pragma" content="no-cache" name="description" content="Get started with Office 365 REST APIs.">
+<meta http-equiv="Pragma" name="description" content="Get started with Office 365 REST APIs.">
 
 <style>
     <!--
@@ -41,6 +41,13 @@
 
 
 <script>
+    @using(Script.Head()) {
+        <script type="text/javascript">
+        //<![CDATA[
+            var antiForgeryToken = '@Html.AntiForgeryTokenValueOrchard()';
+        //]]>
+        </script>
+    }
     var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
     //var platformName = null;
     var platformId = null;
@@ -93,7 +100,6 @@
 
 </script>
 <div id="main" class="container-fluid">
-    <input type="hidden" name="__RequestVerificationToken" id="o365ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
     <div id="myNavBar"></div>
     <div id="o365-progressTrackerContainer">
         @Html.Partial("./O365/_Intro")
