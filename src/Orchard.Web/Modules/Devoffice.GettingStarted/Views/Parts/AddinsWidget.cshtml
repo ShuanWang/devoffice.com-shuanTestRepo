@@ -1,19 +1,16 @@
 ﻿@{
     Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap.min.css");
     Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap-theme.min.css");
-    Style.Include("gettingStarted.css");
+    Style.Include("gettingStarted.min.css", "gettingStarted.css");
     Style.Include("jquery.json-view.min.css");
 
     Script.Require("jQuery").AtHead();
     Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead();
-    Script.Include("navBar.js").AtHead();
-    Script.Include("userPlatformManager.js").AtHead(); //TBD: we need to refractor this file
-    Script.Include("modernizr-2.6.2.js").AtHead(); //TBD: Do we need this?
-    Script.Include("respond.js").AtHead(); //TBD: Do we need this?
-    Script.Include("respond.min.js").AtHead(); //TBD: Do we need this?
-    Script.Include("gettingStarted.js").AtHead(); //TBD: Do we need this?
-    Script.Include("browserInfo.js").AtHead();
-    Script.Include("addins.js").AtHead();
+    Script.Include("navBar.min.js", "navBar.js").AtHead();
+    Script.Include("userPlatformManager.min.js", "userPlatformManager.js").AtHead();
+    Script.Include("gettingStarted.min.js", "gettingStarted.js").AtHead();
+    Script.Include("browserInfo.min.js", "browserInfo.js").AtHead();
+    Script.Include("addins.min.js", "addins.js").AtHead();
 }
 
 <style>
@@ -131,7 +128,8 @@
                 </div>
             </div>
             <div class="card" id="more" name="6. More resources">
-                <h3>✓ You’re all set, here are more resource for you to get going.</h3>
+                <h1>You’re all set!</h1>
+                <p>Here are some other resources to help you as you continue building your add-in.</p>
                 <div style="margin-top:20px;">
                     <ul id="moreResourcesList" style="line-height:2;">
                         <li><a id="more-github" href="#" target="_blank">Download starter sample</a><div>Download a starter project that you can continue building with using the IDE of your choice.</div></li>

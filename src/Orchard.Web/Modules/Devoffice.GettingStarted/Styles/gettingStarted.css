@@ -739,4 +739,8 @@ pre.response {
 	counter-increment: list-counter;
 }
 
-
+/*TBD: we need to move this to generic button class*/
+.responsive-btn {
+    white-space: normal;
+    width: 10px;
+}

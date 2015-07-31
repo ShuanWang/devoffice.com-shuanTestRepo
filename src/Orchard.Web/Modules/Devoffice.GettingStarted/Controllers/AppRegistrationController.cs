@@ -45,6 +45,7 @@ namespace Devoffice.GettingStarted.Controllers
             string appName = appInfo.appName;
             string signOnUri = appInfo.signOnUri;
             string appIdUri = appInfo.appIdUri;
+            appIdUri = appIdUri.Replace(" ", string.Empty);
             // append a guid in appid uri
             if(appIdUri[appIdUri.Length-1] != '/')
             {

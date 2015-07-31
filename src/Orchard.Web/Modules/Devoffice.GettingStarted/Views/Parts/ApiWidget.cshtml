@@ -1,30 +1,39 @@
 ﻿@{
+    string signinError = null;
+    if (string.IsNullOrEmpty(HttpContext.Current.Request.Url.Query) == false)
+    {
+        // Parse the query string variables into a NameValueCollection.
+        System.Collections.Specialized.NameValueCollection qscoll = HttpUtility.ParseQueryString(HttpContext.Current.Request.Url.Query);
+        if (qscoll.Count > 0)
+        {
+            ViewBag.SigninError = qscoll["error_msg"];
+        }
+    }
+}
+@{
     SetMeta(httpEquiv: "X-UA-Compatible", content: "IE=edge,chrome=1");
 
     Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap.min.css");
     Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap-theme.min.css");
-    Style.Include("gettingStarted.css");
+    Style.Include("gettingStarted.min.css", "gettingStarted.css");
     Style.Include("jquery.json-view.min.css");
     Style.Include("fabric.min.css");
 
     Script.Require("jQuery").AtHead();
     Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead();
-    Script.Include("Utils.js").AtHead();
-    Script.Include("navBar.js").AtHead();
-    Script.Include("userPlatformManager.js").AtHead();
-    Script.Include("modernizr-2.6.2.js").AtHead(); //TBD: Do we need this?
-    Script.Include("respond.js").AtHead(); //TBD: Do we need this?
-    Script.Include("respond.min.js").AtHead(); //TBD: Do we need this?
-    Script.Include("gettingStarted.js").AtHead();
+    Script.Include("Utils.min.js","Utils.js").AtHead();
+    Script.Include("navBar.min.js","navBar.js").AtHead();
+    Script.Include("userPlatformManager.min.js","userPlatformManager.js").AtHead();
+    Script.Include("gettingStarted.min.js","gettingStarted.js").AtHead();
 
-    Script.Include("registerApp.js").AtFoot();
-    Script.Include("jszip.js").AtFoot();
-    Script.Include("jszip-utils.js").AtFoot();
-    Script.Include("FileSaver.js").AtFoot();
-    Script.Include("embeddedCodeSample.js").AtFoot();
+    Script.Include("registerApp.min.js", "registerApp.js").AtFoot();
+    Script.Include("jszip.min.js", "jszip.js").AtFoot();
+    Script.Include("jszip-utils.min.js", "jszip-utils.js").AtFoot();
+    Script.Include("FileSaver.min.js", "FileSaver.js").AtFoot();
+    Script.Include("embeddedCodeSample.min.js", "embeddedCodeSample.js").AtFoot();
     Script.Include("jquery.json-view.min.js").AtFoot();
-    Script.Include("tryitout.js").AtFoot();
-    Script.Include("websiteContent.js").AtFoot();
+    Script.Include("tryitout.min.js", "tryitout.js").AtFoot();
+    Script.Include("websiteContent.min.js", "websiteContent.js").AtFoot();
 }
 <title>Getting started with Office 365 REST APIs</title>
 
