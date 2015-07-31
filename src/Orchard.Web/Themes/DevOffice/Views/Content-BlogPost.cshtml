@@ -4,11 +4,11 @@
     var contentTypeClassName = ((string)Model.ContentItem.ContentType).HtmlClassify();
 }
 
-<article class="content-item @contentTypeClassName">
-    <div class="icon-blog-green pull-left"></div>
-    <div class="pull-left blog-tile-content">
+<article class=" @contentTypeClassName container-fluid">
+    <div class="icon-blog-green"></div>
+    <div class="blog-tile-content">
         <header>
-            <div class="">
+            <div class="blog-title-header">
                 @Display(Model.Header)
                 @if (Model.Meta != null)
                 {

@@ -6441,19 +6441,27 @@ img.see-more-icon.flipped {
     display:block;
 }
 
-.content-item.blog-post{
+.blog-posts .blog-post,
+.archives-list .blog-post{
     background-color:#fff;
     height:139px;
     margin-bottom:30px;
     padding:15px;
 }
 
-.content-item.blog-post h1{
+.blog-posts .blog-post h1,
+.archives-list .blog-post h1{
     line-height:14px;
     margin-bottom:6px;
+    margin-top: 0;
+    padding: 0;
 }
-
-.icon-blog-green{
+.blog-posts .blog-tile-content ,
+.archives-list .blog-tile-content{
+    float: left !important;
+}
+.blog-posts .icon-blog-green,
+.archives-list .icon-blog-green{
     background-image: url(../Content/Images/icon-blog-green.png);
     background-repeat: no-repeat;
     height:139px;
@@ -6461,45 +6469,63 @@ img.see-more-icon.flipped {
     margin-right:15px;
     margin-top:-15px;
     margin-left:-15px;
+    float: left !important;
 }
 
-.content-item.blog-post p,
-.content-item.blog-post{
+.blog-post p,
+.blog-post{
     color:#231f20;
     font-family: sc_segoe-ui_semilight, 'Segoe UI Semilight', sc_segoe-ui_light, 'Segoe UI Light', sc_segoe-ui_normal,'Segoe UI', Segoe, Tahoma, Verdana, Arial, sans-serif;
 }
 
-.content-item.blog-post h1 a{
+.blog-post h1 a{
     font-family: sc_segoe-ui_semibold, 'Segoe UI Semibold', sc_segoe-ui_normal, 'Segoe UI', Segoe, Tahoma, Verdana, Arial, sans-serif;
     color:#231f20;
     font-size:14px;
 }
 
-.content-item.blog-post .blog-tile-content{
+.blog-posts .blog-post .blog-tile-content, .archives-list .blog-post .blog-tile-content{
     width:452px;
     height:109px;
     overflow:hidden;
+}
+
+.blog-title-header {
+     background-color:#fff;
+}
+
+.blog-title-header h1 {
+    padding: 15px;
+    margin-top: 15px;
 }
 
 .orchard-blogs .archives{
     background-color:#fff;
     padding:15px;
 }
+.disqus-wrapper {
+    padding: 10px;
+    margin-bottom: 40px;
+    background-color:#fff;
+}
 
 @media (max-width:1199px){
-    .content-item.blog-post .blog-tile-content{
+    .blog-posts .blog-post .blog-tile-content,
+    .archives-list .blog-post .blog-tile-content{
         width:778px;
     }
 }
 
 @media (max-width:976px){
-    .content-item.blog-post .blog-tile-content{
+   .blog-posts  .blog-post .blog-tile-content,
+    .archives-list .blog-post .blog-tile-content{
         width:70%;
     }
 }
 
 @media (max-width:523px){
-    .content-item.blog-post .blog-tile-content{
+   .blog-posts .blog-post .blog-tile-content,
+   .archives-list .blog-post .blog-tile-content{
         width:43%;
     }
 }

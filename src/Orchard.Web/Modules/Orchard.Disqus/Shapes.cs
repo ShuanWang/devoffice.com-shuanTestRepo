@@ -33,7 +33,7 @@ namespace Orchard.Disqus
                 .OnDisplaying(shapeDisplayingContext =>
                     AddShapeWrapper(shapeDisplayingContext, "Parts_Comments_Count_Wrapper"));
 
-            builder.Describe("Parts_Blogs_BlogPost_List")
+            builder.Describe("Parts_Blog_Archives")
                 .OnDisplaying(shapeDisplayingContext =>
                     AddShapeWrapper(shapeDisplayingContext, "Parts_BlogPost_List_Wrapper", includeUniqueIndentifier: false));
         }
