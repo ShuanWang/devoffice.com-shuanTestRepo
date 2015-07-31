@@ -5,24 +5,26 @@
 }
 
 <article class="content-item @contentTypeClassName">
-    <header>
-        <div class="container-fluid">
-        @Display(Model.Header)
-        @if (Model.Meta != null)
-        {
-            <div class="metadata">
-                @Display(Model.Meta)
+    <div class="icon-blog-green pull-left"></div>
+    <div class="pull-left blog-tile-content">
+        <header>
+            <div class="">
+                @Display(Model.Header)
+                @if (Model.Meta != null)
+                {
+                    <div class="metadata">
+                        @Display(Model.Meta)
+                    </div>
+                }
             </div>
-        }
-        </div>
-    </header>
-    @Display(Model.Content)
-   
+        </header>
+        @Display(Model.Content)
 
-    @if (Model.Footer != null)
-    {
-        <footer>
-            @Display(Model.Footer)
-        </footer>
-    }
+        @if (Model.Footer != null)
+        {
+            <footer>
+                @Display(Model.Footer)
+            </footer>
+        }
+    </div>
 </article>

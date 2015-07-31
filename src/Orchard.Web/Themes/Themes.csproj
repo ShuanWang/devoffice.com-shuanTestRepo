@@ -192,6 +192,7 @@
     <Content Include="DevOffice\Content\Images\checkboxWithTick.png" />
     <Content Include="DevOffice\Content\Images\Close.png" />
     <Content Include="DevOffice\Content\favicon.ico" />
+    <Content Include="DevOffice\Content\Images\icon-blog-green.png" />
     <Content Include="DevOffice\Content\Images\pnp_guidance_lrg.png" />
     <Content Include="DevOffice\Content\Images\pnp_samples_lrg.png" />
     <Content Include="DevOffice\Content\Images\pnp_scenarios_lrg.png" />

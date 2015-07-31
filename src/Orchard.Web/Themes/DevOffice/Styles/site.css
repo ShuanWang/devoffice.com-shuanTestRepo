@@ -161,6 +161,10 @@ h1 {
 	line-height: 35px;
 }
 
+a h1{
+    color:#454545;
+}
+
 h2 {
 	font-size: 24px;
 	line-height: 26px;
@@ -1040,7 +1044,7 @@ footer .microsoft-logo {
 
 .articlesWidget .articleStub .article-title {
 	font-weight: normal;
-	padding: 0 0 0 10px;
+	padding: 0;
 }
 
 .articlesWidget .articleStub .article-stub-image {
@@ -6418,3 +6422,84 @@ img.see-more-icon.flipped {
 
 
 /*#endregion*/
+
+/*BLOG CSS*/
+.orchard-blogs #layout-main-container{
+    background-color:#f2f2f2 !important;
+}
+
+.orchard-blogs #layout-content{
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+.blog header{
+    display:none;
+}
+
+.blog .blog-post header{
+    display:block;
+}
+
+.content-item.blog-post{
+    background-color:#fff;
+    height:139px;
+    margin-bottom:30px;
+    padding:15px;
+}
+
+.content-item.blog-post h1{
+    line-height:14px;
+    margin-bottom:6px;
+}
+
+.icon-blog-green{
+    background-image: url(../Content/Images/icon-blog-green.png);
+    background-repeat: no-repeat;
+    height:139px;
+    width:139px;
+    margin-right:15px;
+    margin-top:-15px;
+    margin-left:-15px;
+}
+
+.content-item.blog-post p,
+.content-item.blog-post{
+    color:#231f20;
+    font-family: sc_segoe-ui_semilight, 'Segoe UI Semilight', sc_segoe-ui_light, 'Segoe UI Light', sc_segoe-ui_normal,'Segoe UI', Segoe, Tahoma, Verdana, Arial, sans-serif;
+}
+
+.content-item.blog-post h1 a{
+    font-family: sc_segoe-ui_semibold, 'Segoe UI Semibold', sc_segoe-ui_normal, 'Segoe UI', Segoe, Tahoma, Verdana, Arial, sans-serif;
+    color:#231f20;
+    font-size:14px;
+}
+
+.content-item.blog-post .blog-tile-content{
+    width:452px;
+    height:109px;
+    overflow:hidden;
+}
+
+.orchard-blogs .archives{
+    background-color:#fff;
+    padding:15px;
+}
+
+@media (max-width:1199px){
+    .content-item.blog-post .blog-tile-content{
+        width:778px;
+    }
+}
+
+@media (max-width:976px){
+    .content-item.blog-post .blog-tile-content{
+        width:70%;
+    }
+}
+
+@media (max-width:523px){
+    .content-item.blog-post .blog-tile-content{
+        width:43%;
+    }
+}

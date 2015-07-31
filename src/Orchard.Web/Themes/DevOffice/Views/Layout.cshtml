@@ -81,7 +81,7 @@
                     </div>
                 }
 
-                @if (Model.Content != null)
+                @if (Model.Content != null && Model.OneThirdRight == null)
                 {
                     <div id="content" class="clearfix">
                         @Zone(Model.Content)
@@ -117,8 +117,20 @@
                     </div>
 
                 }
-
-
+                
+                @if (Model.OneThirdRight != null)
+                {
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div id="content" class="clearfix col-lg-8">
+                                @Zone(Model.Content)
+                            </div>
+                            <div id="OneThirdRight" class="col-lg-4">
+                                @Zone(Model.OneThirdRight)
+                            </div>
+                        </div>
+                    </div>
+                }
 
 
                 @if (Model.AfterContent != null)

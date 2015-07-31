@@ -7,7 +7,9 @@
     var dateTimeLocalization = WorkContext.Resolve<Orchard.Localization.Services.IDateTimeFormatProvider>();
     var monthNames = dateTimeLocalization.MonthNames.ToArray();
 }
-<div class="archives">
+
+<div class="archives bg-white">
+    <h1>Archives</h1>
     @if (archives.Count() > 20) {
     <ul class="years">
         @{
