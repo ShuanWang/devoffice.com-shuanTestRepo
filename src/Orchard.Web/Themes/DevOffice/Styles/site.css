@@ -6484,7 +6484,8 @@ img.see-more-icon.flipped {
     font-size:14px;
 }
 
-.blog-posts .blog-post .blog-tile-content, .archives-list .blog-post .blog-tile-content{
+.blog-posts .blog-post .blog-tile-content, 
+.archives-list .blog-post .blog-tile-content{
     width:452px;
     height:109px;
     overflow:hidden;
