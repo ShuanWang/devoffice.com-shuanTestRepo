@@ -1,4 +1,16 @@
 ﻿@{
+    string signinError = null;
+    if (string.IsNullOrEmpty(HttpContext.Current.Request.Url.Query) == false)
+    {
+        // Parse the query string variables into a NameValueCollection.
+        System.Collections.Specialized.NameValueCollection qscoll = HttpUtility.ParseQueryString(HttpContext.Current.Request.Url.Query);
+        if (qscoll.Count > 0)
+        {
+            ViewBag.SigninError = qscoll["error_msg"];
+        }
+    }
+}
+@{
     SetMeta(httpEquiv: "X-UA-Compatible", content: "IE=edge,chrome=1");
 
     Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap.min.css");
