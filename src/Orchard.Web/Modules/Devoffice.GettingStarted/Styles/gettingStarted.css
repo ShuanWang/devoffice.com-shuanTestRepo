@@ -327,7 +327,7 @@ ol li
 
 
 /*Responsive CSS Styles*/
-@media (max-width: 480px) {
+@media (max-width: 895px) {
     body {
         padding: initial;
     }
@@ -369,6 +369,7 @@ ol li
 /*NavBar CSS Styles*/
 .cardNavBar {
     background-color: #F4F4F4;
+    display: flex;
 }
 
 #navBarList {
