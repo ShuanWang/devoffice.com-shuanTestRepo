@@ -9,6 +9,7 @@
 else
 {
     @Html.ActionLink(T("Sign in to try your data").ToString(), "SignIn", "Account", routeValues: new { area="Devoffice.GettingStarted"}, htmlAttributes: new { id = "loginLink" })
+    <span>or <a href="https://portal.microsoftonline.com/Signup/MainSignUp.aspx?OfferId=6881A1CB-F4EB-4db3-9F18-388898DAF510&DL=DEVELOPERPACK" target="_blank">create a new account</a>.</span>
 }
 <div class="ms-border-color-neutralDark ms-bg-color-error">
     <p id="signin-error_msg" class="ms-font-color-error ms-font-l">@ViewBag.SigninError</p>
