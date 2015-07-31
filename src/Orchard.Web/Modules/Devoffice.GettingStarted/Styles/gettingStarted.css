@@ -195,7 +195,7 @@ samp {
     background-color: white !important;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 40px;
     border: 1px solid #ddd;
 }
 
@@ -205,7 +205,7 @@ samp {
     background-color: white !important;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 40px 40px 40px 40px;
+    padding: 40px;
     border: 1px solid #ddd;
 }
 
@@ -315,9 +315,6 @@ ol li
     width:400px;
 }
 */
-#intro {
-    height: 500px;
-}
 
 #introContent {
     float: left;
