@@ -109,21 +109,31 @@
                     <br>
                     <p>
                         When you get to our Add-ins playground, click on the Run button to see the Add-in working. (You need to sign in with your Microsoft account first). <span class="userHasVS">If you have visual studio and want to use it, click on the open in visual studio button to continue working from visual studio.</span>
-                        <h4><b><a id="more-playground" href="#" target="_blank">Start building using the playground for Add-ins&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
+                        <h4><b><a id="more-playground" href="#" target="_blank" onclick="ga('send', 'event', 'AddinPath-StartBuilding', document.getElementById('more-playground').href);">Start building using the playground for Add-ins&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
                     </p>
                 </div>
                 <div id="buildWithGithubSample">
-                    <h4><b><a id="build-downloadFromGithub" href="#" target="_blank">Download the sample from GitHub&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
+                    <h4><b><a id="build-downloadFromGithub" href="#" target="_blank" onclick="ga('send', 'event', 'AddinPath-DownloadSample', document.getElementById('build-downloadFromGithub').href);">Download the sample from GitHub&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
                     <p>After you download the sample, follow the instructions in the readme to run it.</p><br />
                     <p>Alternatively, you can build an add-in from scratch using Visual Studio:</p>
                     <ol class="buildList">
-                        <li>If you don’t have Visual Studio, download the Community Edition for free.</li>
-                        <li><a href="http://aka.ms/OfficeDevToolsForVS2013" target="_blank">Install the Office Developer Tools for Visual Studio 2013.</a></li>
-                        <li>Create a new project: Select Templates > Visual C# > Office/SharePoint > Apps and choose App for Office (note: add-ins were formerly called Apps for Office). Choose the appropriate add-in type when prompted.</li>
+                        <li>If you don’t have Visual Studio, download the <a href="https://go.microsoft.com/fwlink/?LinkId=532606&clcid=0x409">Visual Studio 2015 Community Edition</a> for free.</li>
+                        <li>Go to File > New > Project and select Templates > Visual C# > Office/SharePoint.</li>
                     </ol>
-                    <img class="img-responsive imgGS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/AddinNewProjectVS.png")">
+                    <p>
+                    <p>If you don’t have Office Developer Tools installed in Visual Studio, select “Install Office Developer Tools projects” and press OK. Go ahead and install it (you might be prompted to close Visual Studio).</p>
+                    <p>
+                    <img class="img-responsive imgGS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/buildInstallOfficeTools.png")">
+                    <p>                    
+                    <ol class="buildList" start="3">
+                        <li>After you’ve installed the Office Developer Tools, go back to Visual Studio and select File > New > Project. Under Templates > Visual C# > Office/SharePoint, select “App for Office” and press OK. (Note: add-ins were formerly called Apps for Office.)</li>
+                    </ol>
+                    <p>
+                    <img class="img-responsive imgGS" src="@Url.Content("~/Modules/Devoffice.GettingStarted/images/buildAddNewProjectVS.png")">
+                    <p>
                     <ol class="buildList" start="4">
-                        <li>After the project has been created, click the Start button or press F5 to run it.</li>
+                        <li>Select Task pane as the type of app and select Word as the Office application that you want the app to appear. (Note: You can select multiple options if you wish, and your app will run across all of the selected applications). Then click Finish.</li>
+                        <li>Press F5 or the green Start button to launch your project.</li>
                     </ol>
                 </div>
             </div>
