@@ -163,8 +163,6 @@
   <ItemGroup>
     <Content Include="Config\Sites.config" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\OfficeDevCenter-MSDev - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\OfficeDevCenter-MSDev - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\OfficeDevCenter-MSStaging - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\OfficeDevCenter-MSStaging - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
@@ -235,7 +233,7 @@
           <DevelopmentServerVPath>/OrchardLocal</DevelopmentServerVPath>
           <IISUrl>http://localhost:30321/OrchardLocal</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
+          <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://officedevcenter/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
