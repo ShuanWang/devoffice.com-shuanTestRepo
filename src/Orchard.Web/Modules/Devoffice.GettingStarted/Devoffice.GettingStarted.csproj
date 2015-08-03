@@ -76,7 +76,6 @@
     <Content Include="Content\fabric.components.min.css" />
     <Content Include="Content\fabric.min.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="images\AddinNewProjectVS.png" />
     <Content Include="images\Build-nonVS.png" />
     <Content Include="images\Build-VS.png" />
     <Content Include="images\buildAddNewProjectVS.PNG" />
