@@ -1,4 +1,4 @@
-Name: Orchard.Disqus
+Name: Orchard.Disqus (PKS)
 AntiForgery: enabled
 Author: Microsoft DPE
 Website: http://disqusorchard.codeplex.com

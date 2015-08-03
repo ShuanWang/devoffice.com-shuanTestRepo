@@ -4,4 +4,4 @@ Description: Microsoft Dev Office project theme
 Version: 2.0
 Tags:
 Website: http://www.provokesolutions.com/
-Zones: Header, Navigation, Featured, BeforeContent, Content, Quarter1, Quarter2, Quarter3, Quarter4, AfterContent, AfterMain, Footer
+Zones: Header, Navigation, Featured, BeforeContent, Content, Quarter1, Quarter2, Quarter3, Quarter4, OneThirdRight, AfterContent, AfterMain, Footer

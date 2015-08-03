@@ -8,14 +8,14 @@
 @*col-lg-3 col-md-6 col-sm-6 col-xsm-12*@
 <div class="articlesWidget ">
 
-    <h1 role="heading">Blog Posts</h1>
+    <a href="/blogs"><h1 role="heading">Blog Posts</h1></a>
 
     <div class="articleSection">
 
         @foreach (var article in viewModel)
         {
             <div class="articleStub">
-                <div class="hidden-xs hidden-sm">
+                @*<div class="hidden-xs hidden-sm">
                     
                     @if (!string.IsNullOrEmpty(@article.Image))
                     {
@@ -28,20 +28,18 @@
                     
 
                     
-                </div>
-                <div class="article-title blog-description ff-semilight height40 pk-ellipsis-rendered pk-ellipsis col-xs-12 col-md-8">@article.Title</div>
+                </div>*@
+                
                 @if (string.IsNullOrEmpty(@article.Link))
                 {
                     <a href="/blogs/blog?id=@article.Id" class="read-more">
-                        Read more
-                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <div class="article-title blog-description ff-semilight height40 pk-ellipsis-rendered pk-ellipsis">@article.Title</div>
                     </a>
                 }
                 else
                 {
-                    <a href="@article.Link" class="read-more" target="_blank">
-                        Read more
-                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    <a href="@article.Link" class="read-more">
+                        <div class="article-title blog-description ff-semilight height40 pk-ellipsis-rendered pk-ellipsis">@article.Title</div>
                     </a>
                 }
             </div>
@@ -49,7 +47,9 @@
 
         <div class="row">
             <a href="/blogs" class="col-md-12 col-xs-12 see-more-article">
-                @if (seeMoreNumber == 1)
+                <span>See more posts</span>
+                <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow">
+                @*@if (seeMoreNumber == 1)
                 {
                     <span>See @seeMoreNumber more post</span>
     <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow">
@@ -59,7 +59,7 @@
                 {
                     <span>See @seeMoreNumber more posts</span>
     <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow">
-                }
+                }*@
 
 
 
