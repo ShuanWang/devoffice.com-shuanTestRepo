@@ -79,6 +79,8 @@
     <Content Include="images\AddinNewProjectVS.png" />
     <Content Include="images\Build-nonVS.png" />
     <Content Include="images\Build-VS.png" />
+    <Content Include="images\buildAddNewProjectVS.PNG" />
+    <Content Include="images\buildInstallOfficeTools.PNG" />
     <Content Include="images\equation2.PNG" />
     <Content Include="images\excelcontent2.png" />
     <Content Include="images\excellogo50.png" />
