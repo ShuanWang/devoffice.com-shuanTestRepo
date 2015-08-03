@@ -1039,7 +1039,7 @@ footer .microsoft-logo {
 
 .articlesWidget a.read-more {
 	font-weight: normal;
-	float: right;
+	/*float: right;*/
 }
 
 .articlesWidget .articleStub .article-title {
@@ -6489,6 +6489,10 @@ img.see-more-icon.flipped {
     width:452px;
     height:109px;
     overflow:hidden;
+}
+
+.archive-trail{
+    padding-bottom:20px;
 }
 
 .blog-title-header {

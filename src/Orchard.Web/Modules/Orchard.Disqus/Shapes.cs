@@ -23,11 +23,7 @@ namespace Orchard.Disqus
 
             builder.Describe("Parts_CommentForm")
               .OnDisplaying(shapeDisplayingContext =>
-                  AddShapeWrapper(shapeDisplayingContext, "Parts_CommentForm_Wrapper"));
-
-            //builder.Describe("Parts_ListOfComments")
-            // .OnDisplaying(shapeDisplayingContext =>
-            //     AddShapeWrapper(shapeDisplayingContext, "Parts_ListOfComments_Wrapper"));
+                  AddShapeWrapper(shapeDisplayingContext, "Parts_CommentForm_Wrapper"));            
 
             builder.Describe("Parts_Comments_Count")
                 .OnDisplaying(shapeDisplayingContext =>

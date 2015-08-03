@@ -363,6 +363,7 @@
     <Content Include="DevOffice\Scripts\feedback.js" />
     <Content Include="DevOffice\Scripts\jquery-1.11.1.min.js" />
     <Content Include="DevOffice\Scripts\jquery.ellipsis.min.js" />
+    <Content Include="DevOffice\Scripts\jquery.rwdImageMaps.min.js" />
     <Content Include="DevOffice\Scripts\plax.js" />
     <Content Include="DevOffice\Scripts\redirectSearch.js" />
     <Content Include="DevOffice\Scripts\redirectSearch.min.js">
@@ -527,9 +528,6 @@
     <Content Include="DevOffice\Bootstrap\fonts\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DevOffice\Content\Fonts\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="DevOffice\Views\Parts.Title-Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -618,46 +616,6 @@
     <Content Include="DevOffice\Scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-3.woff" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.ttf" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.woff2" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-2.eot" />
-    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-3.woff" />
     <Content Include="DevOffice\Views\Content-Article.Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -698,6 +656,49 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DevOffice\Views\Content-BlogPost.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold\f5dd91f1-2016-48f8-a46c-e3418a52c859-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Italic\05577455-4c3f-4f49-a71e-2c5b3055ec53-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light-Italic\e23dde0e-e91f-41e0-b78c-ebb9e232e98d-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Light\45a13f65-5199-4a22-821e-9b7d7795518e-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold-Italic\191748c9-7f55-43c3-a9c3-467cf18f896a-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semibold\afae52c9-5d08-4193-8984-bb4346fd493c-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight-Italic\b01764d0-636e-4ff9-b1fb-4137a1a836aa-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI-Semilight\b692a79e-1bc5-4bcd-b355-7be3ef969fb7-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.ttf" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.woff2" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-2.eot" />
+    <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-3.woff" />
+    <Content Include="DevOffice\Content\Fonts\Web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
