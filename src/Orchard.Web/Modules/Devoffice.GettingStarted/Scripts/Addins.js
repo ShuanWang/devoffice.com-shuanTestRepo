@@ -202,6 +202,7 @@ function selectClient(selectedClient) {
             $("#moreResourcesList").html("<li><a href='http://dev.office.com/codesamples#?filters=office%20add-ins,word' target='_blank'>More code samples</a><div>A list of other useful samples that you can check out to help build your add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>Reference</a><div>Reference documentation for the JavaScript API for add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/jj220073.aspx' target='_blank'>Design your add-in</a><div>Guidelines and tips to make your add-in gorgeous and easy to use</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp123515.aspx' target='_blank'>Publish your add-in</a><div>Learn about the various methods you can use to deploy and publish your add-ins</div></li>")
             break;
     }
+    ga('send', 'event', 'AddinPath-SelectClient', selectedClient);
     //removing the blocking card will show the next cards
     //Don't call removeBlockingCard again since it will remove the next blocking card
     if (cardTracker.isInBlockingList("selectapp")) {
@@ -255,6 +256,7 @@ function selectMore(selectedClient, selectedShape) {
             break;
     }
 
+    ga('send', 'event', 'AddinPath-Shape', selectedClient + '-' + selectedShape);
     setBuildContent(buildContentOptions);
 
     //removing the blocking card will show the next cards
@@ -265,6 +267,5 @@ function selectMore(selectedClient, selectedShape) {
         cardTracker.showCard("build");
         cardTracker.showCardNoScroll("more");
     }
-
 }
 

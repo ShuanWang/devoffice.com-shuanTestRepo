@@ -109,11 +109,11 @@
                     <br>
                     <p>
                         When you get to our Add-ins playground, click on the Run button to see the Add-in working. (You need to sign in with your Microsoft account first). <span class="userHasVS">If you have visual studio and want to use it, click on the open in visual studio button to continue working from visual studio.</span>
-                        <h4><b><a id="more-playground" href="#" target="_blank">Start building using the playground for Add-ins&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
+                        <h4><b><a id="more-playground" href="#" target="_blank" onclick="ga('send', 'event', 'AddinPath-StartBuilding', document.getElementById('more-playground').href);">Start building using the playground for Add-ins&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
                     </p>
                 </div>
                 <div id="buildWithGithubSample">
-                    <h4><b><a id="build-downloadFromGithub" href="#" target="_blank">Download the sample from GitHub&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
+                    <h4><b><a id="build-downloadFromGithub" href="#" target="_blank" onclick="ga('send', 'event', 'AddinPath-DownloadSample', document.getElementById('build-downloadFromGithub').href);">Download the sample from GitHub&nbsp;&nbsp<img class="img-responsive imgGS" src="@Url.Content("~/Themes/DevOffice/Content/Images/seeMoreIcon.png")" style="border:0px; margin:-5 0 0 0; padding: 0 0 0 0; display:inline-block"></a></b></h4>
                     <p>After you download the sample, follow the instructions in the readme to run it.</p><br />
                     <p>Alternatively, you can build an add-in from scratch using Visual Studio:</p>
                     <ol class="buildList">
