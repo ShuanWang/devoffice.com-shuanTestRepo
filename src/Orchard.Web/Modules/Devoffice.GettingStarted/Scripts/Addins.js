@@ -82,8 +82,7 @@ function setBuildContent(options) {
     $('#buildDefault').toggle(options.showDefault);
     $('#buildWithGithubSample').toggle(options.showGitHub);
 
-    $('#build-downloadFromGithub').href = options.linkGitHub;
-
+    $("#build-downloadFromGithub").attr("href", options.linkGitHub);
 }
 
 function enableOption1() {
