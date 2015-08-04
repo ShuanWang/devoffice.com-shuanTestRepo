@@ -707,8 +707,8 @@ pre.response {
 
 /* Begin Add-ins page CSS */
 .imgSelectApp {
-    /*height: 50px;
-    width: 50px;*/
+    height: 40px;
+    width: auto;
     border: none;
 }
 
