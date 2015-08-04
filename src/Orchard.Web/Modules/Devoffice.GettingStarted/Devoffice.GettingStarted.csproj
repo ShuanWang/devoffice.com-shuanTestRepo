@@ -93,6 +93,9 @@
     <Content Include="Scripts\browserInfo.js" />
     <Content Include="Scripts\Utils.js" />
     <Content Include="Styles\fabric.min.css" />
+    <Content Include="Styles\gettingStarted.min.css">
+      <DependentUpon>gettingStarted.css</DependentUpon>
+    </Content>
     <Content Include="Styles\jquery.json-view.min.css" />
     <Content Include="Documentation\onerror.html" />
     <Content Include="Documentation\rest-api\android\getting-started-Office-365-APIs-android.html" />
