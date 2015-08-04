@@ -30,6 +30,27 @@ namespace Devoffice.GettingStarted.Utils
         public const string userLoggedInStr = "logged_in";
         public const string platformNameTagStr = "user_platform";
         public const string appNameTagStr = "user_app";
+
+        public class Platform
+        {
+            public const string ios = "option-ios";
+            public const string ruby = "option-ruby";
+            public const string php = "option-php";
+            public const string dotnet = "option-dotnet";
+            public const string android = "option-android";
+            public const string node = "option-node";
+            public const string python = "option-python";
+        }
+
+        public class OfficeApps
+        {
+            public const string word = "word";
+            public const string excel = "excel";
+            public const string ppt = "ppt";
+            public const string onedrive = "onedrive";
+            public const string outlook = "outlook";
+        }
+
 #if DEBUG
         public const string redirectUri = "https://localhost:44302/Home/rest";
 #else

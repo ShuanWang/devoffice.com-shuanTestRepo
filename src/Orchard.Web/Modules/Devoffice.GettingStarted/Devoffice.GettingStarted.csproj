@@ -184,6 +184,7 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ApiWidgetPart.cs" />
     <Compile Include="Models\AddinsWidgetPart.cs" />
+    <Compile Include="Models\CodeSampleModel.cs" />
     <Compile Include="Models\RegisterAppModel.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Utils\AppRegistration.cs" />
