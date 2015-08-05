@@ -74,7 +74,7 @@
             m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        if (window.location.host.indexOf('localhost') != -1 || window.location.host.indexOf('azurewebsiteS') != -1) {
+        if (window.location.host.indexOf('localhost') != -1 || window.location.host.indexOf('azurewebsites') != -1) {
             ga('create', 'UA-65962112-1', 'auto'); //staging and Dev GA
         } else {
             ga('create', 'UA-54271502-1', 'auto'); //prod GA
@@ -85,7 +85,7 @@
 
         //appInsights telemetry
         var appInsightInstrumentationKey = "24ad1491-74e5-46fb-9afc-d047c649850d" //prod Key, TODO replace it with devOfficeComOrchard account
-        if (window.location.host.indexOf('localhost') != -1 || window.location.host.indexOf('azurewebsiteS') != -1) {
+        if (window.location.host.indexOf('localhost') != -1 || window.location.host.indexOf('azurewebsites') != -1) {
             appInsightInstrumentationKey: "76981fce-2462-44ca-b2a5-4186f0607408" //replaced with staging and dev key.
         }
         var appInsights = window.appInsights || function (config) {
