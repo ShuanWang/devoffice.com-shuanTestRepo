@@ -158,6 +158,7 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
             var content = codeSampleZip.generate({ type: "blob" });
             window.saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
+            appInsights.trackEvent("ClientID--" + clientId);
         });
         _progressStatus(100)
     }
