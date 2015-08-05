@@ -173,6 +173,7 @@ function registerApp() {
                 else {
                     $('#registration-result .ms-font-xl').html("<strong>Application has been updated successfully</strong>");
                 }
+                ga('send', 'event', 'O365path-Rest', 'RegisterApp--UpdateClicked--' + data.error_message);
             }
             else if (data.client_id != undefined && data.client_id != "") {
                 $('#clientIdField').val(data.client_id);
@@ -189,11 +190,13 @@ function registerApp() {
                 registerAppParams.clientSecret = data.client_secret;
                 cardTracker.removeBlockingCard();
                 disablePlatformSelection();
+                ga('send', 'event', 'O365path-Rest', 'RegisterApp--Complete');
             }
             else {
                 $('#reg-error_msg').text(data.error_message);
                 $('#reg-error_display').show();
                 //$('#reg-error_display').addClass('animated fadeInUp');
+                ga('send', 'event', 'O365path-Rest', 'RegisterApp--Error--' + data.error_message);
             }
         },
         error: function (jqXHR, exception) {
