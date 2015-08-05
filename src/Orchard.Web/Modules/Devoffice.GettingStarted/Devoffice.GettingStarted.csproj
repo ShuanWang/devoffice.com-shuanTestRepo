@@ -91,6 +91,9 @@
       <DependentUpon>addins.js</DependentUpon>
     </Content>
     <Content Include="Scripts\browserInfo.js" />
+    <Content Include="Scripts\userPlatformManager.min.js">
+      <DependentUpon>userPlatformManager.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Utils.js" />
     <Content Include="Scripts\Utils.min.js">
       <DependentUpon>Utils.js</DependentUpon>
@@ -172,6 +175,9 @@
     </Content>
     <Content Include="Scripts\websiteContent.min.js.map">
       <DependentUpon>websiteContent.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\userPlatformManager.min.js.map">
+      <DependentUpon>userPlatformManager.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />

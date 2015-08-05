@@ -15,6 +15,7 @@ function disablePlatformSelection() {
     var anchors = $("#pickPlatform ul li a");
     for (var index = 0; index < anchors.length; ++index) {
         anchors[index].disabled = true;
+        $(anchors[index]).addClass("disableClick");
     }
     $("#pickPlatformDisableDiv").show();
 }
