@@ -122,5 +122,3 @@ function selectPlatform(platform) {
 
 // add a static proeprty in selectPlatform
 selectPlatform.FirstTime = true;
-
-disablePlatformSelection();
