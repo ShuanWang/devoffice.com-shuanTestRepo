@@ -756,3 +756,6 @@ pre.response {
     white-space: normal;
     width: 10px;
 }
+.disableClick{
+    pointer-events: none;
+}
