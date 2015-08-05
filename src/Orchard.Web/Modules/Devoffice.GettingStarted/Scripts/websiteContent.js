@@ -109,7 +109,7 @@ function setDocumentationDivForPlatform(platformId, fileType, divName)
 
 function redirectEditOnGitHub(platformId)
 {
-    var gitHubContentLocation = "https://github.com/OfficeDev/OfficeDevCenterWebsite-content/"; //onError it will redirect to master branch
+    var gitHubContentLocation = "https://github.com/OfficeDev/office-content/"; //onError it will redirect to master branch
 
     $.each(contentFilesJson, function (key, contentFiles) {
         $(contentFiles).each(function (index, Id) {
