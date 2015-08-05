@@ -92,6 +92,12 @@
     </Content>
     <Content Include="Scripts\browserInfo.js" />
     <Content Include="Scripts\Utils.js" />
+    <Content Include="Scripts\Utils.min.js">
+      <DependentUpon>Utils.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\websiteContent.min.js">
+      <DependentUpon>websiteContent.js</DependentUpon>
+    </Content>
     <Content Include="Styles\fabric.min.css" />
     <Content Include="Styles\gettingStarted.min.css">
       <DependentUpon>gettingStarted.css</DependentUpon>
@@ -161,6 +167,12 @@
     <Content Include="Scripts\tryitout.js" />
     <Content Include="Scripts\userPlatformManager.js" />
     <Content Include="Scripts\websiteContent.js" />
+    <Content Include="Scripts\Utils.min.js.map">
+      <DependentUpon>Utils.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\websiteContent.min.js.map">
+      <DependentUpon>websiteContent.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />
     <Content Include="Web.config">

@@ -328,7 +328,13 @@ ol li
     width: 450px;
 }
 
-
+/* Responsive CSS Style for Phone */
+@media(max-width:500px) {
+    #main {
+        width: auto;
+        padding:5px;
+    }
+}
 /*Responsive CSS Styles*/
 @media (max-width: 895px) {
     body {
