@@ -4,8 +4,8 @@ function updatePlatform(platform) {
     if (platform == null || platform == undefined || platform == "#undefined" || platform == "") {
         return;
     }
-    $(platform).click();
-    $(platform).addClass("selected");
+    
+    selectPlatform(platform);
 }
 
 // this function will be called when an app has been registered
@@ -15,10 +15,12 @@ function disablePlatformSelection() {
     var anchors = $("#pickPlatform ul li a");
     for (var index = 0; index < anchors.length; ++index) {
         anchors[index].disabled = true;
+        $(anchors[index]).addClass("disableClick");
     }
     $("#pickPlatformDisableDiv").show();
 }
 function SetAppTypeBasedOnPlatform(id) {
+    //move setup card to the top so the user can see what they just clicked
     if (id == "option-ios" || id == "option-android") {
         // update the app type in app registration
         $("#appTypeField").val("Native App");
@@ -76,10 +78,9 @@ function selectPlatform(platform) {
     if (platform == null || platform == undefined) {
         return;
     }
-    if ($("#SetupPlatform").css('display') == 'none') {
-        //cardTracker.removeBlockingCard();
-        $("#SetupPlatform").css('display', 'block');
-        $("#SetupPlatform").addClass('animated fadeInUp');
+
+    if ($("#SetupPlatform:visible").length == 0) {
+        cardTracker.showCardNoScroll("SetupPlatform");
     }
     else {
         //remove selected from closes element
@@ -88,29 +89,32 @@ function selectPlatform(platform) {
     $(platform).addClass("selected");
 
     //track platform clicked on
-    platformId = platform.id;
+    platformId = platform.id || platform.replace("#", "");
     $('#post-download-instructions').hide();
 
     //platformName = platform.innerText;
     //save this platform info  on server
-    SetAppTypeBasedOnPlatform(platform.id);
-    setRedirectUri(platform.id);
+    SetAppTypeBasedOnPlatform(platformId);
+    setRedirectUri(platformId);
     if (selectPlatform.FirstTime == true) {
-        cardTracker.removeBlockingCard();
+        cardTracker.removeBlockingCard(false);
         selectPlatform.FirstTime = false;
     }
-
 
     //fileType = setupFile //Hardcoded as this will not chnage ; divName is also Hardcoded
     setDocumentationDivForPlatform(platformId, "setupFile", "ShowDocumentationDiv");
 
-    var urltosend = "/GettingStarted/Main/platform/" + platform.id;
+    var urltosend = "/GettingStarted/Main/platform/" + platformId;
 
+    var dataTosend = {
+        "platformid": platformId
+    };
+    dataTosend = AddAntiForgeryToken(dataTosend);
     /* Note: we dont need to do any error handling here*/
     $.ajax({
-        url: urltosend + getAntiForgeryTokenQuery(),
+        url: urltosend,
         type: "POST",
-        data: platformId,
+        data: dataTosend,
     });
 
     ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);

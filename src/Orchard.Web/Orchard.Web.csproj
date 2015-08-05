@@ -167,8 +167,6 @@
     <None Include="Properties\PublishProfiles\OfficeDevCenter-MSStaging - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\OfficeDevCenterSite-orchard - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\OfficeDevCenterSite-orchard - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\OfficeDevCenterSite-staging - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\OfficeDevCenterSite-staging - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

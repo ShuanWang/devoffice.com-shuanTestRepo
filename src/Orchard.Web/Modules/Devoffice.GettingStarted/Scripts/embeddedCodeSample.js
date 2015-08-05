@@ -158,6 +158,7 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
             var content = codeSampleZip.generate({ type: "blob" });
             window.saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
+            appInsights.trackEvent("ClientID--" + clientId);
         });
         _progressStatus(100)
     }
@@ -226,7 +227,7 @@ function _errorHandlerDownloadSample(error) {
 
         $('#post-download-instructions').html(msg)
         $('#post-download-instructions').show();
-        $('#post-download-instructions').addClass('animated fadeInUp');
+        //$('#post-download-instructions').addClass('animated fadeInUp');
         return;
 
     }

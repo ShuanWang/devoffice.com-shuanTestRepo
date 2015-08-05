@@ -62,7 +62,7 @@ $(document).ready(function () {
 
     // app name
     $("#appNameField").focusout(function () {
-        var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the appname.");
+        var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the app name.");
         if (appName != undefined) {
             // update the app id Uri
             var appidUri = $("#appIdUriField").val();
@@ -116,7 +116,7 @@ function registerApp() {
     var includeMailSend = $('#mailSend').is(':checked');
     var success = false;
     //do a frontend error check
-    var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the appname.");
+    var appName = checkParameter("#appNameField", "#app-name-error-div", "Please enter the app name.");
     if (appName == undefined) {
         return;
     }
@@ -138,7 +138,7 @@ function registerApp() {
     registerAppParams.signonUri = signOnUrl;
     registerAppParams.redirectUri = redirectUri;
 
-    var actionUrl = "/GettingStarted/AppRegistration/RegisterApp" + getAntiForgeryTokenQuery();
+    var actionUrl = "/GettingStarted/AppRegistration/RegisterApp";
 
     var param = {
         "appName": appName,
@@ -157,15 +157,13 @@ function registerApp() {
         "includeMailSend": includeMailSend,
         "appId": registerAppParams.clientId,
     }
+
     $('#register-button').attr("disabled", "disabled");
     $('#registration-progress').addClass('loading');
-    var json = JSON.stringify(param);//
     $.ajax({
         url: actionUrl,
-        dataType: "json",
         type: "POST",
-        contentType:'application/json;charset-utf-8',
-        data: json,
+        data: AddAntiForgeryToken(param),
         success: function (data, textStatus, xhr) {
             if (registerAppParams.clientId !=null ) {
                 /* update case*/
@@ -185,7 +183,7 @@ function registerApp() {
                     $('#clientSecretField').val(data.client_secret);
                 }
                 $('#registration-result').removeClass('hidden');
-                $('#registration-result').addClass('animated fadeInUp');
+                //$('#registration-result').addClass('animated fadeInUp');
 
                 registerAppParams.clientId = data.client_id;
                 registerAppParams.clientSecret = data.client_secret;
@@ -195,7 +193,7 @@ function registerApp() {
             else {
                 $('#reg-error_msg').text(data.error_message);
                 $('#reg-error_display').show();
-                $('#reg-error_display').addClass('animated fadeInUp');
+                //$('#reg-error_display').addClass('animated fadeInUp');
             }
         },
         error: function (jqXHR, exception) {
@@ -209,7 +207,7 @@ function registerApp() {
             }
             $('#reg-error_msg').text(msg);
             $('#reg-error_display').show();
-            $('#reg-error_display').addClass('animated fadeInUp');
+            //$('#reg-error_display').addClass('animated fadeInUp');
         },
         complete: function (xhr) {
             $('#registration-progress').removeClass('loading');

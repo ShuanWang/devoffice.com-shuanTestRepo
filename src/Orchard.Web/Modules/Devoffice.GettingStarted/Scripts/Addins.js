@@ -1,4 +1,4 @@
-﻿// Addins.js
+// Addins.js
 // Script used in the AddinsWidget Part
 
 var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
@@ -66,12 +66,31 @@ var read = {
     'overlaybottom': 'https://github.com/OfficeDev/Add-in-MailRead-Sample'
 };
 
+function setBuildContent(options) {
+    var defaults = { 
+        showDefault: true, 
+        showGitHub: false,
+        linkGitHub: ""
+    };
+    var options = $.extend({}, defaults, options);
+
+    //Only show the gitHub options for Windows PCs
+    options.showDefault = options.showDefault || !os().isWindows;
+    options.showGitHub = options.showGitHub && os().isWindows;
+
+    //show/hide the content
+    $('#buildDefault').toggle(options.showDefault);
+    $('#buildWithGithubSample').toggle(options.showGitHub);
+
+    $("#build-downloadFromGithub").attr("href", options.linkGitHub);
+}
+
 function enableOption1() {
-    $('#option1button').css('visibility', 'visible');
+    $('#option1button').show();
 }
 
 function enableOption2() {
-    $('#option2button').css('visibility', 'visible');
+    $('#option2button').show();
 }
 
 function setContent(div, html) {
@@ -81,8 +100,8 @@ function setContent(div, html) {
 }
 
 function selectClient(selectedClient) {
-    $('#option1').attr('style', 'visibility:hidden');
-    $('#option2').attr('style', 'visibility:hidden');
+    $('#option1button').hide();
+    $('#option2button').hide();
 
     cardTracker.hideCard("build");
     cardTracker.hideCard("more");
@@ -157,13 +176,14 @@ function selectClient(selectedClient) {
             enableOption1();
             enableOption2();
 
-            $("#moreResourcesList").html("<li><a id='more-github' href='#' target='_blank'>Download starter sample</a><div>Download a starter project that you can continue building with using the IDE of your choice.</div></li><li><a href='http://dev.office.com/codesamples#?filters=office%20add-ins,powerpoint' target='_blank'>More code samples</a><div>A list of other useful samples that you can check out to help build your add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>Reference</a><div>Reference documentation for the JavaScript API for add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/jj220073.aspx' target='_blank'>Design your add-in</a><div>Guidelines and tips to make your add-in gorgeous and easy to use</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp123515.aspx' target='_blank'>Publish your add-in</a><div>Learn about the various methods you can use to deploy and publish your add-ins</div></li>")
+            //remove starter sample from word/ppt
+            $("#moreResourcesList").html("<li><a href='http://dev.office.com/codesamples#?filters=office%20add-ins,powerpoint' target='_blank'>More code samples</a><div>A list of other useful samples that you can check out to help build your add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>Reference</a><div>Reference documentation for the JavaScript API for add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/jj220073.aspx' target='_blank'>Design your add-in</a><div>Guidelines and tips to make your add-in gorgeous and easy to use</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp123515.aspx' target='_blank'>Publish your add-in</a><div>Learn about the various methods you can use to deploy and publish your add-ins</div></li>")
+            $("#buildList-AppName").html("PowerPoint");
             break;
 
         case 'word':
 
             setContent($('#embedContents'), "<div><h3>Explore Word Add-ins</h3></div>This short video shows you what a Word Add-in looks like and gives a brief introduction to the JavaScript API that powers the add-ins model.<BR><BR><iframe class='embed-responsive-item embed-responsive-16by9' height='400px' width='100%' src='https://www.youtube.com/embed/S23rcdX96Wc' frameborder='0' allowfullscreen></iframe><BR><BR>For a full list of the APIs available, check out the <a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>reference documentation</a>.<BR>");
-
 
             $('#option1title').text(taskPane.title);
             $('#option1img').attr('src', taskPane.img.word);
@@ -172,12 +192,18 @@ function selectClient(selectedClient) {
 
             $('#choose-title').text('You can extend Word with a Task Pane add-in. Click on the button below to learn how to get started building a Task Pane add-in.');
 
-            enableOption1();
-            $('#option2button').css('visibility', 'hidden');
+            $('#buildDefault').hide()
+            $('#buildWithGithubSample').show();
 
-            $("#moreResourcesList").html("<li><a id='more-github' href='#' target='_blank'>Download starter sample</a><div>Download a starter project that you can continue building with using the IDE of your choice.</div></li><li><a href='http://dev.office.com/codesamples#?filters=office%20add-ins,word' target='_blank'>More code samples</a><div>A list of other useful samples that you can check out to help build your add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>Reference</a><div>Reference documentation for the JavaScript API for add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/jj220073.aspx' target='_blank'>Design your add-in</a><div>Guidelines and tips to make your add-in gorgeous and easy to use</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp123515.aspx' target='_blank'>Publish your add-in</a><div>Learn about the various methods you can use to deploy and publish your add-ins</div></li>")
+            enableOption1();
+            $('#option2button').hide();
+
+            //remove starter sample from word/ppt
+            $("#moreResourcesList").html("<li><a href='http://dev.office.com/codesamples#?filters=office%20add-ins,word' target='_blank'>More code samples</a><div>A list of other useful samples that you can check out to help build your add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx' target='_blank'>Reference</a><div>Reference documentation for the JavaScript API for add-ins</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/jj220073.aspx' target='_blank'>Design your add-in</a><div>Guidelines and tips to make your add-in gorgeous and easy to use</div></li><li><a href='https://msdn.microsoft.com/EN-US/library/office/fp123515.aspx' target='_blank'>Publish your add-in</a><div>Learn about the various methods you can use to deploy and publish your add-ins</div></li>")
+            $("#buildList-AppName").html("Word");
             break;
     }
+    ga('send', 'event', 'AddinPath-SelectClient', selectedClient);
     //removing the blocking card will show the next cards
     //Don't call removeBlockingCard again since it will remove the next blocking card
     if (cardTracker.isInBlockingList("selectapp")) {
@@ -188,6 +214,8 @@ function selectClient(selectedClient) {
 }
 
 function selectMore(selectedClient, selectedShape) {
+    var buildContentOptions = {};
+
     cardTracker.hideCard("build");
     cardTracker.hideCard("more");
 
@@ -199,6 +227,7 @@ function selectMore(selectedClient, selectedShape) {
             }
             if (selectedClient == 'powerpoint') {
                 $('#more-playground').attr('href', content.overlaytop.powerpoint);
+                buildContentOptions = { showDefault: false, showGitHub: true, linkGitHub: "https://github.com/OfficeDev/Add-in-Content-Starter" }
             }
             break;
 
@@ -209,9 +238,11 @@ function selectMore(selectedClient, selectedShape) {
             }
             if (selectedClient == 'powerpoint') {
                 $('#more-playground').attr('href', taskPane.overlaytop.powerpoint);
+                buildContentOptions = { showDefault: false, showGitHub: true, linkGitHub: "https://github.com/OfficeDev/Add-in-TaskPane-Sample" }
             }
             if (selectedClient == 'word') {
-                $('#more-playground').attr('href', taskPane.overlaytop.word);
+                $('#more-playground').attr('href', taskPane.overlaytop.word); 
+                buildContentOptions = { showDefault: false, showGitHub: true, linkGitHub: "https://github.com/OfficeDev/Add-in-TaskPane-Sample" }
             }
             break;
 
@@ -226,6 +257,9 @@ function selectMore(selectedClient, selectedShape) {
             break;
     }
 
+    ga('send', 'event', 'AddinPath-Shape', selectedClient + '-' + selectedShape);
+    setBuildContent(buildContentOptions);
+
     //removing the blocking card will show the next cards
     //Don't call removeBlockingCard again since it will remove the next blocking card
     if (cardTracker.isInBlockingList("choosetype")) {
@@ -234,6 +268,5 @@ function selectMore(selectedClient, selectedShape) {
         cardTracker.showCard("build");
         cardTracker.showCardNoScroll("more");
     }
-
 }
 

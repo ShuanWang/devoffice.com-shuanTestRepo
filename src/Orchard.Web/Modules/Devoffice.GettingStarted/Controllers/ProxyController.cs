@@ -81,7 +81,7 @@ namespace Devoffice.GettingStarted.Controllers
             Utils.ServiceInfo si = this.GetServiceInfo(service);
             if (si == null || si.Token == null || si.ServiceResourceId == null)
             {
-                return Content("Sorry!!! we couldnt fetch the token/service endpoint from the Azure");
+                return Content("Sorry!!! We couldn't fetch the token or service endpoint from Azure.");
             }
             string url = si.ServiceEndPointUri + postUrl;
             HttpResponseMessage msg = helper.PutRequest(url, si.Token);

@@ -9,6 +9,7 @@
 else
 {
     @Html.ActionLink(T("Sign in to try your data").ToString(), "SignIn", "Account", routeValues: new { area="Devoffice.GettingStarted"}, htmlAttributes: new { id = "loginLink" })
+    <span>or <a href="http://dev.office.com/devprogram" target="_blank">sign up for a free Office 365 developer account</a>.</span>
 }
 <div class="ms-border-color-neutralDark ms-bg-color-error">
     <p id="signin-error_msg" class="ms-font-color-error ms-font-l">@ViewBag.SigninError</p>

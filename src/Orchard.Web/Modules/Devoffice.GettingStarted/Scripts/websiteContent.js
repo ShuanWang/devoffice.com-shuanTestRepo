@@ -5,28 +5,28 @@
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/ios\/setup-ios.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/ios\/getting-started-Office-365-APIs-ios.html",
             "GithubMDFileName": "rest-api\/ios\/getting-started-Office-365-APIs-ios.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package, navigate to the swift or objective-c project folder. Run pod install. Open Project in Xcode and run.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, navigate to the swift or objective-c project folder. Run pod install. Open Project in Xcode and run.",
         },
         {
             "Id": "option-android",
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/android\/setup-android.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/android\/getting-started-Office-365-APIs-android.html",
             "GithubMDFileName": "rest-api\/android\/getting-started-Office-365-APIs-android.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package, open project, and run.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, open project, and run.",
         },
         {
             "Id": "option-dotnet",
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/dotnet\/setup-dotnet.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/dotnet\/getting-started-Office-365-APIs-dotnet.html",
             "GithubMDFileName": "rest-api\/dotnet\/getting-started-Office-365-APIs-dotnet.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package, open solution, and run.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, open solution, and run.",
         },
         {
             "Id": "option-javascript",
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/javascript\/setup-javascript.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/javascript\/getting-started-Office-365-APIs-javascript.html",
             "GithubMDFileName": "rest-api\/javascript\/getting-started-Office-365-APIs-javascript.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package and run",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package and run",
         },
 
         {
@@ -34,28 +34,28 @@
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/node\/setup-node.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/node\/getting-started-Office-365-APIs-node.html",
             "GithubMDFileName": "rest-api\/node\/getting-started-Office-365-APIs-node.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package, navigate to project folder and run: node index.js.  Then open your browser to the specified port (i.e. http://localhost:8000).",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, navigate to project folder and run: node index.js.  Then open your browser to the specified port (i.e. http://localhost:8000).",
         },
         {
             "Id": "option-php",
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/php\/setup-php.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/php\/getting-started-Office-365-APIs-php.html",
             "GithubMDFileName": "rest-api\/php\/getting-started-Office-365-APIs-php.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package and navigate to your folder. Restart the php server and access the app at http://localhost/php-tutorial/home.php.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package and navigate to your folder. Restart the php server and access the app at http://localhost/php-tutorial/home.php.",
         },
         {
             "Id": "option-python",
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/python\/setup-python.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/python\/getting-started-Office-365-APIs-python.html",
             "GithubMDFileName": "rest-api\/python\/getting-started-Office-365-APIs-python.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package and run.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package and run.",
         },
         {
             "Id": "option-ruby",
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/ruby\/setup-ruby.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/ruby\/getting-started-Office-365-APIs-ruby.html",
             "GithubMDFileName": "rest-api\/ruby\/getting-started-Office-365-APIs-ruby.md",
-            "PostDownloadInstructions": "To continue: Unzip downloaded package and navigate to your folder. Run <b>bundle install</b>. Then start the server by running <b>rails server</b> and navigate to http://localhost:3000.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package and navigate to your folder. Run <b>bundle install</b>. Then start the server by running <b>rails server</b> and navigate to http://localhost:3000.",
         }
     ]
 }
@@ -109,7 +109,7 @@ function setDocumentationDivForPlatform(platformId, fileType, divName)
 
 function redirectEditOnGitHub(platformId)
 {
-    var gitHubContentLocation = "https://github.com/OfficeDev/OfficeDevCenterWebsite-content/"; //onError it will redirect to master branch
+    var gitHubContentLocation = "https://github.com/OfficeDev/office-content/"; //onError it will redirect to master branch
 
     $.each(contentFilesJson, function (key, contentFiles) {
         $(contentFiles).each(function (index, Id) {

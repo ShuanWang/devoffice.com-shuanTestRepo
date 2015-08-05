@@ -1,132 +1,139 @@
 ﻿<div>
 
-<div id="signed-in-display" class="ms-Grid-row">
-    <div class="ms-Grid-col ms-u-sm12">
-        <span class="ms-font-xl">Welcome, <strong>@Session[Devoffice.GettingStarted.Utils.Constants.azureUserTagStr]</strong>!</span>
-        <span class="ms-font-l">(Wrong account? No problem, @Html.ActionLink(T("Sign out").ToString(), "SignOut", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, htmlAttributes: new { id = "signoutLink" })</span>
-        <p>Now that you've signed in, you can create the app registration using the form below. We've already filled in default values that should work if you're following the tutorial.</p>
-        <br />
+    <div id="signed-in-display" class="ms-Grid-row">
+        <div class="ms-Grid-col ms-u-sm12">
+            <span class="ms-font-xl">Welcome, <strong>@Session[Devoffice.GettingStarted.Utils.Constants.azureUserTagStr]</strong>!</span>
+            <span class="ms-font-l">(Wrong account? No problem, @Html.ActionLink(T("Sign out").ToString(), "SignOut", "Account", routeValues: new { area = "Devoffice.GettingStarted" }, htmlAttributes: new { id = "signoutLink" }))</span>
+            <br />
+            <p>Your app needs to be registered for authentication and authorization before it can access the information through Office 365 APIs. App registrations can be created and managed in the Azure Management Portal. But for now, let's keep things simple. We'll register an app here for you with a few simple clicks.</p>
+            <br />
+            <p>Since you've signed in, you can register the app using the form below. We've already filled in default values that should work if you're following the tutorial. By default, any apps registered through this will have the read user profile permission. More permissions coming soon!</p>
+            <br />
+        </div>
     </div>
-</div>
-<div id="registration-form">
-    <form role="form">
-        <div class="form-group">
-            <label for="appName">App Name:</label>
-            <input id="appNameField" class="form-control" type="text" name="appName" placeholder="Enter your app name here." />
-            <div id="app-name-error-div"class="ms-font-color-error ms-font-l"></div>
-        </div>
-        <div class="form-group hidden">
-            <label class="ms-Label" for="appType">App Type:</label>
-            <input id="appTypeField" class="form-control" type="text" name="appType" value="Web App" disabled />
-        </div>
-        <div class="form-group" id="signOnUrlFieldGroup">
-            <label class="" for="signOnUrl">Sign on URL:</label>
-            <input id="signOnUrlField" class="form-control" type="text" name="signOnUri" value="@Model.signOnUri" />
-            <div id="sign-onUrl-error-div" class="ms-font-color-error ms-font-l"></div>
-        </div>
-        <div class="form-group" id="appIdUriFieldGroup" hidden>
-            <label class="" for="appIdUri">App ID URI:</label>
-            <input id="appIdUriField" class="form-control" type="text" name="appIdUri" value="@Model.appIdUri"  disabled/>
-            <div id="app-id-uri-error-div" class="ms-font-color-error ms-font-l"></div>
-        </div>
-        <div class="form-group">
-            <label class="" for="redirectUri">Redirect URI:</label>
-            <input id="redirectUriField" class="form-control" type="text" name="redirectUri" value="@Model.redirectUri" />
-            <div id="redirect-uri-error-div" class="ms-font-color-error ms-font-l"></div>
-        </div>
-        <div class="form-group">
-            <label>App Permissions:</label>
-            <div id="app-reg-permission-table">
-                <div id="app-reg-permission">
-                    <table style="width:100%" class= "table table-bordered">
-                        <tr>
-                            <td>Mail</td>
-                            <td>Calendar</td>
-                            <td>Contacts</td>
-                            <td>Files</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <!--Read User mail-->
-                                    <input name="mailRead" class="ms-ChoiceField-input" id="mailRead" type="checkbox" checked />
-                                    <label class="ms-ChoiceField-field" for="mailRead"><span class="ms-Label">Read user mail</span></label><br />
-
-                                    <!--Read and Write user mail-->
-                                    <input name="mailWrite" class="ms-ChoiceField-input" id="mailWrite" type="checkbox" checked />
-                                    <label class="ms-ChoiceField-field" for="mailWrite"><span class="ms-Label">Read and write user mail</span></label><br />
-
-                                    <!--Send Mail as a user-->
-                                    <input name="mailSend" class="ms-ChoiceField-input" id="mailSend" type="checkbox" checked />
-                                    <label class="ms-ChoiceField-field" for="mailSend"><span class="ms-Label">Send mail as a user</span></label><br />
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <!--Read user Calendars-->
-                                    <input name="calendarRead" class="ms-ChoiceField-input" id="calendarRead" type="checkbox" />
-                                    <label class="" for="calendarRead"><span class="ms-Label">Read user calendars</span></label><br />
-
-                                    <!--Read and write user calendars-->
-                                    <input name="calendarWrite" class="ms-ChoiceField-input" id="calendarWrite" type="checkbox" />
-                                    <label class="" for="calendarWrite"><span class="ms-Label">Read and write user calendars</span></label><br />
-                                </div>
-
-                            </td>
-                            <td>
-                                <div>
-                                    <!--Read user Contacts-->
-                                    <input name="contactsRead" class="ms-ChoiceField-input" id="contactsRead" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="contactsRead"><span class="ms-Label">Read user contacts</span></label><br />
-
-                                    <!--Read and write user Contacts-->
-                                    <input name="contactsWrite" class="ms-ChoiceField-input" id="contactsWrite" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="contactsWrite"><span class="ms-Label">Read and write user contacts</span></label><br />
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    <!--Read user user files-->
-                                    <input name="filesRead" class="ms-ChoiceField-input" id="filesRead" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="filesRead"><span class="ms-Label">Read user files</span></label><br />
-
-                                    <!--Read and write user files-->
-                                    <input name="filesWrite" class="ms-ChoiceField-input" id="filesWrite" type="checkbox" />
-                                    <label class="ms-ChoiceField-field" for="filesWrite"><span class="ms-Label">Read and write user files</span></label><br />
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
+    <div id="registration-form">
+        <form role="form">
+            <div class="form-group">
+                <label for="appName" title="This is the display name for your application.">App Name <i class="fa fa-question-circle"></i> :</label>
+                <input id="appNameField" class="form-control" type="text" name="appName" placeholder="Enter your app name here." />
+                <div id="app-name-error-div" class="ms-font-color-error ms-font-l"></div>
             </div>
+            <div class="form-group hidden">
+                <label class="ms-Label" for="appType">App Type <i class="fa fa-question-circle"></i> :</label>
+                <input id="appTypeField" class="form-control" type="text" name="appType" value="Web App" disabled />
+            </div>
+            <div class="form-group" id="signOnUrlFieldGroup">
+                <label class="" title="The URL where users can sign in and use your app." for="signOnUrl">Sign on URL<i class="fa fa-question-circle"></i>:</label>
+                <input id="signOnUrlField" class="form-control" type="text" name="signOnUri" value="@Model.signOnUri" />
+                <div id="sign-onUrl-error-div" class="ms-font-color-error ms-font-l"></div>
+            </div>
+            <div class="form-group" id="appIdUriFieldGroup" hidden>
+                <label class="" for="appIdUri">App ID URI <i class="fa fa-question-circle"></i> :</label>
+                <input id="appIdUriField" class="form-control" type="text" name="appIdUri" value="@Model.appIdUri" disabled />
+                <div id="app-id-uri-error-div" class="ms-font-color-error ms-font-l"></div>
+            </div>
+            <div class="form-group">
+                <label class="" title="The URI to which we will redirect in response to an OAuth 2.0 request. The value does not need to be a physical endpoint, but must be a valid URI." for="redirectUri">Redirect URI <i class="fa fa-question-circle"></i> :</label>
+                <input id="redirectUriField" class="form-control" type="text" name="redirectUri" value="@Model.redirectUri" />
+                <div id="redirect-uri-error-div" class="ms-font-color-error ms-font-l"></div>
+            </div>
+            <div class="form-group">
+                <label title="Choose the permissions you need to ask the user for. By default, any apps registered through this will have the read user profile permission.">App Permissions <i class="fa fa-question-circle"></i> :</label>
+                <div id="app-reg-permission-table">
+                    <div id="app-reg-permission">
+                        <table style="width:100%" class="table table-bordered">
+                            <tr>
+                                <td>Mail</td>
+                                <td>Calendar</td>
+                                <td>Contacts</td>
+                                <td>Files</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <!--Read User mail-->
+                                        <input name="mailRead" class="ms-ChoiceField-input" id="mailRead" type="checkbox" checked> Read user mail</input>
+                                        <br /><br />
+
+                                        <!--Read and Write user mail-->
+                                        <input name="mailWrite" class="ms-ChoiceField-input" id="mailWrite" type="checkbox" checked> Read and write user mail</input>
+                                        <br /><br />
+
+                                        <!--Send Mail as a user-->
+                                        <input name="mailSend" class="ms-ChoiceField-input" id="mailSend" type="checkbox" checked /> Send mail as a user</input>
+                                        <br /><br />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <!--Read user Calendars-->
+                                        <input name="calendarRead" class="ms-ChoiceField-input" id="calendarRead" type="checkbox" /> Read user calendars</input>
+                                        <br /><br />
+
+                                        <!--Read and write user calendars-->
+                                        <input name="calendarWrite" class="ms-ChoiceField-input" id="calendarWrite" type="checkbox" /> Read and write user calendars</input>
+                                        <br /><br />
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div>
+                                        <!--Read user Contacts-->
+                                        <input name="contactsRead" class="ms-ChoiceField-input" id="contactsRead" type="checkbox" /> Read user contacts</input>
+                                        <br /><br />
+
+                                        <!--Read and write user Contacts-->
+                                        <input name="contactsWrite" class="ms-ChoiceField-input" id="contactsWrite" type="checkbox" /> Read and write user contacts</input>
+                                        <br /><br />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <!--Read user user files-->
+                                        <input name="filesRead" class="ms-ChoiceField-input" id="filesRead" type="checkbox" /> Read user files</input>
+                                        <br /><br />
+
+                                        <!--Read and write user files-->
+                                        <input name="filesWrite" class="ms-ChoiceField-input" id="filesWrite" type="checkbox" /> Read and write user files</input>
+                                        <br /><br />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <button id="register-button" class="button" onclick="registerApp()" title="">
+                <span class="ms-Button-label">Register App</span>
+            </button>
+        </form>
+    </div>
+
+    <div id="registration-progress" class="code-container"></div>
+    <div id="registration-result" class="hidden note">
+        <div class="ms-font-xl">
+            <strong>Registration Successful!</strong>
         </div>
-        <button id="register-button" class="button" onclick="registerApp()">
-            <span class="ms-Button-label">Register App</span>
-        </button>
-    </form>
-</div>
+        <div class="ms-TextField marginTop10">
+            <label class="" for="clientId">Client ID:</label>
+            <input id="clientIdField" class="form-control" type="text" name="clientId" value="" readonly style="cursor: text" />
+        </div>
+        <div class="ms-TextField marginTop10" id="app-reg-client-secret">
+            <label class="" for="clientSecret">Client Secret:</label>
+            <input id="clientSecretField" class="form-control" type="text" name="clientSecret" value="" readonly style="cursor: text" />
+        </div>
+        <div class="spacer20">
+            <p>Note: At this time, you can create app registrations on this page. To manage/renew this app registration, edit permissions, or add a logo, you will need to do so in the Azure Management Portal.
+            </p>
+        </div>
+    </div>
 
-<div id="registration-progress" class="code-container"></div>
-<div id="registration-result" class="hidden note">
-    <div class="ms-font-xl">
-       <strong>Registration Successful!</strong>
+    <div id="reg-error_display" hidden>
+        <p class="ms-font-color-error ms-font-l">The following error occurred while processing your request:</p>
+        <ul>
+            <li><p id="reg-error_msg" class="ms-font-color-error ms-font-l">err</p></li>
+        </ul>
     </div>
-    <div class="ms-TextField marginTop10">
-        <label class="" for="clientId">Client ID:</label>
-        <input id="clientIdField" class="form-control" type="text" name="clientId" value="" disabled />
-    </div>
-    <div class="ms-TextField marginTop10" id="app-reg-client-secret">
-        <label class="" for="clientSecret">Client Secret:</label>
-        <input id="clientSecretField" class="form-control" type="text" name="clientSecret" value="" disabled />
-    </div>
-</div>
-
-<div id="reg-error_display" hidden>
-    <p class="ms-font-color-error ms-font-l">The following error occurred while processing your request:</p>
-    <ul>
-        <li><p id="reg-error_msg" class="ms-font-color-error ms-font-l">err</p></li>
-    </ul>
-</div>
 </div>
 

@@ -95,7 +95,11 @@ namespace Devoffice.GettingStarted.Utils
                 // Implementing refresh can come later.
                 if (result.Contains("Authentication_ExpiredToken"))
                 {
-                    registrationInfo["error_message"] = "Your session has expired. Please logout and log in again.";
+                    registrationInfo["error_message"] = "Your session has been expired. Please logout and log in again.";
+                }
+                else if (result.Contains("Authorization_RequestDenied"))
+                {
+                    registrationInfo["error_message"] = "Please sign in again using an account that has admin privileges.";
                 }
                 else
                 {
