@@ -91,6 +91,9 @@
       <DependentUpon>addins.js</DependentUpon>
     </Content>
     <Content Include="Scripts\browserInfo.js" />
+    <Content Include="Scripts\embeddedCodeSample.min.js">
+      <DependentUpon>embeddedCodeSample.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\userPlatformManager.min.js">
       <DependentUpon>userPlatformManager.js</DependentUpon>
     </Content>
@@ -155,6 +158,9 @@
     <Content Include="CodeSamples\Web.config" />
     <Content Include="Scripts\addins.min.js.map">
       <DependentUpon>addins.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\embeddedCodeSample.min.js.map">
+      <DependentUpon>embeddedCodeSample.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

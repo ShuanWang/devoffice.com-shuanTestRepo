@@ -39,8 +39,8 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Win-tutorial-master.zip",
             "GitHubRepoName": "O365-Win-Tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial/tree/v1"
         },
         {
             "Name": "option-php",
@@ -51,8 +51,8 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-PHP-tutorial-master.zip",
             "GitHubRepoName": "O365-PHP-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/php-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/php-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/php-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/php-tutorial/tree/v1"
         },
         {
             "Name": "option-node",
@@ -63,8 +63,8 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Node-tutorial-master.zip",
             "GitHubRepoName": "O365-Node-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/node-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/node-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/node-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/node-tutorial/tree/v1"
         },
         {
             "Name": "option-python",
@@ -75,8 +75,8 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Python-tutorial-master.zip",
             "GitHubRepoName": "O365-Python-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/python_tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/python_tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/python_tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/python_tutorial/tree/v1"
         },
         {
             "Name": "option-ruby",
@@ -87,8 +87,8 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Ruby-tutorial-master.zip",
             "GitHubRepoName": "O365-Ruby-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial/tree/v1"
         }
     ]
 }
