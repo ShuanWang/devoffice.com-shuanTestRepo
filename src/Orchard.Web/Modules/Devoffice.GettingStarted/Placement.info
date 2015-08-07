@@ -1,0 +1,10 @@
+<Placement>
+  <Place Parts_AddinsWidget="Content:1"/>
+  <Place Parts_ApiWidget="Content:1"/>
+
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_AddinsWidget="-"/>
+    <Place Parts_ApiWidget="-"/>
+  </Match>
+  
+</Placement>

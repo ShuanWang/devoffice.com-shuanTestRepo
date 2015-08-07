@@ -1,0 +1,685 @@
+<h2 id="get-started-with-aspnet-mvc-development">Get started with ASP.NET MVC development</h2>
+<p>When creating your app, you can program directly against the REST APIs to interact with Office 365, or you can use the Office Developer Tools for Visual Studio 2013.</p>
+<p>The Office Developer Tools for Visual Studio 2013 include client libraries and UI enhancements to access the Office 365 API services. The .NET Framework and JavaScript client libraries make it easier for you to interact with the Office 365 REST APIs from the device or platform of your choice. The Visual Studio UI enhancements make it easy to add Office 365 services to your app projects.</p>
+<p>In this topic, we'll walk you through creating a simple MVC (model-view-controller) web application that uses the Office 365 APIs in Visual Studio 2013. This includes:</p>
+<ol>
+    <li><a href="#bk_createApp">Create your app and add dependencies</a></li>
+    <li><a href="#bk_codeYourApp">Code your app</a></li>
+    <li><a href="#bk_test">Test your app</a></li>
+</ol>
+<p><a name="bk_prerequisites" /></p>
+<h2 id="before-you-start">Before you start</h2>
+<p>Before you can create applications that access the Office 365 APIs, you'll need to set up your developer environment. This consists of three one-time tasks to make sure you've got the tools and environment to be successful:</p>
+<ol>
+    <li>Download Visual Studio and the Office Developer Tools you'll be using to create your apps.</li>
+    <li>Get an Office 365 for business subscription, to access the Office 365 APIs.</li>
+    <li>Associate your Office 365 subscription with Azure AD, so you can create and manage apps.</li>
+</ol>
+<p>If you still need to complete any of these steps, take a look at <a href="setup-development-environment?aspnet">Set up your Office 365 development environment</a> for detailed instructions on getting set up.</p>
+<p><a name="bk_createApp"> </a></p>
+<h2 id="create-your-app-and-add-dependencies">Create your app and add dependencies</h2>
+<p>After you've set up your development environment, you're ready to use Visual Studio to create a web application that uses the Office 365 APIs. </p>
+<p>The example we'll build will be a single-tenant MVC that uses Azure AD Single Sign-on to authenticate and read the user's Contact information from Office 365. We'll use the <a href="https://github.com/OfficeDev/O365-WebApp-SingleTenant">Office 365 single-tenant MVC project</a> on GitHub as a model. </p>
+<ol>
+    <li>In Visual Studio, select <strong>File</strong> &gt; <strong>New</strong>.</li>
+    <li>Under <strong>Visual C#</strong> &gt; <strong>Web</strong>, select <strong>ASP.NET web application</strong>. Name the project and select <strong>Ok</strong>.</li>
+    <li>Select <strong>MVC</strong>.</li>
+    <li>Select <strong>Change authentication</strong>, select <strong>No authentication</strong>, and select <strong>OK</strong> twice to create the project.</li>
+</ol>
+<p>The Office 365 API services use Azure AD to provide secure authentication to users' Office 365 data. To access the Office 365 APIs, you need to register your app with Azure AD. </p>
+<p><a name="bk_intro"> </a></p>
+<h3 id="when-you-add-an-office-365-service-to-your-project-visual-studio-helps-you-register-your-app">When you add an Office 365 service to your project, Visual Studio helps you register your app</h3>
+<p>If you're creating a Visual Studio project, app registration is handled for you when you add an Office 365 service to your project. During the process of adding an Office 365 service to your project, Visual Studio enables you to:</p>
+<ul>
+    <li>Register your app with Azure AD, including specifying whether your app is a web application or native app</li>
+    <li>Configure app properties, such as app name, redirection/response endpoints, and tenancy scope</li>
+    <li>Connect to Office 365 services</li>
+    <li>Specify the permission levels your app requires for the APIs in those Office 365 services</li>
+    <li>Add the required <strong>NuGet packages</strong> to the project, based on the Office 365 services to which your app connects</li>
+</ul>
+<p>The following project templates support adding Office 365 APIs as a connected service:</p>
+<ul>
+    <li>.NET Windows Store 8.1 Apps</li>
+    <li>.NET Windows Store 8.1 Universal Apps</li>
+    <li>.NET Windows Phone 8.1 Apps</li>
+    <li>.NET Windows Phone 8.1 Silverlight Apps</li>
+    <li>Windows Forms Applications</li>
+    <li>WPF Applications</li>
+    <li>ASP.NET MVC Web Applications</li>
+    <li>ASP.NET Web Forms Applications</li>
+    <li>Xamarin Android and iOS Applications</li>
+    <li>Multi-device Hybrid (Cordova) Apps</li>
+</ul>
+<p><a name="addO365APIs"> </a></p>
+<h3 id="use-the-visual-studio-service-manager-to-register-your-app-and-add-office-365-apis-to-your-project">Use the Visual Studio Service Manager to register your app and add Office 365 APIs to your project</h3>
+<p>You add and configure Office 365 APIs by using the  <strong>Services Manager</strong> in Visual Studio.</p>
+<ol>
+    <li>
+        <p>In the <strong>Solution Explorer</strong>, choose the project node.</p>
+    </li>
+    <li>
+        <p>Right-click or press and hold the project node and choose <strong>Add</strong> &gt; <strong>Connected Service</strong>.</p>
+    </li>
+    <li>
+        <p>Register your app:</p>
+        <p>At the top of the  <strong>Services Manager</strong> dialog box, choose the <strong>Office 365</strong> link, and then choose <strong>Register your app</strong>. Sign in with a tenant administrator account for your Office 365 developer organization. </p>
+        <p>This starts the app registration in Azure Active Directory, which allows your app to authenticate via OAuth.</p>
+        <p>After you've logged on to Office 365, a list of available Office 365 APIs services appears. You will see a list of Office 365 APIs.</p>
+        <p>You will see that the <strong>Permissions</strong> column to the right of each service is empty.</p>
+    </li>
+    <li>
+        <p>Select the Office 365 APIs to which you want to connect, and specify permission levels for each.</p>
+        <ol>
+            <li>
+                <p>For this example, select <strong>Users and Groups</strong>. Choose <strong>Permissions</strong>.</p>
+                <p><img alt="A screenshot that shows the Services Manager dialog box with the Users and Groups service Office 365 API selected and the Permissions link highlighted." src="..\howto\images\O365_RegisterApp_User.png" /></p>
+            </li>
+            <li>
+                <p>Select <strong>Enable sign-on and read users' profile</strong> and choose <strong>Apply</strong>.</p>
+                <p><img alt="A screenshot that shows the Users and Groups Permissions dialog box with the Enable sign-on and read users' profile permission selected." src="..\howto\images\O365_RegisterApp_UserPerms.png" /></p>
+            </li>
+            <li>
+                <p>Next, select <strong>Contacts</strong>. Choose <strong>Permissions</strong>.</p>
+            </li>
+            <li>
+                <p>Select <strong>Read users' contacts</strong> and choose <strong>Apply</strong>.</p>
+                <p>When you do this, Visual Studio adds the Office 365 services that contain the APIs you selected to your app in Azure AD, and sets the permission levels for the APIs to those you specified.</p>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <p>Set properties for your app:</p>
+        <p>Choose  <strong>App Properties</strong> in the <strong>Services Manager</strong> dialog box. </p>
+        <p>The app properties you can set differ depending on whether your app project is a web service or web application, or a native application, such as a mobile phone project.</p>
+        <p>For example, for web applications such as the one we're building, you could choose to make this sample app available to Office 365 organizations other than your developer organization.</p>
+        <p>For now, we'll leave the app properties as they are by default.</p>
+        <p>The  <strong>Services Manager</strong> dialog box now lists:</p>
+        <ul>
+            <li>The service(s) you've selected to add to your project.</li>
+            <li>
+                <p>The permissions for each service. </p>
+                <p><img alt="A screenshot of the Services Manager dialog box after the Users and Groups and Contact APIs have been configured, showing that both APIs have Read permissions." src="..\howto\images\O365_RegisterApp_ServiceManager.png" /></p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>Choose <strong>OK</strong>.</p>
+    </li>
+</ol>
+<p>At this point, Visual Studio adds the required <strong>NuGet packages</strong> to the project. The NuGet packages added vary based on the Office 365 APIs you add.</p>
+<h2 id="code-your-app">Code your app</h2>
+<p>After you've added the Office 365 services to your project, you'll need to write code that authenticates the app user and accesses their Office 365 data. </p>
+<p>The authentication process is different based on whether you are building a web application, such as an MVC, or a native application, such as a Windows Store app. </p>
+<p>This application will employ a persistent <a href="https://msdn.microsoft.com/en-us/library/azure/jj573266.aspx">Active Directory Authentication Library</a> (ADAL) token cache that uses a database for caching. ADAL enables you to  authenticate users to Active Directory (AD), in this case Azure AD, and then obtain access tokens for securing API calls. </p>
+<p>From there, building the example consists of three major steps:</p>
+<ul>
+    <li>
+        <p><a href="#bk_AuthenticateAzure">Configure your project for authentication with Azure AD</a></p>
+    </li>
+    <li>
+        <p><a href="#bk_AuthenticateAzureAD">Authenticate with Azure Active Directory</a></p>
+    </li>
+    <li>
+        <p><a href="#bk_accessOffice365APIs">Access Office 365 APIs</a></p>
+    </li>
+</ul>
+<p><a name="bk_AuthenticateAzure"> </a></p>
+<h3 id="configure-your-project-for-authentication-with-azure-active-directory">Configure your project for authentication with Azure Active Directory</h3>
+<p>Because the example you're building requires only Office 365 credential authentication, you'll be using <a href="http://owin.org/">OWIN</a> &nbsp; <a href="http://katanaproject.codeplex.com/documentation">Katana</a> and <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory">Active Directory Authentication Library</a> (ADAL).</p>
+<p>But first, you need to configure the project to use Secure Sockets Layer (SSL).</p>
+<h4 id="enable-ssl-for-your-project">Enable SSL for your project</h4>
+<p>Visual Studio does not configure your project for SSL by default. If you haven't already enabled SSL in your project, you'll want to now, and then update the Office 365 services with the appropriate Redirect URL.</p>
+<p>To enable SSL:</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, choose on the project.</li>
+    <li>
+        <p>In <strong>Properties</strong>, set <strong>SSL Enabled</strong> to <strong>True</strong>.</p>
+        <p>Visual Studio specifies a value for the <strong>SSL URL</strong>.</p>
+    </li>
+</ol>
+<p>Next, update the application to use the HTTPS endpoint for the home page:</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, right-click the project, and select <strong>Properties</strong>.</li>
+    <li>Select the <strong>Web</strong> tab. Under <strong>Servers</strong>, set <strong>Project URL</strong> to the HTTPS endpoint Visual Studio created for the <strong>SSL URL</strong>.</li>
+</ol>
+<p>Lastly, update the Office 365 services:</p>
+<ol>
+    <li>
+        <p>In <strong>Solution Explorer</strong>, right-click the project, and select <strong>Add</strong> &gt; <strong>Connected Service</strong>. Sign in if necessary.</p>
+        <p>Visual Studio prompts you that one or more Redirect URLs in your project do not exist in your application entry in Azure AD.</p>
+    </li>
+    <li>
+        <p>Choose <strong>Yes</strong> to add the secure redirect URL to your application entry in Azure AD.</p>
+    </li>
+    <li>Choose <strong>OK</strong> to exit <strong>Services Manager</strong>.</li>
+</ol>
+<p><a name="bk_AuthenticateDownloadNuGets"> </a></p>
+<h4 id="manage-nuget-packages-necessary-for-authentication">Manage NuGet packages necessary for authentication</h4>
+<p>You'll need to install the following Azure AD and OWIN Katana packages for authentication:</p>
+<ul>
+    <li><a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory">Active Directory Authentication Library</a></li>
+    <li><a href="https://www.nuget.org/packages/EntityFramework">EntityFramework</a></li>
+    <li><a href="https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb">Microsoft.Owin.Host.SystemWeb</a></li>
+    <li><a href="https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies">Microsoft.Owin.Security.Cookies</a></li>
+    <li><a href="https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect">Microsoft.Owin.Security.OpenIdConnect</a></li>
+</ul>
+<p>These packages may also install selected NuGet packages as dependencies.</p>
+<p>To download and install the NuGet packages:</p>
+<ol>
+    <li>In the <strong>Solution Explorer</strong>, right-click the project.</li>
+    <li>Select <strong>Manage NuGet Packages...</strong> </li>
+    <li>In <strong>Manage NuGet Packages</strong>, choose <strong>Online</strong>.</li>
+    <li>Use the Search box to find the necessary package.</li>
+    <li>Select the package and choose <strong>Install</strong>.</li>
+    <li>In <strong>Select Projects</strong>, choose <strong>OK</strong>.</li>
+    <li>Accept any licenses as prompted.</li>
+</ol>
+<h4 id="update-the-webconfig-file-to-enable-authentication">Update the web.config file to enable authentication</h4>
+<p>When you added Office 365 services to your project, Visual Studio added the following properties to your application's registry in Azure AD, and to the <strong>web.config</strong> file in your solution.</p>
+<pre><code>&lt;add key="ida:ClientId" value="app-azure-ad-client-id" /&gt;
+&lt;add key="ida:ClientSecret" value="app-azure-ad-password" /&gt;
+&lt;add key="ida:TenantId" value="azure-tenant-where-app-is-registered" /&gt;
+&lt;add key="ida:AADInstance" value="https://login.microsoftonline.com/"
+</code></pre>
+<!--
+In addition, to successfully authenticate against Azure AD, a single-tenant web application must be able to specify the login authority, including the appropriate tenant ID. The authority follows the pattern
+
+    https://login.windows.net/[tenantId]
+
+where [tenantId] is the ID of the Azure tenant in which the application is registered.
+
+Because of this, you'll need to add the tenant ID to the project's web.config file. You can retrieve the tenant ID for your application from the [Azure Management Portal](https://manage.windowsazure.com).
+
+1. Sign into the [Azure Management Portal](https://manage.windowsazure.com/), using your Office 365 subscription credentials.
+
+2. In the left navigation panel, select **Active Directory**. Be sure the **Directory** tab is selected, and then choose the directory name for the Office 365 tenancy in which your app is registered.
+
+    At this point, the URL in the browser window will include a GUID that is the tenant ID of your directory.
+
+3. Copy only the GUID from the browser URL. This is the ID for the tenancy in which your application is registered.
+
+After you have copied the tenant ID, you can add it to the project's web.config file.
+
+1. In **Solution Explorer**, double-click **Web.config**.
+2. In the web.config file, in the **appSettings** section, add a new key, containing the tenant ID, directly under the ida:AuthorizationUri key.
+
+        <add key="ida:TenantId" value="your-Office-365-tenant-ID"/>
+
+3. Save the file.
+
+-->
+<h4 id="create-a-database-to-manage-adal-authentication-tokens">Create a database to manage ADAL authentication tokens</h4>
+<p>Next, add a database to the project, to act as the ADAL token cache.</p>
+<p>For more information about the ADAL token cache, see <a href="http://www.cloudidentity.com/blog/2014/07/09/the-new-token-cache-in-adal-v2/">The New Token Cache in ADAL v2</a>.</p>
+<p>To add the database that will act as the ADAL token cache:</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, right-click the <strong>App_Data</strong> folder and select <strong>Add</strong> &gt; <strong>New Item...</strong></li>
+    <li>Be sure <strong>Data</strong> is selected, and then select <strong>SQL Server Database</strong>. Name the database <strong>ADALTokenCacheDb</strong>, and choose <strong>Add</strong>.</li>
+</ol>
+<p>Be sure the database connection has been added to the project web.config:</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, double-click <strong>web.config</strong>.</li>
+    <li>
+        <p>Make sure the following section has been added to the web.config file, after the <strong>appSettings</strong> section. If it's not there, add it.</p>
+        <p>
+            <code>
+                XML
+                &lt;connectionStrings&gt;
+                &lt;add name="DefaultConnection"
+                connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\ADALTokenCacheDb.mdf;Integrated Security=True" providerName="System.Data.SqlClient" /&gt;
+                &lt;/connectionStrings&gt;
+            </code>
+        </p>
+    </li>
+    <li>
+        <p>Save the file.</p>
+    </li>
+</ol>
+<h4 id="copy-over-files-needed-for-authentication">Copy over files needed for authentication</h4>
+<p>Next, you'll import some files from the <a href="https://github.com/OfficeDev/O365-WebApp-SingleTenant">Office 365 single-tenant MVC project</a> GitHub project.</p>
+<p>To copy files from the GitHub project:</p>
+<ol>
+    <li>In a browser, navigate to the file you want to copy over. (The files are listed below).</li>
+    <li>Right-click the <strong>Raw</strong> button, and select <strong>Save target as</strong></li>
+    <li>Save the file to your computer.</li>
+    <li>In Visual Studio, in <strong>Solution Explorer</strong>, under the project node, right-click the specified folder as described below and select <strong>Add</strong> &gt; <strong>Existing Item</strong>.</li>
+    <li>Select the file from where you saved it on your computer. </li>
+</ol>
+<p>Copy the following files into the <strong>Models</strong> folder in the project. These classes demonstrate how a persistent ADAL token cache can be constructed and used to store tokens.</p>
+<ul>
+    <li><a href="https://github.com/OfficeDev/O365-WebApp-SingleTenant/blob/master/O365-WebApp-SingleTenant/Models/ADALTokenCache.cs">ADALTokenCache.cs</a></li>
+    <li><a href="https://github.com/OfficeDev/O365-WebApp-SingleTenant/blob/master/O365-WebApp-SingleTenant/Models/ApplicationDbContext.cs">ApplicationDbContext.cs</a></li>
+</ul>
+<p>Create a new folder, <strong>Utils</strong>.</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, right-click your project and select <strong>Add</strong> &gt; <strong>New Folder</strong>.</li>
+    <li>Name the folder <strong>Utils</strong>. </li>
+</ol>
+<p>Copy the following file into it. This helper class contains member variables that read the values from your project's web.config file that you'll need to create the ADAL authentication object during startup. </p>
+<ul>
+    <li><a href="https://github.com/OfficeDev/O365-WebApp-SingleTenant/blob/master/O365-WebApp-SingleTenant/Utils/SettingsHelper.cs">SettingsHelper.cs</a></li>
+</ul>
+<p>Finally, copy the  <a href="https://github.com/OfficeDev/O365-WebApp-SingleTenant/blob/master/O365-WebApp-SingleTenant/Views/Shared/_LoginPartial.cshtml">_LoginPartial.cshtml</a> file into the <strong>Views</strong> &gt; <strong>Shared</strong> folder of your project.</p>
+<p><a name="bk_AuthenticateAzureAD"> </a></p>
+<h3 id="authenticate-with-azure-active-directory">Authenticate with Azure Active Directory</h3>
+<p>Now that you have the project configured for authentication, you can actually add the functionality that handles authentication with Azure AD.</p>
+<h4 id="configure-azure-ad-single-sign-on">Configure Azure AD single sign-on</h4>
+<p>Next, you'll need to add an OWIN startup class to the project, to actually handle authentication. To add the OWIN startup class:</p>
+<ol>
+    <li>In Solution Explorer, right-click the project name and select <strong>Add</strong> &gt; <strong>New Item...</strong></li>
+    <li>In <strong>Add New Item</strong>, under <strong>Web</strong>, select <strong>General</strong>, then select <strong>OWIN Startup class</strong>.</li>
+    <li>For <strong>Name</strong>, enter <strong>Startup</strong>.</li>
+    <li>Choose <strong>Add</strong>.</li>
+</ol>
+<p>A new startup class is added to your project. </p>
+<p>Next, add the code that handles authentication:</p>
+<ol>
+    <li>
+        <p>Replace the namespace references in the file with the following.</p>
+        <p>```C#</p>
+<pre><code>using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OpenIdConnect;
+using O365_WebApp_SingleTenant.Models;
+using O365_WebApp_SingleTenant.Utils;
+using Owin;
+using System;
+using System.IdentityModel.Claims;
+using System.Threading.Tasks;
+using System.Web;
+using Microsoft.Owin;
+</code></pre>
+        <p>```</p>
+    </li>
+    <li>
+        <p>Add the following method, <strong>ConfigureAuth</strong>, to the Startup class.</p>
+        <p>```C#</p>
+<pre><code>public void ConfigureAuth(IAppBuilder app)
+{
+    app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
+    app.UseCookieAuthentication(new CookieAuthenticationOptions());
+    app.UseOpenIdConnectAuthentication(
+        new OpenIdConnectAuthenticationOptions
+        {
+            ClientId = SettingsHelper.ClientId,
+            Authority = SettingsHelper.Authority,
+            Notifications = new OpenIdConnectAuthenticationNotifications()
+            {                       
+                // If there is a code in the OpenID Connect response, redeem it for an access token and refresh token, and store those away.
+                AuthorizationCodeReceived = (context) =&gt;
+                {
+                    var code = context.Code;
+                    ClientCredential credential = new ClientCredential(SettingsHelper.ClientId, SettingsHelper.AppKey);
+                    String signInUserId = context.AuthenticationTicket.Identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    AuthenticationContext authContext = new AuthenticationContext(SettingsHelper.Authority, new ADALTokenCache(signInUserId));
+                    AuthenticationResult result = authContext.AcquireTokenByAuthorizationCode(code, new Uri(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Path)), credential, SettingsHelper.AADGraphResourceId);
+                    return Task.FromResult(0);
+                },
+                RedirectToIdentityProvider = (context) =&gt;
+                {
+                    // This ensures that the address used for sign in and sign out is picked up dynamically from the request
+                    // this allows you to deploy your app (to Azure Web Sites, for example)without having to change settings
+                    // Remember that the base URL of the address used here must be provisioned in Azure AD beforehand.
+                    string appBaseUrl = context.Request.Scheme + "://" + context.Request.Host + context.Request.PathBase;
+                    context.ProtocolMessage.RedirectUri = appBaseUrl + "/";
+                    context.ProtocolMessage.PostLogoutRedirectUri = appBaseUrl;
+                    return Task.FromResult(0);
+                },
+                AuthenticationFailed = (context) =&gt;
+                {
+                    // Suppress the exception if you don't want to see the error
+                    context.HandleResponse();
+                    return Task.FromResult(0);
+                }
+            }
+        });
+}
+</code></pre>
+        <p>```</p>
+    </li>
+    <li>
+        <p>Add code to the <strong>Startup.Configuration</strong> method that calls the <strong>ConfigureAuth method</strong>.</p>
+        <p>
+            <code>
+                C#
+                public void Configuration(IAppBuilder app)
+                {
+                ConfigureAuth(app);
+                }
+            </code>
+        </p>
+    </li>
+</ol>
+<h4 id="add-a-controller-for-sign-in-and-sign-out-of-office-365">Add a controller for sign-in and sign-out of Office 365</h4>
+<p>Add an account controller to handle sign-in and sign-out:</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, right-click the <strong>Controllers</strong> folder and select <strong>Add</strong> &gt; <strong>Controller...</strong></li>
+    <li>Select <strong>MVC 5 Controller - Empty</strong> and choose <strong>Add</strong>.</li>
+    <li>For Controller name, enter <strong>AccountController</strong>, and choose <strong>Add</strong>.</li>
+    <li>
+        <p>Replace the namespace references in the controller file with the following.</p>
+        <p>
+            <code>
+                C#
+                using Microsoft.IdentityModel.Clients.ActiveDirectory;
+                using Microsoft.Owin.Security;
+                using Microsoft.Owin.Security.Cookies;
+                using Microsoft.Owin.Security.OpenIdConnect;
+                using O365_WebApp_SingleTenant.Utils;
+                using System.Security.Claims;
+                using System.Web;
+                using System.Web.Mvc;
+            </code>
+        </p>
+    </li>
+    <li>
+        <p>Delete the <strong>Index() method</strong>.</p>
+    </li>
+    <li>
+        <p>Add the following methods to the <strong>AccountController</strong> class, to handle sign-in and sign-out.</p>
+        <p>
+            ```C#
+            public void SignIn()
+            {
+            if (!Request.IsAuthenticated)
+            {
+            HttpContext.GetOwinContext().Authentication.Challenge(new AuthenticationProperties { RedirectUri = "/" }, OpenIdConnectAuthenticationDefaults.AuthenticationType);
+            }
+            }
+            public void SignOut()
+            {
+            string callbackUrl = Url.Action("SignOutCallback", "Account", routeValues: null, protocol: Request.Url.Scheme);
+        </p>
+<pre><code>    HttpContext.GetOwinContext().Authentication.SignOut(
+        new AuthenticationProperties { RedirectUri = callbackUrl },
+        OpenIdConnectAuthenticationDefaults.AuthenticationType, CookieAuthenticationDefaults.AuthenticationType);
+}
+public ActionResult SignOutCallback()
+{
+    if (Request.IsAuthenticated)
+    {
+        // Redirect to home page if the user is authenticated.
+        return RedirectToAction("Index", "Home");
+    }
+    return View();
+}
+</code></pre>
+        <p>```</p>
+    </li>
+</ol>
+<p><a name="bk_accessOffice365APIs"> </a></p>
+<h3 id="access-office-365-apis">Access Office 365 APIs</h3>
+<p>Now you're ready to add the code that will access the user's Office 365 data.</p>
+<h4 id="create-the-model-for-the-contacts-information-view">Create the model for the contacts information view</h4>
+<p>First, you need to create the class on which we'll base the Contact view:</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, right-click the <strong>Models</strong> folder and select <strong>Add</strong> &gt; <strong>Class...</strong></li>
+    <li>Select <strong>Class</strong>, enter <strong>MyContact</strong> as the name, and choose <strong>Add</strong>.</li>
+    <li>
+        <p>In the class, add the following line of code.</p>
+        <p>```C#</p>
+<pre><code>public class MyContact
+{
+    public string Name { get; set; }
+}
+</code></pre>
+        <p>```</p>
+    </li>
+    <li>
+        <p>Save the file.</p>
+    </li>
+</ol>
+<h4 id="add-a-controller-for-contact-information">Add a controller for contact information</h4>
+<p>Next, add a controller for the users' contact information:</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, right-click the <strong>Controllers</strong> folder and select <strong>Add</strong> &gt; <strong>Controller</strong>.</li>
+    <li>Select <strong>MVC 5 Controller - Empty</strong> and choose <strong>Add</strong>.</li>
+    <li>
+        <p>For Controller name, enter <strong>ContactsController</strong>, and choose <strong>Add</strong>.</p>
+        <p>Visual Studio adds a new empty controller to the project.</p>
+    </li>
+    <li>
+        <p>Replace the namespace references in the controller file with the following.</p>
+        <p>
+            <code>
+                C#
+                using Microsoft.IdentityModel.Clients.ActiveDirectory;
+                using Microsoft.Office365.Discovery;
+                using Microsoft.Office365.OutlookServices;
+                using O365_WebApp_SingleTenant.Models;
+                using O365_WebApp_SingleTenant.Utils;
+                using System.Collections.Generic;
+                using System.Security.Claims;
+                using System.Threading.Tasks;
+                using System.Web.Mvc;
+            </code>
+        </p>
+        <p>Be sure to add a namespace reference for the Models namespace of your project.</p>
+        <p>
+            <code>
+                C#
+                using [projectname].Models;
+            </code>
+        </p>
+    </li>
+    <li>
+        <p>Add the <strong>[Authorize]</strong> attribute to the <strong>ContactsController</strong> class.</p>
+        <p>The <strong>[Authorize]</strong> attribute requires that the user be authenticated before they can access this controller. </p>
+        <p>
+            <code>
+                C#
+                [Authorize]
+                public class ContactsController : Controller
+            </code>
+        </p>
+    </li>
+    <li>
+        <p>Change the Index() method to be asynchronous.</p>
+        <p>
+            <code>
+                C#
+                public async Task&lt;ActionResult&gt; Index()
+            </code>
+        </p>
+    </li>
+    <li>
+        <p>Add the following code to the Index() method.</p>
+        <p>This code creates the authentication context, using the signed-in Office 365 user ID and the authority for your Office 365 tenancy.</p>
+        <p>
+            ```C#
+            List<mycontact> myContacts = new List<mycontact>();
+        </p>
+<pre><code>    var signInUserId = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
+    var userObjectId = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+    AuthenticationContext authContext = new AuthenticationContext(SettingsHelper.Authority, new ADALTokenCache(signInUserId));
+</code></pre>
+        <p>```</p>
+    </li>
+    <li>
+        <p>Add a <strong>try-catch</strong> block directly below the above code in the <strong>Index()</strong> method.</p>
+        <p>```C#</p>
+<pre><code>    try
+    {
+    }
+    catch (AdalException exception)
+    {
+        //handle token acquisition failure
+        if (exception.ErrorCode == AdalError.FailedToAcquireTokenSilently)
+        {
+            authContext.TokenCache.Clear();
+            //handle token acquisition failure
+        }
+    }
+    return View(myContacts);
+</code></pre>
+        <p>```</p>
+    </li>
+    <li>
+        <p>In the <strong>try</strong> block of the code above, add the following code to the <strong>Index()</strong> method.</p>
+        <p>This code attempts to acquire an access token to the Discovery Service, passing the application's client ID and app password, and the user's credentials. Because the user authentication token has been cached, the controller is able to acquire the necessary access token silently, without having to prompt the user again for their credentials.</p>
+        <p>With the access token, the application can create a Discovery Service client object, and use the discovery client object to determine the resource endpoint for the Office 365 service Contact APIs.</p>
+        <p>
+            ```C#
+            DiscoveryClient discClient = new DiscoveryClient(SettingsHelper.DiscoveryServiceEndpointUri,
+            async () =&gt;
+            {
+            var authResult = await authContext.AcquireTokenSilentAsync(SettingsHelper.DiscoveryServiceResourceId, new ClientCredential(SettingsHelper.ClientId, SettingsHelper.AppKey), new UserIdentifier(userObjectId, UserIdentifierType.UniqueId));
+        </p>
+<pre><code>                return authResult.AccessToken;
+            });
+        var dcr = await discClient.DiscoverCapabilityAsync("Contacts");
+</code></pre>
+        <p>```</p>
+    </li>
+    <li>
+        <p>Finally, directly below the above code in the <b>try</b> block, add the following code to the <strong>Index()</strong> method.</p>
+        <p>This code contacts the resource endpoint for the Office 365 service Contact APIs, again silently passing the application and user credentials to acquire an access token to the Outlook service.</p>
+        <p>
+            Once the access token is received, the code can initialize an Outlook client object. The code then uses the <strong>Me</strong> property of the Outlook client object to retrieve contacts information for this user.  <br />
+        </p>
+        <p>Lastly, the controller reads through the list of user contacts and returns a view listing their display names.</p>
+        <p>```C#</p>
+<pre><code>        OutlookServicesClient exClient = new OutlookServicesClient(dcr.ServiceEndpointUri,
+            async () =&gt;
+            {
+                var authResult = await authContext.AcquireTokenSilentAsync(dcr.ServiceResourceId, new ClientCredential(SettingsHelper.ClientId, SettingsHelper.AppKey), new UserIdentifier(userObjectId, UserIdentifierType.UniqueId));
+                return authResult.AccessToken;
+            });
+        var contactsResult = await exClient.Me.Contacts.ExecuteAsync();
+        do
+        {
+            var contacts = contactsResult.CurrentPage;
+            foreach (var contact in contacts)
+            {
+                myContacts.Add(new MyContact { Name = contact.DisplayName });
+            }
+            contactsResult = await contactsResult.GetNextPageAsync();
+        } while (contactsResult != null);
+</code></pre>
+        <p>```</p>
+        <p>The completed <strong>Index()</strong> method should now read as follows.</p>
+        <p>
+            ```C#
+            public async Task<actionresult>
+                Index()
+                {
+                List<mycontact> myContacts = new List<mycontact>();
+        </p>
+<pre><code>    var signInUserId = ClaimsPrincipal.Current.FindFirst(ClaimTypes.NameIdentifier).Value;
+    var userObjectId = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier").Value;
+    AuthenticationContext authContext = new AuthenticationContext(SettingsHelper.Authority, new ADALTokenCache(signInUserId));
+    try
+    {
+        DiscoveryClient discClient = new DiscoveryClient(SettingsHelper.DiscoveryServiceEndpointUri,
+            async () =&gt;
+            {
+                var authResult = await authContext.AcquireTokenSilentAsync(SettingsHelper.DiscoveryServiceResourceId, new ClientCredential(SettingsHelper.ClientId, SettingsHelper.AppKey), new UserIdentifier(userObjectId, UserIdentifierType.UniqueId));
+                return authResult.AccessToken;
+            });
+        var dcr = await discClient.DiscoverCapabilityAsync("Contacts");
+        OutlookServicesClient exClient = new OutlookServicesClient(dcr.ServiceEndpointUri,
+            async () =&gt;
+            {
+                var authResult = await authContext.AcquireTokenSilentAsync(dcr.ServiceResourceId, new ClientCredential(SettingsHelper.ClientId, SettingsHelper.AppKey), new UserIdentifier(userObjectId, UserIdentifierType.UniqueId));
+                return authResult.AccessToken;
+            });
+        var contactsResult = await exClient.Me.Contacts.ExecuteAsync();
+        do
+        {
+            var contacts = contactsResult.CurrentPage;
+            foreach (var contact in contacts)
+            {
+                myContacts.Add(new MyContact { Name = contact.DisplayName });
+            }
+            contactsResult = await contactsResult.GetNextPageAsync();
+        } while (contactsResult != null);
+    }
+    catch (AdalException exception)
+    {
+        //handle token acquisition failure
+        if (exception.ErrorCode == AdalError.FailedToAcquireTokenSilently)
+        {
+            authContext.TokenCache.Clear();
+            //handle token acquisition failure
+        }
+    }
+    return View(myContacts);
+}
+</code></pre>
+        <p>```</p>
+    </li>
+</ol>
+<h4 id="create-the-view-for-the-contacts-data">Create the view for the Contacts data</h4>
+<p>Next, you can create the view for the user's contact information. You'll do so by basing the view on the <strong>MyContact</strong> class that you created earlier.</p>
+<ol>
+    <li>In <strong>Solution Explorer</strong>, right-click the <strong>Contacts</strong> folder and select <strong>Add</strong> &gt; <strong>View</strong>.</li>
+    <li>
+        In the <strong>Add View</strong> dialog box, define the new view:<ul>
+            <li>For <strong>View name</strong>, enter <strong>Index</strong>. </li>
+            <li>For <strong>Template</strong>, select <strong>List</strong>. </li>
+            <li>For <strong>Model class</strong>, select <strong>MyContact</strong>.</li>
+            <li>Choose <strong>Add</strong>.</li>
+        </ul>
+    </li>
+</ol>
+<h4 id="add-the-mycontacts-link-to-the-navigation-bar">Add the MyContacts link to the navigation bar</h4>
+<ol>
+    <li>
+        <p>In <strong>Solution Explorer</strong>, in the <strong>Shared</strong> folder, double-click the _Layout.cshtml file.</p>
+    </li>
+    <li>
+        <p>Add an action link for the MyContacts page, and inject the partial class for the user log-in. </p>
+    </li>
+    <li>
+        <p>Update the HTML of the navigation bar from what's autogenerated. </p>
+        <p>
+            <code>
+                ASP
+                &lt;div class="navbar-collapse collapse"&gt;
+                &lt;ul class="nav navbar-nav"&gt;
+                &lt;li&gt;@Html.ActionLink("Home", "Index", "Home")&lt;/li&gt;
+                &lt;li&gt;@Html.ActionLink("About", "About", "Home")&lt;/li&gt;
+                &lt;li&gt;@Html.ActionLink("Contact", "Contact", "Home")&lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;/div&gt;
+            </code>
+        </p>
+        <p>To the following, to add an action link for the MyContacts page, and inject the partial class for the user log-in.</p>
+        <p>
+            <code>
+                ASP
+                &lt;div class="navbar-collapse collapse"&gt;
+                &lt;ul class="nav navbar-nav"&gt;
+                &lt;li&gt;@Html.ActionLink("Home", "Index", "Home")&lt;/li&gt;
+                &lt;li&gt;@Html.ActionLink("About", "About", "Home")&lt;/li&gt;
+                &lt;li&gt;@Html.ActionLink("Contact", "Contact", "Home")&lt;/li&gt;
+                &lt;li&gt;@Html.ActionLink("My Contacts", "Index", "Contacts")&lt;/li&gt;
+                &lt;/ul&gt;
+                @Html.Partial("_LoginPartial")
+                &lt;/div&gt;
+            </code>
+        </p>
+    </li>
+</ol>
+<p><a name="bk_test" /></p>
+<h2 id="test-your-app">Test your app</h2>
+<p>Now you're ready to run the solution. Press F5 to debug your web application.</p>
+<p>If this is a new development environment, Visual Studio may prompt you to configure the IIS SSL certificate. Choose <strong>Yes</strong> twice to continue.</p>
+<ol>
+    <li>
+        <p>Visual Studio will launch the web application in the browser you selected in Visual Studio.</p>
+    </li>
+    <li>
+        <p>Choose <strong>Sign in</strong>, at the top right corner of the page, and sign in to your Office 365 tenant where you registered your web application.</p>
+        <p>Since only your organization users are allowed to sign-in to a single tenant application, there is no need to consent. If your application was multi-tenant, Azure AD would display a consent page listing the permissions the app was requested, so you could consent to giving the app those permissions.</p>
+    </li>
+    <li>
+        <p>Once you're signed in, you should see your email address  and <strong>Sign out</strong> displayed in the navigation bar across the top of the home page.</p>
+    </li>
+    <li>
+        <p>Choose on <strong>My Contacts</strong>.</p>
+        <p>The <strong>My Contacts</strong> page will retrieve and display the names of any Exchange contacts from your tenant.</p>
+    </li>
+</ol>
+<p>You now have a web application project that you can customize and integrate Office 365 APIs.</p>

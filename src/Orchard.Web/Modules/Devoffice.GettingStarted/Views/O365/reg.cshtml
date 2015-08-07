@@ -1,0 +1,65 @@
+﻿@model Devoffice.GettingStarted.Models.RegisterAppModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal card">
+        <h4>RegisterAppModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.appName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appName)
+                @Html.ValidationMessageFor(model => model.appName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.signOnUri, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.signOnUri)
+                @Html.ValidationMessageFor(model => model.signOnUri)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.appIdUri, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.appIdUri)
+                @Html.ValidationMessageFor(model => model.appIdUri)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.redirectUri, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.redirectUri)
+                @Html.ValidationMessageFor(model => model.redirectUri)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.includeCalendar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.includeCalendar)
+                @Html.ValidationMessageFor(model => model.includeCalendar)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.includeContacts, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.includeContacts)
+                @Html.ValidationMessageFor(model => model.includeContacts)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

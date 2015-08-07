@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E15F66D-9309-4689-8AAF-638A57C3C4E4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Devoffice.GettingStarted</RootNamespace>
+    <AssemblyName>Devoffice.GettingStarted</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\newtonsoft.json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fabric.components.min.css" />
+    <Content Include="Content\fabric.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="images\Build-nonVS.png" />
+    <Content Include="images\Build-VS.png" />
+    <Content Include="images\buildAddNewProjectVS.PNG" />
+    <Content Include="images\buildInstallOfficeTools.PNG" />
+    <Content Include="images\equation2.PNG" />
+    <Content Include="images\excelcontent2.png" />
+    <Content Include="images\excellogo50.png" />
+    <Content Include="images\exceltaskpane2.png" />
+    <Content Include="images\outlooklogo50.png" />
+    <Content Include="images\powerpointlogo50.png" />
+    <Content Include="images\wordlogo50.png" />
+    <Content Include="Scripts\addins.min.js">
+      <DependentUpon>addins.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\browserInfo.js" />
+    <Content Include="Scripts\embeddedCodeSample.min.js">
+      <DependentUpon>embeddedCodeSample.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\userPlatformManager.min.js">
+      <DependentUpon>userPlatformManager.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Utils.js" />
+    <Content Include="Scripts\Utils.min.js">
+      <DependentUpon>Utils.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\websiteContent.min.js">
+      <DependentUpon>websiteContent.js</DependentUpon>
+    </Content>
+    <Content Include="Styles\fabric.min.css" />
+    <Content Include="Styles\gettingStarted.min.css">
+      <DependentUpon>gettingStarted.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\jquery.json-view.min.css" />
+    <Content Include="Documentation\onerror.html" />
+    <Content Include="Documentation\rest-api\android\getting-started-Office-365-APIs-android.html" />
+    <Content Include="Documentation\rest-api\android\setup-android.html" />
+    <Content Include="Documentation\rest-api\dotnet\getting-started-Office-365-APIs-dotnet.html" />
+    <Content Include="Documentation\rest-api\dotnet\setup-dotnet.html" />
+    <Content Include="Documentation\rest-api\ios\getting-started-Office-365-APIs-ios.html" />
+    <Content Include="Documentation\rest-api\ios\setup-ios.html" />
+    <Content Include="Documentation\rest-api\javascript\getting-started-Office-365-APIs-javascript.html" />
+    <Content Include="Documentation\rest-api\javascript\setup-javascript.html" />
+    <Content Include="Documentation\rest-api\node\getting-started-Office-365-APIs-node.html" />
+    <Content Include="Documentation\rest-api\node\setup-node.html" />
+    <Content Include="Documentation\rest-api\php\getting-started-Office-365-APIs-php.html" />
+    <Content Include="Documentation\rest-api\php\setup-php.html" />
+    <Content Include="Documentation\rest-api\python\getting-started-Office-365-APIs-python.html" />
+    <Content Include="Documentation\rest-api\python\setup-python.html" />
+    <Content Include="Documentation\rest-api\ruby\getting-started-Office-365-APIs-ruby.html" />
+    <Content Include="Documentation\rest-api\ruby\setup-ruby.html" />
+    <Content Include="images\Capture7.png" />
+    <Content Include="images\devofficelogo.png" />
+    <Content Include="images\docusign.png" />
+    <Content Include="images\excellogo.png" />
+    <Content Include="images\linkedin.png" />
+    <Content Include="images\numbers.PNG" />
+    <Content Include="images\O365Overview.PNG" />
+    <Content Include="images\octocat.png" />
+    <Content Include="images\onedrivelogo.png" />
+    <Content Include="images\open.png" />
+    <Content Include="images\outlookcompose.PNG" />
+    <Content Include="images\outlooklogo.png" />
+    <Content Include="images\outlookread.PNG" />
+    <Content Include="images\packagetracker.png" />
+    <Content Include="images\pichit.PNG" />
+    <Content Include="images\poll.PNG" />
+    <Content Include="images\powerpointcontent.PNG" />
+    <Content Include="images\powerpointlogo.png" />
+    <Content Include="images\powerpointtaskpane.PNG" />
+    <Content Include="images\Progressbar.gif" />
+    <Content Include="images\save.png" />
+    <Content Include="images\sharepointlogo.png" />
+    <Content Include="images\wiki.PNG" />
+    <Content Include="images\wordlogo.png" />
+    <Content Include="images\wordtaskpane.PNG" />
+    <Content Include="Scripts\addins.js" />
+    <Content Include="Scripts\embeddedCodeSample.js" />
+    <Content Include="Scripts\FileSaver.js" />
+    <Content Include="Scripts\gettingStarted.js" />
+    <Content Include="CodeSamples\Web.config" />
+    <Content Include="Scripts\addins.min.js.map">
+      <DependentUpon>addins.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\embeddedCodeSample.min.js.map">
+      <DependentUpon>embeddedCodeSample.min.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.json-view.min.js" />
+    <Content Include="Scripts\jszip-utils.js" />
+    <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\navBar.js" />
+    <Content Include="Scripts\registerApp.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tryitout.js" />
+    <Content Include="Scripts\userPlatformManager.js" />
+    <Content Include="Scripts\websiteContent.js" />
+    <Content Include="Scripts\Utils.min.js.map">
+      <DependentUpon>Utils.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\websiteContent.min.js.map">
+      <DependentUpon>websiteContent.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\userPlatformManager.min.js.map">
+      <DependentUpon>userPlatformManager.min.js</DependentUpon>
+    </Content>
+    <None Include="Scripts\_references.js" />
+    <Content Include="Styles\gettingStarted.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\Web.config" />
+    <Content Include="Styles\Web.config" />
+    <Content Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Module.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Autoroute\Orchard.Autoroute.csproj">
+      <Project>{66fccd76-2761-47e3-8d11-b45d0001ddaa}</Project>
+      <Name>Orchard.Autoroute</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Widgets\Orchard.Widgets.csproj">
+      <Project>{194d3ccc-1153-474d-8176-fde8d7d0d0bd}</Project>
+      <Name>Orchard.Widgets</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppRegistrationController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\ProxyController.cs" />
+    <Compile Include="Drivers\AddinsWidgetDriver.cs" />
+    <Compile Include="Drivers\ApiWidgetDriver.cs" />
+    <Compile Include="Migrations.cs" />
+    <Compile Include="Models\ApiWidgetPart.cs" />
+    <Compile Include="Models\AddinsWidgetPart.cs" />
+    <Compile Include="Models\RegisterAppModel.cs" />
+    <Compile Include="Routes.cs" />
+    <Compile Include="Utils\AppRegistration.cs" />
+    <Compile Include="Utils\AppScopes.cs" />
+    <Compile Include="Utils\Base64UrlDecoder.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\RequestHelper.cs" />
+    <Compile Include="Utils\ServiceInfo.cs" />
+    <Compile Include="Utils\SettingsHelper.cs" />
+    <Compile Include="Utils\TokenHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts\AddinsWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Parts\ApiWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Placement.info" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\O365\_Intro.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\O365\_AppRegistrationForm.cshtml" />
+    <Content Include="Views\O365\_AppRegistrationIntro.cshtml" />
+    <Content Include="Views\O365\_FirstCall.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\O365\Error.cshtml" />
+    <Content Include="Views\O365\reg.cshtml" />
+    <Content Include="Views\O365\_Layout.cshtml" />
+    <Content Include="Views\O365\_LoginPartial.cshtml" />
+    <Content Include="Views\O365\_NextStep.cshtml" />
+    <Content Include="Views\O365\_RegisterApp.cshtml" />
+    <Content Include="Views\O365\_Setup.cshtml" />
+    <Content Include="Views\O365\_SetupPlatform.cshtml" />
+    <Content Include="Views\O365\_SetupProject.cshtml" />
+    <Content Include="Views\O365\_tryitout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeSamples\O365-Android-Connect-master.zip" />
+    <Content Include="CodeSamples\O365-iOS-Connect-master.zip" />
+    <Content Include="CodeSamples\O365-Node-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-PHP-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-Python-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-Ruby-tutorial-master.zip" />
+    <Content Include="CodeSamples\O365-Win-Snippets-master.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
+    <PropertyGroup>
+      <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
+    </PropertyGroup>
+    <!-- If this is an area child project, uncomment the following line:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Child" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    -->
+    <!-- If this is an area parent project, uncomment the following lines:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Parent" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    <CopyAreaManifests ManifestPath="$(AreasManifestDir)" CrossCopy="false" RenameViews="true" />
+    -->
+  </Target>
+  <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>45979</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://orchard.codeplex.com</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

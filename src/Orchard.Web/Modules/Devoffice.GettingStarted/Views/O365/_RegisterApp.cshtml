@@ -1,0 +1,27 @@
+﻿<script>
+    function DownloadEmbeddedCodeSample()
+    {
+        if (platformId == null || platformId == "" || platformId == undefined) {
+            alert("Error: platform name should not be empty, please select the platform");
+            return;
+        }
+
+        codeSamplePackageAndDownload(platformId, registerAppParams.clientId, registerAppParams.redirectUri);
+        appInsights.trackEvent("ClientID--" + client_id);
+    }
+</script>
+<div class="card" id="register-app" name="4. Register app" isblocking="true">
+    <h3>Register the app</h3>
+
+    @if (Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] == null ||
+        (bool)Session[Devoffice.GettingStarted.Utils.Constants.userLoggedInStr] == false)
+    {
+        @Html.Partial("./O365/_AppRegistrationIntro")
+
+    }
+    else
+    {
+        @Html.Partial("./O365/_AppRegistrationForm")
+
+    }
+</div>
