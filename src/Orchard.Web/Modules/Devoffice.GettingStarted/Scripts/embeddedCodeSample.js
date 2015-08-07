@@ -13,7 +13,7 @@ var reposList = {
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-iOS-Connect-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-iOS-Connect-master.zip",
             "GitHubRepoName": "O365-iOS-Connect.zip",
             "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-iOS-Connect/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-iOS-Connect/"
