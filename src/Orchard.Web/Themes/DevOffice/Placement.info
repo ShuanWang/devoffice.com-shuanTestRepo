@@ -23,4 +23,8 @@
   <Place Fields_Common_Text="-"/>
   <Place Parts_SingleBlogWidget="Content:10"/>
 
+  <Match ContentType="Blog">
+    <Place Parts_Blogs_Blog_Description="-"/>
+  </Match>
+  
 </Placement>

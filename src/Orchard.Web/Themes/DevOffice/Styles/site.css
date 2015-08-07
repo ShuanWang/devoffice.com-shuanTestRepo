@@ -161,6 +161,10 @@ h1 {
 	line-height: 35px;
 }
 
+a h1{
+    color:#454545;
+}
+
 h2 {
 	font-size: 24px;
 	line-height: 26px;
@@ -1035,12 +1039,12 @@ footer .microsoft-logo {
 
 .articlesWidget a.read-more {
 	font-weight: normal;
-	float: right;
+	/*float: right;*/
 }
 
 .articlesWidget .articleStub .article-title {
 	font-weight: normal;
-	padding: 0 0 0 10px;
+	padding: 0;
 }
 
 .articlesWidget .articleStub .article-stub-image {
@@ -6418,3 +6422,115 @@ img.see-more-icon.flipped {
 
 
 /*#endregion*/
+
+/*BLOG CSS*/
+.orchard-blogs #layout-main-container{
+    background-color:#f2f2f2 !important;
+}
+
+.orchard-blogs #layout-content{
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+.blog header{
+    display:none;
+}
+
+.blog .blog-post header{
+    display:block;
+}
+
+.blog-posts .blog-post,
+.archives-list .blog-post{
+    background-color:#fff;
+    height:139px;
+    margin-bottom:30px;
+    padding:15px;
+}
+
+.blog-posts .blog-post h1,
+.archives-list .blog-post h1{
+    line-height:14px;
+    margin-bottom:6px;
+    margin-top: 0;
+    padding: 0;
+}
+.blog-posts .blog-tile-content ,
+.archives-list .blog-tile-content{
+    float: left !important;
+}
+.blog-posts .icon-blog-green,
+.archives-list .icon-blog-green{
+    background-image: url(../Content/Images/icon-blog-green.png);
+    background-repeat: no-repeat;
+    height:139px;
+    width:139px;
+    margin-right:15px;
+    margin-top:-15px;
+    margin-left:-15px;
+    float: left !important;
+}
+
+.blog-post p,
+.blog-post{
+    color:#231f20;
+    font-family: sc_segoe-ui_semilight, 'Segoe UI Semilight', sc_segoe-ui_light, 'Segoe UI Light', sc_segoe-ui_normal,'Segoe UI', Segoe, Tahoma, Verdana, Arial, sans-serif;
+}
+
+.blog-post h1 a{
+    font-family: sc_segoe-ui_semibold, 'Segoe UI Semibold', sc_segoe-ui_normal, 'Segoe UI', Segoe, Tahoma, Verdana, Arial, sans-serif;
+    color:#231f20;
+    font-size:14px;
+}
+
+.blog-posts .blog-post .blog-tile-content, 
+.archives-list .blog-post .blog-tile-content{
+    width:452px;
+    height:109px;
+    overflow:hidden;
+}
+
+.archive-trail{
+    padding-bottom:20px;
+}
+
+.blog-title-header {
+     background-color:#fff;
+}
+
+.blog-title-header h1 {
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.orchard-blogs .archives{
+    background-color:#fff;
+    padding:15px;
+}
+.disqus-wrapper {
+    padding: 10px;
+    margin-bottom: 40px;
+    background-color:#fff;
+}
+
+@media (max-width:1199px){
+    .blog-posts .blog-post .blog-tile-content,
+    .archives-list .blog-post .blog-tile-content{
+        width:778px;
+    }
+}
+
+@media (max-width:976px){
+   .blog-posts  .blog-post .blog-tile-content,
+    .archives-list .blog-post .blog-tile-content{
+        width:70%;
+    }
+}
+
+@media (max-width:523px){
+   .blog-posts .blog-post .blog-tile-content,
+   .archives-list .blog-post .blog-tile-content{
+        width:43%;
+    }
+}

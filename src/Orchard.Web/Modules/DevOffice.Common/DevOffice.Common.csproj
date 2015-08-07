@@ -274,6 +274,10 @@
       <Project>{66fccd76-2761-47e3-8d11-b45d0001ddaa}</Project>
       <Name>Orchard.Autoroute</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Blogs\Orchard.Blogs.csproj">
+      <Project>{63fbd4d9-e1da-4a7b-aa6a-d6074fe50867}</Project>
+      <Name>Orchard.Blogs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orchard.Caching\Orchard.Caching.csproj">
       <Project>{7528bf74-25c7-4abe-883a-443b4eec4776}</Project>
       <Name>Orchard.Caching</Name>

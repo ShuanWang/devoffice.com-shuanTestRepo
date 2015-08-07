@@ -1,0 +1,21 @@
+﻿@using Orchard.ContentManagement
+@{
+    var item = (ContentItem)Model.ContentPart.ContentItem;
+    var permalink = new Uri(HttpContext.Current.Request.Url, Url.ItemDisplayUrl(item)).AbsoluteUri;
+}
+
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        var disqus_shortname = '@Model.DisqusSettings.ShortName';
+        (function () {
+            var s = document.createElement('script'); s.async = true; s.type = 'text/javascript';
+            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        } ());
+    </script>
+
+}
+
+<a href="@permalink#disqus_thread" data-disqus-identifier="@Model.DisqusUniqueId">@T("Comments")</a>
