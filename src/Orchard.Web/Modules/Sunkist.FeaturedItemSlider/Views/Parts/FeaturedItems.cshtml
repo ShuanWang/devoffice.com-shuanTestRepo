@@ -28,6 +28,7 @@
                     }
                     <div class="item @(featuredItem.SlideNumber == 1 ? "active" : "")" style="background-image: url('@featuredItem.ImagePath')">
                         @*<img src="@featuredItem.ImagePath" class="carousel-img-mobile img-responsive" style="width: 100%;" role="img">*@
+                        @if (!String.IsNullOrEmpty(featuredItem.Headline)) { 
                         <div class="featuredItem carousel-caption container-fluid" >
                             <div class="featureTextBox">
                                 <div class="featureTextBox-row row">
@@ -87,6 +88,7 @@
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                 }
             </div>

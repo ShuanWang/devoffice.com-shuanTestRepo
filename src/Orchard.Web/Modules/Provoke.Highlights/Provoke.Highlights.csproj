@@ -123,6 +123,9 @@
     <Content Include="Styles\Images\stepAnchor.png.scss">
       <DependentUpon>stepAnchor.png</DependentUpon>
     </Content>
+    <Content Include="Scripts\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -144,6 +147,9 @@
     <Content Include="Views\EditorTemplates\Parts\RelatedResourcesPartial.cshtml" />
     <Content Include="Styles\Images\stepAnchor.png.css.map">
       <DependentUpon>stepAnchor.png.css</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.js.map">
+      <DependentUpon>jquery-1.10.2.min.js</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -192,6 +192,7 @@
     <Content Include="DevOffice\Content\Images\checkboxWithTick.png" />
     <Content Include="DevOffice\Content\Images\Close.png" />
     <Content Include="DevOffice\Content\favicon.ico" />
+    <Content Include="DevOffice\Content\Images\icon-blog-green.png" />
     <Content Include="DevOffice\Content\Images\pnp_guidance_lrg.png" />
     <Content Include="DevOffice\Content\Images\pnp_samples_lrg.png" />
     <Content Include="DevOffice\Content\Images\pnp_scenarios_lrg.png" />
@@ -362,6 +363,7 @@
     <Content Include="DevOffice\Scripts\feedback.js" />
     <Content Include="DevOffice\Scripts\jquery-1.11.1.min.js" />
     <Content Include="DevOffice\Scripts\jquery.ellipsis.min.js" />
+    <Content Include="DevOffice\Scripts\jquery.rwdImageMaps.min.js" />
     <Content Include="DevOffice\Scripts\plax.js" />
     <Content Include="DevOffice\Scripts\redirectSearch.js" />
     <Content Include="DevOffice\Scripts\redirectSearch.min.js">
@@ -526,9 +528,6 @@
     <Content Include="DevOffice\Bootstrap\fonts\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DevOffice\Content\Fonts\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="DevOffice\Views\Parts.Title-Page.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -617,6 +616,48 @@
     <Content Include="DevOffice\Scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DevOffice\Views\Content-Article.Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.sprite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.map">
+      <DependentUpon>stepAnchor.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.less">
+      <DependentUpon>stepAnchor.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.scss">
+      <DependentUpon>stepAnchor.png</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TheAdmin\Scripts\angular.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Images\stepAnchor.png.css.map">
+      <DependentUpon>stepAnchor.png.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Content\Icons\icon_sprite.png.css.map">
+      <DependentUpon>icon_sprite.png.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Scripts\redirectSearch.min.js.map">
+      <DependentUpon>redirectSearch.min.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevOffice\Views\Content-BlogPost.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.ttf" />
     <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-1.woff2" />
     <Content Include="DevOffice\Content\Fonts\Segoe-UI-Bold-Italic\3fa09cba-69f7-4b32-8f5f-f0af92543523-2.eot" />
@@ -657,43 +698,7 @@
     <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.woff2" />
     <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-2.eot" />
     <Content Include="DevOffice\Content\Fonts\Segoe-UI\3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-3.woff" />
-    <Content Include="DevOffice\Views\Content-Article.Summary.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DevOffice\Content\Images\stepAnchor.sprite" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DevOffice\Content\Images\stepAnchor.png.map">
-      <DependentUpon>stepAnchor.png</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DevOffice\Content\Images\stepAnchor.png.less">
-      <DependentUpon>stepAnchor.png</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DevOffice\Content\Images\stepAnchor.png.scss">
-      <DependentUpon>stepAnchor.png</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TheAdmin\Scripts\angular.min.js.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DevOffice\Content\Images\stepAnchor.png.css.map">
-      <DependentUpon>stepAnchor.png.css</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DevOffice\Content\Icons\icon_sprite.png.css.map">
-      <DependentUpon>icon_sprite.png.css</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DevOffice\Scripts\redirectSearch.min.js.map">
-      <DependentUpon>redirectSearch.min.js</DependentUpon>
-    </Content>
+    <Content Include="DevOffice\Content\Fonts\Web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

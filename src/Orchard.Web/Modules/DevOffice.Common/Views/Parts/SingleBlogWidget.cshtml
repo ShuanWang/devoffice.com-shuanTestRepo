@@ -31,37 +31,38 @@
                 <h3>Blog id supplied is not valid.</h3>
                 <a href="/blogs">Back to all blog posts</a>
             </div>
-                }
-                else {
-                <div class="blog-container">
+        }
+        else {
+            <div class="blog-container">
 
-                    <div class="blog-img">
-                        @if (!string.IsNullOrEmpty(@blogpost.Image))
-                {
-                            <img src="@blogpost.Image" alt="@blogpost.Title" class="img-responsive" />
-                }
-                else
-                {
-                            <img src="/Themes/DevOffice/Content/Images/blogs_missingpic_140x140.png" alt="@blogpost.Title Icon" class="img-responsive" />
-                }
-                    </div>
-
-                    <div class="blog-info pull-right">
-                        <div class="col-md-12 blog-title pk-ellipsis pk-ellipsis-rendered single-blog-title" data-lines="2">@blogpost.Title</div>
-
-                        <div class="blog-right-side height40 col-md-12">
-                            <div class="blog-by ff-semilight pk-ellipsis pk-ellipsis-rendered" data-lines="1">by @blogpost.Author</div>
-
-
-                        </div>
-
-                        <div class="blog-date ff-semibold"> @blogpost.DatePublished.ToString("MMM dd, yyyy")</div>
-
-
-
-                    </div>
+                <div class="blog-img">
+                    @if (!string.IsNullOrEmpty(@blogpost.Image))
+                    {
+                        <img src="@blogpost.Image" alt="@blogpost.Title" class="img-responsive" />
+                    }
+                    else
+                    {
+                        <img src="/Themes/DevOffice/Content/Images/blogs_missingpic_140x140.png" alt="@blogpost.Title Icon" class="img-responsive" />
+                    }
                 </div>
-    <div class="blog-body bg-white" id="body-content">@Html.Raw(@blogpost.PostBody)</div>
-                }
+
+                <div class="blog-info pull-right">
+                    <div class="col-md-12 blog-title pk-ellipsis pk-ellipsis-rendered single-blog-title" data-lines="2">@blogpost.Title</div>
+
+                    <div class="blog-right-side height40 col-md-12">
+                        <div class="blog-by ff-semilight pk-ellipsis pk-ellipsis-rendered" data-lines="1">by @blogpost.Author</div>
+
+
+                    </div>
+
+                    <div class="blog-date ff-semibold"> @blogpost.DatePublished.ToString("MMM dd, yyyy")</div>
+
+
+
+                </div>
             </div>
+            <div class="blog-body bg-white" id="body-content">@Html.Raw(@blogpost.PostBody)</div>
+        }
+    </div>
+    
 </div>
