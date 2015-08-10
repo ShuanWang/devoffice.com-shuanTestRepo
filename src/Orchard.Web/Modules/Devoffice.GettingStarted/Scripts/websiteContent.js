@@ -5,7 +5,7 @@
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/ios\/setup-ios.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/ios\/getting-started-Office-365-APIs-ios.html",
             "GithubMDFileName": "rest-api\/ios\/getting-started-Office-365-APIs-ios.md",
-            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, navigate to the swift or objective-c project folder. Run pod install. Open Project in Xcode and run.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, navigate to the swift or objective-c project folder. Run pod install. Open the workspace in Xcode and run.",
         },
         {
             "Id": "option-android",

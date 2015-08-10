@@ -99,7 +99,7 @@ namespace Devoffice.GettingStarted.Utils
                 }
                 else if (result.Contains("Authorization_RequestDenied"))
                 {
-                    registrationInfo["error_message"] = "Please sign in again using an account that has admin privileges.";
+                    registrationInfo["error_message"] = "Request Denied !! Please sign in again using an account that has access to resources.";
                 }
                 else
                 {
