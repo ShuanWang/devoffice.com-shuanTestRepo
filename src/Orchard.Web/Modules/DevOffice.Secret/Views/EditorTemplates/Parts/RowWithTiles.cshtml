@@ -1,1 +1,35 @@
-﻿HELLO FRIEND
+﻿
+
+HELLO FRIEND
+
+<div id="rowWithTilesPart">
+    <div ng-controller="rowWithTilesController" class="panel-group">
+       
+
+        @*ADD NEW LINK PANEL*@
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    @T("Add new row")
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div id="newItemContainer" class="editable-container">
+                    <fieldset>
+                        <label class="control-label">@T("Title")</label>
+                        <input id="newItemTitle" type="text" class="form-control" ng-model="addItemTitle" ng-value="addItemTitle" />
+                    </fieldset>
+                   
+                    <fieldset>
+                        <span id="addlink" class="button" ng-click="addlink()">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            @T("Done")
+                        </span>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

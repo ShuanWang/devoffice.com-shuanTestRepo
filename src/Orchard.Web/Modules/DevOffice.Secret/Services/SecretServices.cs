@@ -20,7 +20,7 @@ namespace DevOffice.Secret.Services
 
           public RowWithTilesViewModel BuildEditorViewModel(RowWithTilesPart part, string itemsJson = "")
           {
-              var ivm = new RowWithTilesViewModel {TilesJson = ""};
+              var ivm = new RowWithTilesViewModel {};
 
               //if (!string.IsNullOrEmpty(itemsJson))
               //{

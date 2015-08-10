@@ -378,8 +378,7 @@ namespace DevOffice.Secret {
 
 
 
-        public int UpdateFrom5()
-        {
+        public int UpdateFrom5() {
 
             #region Creating custom part - RowWithTiles
 
@@ -399,6 +398,38 @@ namespace DevOffice.Secret {
 
             return 6;
 
+        }
+
+        public int UpdateFrom6()
+        {
+
+            SchemaBuilder.CreateTable("SingleRowWithTilesRecord", table => table
+                .ContentPartRecord()
+                  .Column<int>("RowWithTilesRecord_Id")
+                  .Column<string>("Title")
+                  .Column<string>("Body")
+                  .Column<string>("External_Link")
+                  .Column<int>("SortOrder")
+                  .Column<string>("Tile_1_Title")
+                  .Column<string>("Tile_1_External_Link")
+                  .Column<string>("Tile_1_Thumbnail")
+                  .Column<string>("Tile_2_Title")
+                  .Column<string>("Tile_2_External_Link")
+                  .Column<string>("Tile_2_Thumbnail"));
+
+
+            return 7;
+        }
+
+        public int UpdateFrom7() {
+            ContentDefinitionManager.AlterPartDefinition(
+              typeof(RowWithTilesPart).Name, cfg => cfg.Attachable());
+          
+
+            ContentDefinitionManager.AlterTypeDefinition(
+              "OverviewPage", cfg => cfg
+                  .WithPart("RowWithTilesPart"));
+            return 8;
         }
     }
 }

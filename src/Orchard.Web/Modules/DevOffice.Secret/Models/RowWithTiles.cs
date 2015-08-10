@@ -9,16 +9,16 @@ namespace DevOffice.Secret.Models
 {
     public class RowWithTilesRecord : ContentPartRecord
     {
-        public virtual string TilesJson { get; set; }
+        //public virtual string TilesJson { get; set; }
     }
 
     public class RowWithTilesPart : ContentPart<RowWithTilesPart>
     {
 
-        public string TilesJson
-        {
-            get { return Record.TilesJson; }
-            set { Record.TilesJson = value; }
-        }
+        //public string TilesJson
+        //{
+        //    get { return Record.TilesJson; }
+        //    set { Record.TilesJson = value; }
+        //}
     }
 }
