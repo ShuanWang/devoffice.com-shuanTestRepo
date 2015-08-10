@@ -48,10 +48,10 @@ function TryItOut(elemIDs, elemClasses) {
             "authToken": "Bearer {token:https://a830edad9050849NDA1-my.sharepoint.com/}",
             "parameters": [
                 {
-                    "Name": "folder_id",
+                    "Name": "folder-path",
                     "Type": "string",
                     "Value": "Shared%20with%20Everyone",
-                    "Notes": "Id of the folder. Use 'root' to specify root folder of the drive."
+                    "Notes": "Path of the folder."
                 }
             ] // end parameters
         },

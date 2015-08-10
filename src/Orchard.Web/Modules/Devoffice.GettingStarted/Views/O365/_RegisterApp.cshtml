@@ -7,7 +7,9 @@
         }
 
         codeSamplePackageAndDownload(platformId, registerAppParams.clientId, registerAppParams.redirectUri);
-        appInsights.trackEvent("ClientID--" + client_id);
+
+        // TBD: need to enable it once appinsights.js issue is fixed
+        //appInsights.trackEvent("ClientID--" + client_id);
     }
 </script>
 <div class="card" id="register-app" name="4. Register app" isblocking="true">
