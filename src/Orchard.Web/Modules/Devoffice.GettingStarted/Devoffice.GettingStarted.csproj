@@ -94,6 +94,9 @@
     <Content Include="Scripts\embeddedCodeSample.min.js">
       <DependentUpon>embeddedCodeSample.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\tryitout.min.js">
+      <DependentUpon>tryitout.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\userPlatformManager.min.js">
       <DependentUpon>userPlatformManager.js</DependentUpon>
     </Content>
@@ -184,6 +187,9 @@
     </Content>
     <Content Include="Scripts\userPlatformManager.min.js.map">
       <DependentUpon>userPlatformManager.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\tryitout.min.js.map">
+      <DependentUpon>tryitout.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />
