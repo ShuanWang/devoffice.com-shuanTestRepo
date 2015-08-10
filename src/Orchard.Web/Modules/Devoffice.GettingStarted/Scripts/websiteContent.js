@@ -41,14 +41,14 @@
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/php\/setup-php.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/php\/getting-started-Office-365-APIs-php.html",
             "GithubMDFileName": "rest-api\/php\/getting-started-Office-365-APIs-php.md",
-            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package and navigate to your folder. Restart the php server and access the app at http://localhost/php-tutorial/home.php.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, place the folder in document root, restart the php server and access the app at http://localhost/php-tutorial/home.php.",
         },
         {
             "Id": "option-python",
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/python\/setup-python.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/python\/getting-started-Office-365-APIs-python.html",
             "GithubMDFileName": "rest-api\/python\/getting-started-Office-365-APIs-python.md",
-            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package and run.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, navigate to the folder. Install the <a href='http://www.python-requests.org/en/latest/'>Requests: HTTP for Humans</a> library by running <b>pip install requests</b>. Then run <b>python manage.py runserver</b> to start your server.",
         },
         {
             "Id": "option-ruby",
