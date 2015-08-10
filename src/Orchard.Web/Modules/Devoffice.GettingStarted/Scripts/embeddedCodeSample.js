@@ -14,7 +14,7 @@ var reposList = {
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-iOS-Connect-master.zip",
-            "GitHubRepoName": "O365-iOS-Connect.zip",
+            "GitHubRepoName": "O365-iOS-Connect",
             "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-iOS-Connect/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-iOS-Connect/"
         },
@@ -26,7 +26,7 @@ var reposList = {
             "RedirectURLStringToReplace": "<Your redirect URI here>",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Android-Connect-master.zip",
-            "GitHubRepoName": "O365-Android-Connect.zip",
+            "GitHubRepoName": "O365-Android-Connect",
             "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Android-Connect/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Android-Connect"
         },
@@ -44,7 +44,7 @@ var reposList = {
         },
         {
             "Name": "option-php",
-            "FileName": "php-tutorial\/oauth.php",
+            "FileName": "O365-PHP-tutorial-master\/php-tutorial\/oauth.php",
             "ClientIdStringToReplace": "21a66e5f-74c5-4acb-a0ee-02814e3fe217",
             "ClientSecretStringToReplace": "tqlvN4Skz4Ah7BVcttEpJLxilJ4V0h+EnrSmLAaYfmQ=",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",

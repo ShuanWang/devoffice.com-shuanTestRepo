@@ -21,7 +21,6 @@ namespace Devoffice.GettingStarted.Utils
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
                 var response = client.SendAsync(request).Result;
-                response.EnsureSuccessStatusCode();
                 return response;
             }
         }
