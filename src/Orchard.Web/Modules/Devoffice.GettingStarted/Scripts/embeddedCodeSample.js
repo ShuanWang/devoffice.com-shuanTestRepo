@@ -1,10 +1,12 @@
+/// <reference path="E:\devofficecom\src\Orchard.Web\Modules\Devoffice.GettingStarted\Views/O365/_RegisterApp.cshtml" />
 /* *
  * Wire up the handlers
  */
 $(document).ready(function () {
-    // register for platform selection
+    // register for platform selection, whenever user selects the platform,
+    //we will add suggestions for selected platform in the given div id.
     $("#pickPlatform ul li a").click(function () {
-        getRepoList(this.id, "suggestionlistID");
+        addSuggestions(this.id, "suggestionlistID");
     });
 
 });
@@ -18,24 +20,26 @@ var reposList = {
     "Repo": [
         {
             "Platform": "option-ios",
-            "App": "word", /*TBD need to confirm*/
-            "CodeSampleName": "Sample Name", /* we need to add name */
-            "Description": "This is a code sample", /* we need to add description */
+            "uid": "O365-iOS-Connect-outlook",
+            "App": "outlook",
+            "CodeSampleName": "O365-iOS-Connect",
+            "Description": "This Connect sample for iOS shows how to connect your app to Office 365. Once connected, the sample shows how to send a simple service call. Comes in both Swift and Objective-C",
             "FileName": "O365-iOS-Connect-master\/objective-c\/O365-iOS-Connect\/AuthenticationManager.m",
             "ClientIdStringToReplace": "ENTER_CLIENT_ID_HERE",
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "../../CodeSamples/O365-iOS-Connect-master.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples/O365-iOS-Connect-master.zip",
             "GitHubRepoName": "O365-iOS-Connect.zip",
             "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-iOS-Connect/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-iOS-Connect/"
         },
         {
             "Platform": "option-android",
-            "App": "word", /*TBD need to confirm*/
-            "CodeSampleName": "Sample Name", /* we need to add name */
-            "Description": "This is a code sample", /* we need to add description */
+            "uid": "O365-Android-Connect-outlook",
+            "App": "outlook",
+            "CodeSampleName": "O365-Android-Connect",
+            "Description": "This Connect sample for Android shows you how to connect your app to Office 365. It also demonstrates how to issue a simple service call, like sending an email.",
             "FileName": "O365-Android-Connect-master\/app\/src\/main\/java\/com\/microsoft\/office365\/connect\/Constants.java",
             "ClientIdStringToReplace": "<Your client id here>",
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
@@ -48,9 +52,10 @@ var reposList = {
         },
         {
             "Platform": "option-dotnet",
+            "uid": "option-dotnet-mail-api",
             "App": "outlook",
-            "CodeSampleName": "Sample Name", /* we need to add name */
-            "Description": "This is a code sample", /* we need to add description */
+            "CodeSampleName": "DotNet-tutorial", /* we need to add name */
+            "Description": "An ASP.NET MVC tutorial for using the Mail API. ",
             "FileName": "dotnet-tutorial-master\/dotnet-tutorial\/Web.config",
             "ClientIdStringToReplace": "</appSettings>",
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
@@ -63,9 +68,10 @@ var reposList = {
         },
         {
             "Platform": "option-php",
+            "uid": "option-php-outlook",
             "App": "outlook",
-            "CodeSampleName": "Sample Name", /* we need to add name */
-            "Description": "This is a code sample", /* we need to add description */
+            "CodeSampleName": "Simple PHP tutorial",
+            "Description": "A simple tutorial for creating a PHP app that uses the Outlook Mail API",
             "FileName": "php-tutorial\/oauth.php",
             "ClientIdStringToReplace": "21a66e5f-74c5-4acb-a0ee-02814e3fe217",
             "ClientSecretStringToReplace": "tqlvN4Skz4Ah7BVcttEpJLxilJ4V0h+EnrSmLAaYfmQ=",
@@ -78,8 +84,9 @@ var reposList = {
         },
         {
             "Platform": "option-node",
-            "CodeSampleName": "Sample Name", /* we need to add name */
-            "Description": "This is a code sample", /* we need to add description */
+            "uid": "option-node-outlook",
+            "CodeSampleName": "Simple Node.js tutorial",
+            "Description": "A simple Node.js tutorial to use the Mail API.",
             "App": "outlook",
             "FileName": "node-tutorial-master\/authHelper.js",
             "ClientIdStringToReplace": "YOUR CLIENT ID HERE",
@@ -93,8 +100,9 @@ var reposList = {
         },
         {
             "Platform": "option-python",
-            "CodeSampleName": "Sample Name", /* we need to add name */
-            "Description": "This is a code sample", /* we need to add description */
+            "uid": "option-python-outlook",
+            "CodeSampleName": "Simple Python tutorial",
+            "Description": "A simple tutorial for creating a Python app that uses the Outlook Mail API.",
             "App": "outlook",
             "FileName": "python_tutorial-master\/tutorial\/authhelper.py",
             "ClientIdStringToReplace": "YOUR CLIENT ID",
@@ -108,7 +116,8 @@ var reposList = {
         },
         {
             "Platform": "option-ruby",
-            "CodeSampleName": "O365-tutorial", /* we need to add name */
+            "uid": "option-ruby-outlook",
+            "CodeSampleName": "O365-tutorial",
             "Description": "A simple guide to writing your first Ruby on Rails app using the Outlook Mail API.", /* we need to add description */
             "App": "outlook",
             "FileName": "o365-tutorial-master\/app\/helpers\/auth_helper.rb",
@@ -124,6 +133,11 @@ var reposList = {
     ]
 }
 
+/*
+ * Searchs for list of suggestion based on the platform
+ * 
+ * platform=> platform to search for e.g. option-ios
+ */
 function search(platform) {
     var repos = [];
     if (platform != undefined && platform != "") {
@@ -135,60 +149,95 @@ function search(platform) {
     }
     return repos;
 }
-function getRepoList(selectedPlatform, divId) {
-    showSuggestions(search(selectedPlatform), divId);
+
+/*
+ * returns the repo details  based on the uid
+ * 
+ * uid=> uid of the repo
+ */
+function getRepoById(uid) {
+    for (var i = 0; i < reposList.Repo.length; ++i) {
+        if (reposList.Repo[i].uid === uid) {
+            return reposList.Repo[i];
+        }
+    }
+    return null;
 }
 
-function showSuggestions(repos, divId) {
-    if (repos.length <= 0) {
+/*
+ * Adds the suggestion for selected platform in the given divid
+ * 
+ * selectedPlatform=> user selected platform
+ * divId=> a div where the panels for multiple download will be added.
+ */
+function addSuggestions(selectedPlatform, divId) {
+    var repos = search(selectedPlatform);
+    if (repos.length <= 0) { 
         alert("No Suggestion found"); // TBD, need to remove, currently for debug purpose only
+        return;
     }
     var innerHtml = "";
     for (var i = 0; i < repos.length; ++i) {
-        innerHtml += "<li>" + getHtml(repos[i]) + "</li>";
+        innerHtml += "<li>" + getPanelHtml(repos[i]) + "</li>";
     }
     $("#" + divId).html("<ul class='panel-collection'>" + innerHtml + "</ul>");
 
     $("#codesample-download-button").click(downloadCodeSampleHandler);
 }
 
-function getHtml(data) {
+
+/*
+ * builds the panel html from the given repo
+ */
+function getPanelHtml(repo) {
     return "<div class='panel panel-default text-center panel-download'>" +
                 "<div class='panel-heading'>" +
-                    "<div class='panel-title'>" + data.CodeSampleName + "</div>" +
+                    "<div class='panel-title'>" + repo.CodeSampleName + "</div>" +
                 "</div>" +
                "<div class='panel-body'>" +
-                  data.Description +
+                  repo.Description +
                "</div>" +
-                "<div class='panel-footer'>" + getDownloadButtonHTML(data)+ "</div>" +
+                "<div class='panel-footer'>" + getDownloadButtonHTML(repo) + "</div>" +
             "</div>";
 }
 
-function getDownloadButtonHTML(data) {
+/*
+ * build the download html for the given repo
+ */
+function getDownloadButtonHTML(repo) {
     return "<a class='btn btn-success' "+ 
         "id='codesample-download-button'"+
-        "name='" + data.CodeSampleName + "'" +
-        "data-FileName='" + data.FileName + "'" +
-        "data-ClientIdStringToReplace='" + data.ClientIdStringToReplace + "'" +
-        "data-ClientSecretStringToReplace='" + data.ClientSecretStringToReplace + "'" +
-        "data-RedirectURLStringToReplace='" + data.RedirectURLStringToReplace + "'" +
-        "data-SignOnURLStringToReplace='" + data.SignOnURLStringToReplace + "'" +
-        "data-LocalZipFile='" + data.LocalZipFile + "'" +
-        "data-GitHubRepoName='" + data.GitHubRepoName + "'" +
-        "data-GitHubMasterZipUrl='" + data.GitHubMasterZipUrl + "'" +
-        "data-GitHubRepoUrl='" + data.GitHubRepoUrl + "'" +
+        "data-uid='" + repo.uid + "'" +
         ">" + "<i class='fa fa-download'></i> Download" + "</a>";
 }
 
+
+
 function downloadCodeSampleHandler()
 {
-    alert("downloading from " + $(this).attr("data-LocalZipFile"));
+    var uid = $(this).attr("data-uid");
+    codeSamplePackageAndDownload(uid, registerAppParams.clientId, registerAppParams.clientSecret,
+        registerAppParams.redirectUri, registerAppParams.signonUri);
 }
-function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appRedirectUrl, signOnUrl) {
+
+
+/*
+ * The core function that downloads the code sample and embeds the client id and other details in
+ * code sample
+ * 
+ * uid=> unique id of the repo that need to be downloaded
+ * 
+ */
+function codeSamplePackageAndDownload(uid, clientId, clientSecret, appRedirectUrl, signOnUrl) {
+    var repo = getRepoById(uid);
+    if (repo == null) {
+        alert("No repo found for the given uid = " + uid); // TBD, need to remove, currently for debug purpose only
+        return;
+    }
     try {
+        var platformName = repo.Platform;
         ga('send', 'event', 'DownloadCodeSample', 'Begin-' + platformName, platformName, 0);
         _resetFlags();
-        _setPlatformSelectedIndex(platformName);
 
         if (clientId === undefined || clientId === null)
         {
@@ -211,7 +260,7 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
             "<add key=\"ida:ClientSecret\" value=\""+clientSecret+"\" />" +
             " </appSettings>";
         }
-        var zipFileName = reposList.Repo[selectedPlatformIndex].LocalZipFile;
+        var zipFileName = repo.LocalZipFile;
         JSZipUtils.getBinaryContent(zipFileName, function (err, data) {
             if (err) {
                 throw new Error('ErrorReadingFiles');
@@ -222,13 +271,13 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
                 var file = codeSampleZip.files[nameOfFile]; //may be move it inside If clause
 
                 //if (nameOfFile.indexOf(reposList.Repo[selectedPlatformIndex].FileName) > 0)
-                if (nameOfFile === reposList.Repo[selectedPlatformIndex].FileName) {
+                if (nameOfFile === repo.FileName) {
                     fileContent = file.asText();
                     codeSampleZip.remove(nameOfFile);
-                    fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].ClientIdStringToReplace, clientId);
-                    fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].ClientSecretStringToReplace, clientSecret);
-                    fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].RedirectURLStringToReplace, appRedirectUrl);
-                    fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].SignOnURLStringToReplace, signOnUrl);
+                    fileContent = fileContent.replace(repo.ClientIdStringToReplace, clientId);
+                    fileContent = fileContent.replace(repo.ClientSecretStringToReplace, clientSecret);
+                    fileContent = fileContent.replace(repo.RedirectURLStringToReplace, appRedirectUrl);
+                    fileContent = fileContent.replace(repo.SignOnURLStringToReplace, signOnUrl);
                     codeSampleZip.file(nameOfFile, fileContent);
                 }
                     //special case for iOS swift folder
@@ -237,36 +286,25 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
                         if (nameOfFile === 'O365-iOS-Connect-master\/swift\/O365-iOS-Connect-Swift\/AuthenticationManager.swift') {
                         fileContent = file.asText();
                         codeSampleZip.remove(nameOfFile);
-                        fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].ClientIdStringToReplace, clientId);
-                        fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].ClientSecretStringToReplace, clientSecret);
-                        fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].RedirectURLStringToReplace, appRedirectUrl);
-                        fileContent = fileContent.replace(reposList.Repo[selectedPlatformIndex].SignOnURLStringToReplace, signOnUrl);
+                        fileContent = fileContent.replace(repo.ClientIdStringToReplace, clientId);
+                        fileContent = fileContent.replace(repo.ClientSecretStringToReplace, clientSecret);
+                        fileContent = fileContent.replace(repo.RedirectURLStringToReplace, appRedirectUrl);
+                        fileContent = fileContent.replace(repo.SignOnURLStringToReplace, signOnUrl);
                         codeSampleZip.file(nameOfFile, fileContent);
                     }
             }
 
             }
             var content = codeSampleZip.generate({ type: "blob" });
-            window.saveAs(content, reposList.Repo[selectedPlatformIndex].GitHubRepoName + ".zip");
+            window.saveAs(content, repo.GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
             appInsights.trackEvent("ClientID--" + clientId);
         });
         _progressStatus(100)
     }
     catch (error) {
-        _errorHandlerDownloadSample(error);
+        _errorHandlerDownloadSample(error, repo);
     }
-}
-
-function _setPlatformSelectedIndex(platformSelected) {
-    $.each(reposList, function (key, repos) {
-        $(repos).each(function (index, repo) {
-            if (repo.Platform === platformSelected) {
-                selectedPlatformIndex = index;
-                return;
-            }
-        });
-    });
 }
 
 function ViewCodeSampleInGithub(platformName) {
@@ -292,7 +330,7 @@ function _resetFlags() {
     }
 
 //Need to improve this function to show error in UI. Show download link from GitHub if in Error.
-function _errorHandlerDownloadSample(error) {
+function _errorHandlerDownloadSample(error, repo) {
     var msg;
     switch (error.message) {
         case 'ClientIdIsUndefnied':
@@ -314,7 +352,7 @@ function _errorHandlerDownloadSample(error) {
 
     if (selectedPlatformIndex != undefined) {
         msg = 'FYI - We downloaded an untouched sample from GitHub. ' + msg;
-        location.href = (reposList.Repo[selectedPlatformIndex].GitHubMasterZipUrl);
+        location.href = (repo.GitHubMasterZipUrl);
 
         $('#post-download-instructions').html(msg)
         $('#post-download-instructions').show();
