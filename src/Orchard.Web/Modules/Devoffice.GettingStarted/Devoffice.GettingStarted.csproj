@@ -91,9 +91,11 @@
       <DependentUpon>addins.js</DependentUpon>
     </Content>
     <Content Include="Scripts\browserInfo.js" />
-    <Content Include="Scripts\downloadSuggestions.js" />
     <Content Include="Scripts\embeddedCodeSample.min.js">
       <DependentUpon>embeddedCodeSample.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\tryitout.min.js">
+      <DependentUpon>tryitout.js</DependentUpon>
     </Content>
     <Content Include="Scripts\userPlatformManager.min.js">
       <DependentUpon>userPlatformManager.js</DependentUpon>
@@ -163,8 +165,6 @@
     <Content Include="Scripts\embeddedCodeSample.min.js.map">
       <DependentUpon>embeddedCodeSample.min.js</DependentUpon>
     </Content>
-    <Content Include="CodeSamples\O365-Android-Snippets-master.zip" />
-    <Content Include="CodeSamples\O365-ASPNETMVC-Start-master.zip" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -187,6 +187,9 @@
     </Content>
     <Content Include="Scripts\userPlatformManager.min.js.map">
       <DependentUpon>userPlatformManager.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\tryitout.min.js.map">
+      <DependentUpon>tryitout.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />
@@ -226,7 +229,6 @@
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ApiWidgetPart.cs" />
     <Compile Include="Models\AddinsWidgetPart.cs" />
-    <Compile Include="Models\CodeSampleModel.cs" />
     <Compile Include="Models\RegisterAppModel.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="Utils\AppRegistration.cs" />
