@@ -13,12 +13,12 @@ namespace Devoffice.GettingStarted.Controllers
         public ActionResult RegisterApp(Models.RegisterAppModel appInfo)
         {
             #region For Debug Purpose only
-                        /*
+                        
                         Dictionary<string, string> registrationInfo = new Dictionary<string, string>();
                         registrationInfo.Add(Constants.clientIdTagStr, "client_id_goes_here");
                         registrationInfo.Add("client_secret", "secret_goes_here");
                         return Json(registrationInfo, JsonRequestBehavior.AllowGet);
-                        */
+                        
             #endregion
 
             #region Do error check

@@ -52,5 +52,18 @@ namespace Devoffice.GettingStarted.Controllers
                 Session[Constants.platformNameTagStr] = platformName;
             }
         }
+
+
+        public ActionResult CodeSampleSuggestions(string param /* search key */)
+        {
+            if (string.IsNullOrEmpty(param))
+            {
+                IDictionary<string, string> emptyResult = new Dictionary<string, string>();
+                return Json(emptyResult, JsonRequestBehavior.AllowGet);                
+            }
+            List<CodeSampleModel> results = CodeSampleModelManager.Instance.GetList(param);
+            return Json(results, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

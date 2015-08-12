@@ -2,8 +2,6 @@
 using System.Web;
 using System.Web.Mvc;
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Devoffice.GettingStarted.Controllers
 {
@@ -47,27 +45,8 @@ namespace Devoffice.GettingStarted.Controllers
                 Session.Remove(Constants.userLoggedInStr);
                 Session.Remove(Constants.platformNameTagStr);
                 Session.Remove(Constants.appNameTagStr);
-
-
-
-                // remove session variable related with discovery capabilities
-                // now get the service endpoint
-                string capablities = (string)Session[Constants.capabilitiesTagStr];
-                if (!string.IsNullOrEmpty(capablities))
-                {
-                    dynamic capablitiesJObject = (JObject.Parse(capablities))["value"];
-                    for (int i = 0; i < capablitiesJObject.Count; ++i)
-                    {
-                        string endpoint = capablitiesJObject[i].serviceEndpointUri;
-                        if (!string.IsNullOrEmpty(endpoint))
-                        {
-                            Session.Remove(endpoint);
-                        }
-                    }
-                } // end capabilities
-                Session.Remove(Constants.capabilitiesTagStr);
-            }// end try
-            catch (Exception e)
+            }
+            catch (Exception)
             {
                 // we dont  need to d do anything if deleting session fails
             }
