@@ -129,6 +129,22 @@ var reposList = {
             "GitHubRepoName": "O365-Ruby-tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial"
+        },
+        {
+            "Platform": "option-android",
+            "uid": "o365-andorid-snippet-outlook",
+            "CodeSampleName": "Office 365 Code Snippets for Android",
+            "Description": "This sample for Android is a repository of simple method examples that access email, calendar events, contacts, and files in Office 365. These 'snippet' methods are self contained so you can paste them into your own code or use as reference for learning.",
+            "App": "outlook, onedrive",
+            "FileName": "O365-Android-Snippets-master\/app\/src\/main\/java\/com\/microsoft\/office365\/snippetapp\/helpers\/Constants.java",
+            "ClientIdStringToReplace": "<Your client ID HERE>",
+            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
+            "RedirectURLStringToReplace": "<Your redirect URI HERE>",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Android-Snippets-master.zip",
+            "GitHubRepoName": "O365-Android-Snippets",
+            "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Android-Snippets/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Android-Snippets"
         }
     ]
 }
@@ -182,7 +198,11 @@ function addSuggestions(selectedPlatform, divId) {
     }
     $("#" + divId).html("<ul class='panel-collection'>" + innerHtml + "</ul>");
 
-    $("#codesample-download-button").click(downloadCodeSampleHandler);
+    // do binding for each download button
+    for (var i = 0; i < repos.length; ++i) {
+        var btnid = "codesample-download-button-" + repos[i].uid;
+        $('#' + btnid).click(downloadCodeSampleHandler);
+    }
 }
 
 
@@ -206,7 +226,7 @@ function getPanelHtml(repo) {
  */
 function getDownloadButtonHTML(repo) {
     return "<a class='btn btn-success' "+ 
-        "id='codesample-download-button'"+
+        "id='codesample-download-button-" + repo.uid +"'"+ 
         "data-uid='" + repo.uid + "'" +
         ">" + "<i class='fa fa-download'></i> Download" + "</a>";
 }

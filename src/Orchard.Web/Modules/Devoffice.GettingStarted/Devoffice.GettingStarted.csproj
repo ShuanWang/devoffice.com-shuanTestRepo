@@ -163,6 +163,7 @@
     <Content Include="Scripts\embeddedCodeSample.min.js.map">
       <DependentUpon>embeddedCodeSample.min.js</DependentUpon>
     </Content>
+    <Content Include="CodeSamples\O365-Android-Snippets-master.zip" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
