@@ -1,10 +1,123 @@
-﻿
+﻿@using Newtonsoft.Json;
+@model DevOffice.Secret.ViewModels.RowWithTilesViewModel
+
+@{
+    Style.Include("RowWithTilesStyles.css");
+    Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap.min.css");
+    Script.Include("RowWithTilesController.js");
+}
+
 
 HELLO FRIEND
 
-<div id="rowWithTilesPart">
-    <div ng-controller="rowWithTilesController" class="panel-group">
-       
+<div id="linksPart" ng-init="rawlinks = @JsonConvert.SerializeObject(Model.Rows);">
+    <div ng-controller="grouplinksController" class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="glyphicon glyphicon-film"></span>
+                    @T("Your rows") ({{ links.length }})
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div id="grouplinksAccordion">
+                    <div class="panel-group" ng-repeat="link in links track by $index">
+                        <div class="panel panel-default item editable-container" ng-attr-linkid="{{link.id}}">
+                            <div class="panel-heading" role="tab" ng-attr-id="{{ 'heading-' + link.id }}">
+                                <h4 class="panel-title">
+                                    <div class="moveIcon"></div>
+                                    <div class="skypePanelTitle">{{link.sortorder}}. {{ link.title }}</div>
+                                    <div class="skypeAdminEditRemoveLinks">
+                                        <a href="#" data-toggle="collapse"
+                                           data-parent="#grouplinksAccordion" ng-attr-href="{{ '#collapse-' + link.id }}">
+                                            Edit
+                                        </a>
+                                        <span>|</span>
+                                        <a href="#" ng-click="removelink($index)">Remove</a>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div ng-attr-id="{{ 'collapse-' + link.id }}" class="panel-collapse collapse item">
+                                <fieldset>
+                                    <label class="control-label">
+                                        @T("Row Title")</label>
+                                    <input class="text form-control" ng-value="link.title" ng-model="link.title" ng-change="editlinkHelper[$index].title=link.title" />
+                                </fieldset>
+                                <fieldset>
+                                    <label class="control-label">
+                                        @T("Row Body")
+                                    </label>
+                                    @*<input class="text" ng-value="link.body" ng-model="link.body" ng-change="editlinkHelper[$index].body=link.body" />*@
+                                    <textarea class=" form-control" ng-value="link.body" ng-model="link.body" ng-change="editlinkHelper[$index].body=link.body"></textarea>
+                                </fieldset>
+                                <fieldset>
+                                    <label class="control-label">
+                                        @T("Row Link")
+                                    </label>
+                                    <input class="text form-control" ng-value="link.externalLink" ng-model="link.externalLink" ng-change="editlinkHelper[$index].externalLink=link.externalLink" />
+                                </fieldset>
+                                <fieldset>
+                                    <label class="control-label">
+                                        @T("Tile 1 Title")
+                                    </label>
+                                    <input class="text form-control" ng-value="link.tile1Title" ng-model="link.tile1Title" ng-change="editlinkHelper[$index].tile1Title=link.tile1Title" />
+                                </fieldset>
+                                
+                                <fieldset>
+                                    <label class="control-label">
+                                        @T("Tile 1 Link")
+                                    </label>
+                                    <input class="text form-control" ng-value="link.tile1ExternalLink" ng-model="link.tile1ExternalLink" ng-change="editlinkHelper[$index].tile1ExternalLink=link.tile1ExternalLink" />
+                                </fieldset><fieldset>
+                                               <label class="control-label">
+                                                   @T("Tile 1 Image")
+                                               </label>
+                                               <input class="text form-control" ng-value="link.tile1Thumbnail" ng-model="link.tile1Thumbnail" ng-change="editlinkHelper[$index].tile1Thumbnail=link.tile1Thumbnail" />
+                                           </fieldset><fieldset>
+                                                          <label class="control-label">
+                                                              @T("Tile 2 Title")
+                                                          </label>
+                                                          <input class="text form-control" ng-value="link.tile2Title" ng-model="link.tile2Title" ng-change="editlinkHelper[$index].tile2Title=link.tile2Title" />
+                                                      </fieldset><fieldset>
+                                                                     <label class="control-label">
+                                                                         @T("Tile 2 Link")
+                                                                     </label>
+                                                                     <input class="text form-control" ng-value="link.tile2ExternalLink" ng-model="link.tile2ExternalLink" ng-change="editlinkHelper[$index].tile2ExternalLink=link.tile2ExternalLink" />
+                                                                 </fieldset><fieldset>
+                                                                                <label class="control-label">
+                                                                                    @T("Tile 2 Image")
+                                                                                </label>
+                                                                                <input class="text form-control" ng-value="link.tile2Thumbnail" ng-model="link.tile2Thumbnail" ng-change="editlinkHelper[$index].tile2Thumbnail=link.tile2Thumbnail" />
+                                                                            </fieldset>
+                                
+                                
+                                
+                                
+
+                                <fieldset class="media-library-picker-container">
+                                    @T("Url")
+                                    <input ng-model="link.url" ng-value="link.url" class="form-control text" />
+                                    <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
+                                    <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, $index)">
+                                        <span class="glyphicon glyphicon-picture"></span>
+                                        @T("Change resource...")
+                                    </span>
+                                </fieldset>
+                                <input type="text" hidden class="SortOrder" ng-value="{{link.sortorder + 1}}" ng-model="link.sortorder" />
+                            </div>
+                        </div>
+                    </div>
+                    <strong>
+                       
+                    </strong>
+                    <fieldset class="waaaat">
+                       @Html.HiddenFor(m => m.TilesJson, new { @ng_value = "linksAsJSONString" })
+                        @*@Html.TextAreaFor(m => m.TilesJson);*@
+                        @*<input name="RowWithTiles.TilesJson" id="RowWithTiles_TilesJson" type="hidden" value="{{linksAsJSONString}}" />*@
+                    </fieldset>
+                </div>
+            </div>
+        </div>
 
         @*ADD NEW LINK PANEL*@
         <div class="panel panel-primary">
@@ -17,10 +130,41 @@ HELLO FRIEND
             <div class="panel-body">
                 <div id="newItemContainer" class="editable-container">
                     <fieldset>
-                        <label class="control-label">@T("Title")</label>
+                        <label class="control-label">@T("Row Title")</label>
                         <input id="newItemTitle" type="text" class="form-control" ng-model="addItemTitle" ng-value="addItemTitle" />
                     </fieldset>
-                   
+                    <fieldset>
+                        <label class="control-label">@T("Row Body")</label>
+                        <input id="newItemBody" type="text" class="form-control" ng-model="addItemBody" ng-value="addItemBody" />
+                    </fieldset>
+                    <fieldset class="media-library-picker-container">
+                        <label class="control-label">@T("Row Link")</label>
+                        <input id="newItemLink" ng-model="link.link" ng-value="link.link" class="form-control " />
+                    </fieldset>
+                    <fieldset class="media-library-picker-container">
+                        <label class="control-label">@T("Tile 1 Title")</label>
+                        <input id="newItemTile1Title" ng-model="addItemTile1Title" ng-value="addItemTile1Title" class="form-control " />
+                    </fieldset>
+                    <fieldset class="media-library-picker-container">
+                        <label class="control-label">@T("Tile 1 Link")</label>
+                        <input id="newItemTile1Link" ng-model="addItemTile1Link" ng-value="addItemTile1Link" class="form-control" />
+                    </fieldset>
+                    <fieldset class="media-library-picker-container">
+                        <label class="control-label">@T("Tile 1 Image")</label>
+                        <input id="newItemTile1Image" ng-model="addItemTile1Image" ng-value="addItemTile1Image" class="form-control " />
+                    </fieldset>
+                    <fieldset class="media-library-picker-container">
+                        <label class="control-label">@T("Tile 2 Title")</label>
+                        <input id="newItemTile2Title" ng-model="addItemTile2Title" ng-value="addItemTile2Title" class="form-control" />
+                    </fieldset>
+                    <fieldset class="media-library-picker-container">
+                        <label class="control-label">@T("Tile 2 Link")</label>
+                        <input id="newItemTile2Link" ng-model="addItemTile2Link" ng-value="addItemTile2Link" class="form-control " />
+                    </fieldset>
+                    <fieldset class="media-library-picker-container">
+                        <label class="control-label">@T("Tile 2 Image")</label>
+                        <input id="newItemTile2Image" ng-model="addItemTile2Image" ng-value="addItemTile2Image" class="form-control" />
+                    </fieldset>
                     <fieldset>
                         <span id="addlink" class="button" ng-click="addlink()">
                             <span class="glyphicon glyphicon-ok"></span>
@@ -32,4 +176,3 @@ HELLO FRIEND
         </div>
     </div>
 </div>
-

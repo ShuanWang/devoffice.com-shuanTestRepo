@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    var rows = Model.ContentPart.RowWithTilesPart.Rows;
+}
+
 <div class="row banner-image">
     <img src="@Model.ViewModel.BannerImage">
 </div>
@@ -12,145 +15,81 @@
         </div>
     </div>
     <div class="container-fluid intro-text">
-    <div class="row page-body-text">
-        <div class="col-md-12">
-    @Model.ViewModel.IntroText
+        <div class="row page-body-text">
+            <div class="col-md-12">
+                @Model.ViewModel.IntroText
+            </div>
         </div>
-        </div>
-        </div>
-    <div class='partner-overview-content-row-one'>
-        <div class='container-fluid'>
-            <div class='row page-body'>
-                <div class='col-lg-8 col-md-8'>
-                    <div class='page-subtitle'>
-                        @Model.ViewModel.Row1Title
-                    </div>
-                    <div class='page-body-text'>
-                        @Model.ViewModel.Row1Body
-                    </div>
-                    @if(! (Model.ViewModel.Row1LinkText == null || Model.ViewModel.Row1ExternalLink == null))
-                    {<div class='page-body-link'>
-                        <a href="@Model.ViewModel.Row1ExternalLink">
-                            @Model.ViewModel.Row1LinkText
-                            <i class="icon_seemore"></i>
-                        </a>
-                    </div>
-                    }
-                </div>
- 
-                <div class='col-lg-4 col-md-4'>
-@if (!(@Model.ViewModel.Row1TileTitle == null))
-{
-                    <div class='tile-container'>
-                        <div class='tile-header row'>
-                            <div class='tile-image col-xs-4' style="background-image: url(@Model.ViewModel.Row1TileImage); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
-                            <div class='tile-title col-xs-8'>
-                                @Model.ViewModel.Row1TileTitle
-                            </div>
+    </div>
+    
+    
+    
+    @foreach (var row in rows) {
+        <div class='partner-overview-content-row-one'>
+            <div class='container-fluid'>
+                <div class='row page-body'>
+                    <div class='col-lg-8 col-md-8'>
+                        <div class='page-subtitle'>
+                            @row.Title
                         </div>
-                        <div class='tile-content'>
-                            @*<div class='tile-description'>
-                                @Model.ViewModel.Row1TileBody
-                            </div>*@
-@if (!(Model.ViewModel.Row1TileLinkText == null || Model.ViewModel.Row1TileExternalLink == null)) { 
-                            <div class='tile-link'>
-                                <a href="@Model.ViewModel.Row1TileExternalLink">
-                                    @Model.ViewModel.Row1TileLinkText
+                        <div class='page-body-text'>
+                            @row.Body
+                        </div>
+                        @if ( row.ExternalLink != null) {
+                            <div class='page-body-link'>
+                                <a href="@row.ExternalLink">
+                                    Learn More
                                     <i class="icon_seemore"></i>
                                 </a>
                             </div>
-    }
-                        </div>
-                    </div>}
-    @if (!(@Model.ViewModel.Row1Tile2Title == null)) {
-                    <div class='tile-container'>
-                        <div class='tile-header row'>
-                            <div class='tile-image col-xs-4' style="background-image: url(@Model.ViewModel.Row1Tile2Image); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
-                            <div class='tile-title col-xs-8'>
-                                @Model.ViewModel.Row1Tile2Title
+                        }
+                    </div>
+ 
+                    <div class='col-lg-4 col-md-4'>
+                        @if (@row.Tile1Title != null) {
+                            <div class='tile-container'>
+                                <div class='tile-header row'>
+                                    <div class='tile-image col-xs-4' style="background-image: url(@row.Tile1Thumbnail); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
+                                    <div class='tile-title col-xs-8'>
+                                        @row.Tile1Title
+                                    </div>
+                                </div>
+                                <div class='tile-content'>
+                                    @if (row.Tile1ExternalLink != null) {
+                                        <div class='tile-link'>
+                                            <a href="@row.Tile1ExternalLink">
+                                                View
+                                                <i class="icon_seemore"></i>
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                        </div>
-                        <div class='tile-content'>
-                            @*<div class='tile-description'>
-                                @Model.ViewModel.Row1Tile2Body
-                            </div>*@
-@if (!(Model.ViewModel.Row1Tile2LinkText == null || Model.ViewModel.Row1Tile2ExternalLink == null)) {
-    <div class='tile-link'>
-        <a href="@Model.ViewModel.Row1Tile2ExternalLink">
-            @Model.ViewModel.Row1Tile2LinkText
-            <i class="icon_seemore"></i>
-        </a>
-    </div>
-}
-                        </div>
-                    </div>}
-                </div>
+                        }
+                        @if (@row.Tile2Title != null) {
+                            <div class='tile-container'>
+                                <div class='tile-header row'>
+                                    <div class='tile-image col-xs-4' style="background-image: url(@row.Tile2Thumbnail); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
+                                    <div class='tile-title col-xs-8'>
+                                        @row.Tile2Title
+                                    </div>
+                                </div>
+                                <div class='tile-content'>
+                                    @if ( row.Tile2ExternalLink != null) {
+                                        <div class='tile-link'>
+                                            <a href="@row.Tile2ExternalLink">
+                                                View
+                                                <i class="icon_seemore"></i>
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
                 
-            </div>
-        </div>
-    </div>
-    <div class='partner-overview-content-row-two'>
-        <div class='container-fluid'>
-            <div class='row page-body'>
-                <div class='col-lg-8 col-md-8'>
-                    <div class='page-subtitle'>@Model.ViewModel.Row2Title</div>
-                    <div class='page-body-text'>@Model.ViewModel.Row2Body</div>
-@if (!(Model.ViewModel.Row2LinkText == null || Model.ViewModel.Row2ExternalLink == null)) {
-    <div class='page-body-link'>
-        <a href="@Model.ViewModel.Row2ExternalLink">
-            @Model.ViewModel.Row2LinkText
-            <i class="icon_seemore"></i>
-        </a>
-    </div>
-}
-                </div>
-                <div class='col-lg-4 col-md-4'>
-@if (!(@Model.ViewModel.Row2TileTitle == null)) {
-                    <div class='tile-container'>
-                        <div class='tile-header row'>
-                            <div class='tile-image col-xs-4' style="background-image: url(@Model.ViewModel.Row2TileImage); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
-                            <div class='tile-title col-xs-8'>
-                                @Model.ViewModel.Row2TileTitle
-                            </div>
-                        </div>
-                        <div class='tile-content'>
-                            @*<div class='tile-description'>
-                                @Model.ViewModel.Row2TileBody
-                            </div>*@
-@if (!(Model.ViewModel.Row2TileLinkText == null || Model.ViewModel.Row2TileExternalLink == null)) {
-    <div class='tile-link'>
-        <a href="@Model.ViewModel.Row2TileExternalLink">
-            @Model.ViewModel.Row2TileLinkText
-            <i class="icon_seemore"></i>
-        </a>
-    </div>
-}
-                        </div>
-                    </div>}
-                          @if (!(@Model.ViewModel.Row2Tile2Title == null)) {
-                    <div class='tile-container'>
-                        <div class='tile-header row'>
-                            <div class='tile-image col-xs-4' style="background-image: url(@Model.ViewModel.Row2Tile2Image); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
-                            <div class='tile-title col-xs-8'>
-                                @Model.ViewModel.Row2Tile2Title
-                            </div>
-                        </div>
-                        <div class='tile-content'>
-                            @*<div class='tile-description'>
-                                @Model.ViewModel.Row2Tile2Body
-                            </div>*@
-@if (!(Model.ViewModel.Row2Tile2LinkText == null || Model.ViewModel.Row2Tile2ExternalLink == null)) {
-    <div class='tile-link'>
-        <a href="@Model.ViewModel.Row2Tile2ExternalLink">
-            @Model.ViewModel.Row2Tile2LinkText
-            <i class="icon_seemore"></i>
-        </a>
-    </div>
-}
-                        </div>
-                    </div>}
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>

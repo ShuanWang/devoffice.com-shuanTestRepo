@@ -404,18 +404,18 @@ namespace DevOffice.Secret {
         {
 
             SchemaBuilder.CreateTable("SingleRowWithTilesRecord", table => table
-                .ContentPartRecord()
-                  .Column<int>("RowWithTilesRecord_Id")
+                  .Column<int>("Id", column => column.PrimaryKey().Identity())
+                  .Column<int>("RowWithTilesRecord_id")
                   .Column<string>("Title")
                   .Column<string>("Body")
-                  .Column<string>("External_Link")
+                  .Column<string>("ExternalLink")
                   .Column<int>("SortOrder")
-                  .Column<string>("Tile_1_Title")
-                  .Column<string>("Tile_1_External_Link")
-                  .Column<string>("Tile_1_Thumbnail")
-                  .Column<string>("Tile_2_Title")
-                  .Column<string>("Tile_2_External_Link")
-                  .Column<string>("Tile_2_Thumbnail"));
+                  .Column<string>("Tile1Title")
+                  .Column<string>("Tile1ExternalLink")
+                  .Column<string>("Tile1Thumbnail")
+                  .Column<string>("Tile2Title")
+                  .Column<string>("Tile2ExternalLink")
+                  .Column<string>("Tile2Thumbnail"));
 
 
             return 7;
@@ -430,6 +430,27 @@ namespace DevOffice.Secret {
               "OverviewPage", cfg => cfg
                   .WithPart("RowWithTilesPart"));
             return 8;
+        }
+
+        public int UpdateFrom8()
+        {
+
+            SchemaBuilder.CreateTable("SingleRowWithTilesRecord", table => table
+                  .Column<int>("Id", column => column.PrimaryKey().Identity())
+                  .Column<int>("RowWithTilesRecord_id")
+                  .Column<string>("Title")
+                  .Column<string>("Body")
+                  .Column<string>("ExternalLink")
+                  .Column<int>("SortOrder")
+                  .Column<string>("Tile1Title")
+                  .Column<string>("Tile1ExternalLink")
+                  .Column<string>("Tile1Thumbnail")
+                  .Column<string>("Tile2Title")
+                  .Column<string>("Tile2ExternalLink")
+                  .Column<string>("Tile2Thumbnail"));
+
+
+            return 9;
         }
     }
 }

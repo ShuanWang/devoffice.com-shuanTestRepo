@@ -8,13 +8,13 @@ namespace DevOffice.Secret.ViewModels
 {
     public class RowWithTilesViewModel
     {
-        //public string RelatedLinksGroup { get; set; }
+        public RowWithTilesViewModel()
+        {
+            Rows = new List<SingleRowWithTilesRecord>();
+        }
 
-
-
-         public IList<RowWithTilesRecord> Rows { get; set; }
-         public string LinksJson { get; set; }
+        public IList<SingleRowWithTilesRecord> Rows { get; set; }
+        public string TilesJson { get; set; }
     }
 
-    
 }

@@ -12,6 +12,6 @@
   </Match>
   
   <Place Parts_SharePointSettings_Edit="Content:1"/>
-  <Place Parts_RowWithTiles_Edit="Content:5"/>
+  <Place Parts_RowWithTiles_Edit="Content:1"/>
   <Place Parts_EmailSettingsPart="Content:before"/>
 </Placement>

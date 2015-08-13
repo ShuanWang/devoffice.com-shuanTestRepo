@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DevOffice.Secret.Models
 {
-    public class SingleRowWithTiles
+    public class SingleRowWithTilesRecord
     {
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }
