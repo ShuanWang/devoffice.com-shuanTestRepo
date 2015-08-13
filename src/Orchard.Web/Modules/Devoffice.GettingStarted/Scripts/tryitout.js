@@ -104,7 +104,6 @@ function TryItOut(elemIDs, elemClasses) {
         else {
             invokeUrlOnUserData();
         }
-        ga('send', 'event', 'O365path-Rest', 'TryOut-' + dataType + '-' + data[serviceMenu.val()]["name"]);
     })
 
     // Updates the parameter based on menu selection
