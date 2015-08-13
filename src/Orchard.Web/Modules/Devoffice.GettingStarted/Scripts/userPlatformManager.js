@@ -104,6 +104,22 @@ function selectPlatform(platform) {
     //fileType = setupFile //Hardcoded as this will not chnage ; divName is also Hardcoded
     setDocumentationDivForPlatform(platformId, "setupFile", "ShowDocumentationDiv");
 
+    // send platform to server if user is authenticated
+    $.ajax({
+        url: "/GettingStarted/Account/IsAuthenticated",
+        async: true,
+        type: 'GET',
+        success: function (data, textStatus, xhr) {
+            if (data == "True") {
+                sendPlatformInfoToServer(platformId);
+            }
+        }
+    });
+
+}
+
+function sendPlatformInfoToServer(platformId)
+{
     var urltosend = "/GettingStarted/Main/platform/" + platformId;
 
     var dataTosend = {
@@ -116,8 +132,7 @@ function selectPlatform(platform) {
         type: "POST",
         data: dataTosend,
     });
-
-    ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
+    ga('send', 'event', 'O365path-Rest', 'Setup-' +platformId);
 }
 
 // add a static proeprty in selectPlatform

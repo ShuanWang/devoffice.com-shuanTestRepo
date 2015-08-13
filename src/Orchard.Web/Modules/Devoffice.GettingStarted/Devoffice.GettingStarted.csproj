@@ -235,6 +235,7 @@
     <Compile Include="Utils\AppScopes.cs" />
     <Compile Include="Utils\Base64UrlDecoder.cs" />
     <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\InputValidation.cs" />
     <Compile Include="Utils\RequestHelper.cs" />
     <Compile Include="Utils\ServiceInfo.cs" />
     <Compile Include="Utils\SettingsHelper.cs" />
