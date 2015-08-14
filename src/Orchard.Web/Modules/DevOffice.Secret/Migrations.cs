@@ -390,74 +390,33 @@ namespace DevOffice.Secret {
             ContentDefinitionManager.AlterPartDefinition(
                 typeof(RowWithTilesPart).Name, cfg => cfg.Attachable());
 
-            #endregion
+         
 
             ContentDefinitionManager.AlterTypeDefinition(
                "OverviewPage", cfg => cfg
                    .WithPart("RowWithTilesPart"));
 
+            SchemaBuilder.CreateTable("SingleRowWithTilesRecord", table => table
+                 .Column<int>("Id", column => column.PrimaryKey().Identity())
+                 .Column<int>("RowWithTilesRecord_id")
+                 .Column<string>("Title")
+                 .Column<string>("Body")
+                 .Column<string>("ExternalLink")
+                 .Column<int>("SortOrder")
+                 .Column<string>("Tile1Title")
+                 .Column<string>("Tile1ExternalLink")
+                 .Column<string>("Tile1Thumbnail")
+                 .Column<string>("Tile2Title")
+                 .Column<string>("Tile2ExternalLink")
+                 .Column<string>("Tile2Thumbnail")
+                 .Column<string>("LinkText"));
+
+            #endregion
             return 6;
 
         }
 
-        public int UpdateFrom6()
-        {
 
-            SchemaBuilder.CreateTable("SingleRowWithTilesRecord", table => table
-                  .Column<int>("Id", column => column.PrimaryKey().Identity())
-                  .Column<int>("RowWithTilesRecord_id")
-                  .Column<string>("Title")
-                  .Column<string>("Body")
-                  .Column<string>("ExternalLink")
-                  .Column<int>("SortOrder")
-                  .Column<string>("Tile1Title")
-                  .Column<string>("Tile1ExternalLink")
-                  .Column<string>("Tile1Thumbnail")
-                  .Column<string>("Tile2Title")
-                  .Column<string>("Tile2ExternalLink")
-                  .Column<string>("Tile2Thumbnail"));
-
-
-            return 7;
-        }
-
-        public int UpdateFrom7() {
-            ContentDefinitionManager.AlterPartDefinition(
-              typeof(RowWithTilesPart).Name, cfg => cfg.Attachable());
-          
-
-            ContentDefinitionManager.AlterTypeDefinition(
-              "OverviewPage", cfg => cfg
-                  .WithPart("RowWithTilesPart"));
-            return 8;
-        }
-
-        public int UpdateFrom8()
-        {
-
-            SchemaBuilder.CreateTable("SingleRowWithTilesRecord", table => table
-                  .Column<int>("Id", column => column.PrimaryKey().Identity())
-                  .Column<int>("RowWithTilesRecord_id")
-                  .Column<string>("Title")
-                  .Column<string>("Body")
-                  .Column<string>("ExternalLink")
-                  .Column<int>("SortOrder")
-                  .Column<string>("Tile1Title")
-                  .Column<string>("Tile1ExternalLink")
-                  .Column<string>("Tile1Thumbnail")
-                  .Column<string>("Tile2Title")
-                  .Column<string>("Tile2ExternalLink")
-                  .Column<string>("Tile2Thumbnail"));
-
-
-            return 9;
-        }
-
-        public int UpdateFrom9() {
-            SchemaBuilder.AlterTable("SingleRowWithTilesRecord", table => table
-               .AddColumn<string>("LinkText") );
-
-            return 10;
-        }
+     
     }
 }
