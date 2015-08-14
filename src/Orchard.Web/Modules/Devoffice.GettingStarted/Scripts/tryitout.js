@@ -104,7 +104,6 @@ function TryItOut(elemIDs, elemClasses) {
         else {
             invokeUrlOnUserData();
         }
-        ga('send', 'event', 'O365path-Rest', 'TryOut-' + dataType + '-' + data[serviceMenu.val()]["name"]);
     })
 
     // Updates the parameter based on menu selection
@@ -211,6 +210,7 @@ function TryItOut(elemIDs, elemClasses) {
         var msgHolder = $("#tryError");
         //msgHolder.addClass('loading');;
         msgHolder.html("Getting the service endpoint...");
+        ga('send', 'event', 'O365path-Rest', 'Try-it-out-GetServiceEndPoint-Begin');
         $.ajax({
             url: "/gettingstarted/proxy/EndPoints",
             async:false,
@@ -218,9 +218,11 @@ function TryItOut(elemIDs, elemClasses) {
             success: function (data, textStatus, xhr) {
                 msgHolder.html("");
                 serviceEndpointUris_user = data;
+                ga('send', 'event', 'O365path-Rest', 'Try-it-out-GetServiceEndPoint-Success');
             },
             error: function (jqXHR, exception) {
                 msgHolder.html("<div class='ms-font-color-error ms-font-m'>Encountered error while requesting service endpoint, Please login and try again</div>");
+                ga('send', 'event', 'O365path-Rest', 'Try-it-out-GetServiceEndPoint-Error-' + jqXHR.responseText);
             },
             complete: function (xhr) {
             }
@@ -246,6 +248,7 @@ function TryItOut(elemIDs, elemClasses) {
         requestHeaders['Accept'] = 'application/json';
  
         var result = "";
+        ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnUserData-' + controller + '-Begin');
 
         $.ajax({
             url: controller,
@@ -254,15 +257,18 @@ function TryItOut(elemIDs, elemClasses) {
             success: function (data, textStatus, xhr) {
                 updateResponse(result, data, true);
                 resultStatus = xhr.status;
+                ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnUserData-' + controller + '-Success');
             },
             error: function (jqXHR, exception) {
                 updateResponse(result, "Error...", false);
                 if (jqXHR.status === 0) {
                     updateResponse(result, "The request has been cancelled, please login and try again", false);
+                    ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnUserData-' + controller + '-Error-Request has been cancelled');
                     return;
                 }
                 else {
                     updateResponse(result, jqXHR.responseText, false);
+                    ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnUserData-' + controller + '-Error-' + jqXHR.responseText);
                     return;
                 }
             },
@@ -303,6 +309,7 @@ function TryItOut(elemIDs, elemClasses) {
         var urlToSend = "https://apiexproxy.azurewebsites.net/svc?url=" + url;
 
         var result ="";
+        ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Begin');
 
         $.ajax({
             url: urlToSend,
@@ -311,27 +318,32 @@ function TryItOut(elemIDs, elemClasses) {
             success: function (data, textStatus, xhr) {
                 updateResponse(result, data, true);
                 resultStatus = xhr.status;
+                ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Success');
             },
             error: function(jqXHR, exception) { 
                 // Time out 
                 if (exception === 'timeout') {
                     updateResponse(result, "Timeout occurred...", false);
+                    ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + 'TimeoutError');
                     return;
                 }
                 var errorHeader = jqXHR.getResponseHeader('ApiExProxy-Error');
                 //Proxy Error or DNS Lookup Failure (502)
                 if (jqXHR.status == '0' || (errorHeader != null && errorHeader != '0')) {
                     updateResponse(result, "Proxy not reachable", false);
+                    ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + 'ProxyNotReachable');
                 } else {
                     try {
                        // Service Error
                         var jsonResponseText = $.parseJSON(jqXHR.responseText);
                         updateResponse(result, jsonResponseText, true);
                         resultStatus = jqXHR.status;
+                        ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + jsonResponseText);
                     }
                     catch (error) {
                         // Unexpected Service Error 
                         updateResponse(result, "Unexpected Error occured", false);
+                        ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + 'Unexpected Service Error');
                     }
                 }
             },
