@@ -46,13 +46,10 @@ namespace Devoffice.GettingStarted.Controllers
         
         public void Platform(string param)
         {
-            if (InputValidation.isValidPlatform(param))
+            string platformName = param;
+            if (!string.IsNullOrEmpty(platformName))
             {
-                string platformName = param;
-                if (!string.IsNullOrEmpty(platformName))
-                {
-                    Session[Constants.platformNameTagStr] = platformName;
-                }
+                Session[Constants.platformNameTagStr] = platformName;
             }
         }
     }

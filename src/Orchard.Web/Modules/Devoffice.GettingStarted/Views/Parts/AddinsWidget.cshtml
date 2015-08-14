@@ -1,16 +1,16 @@
 ﻿@{
     Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap.min.css");
     Style.Include("/Themes/DevOffice/Bootstrap/css/bootstrap-theme.min.css");
-    Style.Include("gettingStarted.css", "gettingStarted.min.css");
+    Style.Include("gettingStarted.min.css", "gettingStarted.css");
     Style.Include("jquery.json-view.min.css");
 
     Script.Require("jQuery").AtHead();
     Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead();
-    Script.Include("navBar.js", "navBar.min.js").AtHead();
-    Script.Include("userPlatformManager.js", "userPlatformManager.min.js").AtHead();
-    Script.Include("gettingStarted.js", "gettingStarted.min.js").AtHead();
-    Script.Include("browserInfo.js", "browserInfo.min.js").AtHead();
-    Script.Include("addins.js", "addins.min.js").AtHead();
+    Script.Include("navBar.min.js", "navBar.js").AtHead();
+    Script.Include("userPlatformManager.min.js", "userPlatformManager.js").AtHead();
+    Script.Include("gettingStarted.min.js", "gettingStarted.js").AtHead();
+    Script.Include("browserInfo.min.js", "browserInfo.js").AtHead();
+    Script.Include("addins.min.js", "addins.js").AtHead();
 }
 
 <style>
@@ -140,6 +140,7 @@
             <div class="card" id="more" name="6. More resources">
                 <h1>You’re all set!</h1>
                 <p>Here are some other resources to help you as you continue building your add-in.</p>
+<<<<<<< HEAD
                 <div style="margin-top:20px;">
                     <ul id="moreResourcesList" style="line-height:2;">
                         <li><a id="more-github" href="#" target="_blank">Download starter sample</a><div>Download a starter project that you can continue building with using the IDE of your choice.</div></li>
@@ -155,3 +156,19 @@
         </div><!--progresstrackercontainer-->
     </div><!--main-->
 </div>
+=======
+                <div style="margin-top:20px;">
+                    <ul id="moreResourcesList" style="line-height:2;">
+                        <li><a id="more-github" href="#" target="_blank">Download starter sample</a><div>Download a starter project that you can continue building with using the IDE of your choice.</div></li>
+                        <li><a href="https://msdn.microsoft.com/EN-US/library/office/fp142185.aspx" target='_blank'>Reference</a><div>Reference documentation for the JavaScript API for add-ins.</div></li>
+                        <li><a href="http://dev.office.com/code-samples?filters=Apps%20for%20Office" target='_blank'>More code samples</a><div>A list of other useful samples that you can check out to help build your add-ins.</div></li>
+                        <li><a href="https://msdn.microsoft.com/EN-US/library/office/jj220073.aspx" target='_blank'>Design your add-in</a><div>Guidelines and tips to make your add-in gorgeous and easy to use.</div></li>
+                        <li><a href="https://msdn.microsoft.com/EN-US/library/office/fp123515.aspx" target='_blank'>Publish your add-in</a><div>Learn about the various methods you can use to deploy and publish your add-ins.</div></li>
+                    </ul>
+                </div>
+            </div><!--scroll area-->
+
+        </div><!--progresstrackercontainer-->
+    </div><!--main-->
+</div>
+>>>>>>> parent of 73b3452... Added query support for the platform

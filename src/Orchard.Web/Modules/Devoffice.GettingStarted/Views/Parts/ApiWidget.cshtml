@@ -7,14 +7,8 @@
         if (qscoll.Count > 0)
         {
             ViewBag.SigninError = qscoll["error_msg"];
-            string platform = qscoll["platform"];
-            if (Devoffice.GettingStarted.Utils.InputValidation.isValidPlatform(platform))
-            {
-                Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = platform;
-            }
         }
     }
-
 }
 @{
     SetMeta(httpEquiv: "X-UA-Compatible", content: "IE=edge,chrome=1");
