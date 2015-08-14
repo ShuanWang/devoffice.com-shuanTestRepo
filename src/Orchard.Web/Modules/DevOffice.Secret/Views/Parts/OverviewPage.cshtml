@@ -1,6 +1,4 @@
-﻿@{
-    var count = 0;
-    }
+﻿@{ var count = 0; }
 
 
 <div class="row banner-image">
@@ -40,7 +38,7 @@
                         @if ( row.ExternalLink != null) {
                             <div class='page-body-link'>
                                 <a href="@row.ExternalLink">
-                                    Learn More
+                                    LEARN MORE
                                     <i class="icon_seemore"></i>
                                 </a>
                             </div>
@@ -57,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class='tile-content'>
-                                    @if (row.Tile1ExternalLink != null) {
+                                    @if (row.Tile1ExternalLink != "") {
                                         <div class='tile-link'>
                                             <a href="@row.Tile1ExternalLink">
                                                 View
@@ -77,7 +75,8 @@
                                     </div>
                                 </div>
                                 <div class='tile-content'>
-                                    @if ( row.Tile2ExternalLink != null) {
+                                    @if (row.Tile2ExternalLink != "")
+                                    {
                                         <div class='tile-link'>
                                             <a href="@row.Tile2ExternalLink">
                                                 View

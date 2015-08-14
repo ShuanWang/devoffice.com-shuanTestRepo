@@ -59,46 +59,65 @@
                                     </label>
                                     <input class="text form-control" ng-value="link.externalLink" ng-model="link.externalLink" ng-change="editlinkHelper[$index].externalLink=link.externalLink" />
                                 </fieldset>
-                                <fieldset>
-                                    <label class="control-label">
-                                        @T("Tile 1 Title")
-                                    </label>
-                                    <input class="text form-control" ng-value="link.tile1Title" ng-model="link.tile1Title" ng-change="editlinkHelper[$index].tile1Title=link.tile1Title" />
-                                </fieldset>
-                                <fieldset class="media-library-picker-container">
-                                    <label class="control-label">
-                                        @T("Tile 1 Link")
-                                    </label>
-                                    <input ng-model="link.tile1ExternalLink" ng-value="link.tile1ExternalLink" class="form-control text"  />
-                                    <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
-                                    <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 1, $index)">
-                                        <span class="glyphicon glyphicon-picture"></span>
-                                        @T("Change resource...")
-                                    </span>
-                                </fieldset>
-                                <fieldset>
-                                    <label class="control-label">
-                                        @T("Tile 2 Title")
-                                    </label>
-                                    <input class="text form-control" ng-value="link.tile2Title" ng-model="link.tile2Title" ng-change="editlinkHelper[$index].tile2Title=link.tile2Title" />
-                                </fieldset>
+                                
+                                @*<label style="font-weight:normal !important;">
+                                    <input type="checkbox" ng-model="changeLinkText">
+                                    Change link text from default 'LEARN MORE'
+                                </label>
 
-                                <fieldset class="media-library-picker-container">
+                                <fieldset ng-show="changeLinkText">
                                     <label class="control-label">
-                                        @T("Tile 2 Link")
+                                        @T("Link Text")
                                     </label>
-                                    <input ng-model="link.tile2ExternalLink" ng-value="link.tile2ExternalLink" class="form-control text" />
-                                    <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
-                                    <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 2, $index)">
-                                        <span class="glyphicon glyphicon-picture"></span>
-                                        @T("Change resource...")
-                                    </span>
-                                </fieldset>
+                                    <input class="text form-control" ng-value="link.linkText" ng-model="link.linkText" ng-change="editlinkHelper[$index].linkText=link.linkText" />
+                                </fieldset>*@
+                                <div class="tile-block">
+                                    <h2 class="tile-block-header">Tile 1</h2>
+                                    <fieldset>
+                                        <label class="control-label">
+                                            @T("Title")
+                                        </label>
+                                        <input class="text form-control" ng-value="link.tile1Title" ng-model="link.tile1Title" ng-change="editlinkHelper[$index].tile1Title=link.tile1Title" />
+                                    </fieldset>
+                                    <fieldset class="media-library-picker-container">
+                                        <label class="control-label">
+                                            @T("Link")
+                                        </label>
+                                        <input ng-model="link.tile1ExternalLink" ng-value="link.tile1ExternalLink" class="form-control text" />
+                                        <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
+                                        <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 1, $index)">
+                                            <span class="glyphicon glyphicon-picture"></span>
+                                            @T("Change resource...")
+                                        </span>
+                                    </fieldset>
+                                  
+                                </div>
+                                
+                                <div class="tile-block">
+                                    <h2 class="tile-block-header">Tile 2</h2>
+                                    <fieldset>
+                                        <label class="control-label">
+                                            @T("Title")
+                                        </label>
+                                        <input class="text form-control" ng-value="link.tile2Title" ng-model="link.tile2Title" ng-change="editlinkHelper[$index].tile2Title=link.tile2Title" />
+                                    </fieldset>
 
-                             
+                                    <fieldset class="media-library-picker-container">
+                                        <label class="control-label">
+                                            @T("Link")
+                                        </label>
+                                        <input ng-model="link.tile2ExternalLink" ng-value="link.tile2ExternalLink" class="form-control text" />
+                                        <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
+                                        <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 2, $index)">
+                                            <span class="glyphicon glyphicon-picture"></span>
+                                            @T("Change resource...")
+                                        </span>
+                                    </fieldset>
+                                </div>
 
-                                <input type="text" hidden class="SortOrder" ng-value="{{link.sortorder + 1}}" ng-model="link.sortorder" />
-                            </div>
+
+                                    <input type="text" hidden class="SortOrder" ng-value="{{link.sortorder + 1}}" ng-model="link.sortorder" />
+                                </div>
                         </div>
                     </div>
                     <strong>
@@ -112,18 +131,18 @@
                 </div>
             </div>
         </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
 
         @*ADD NEW LINK PANEL*@
         <div class="panel panel-primary">
@@ -147,54 +166,64 @@
                         <label class="control-label">@T("Row Link")</label>
                         <input id="newItemLink" ng-model="link.link" ng-value="link.link" class="form-control " />
                     </fieldset>
-                    <fieldset class="media-library-picker-container">
-                        <label class="control-label">@T("Tile 1 Title")</label>
-                        <input id="newItemTile1Title" ng-model="addItemTile1Title" ng-value="addItemTile1Title" class="form-control " />
-                    </fieldset>
-                    @*<fieldset class="media-library-picker-container">
-                        <label class="control-label">@T("Tile 1 Link")</label>
-                        <input id="newItemTile1Link" ng-model="addItemTile1Link" ng-value="addItemTile1Link" class="form-control" />
-                    </fieldset>*@
-                    <fieldset class="media-library-picker-container">
-                        <label class="control-label">
-                            @T("Tile 1 Link")
-                        </label>
-                        <input ng-model="link.tile1ExternalLink" id="newItemTile1Link" ng-value="link.tile1ExternalLink" class="form-control text" />
-                        <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
-                        <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 1, $index)">
-                            <span class="glyphicon glyphicon-picture"></span>
-                            @T("Change resource...")
-                        </span>
-                    </fieldset>
-                   
-                    <fieldset class="media-library-picker-container">
-                        <label class="control-label">@T("Tile 2 Title")</label>
-                        <input id="newItemTile2Title" ng-model="addItemTile2Title" ng-value="addItemTile2Title" class="form-control" />
-                    </fieldset>
-                    @*<fieldset class="media-library-picker-container">
-                        <label class="control-label">@T("Tile 2 Link")</label>
-                        <input id="newItemTile2Link" ng-model="addItemTile2Link" ng-value="addItemTile2Link" class="form-control " />
+                    
+                    @*<label style="font-weight:normal !important;">
+                        <input type="checkbox" ng-model="addItemChangeLinkText">
+                         Change link text from default 'LEARN MORE'
+                    </label>
+
+                    <fieldset class="media-library-picker-container" ng-show="addItemChangeLinkText">
+                        <label class="control-label">@T("Link Text")</label>
+                        <input id="newItemLinkText" ng-model="addItemLinkText" ng-value="addItemLinkText" class="form-control" />
                     </fieldset>*@
                     
-                    <fieldset class="media-library-picker-container">
-                        <label class="control-label">
-                            @T("Tile 2 Link")
-                        </label>
-                        <input ng-model="link.tile2ExternalLink" ng-value="link.tile2ExternalLink" id="newItemTile2Link" class="form-control text" />
-                        <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
-                        <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 2, $index)">
-                            <span class="glyphicon glyphicon-picture"></span>
-                            @T("Change resource...")
-                        </span>
-                    </fieldset>
-                   
-                    <fieldset>
-                        <span id="addlink" class="button" ng-click="addlink()">
-                            <span class="glyphicon glyphicon-ok"></span>
-                            @T("Done")
-                        </span>
-                    </fieldset>
-                </div>
+
+                    <div class="tile-block">
+                        <h2 class="tile-block-header">Tile 1</h2>
+                        <fieldset class="media-library-picker-container">
+                            <label class="control-label">@T("Title")</label>
+                            <input id="newItemTile1Title" ng-model="addItemTile1Title" ng-value="addItemTile1Title" class="form-control " />
+                        </fieldset>
+                        <fieldset class="media-library-picker-container">
+                            <label class="control-label">
+                                @T("Link")
+                            </label>
+                            <input ng-model="link.tile1ExternalLink" id="newItemTile1Link" ng-value="link.tile1ExternalLink" class="form-control text" />
+                            <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
+                            <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 1, $index)">
+                                <span class="glyphicon glyphicon-picture"></span>
+                                @T("Change resource...")
+                            </span>
+                        </fieldset>
+                       
+                    </div>
+                    <div class="tile-block">
+                        <h2 class="tile-block-header">Tile 2</h2>
+                        <fieldset class="media-library-picker-container">
+                            <label class="control-label">@T("Title")</label>
+                            <input id="newItemTile2Title" ng-model="addItemTile2Title" ng-value="addItemTile2Title" class="form-control" />
+                        </fieldset>
+
+                        <fieldset class="media-library-picker-container">
+                            <label class="control-label">
+                                @T("Link")
+                            </label>
+                            <input ng-model="link.tile2ExternalLink" ng-value="link.tile2ExternalLink" id="newItemTile2Link" class="form-control text" />
+                            <span class='hint'>Provide a url (Twitter, MSDN, etc.), or click the button below to select an uploaded resource (Powerpoint, Word Document, etc.).</span>
+                            <span class="button btn-add-image addImage" ng-click="updateMediaUrl(link, 2, $index)">
+                                <span class="glyphicon glyphicon-picture"></span>
+                                @T("Change resource...")
+                            </span>
+                        </fieldset>
+                        
+                    </div>
+                        <fieldset>
+                            <span id="addlink" class="button" ng-click="addlink()">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                @T("Done")
+                            </span>
+                        </fieldset>
+                    </div>
             </div>
         </div>
     </div>

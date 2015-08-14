@@ -35,3 +35,18 @@ label {
     margin-top: 5px;
 }
 #grouplinksAccordion .panel-collapse{padding:15px}
+
+.tile-block{    
+    margin: 20px 0;
+    padding: 0 10px 10px 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+.tile-block-header {
+    padding: 10px 0;
+    font-weight: bold;
+}
+.tile-block fieldset {
+    padding: 0 10px;
+}

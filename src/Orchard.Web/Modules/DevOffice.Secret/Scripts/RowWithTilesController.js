@@ -5,6 +5,7 @@ function Link(data) {
             this.title = data.Title;
             this.body = data.Body;
             this.externalLink = data.ExternalLink;
+            //this.linkText = data.LinkText;
             this.tile1Title = data.Tile1Title;
             this.tile1ExternalLink = data.Tile1ExternalLink;
             this.tile1Thumbnail = data.Tile1Thumbnail;
@@ -26,24 +27,29 @@ function Link(data) {
             var linkCount = 0;
             $scope.links = $.map($scope.rawlinks, function(link) {
                 var newlink = new Link(link);
-
+                //var linkTextChanged = false;
+                //if (newlink.linkText != null) {
+                //    linkTextChanged = true;
+                //}
                 $scope.editlinkHelper.push({
                     id: newlink.id,
                     title: newlink.title,
                     body: newlink.body,
                     externalLink: newlink.externalLink,
+                    //linkText:newlink.linkText,
                     tile1Title: newlink.tile1Title,
                     tile1ExternalLink: newlink.tile1ExternalLink,
                     tile1Thumbnail: newlink.tile1Thumbnail,
                     tile2Title: newlink.tile2Title,
                     tile2ExternalLink: newlink.tile2ExternalLink,
                     tile2Thumbnail: newlink.tile2Thumbnail,
+                    //changeLinkText: linkTextChanged
                 });
 
                 linkCount++;
                 return newlink;
             });
-
+            
             $scope.getlinksAsJSONString = function() {
                 return angular.toJson($scope.links);
             }
@@ -110,6 +116,7 @@ function Link(data) {
                 var title = $("#newItemTitle");
                 var body = $("#newItemBody"); //add these
                 var link = $("#newItemLink");
+                //var linkText = $("#newItemLinkText");
                 var tile1Title = $("#newItemTile1Title");
                 var tile1Link = $("#newItemTile1Link"); //add these
                 //var tile1Image = $("#newItemTile1Image");
@@ -121,12 +128,15 @@ function Link(data) {
                 var titleValue = title.val().trim();
                 var bodyValue = body.val().trim();
                 var urlValue = link.val().trim();
+                //var linkTextValue = 'LEARN MORE';
+                //if ($scope.addItemChangeLinkText && linkText.val().trim() != "") {
+                //    linkTextValue = linkText.val().trim();
+                //} 
+
                 var tile1TitleValue = tile1Title.val().trim();
                 var tile1LinkValue = tile1Link.val().trim();
-                //var tile1ImageValue = tile1Image.val().trim();
                 var tile2TitleValue = tile2Title.val().trim();
                 var tile2LinkValue = tile2Link.val().trim();
-                //var tile2ImageValue = tile2Image.val().trim();
 
                 //fields validation
                 //if (titleValue == "") {
@@ -148,12 +158,11 @@ function Link(data) {
                     Title: titleValue,
                     Body: bodyValue,
                     ExternalLink: urlValue,
+                   // LinkText: linkTextValue,
                     Tile1Title: tile1TitleValue,
                     Tile1ExternalLink: tile1LinkValue,
-                    //Tile1Thumbnail: tile1ImageValue,
                     Tile2Title: tile2TitleValue,
                     Tile2ExternalLink: tile2LinkValue,
-                    //Tile2Thumbnail: tile2ImageValue,
                     SortOrder: $scope.links.length + 1
                 }));
 
@@ -161,12 +170,12 @@ function Link(data) {
                 title.val("");
                 body.val("");
                 link.val("");
+              //  linkText.val("");
                 tile1Title.val("");
                 tile1Link.val("");
-                //tile1Image.val("");
                 tile2Title.val("");
                 tile2Link.val("");
-                //tile2Image.val("");
+            //    $scope.addItemChangeLinkText = false;
                 
                 $scope.newImageURL = '';
 

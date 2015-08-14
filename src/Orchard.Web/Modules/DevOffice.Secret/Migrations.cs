@@ -452,5 +452,12 @@ namespace DevOffice.Secret {
 
             return 9;
         }
+
+        public int UpdateFrom9() {
+            SchemaBuilder.AlterTable("SingleRowWithTilesRecord", table => table
+               .AddColumn<string>("LinkText") );
+
+            return 10;
+        }
     }
 }

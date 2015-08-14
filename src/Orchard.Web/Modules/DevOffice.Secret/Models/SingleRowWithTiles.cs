@@ -11,6 +11,7 @@ namespace DevOffice.Secret.Models
         public virtual string Title { get; set; }
         public virtual string Body { get; set; }
         public virtual string ExternalLink { get; set; }
+        public virtual string LinkText { get; set; }
         public virtual int SortOrder { get; set; }
 
         public virtual string Tile1Title { get; set; }
@@ -22,6 +23,7 @@ namespace DevOffice.Secret.Models
         public virtual string Tile2Thumbnail { get; set; }
 
         public virtual RowWithTilesRecord RowWithTilesRecord { get; set; }
+
 
     }
 }

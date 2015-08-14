@@ -36,6 +36,7 @@ namespace DevOffice.Secret.Services
                       Title = item.Title,
                       Body = item.Body,
                       ExternalLink = item.ExternalLink,
+                      LinkText = item.LinkText,
                       SortOrder = item.SortOrder,
 
                       Tile1Title = item.Tile1Title,
