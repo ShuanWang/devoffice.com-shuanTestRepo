@@ -282,6 +282,8 @@
                 $scope.updateMediaUrl = function(updatedItem, index) {
 
                     var url = '@HttpUtility.JavaScriptStringEncode(Url.Action("Index", "Admin", new {area = "Orchard.MediaLibrary", dialog = true}))';
+                    console.log("THE URL IS " + url);
+                    
                     $.colorbox({
                         href: url,
                         iframe: true,

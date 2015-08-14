@@ -11,7 +11,8 @@ function Link(data) {
             this.tile2Title = data.Tile2Title;
             this.tile2ExternalLink = data.Tile2ExternalLink;
             this.tile2Thumbnail = data.Tile2Thumbnail;
-        }
+            this.sortorder = data.SortOrder;
+}
 
     devOfficeApp.controller('grouplinksController', [
         '$scope', '$log', function($scope, $log) {
@@ -111,10 +112,10 @@ function Link(data) {
                 var link = $("#newItemLink");
                 var tile1Title = $("#newItemTile1Title");
                 var tile1Link = $("#newItemTile1Link"); //add these
-                var tile1Image = $("#newItemTile1Image");
+                //var tile1Image = $("#newItemTile1Image");
                 var tile2Title = $("#newItemTile2Title");
                 var tile2Link = $("#newItemTile2Link"); //add these
-                var tile2Image = $("#newItemTile2Image");
+                //var tile2Image = $("#newItemTile2Image");
 
                 //grab the field values
                 var titleValue = title.val().trim();
@@ -122,10 +123,10 @@ function Link(data) {
                 var urlValue = link.val().trim();
                 var tile1TitleValue = tile1Title.val().trim();
                 var tile1LinkValue = tile1Link.val().trim();
-                var tile1ImageValue = tile1Image.val().trim();
+                //var tile1ImageValue = tile1Image.val().trim();
                 var tile2TitleValue = tile2Title.val().trim();
                 var tile2LinkValue = tile2Link.val().trim();
-                var tile2ImageValue = tile2Image.val().trim();
+                //var tile2ImageValue = tile2Image.val().trim();
 
                 //fields validation
                 //if (titleValue == "") {
@@ -149,10 +150,11 @@ function Link(data) {
                     ExternalLink: urlValue,
                     Tile1Title: tile1TitleValue,
                     Tile1ExternalLink: tile1LinkValue,
-                    Tile1Thumbnail: tile1ImageValue,
+                    //Tile1Thumbnail: tile1ImageValue,
                     Tile2Title: tile2TitleValue,
                     Tile2ExternalLink: tile2LinkValue,
-                    Tile2Thumbnail: tile2ImageValue,
+                    //Tile2Thumbnail: tile2ImageValue,
+                    SortOrder: $scope.links.length + 1
                 }));
 
                 //reset the field values
@@ -161,10 +163,10 @@ function Link(data) {
                 link.val("");
                 tile1Title.val("");
                 tile1Link.val("");
-                tile1Image.val("");
+                //tile1Image.val("");
                 tile2Title.val("");
                 tile2Link.val("");
-                tile2Image.val("");
+                //tile2Image.val("");
                 
                 $scope.newImageURL = '';
 
@@ -178,46 +180,57 @@ function Link(data) {
             $scope.getlinksAsJSONString = function() {
                 return angular.toJson($scope.links);
             }
-            //$scope.updateMediaUrl = function(updatedItem, index) {
+            $scope.updateMediaUrl = function(updatedItem, tileNumber, index) {
 
-            //    var url = '@HttpUtility.JavaScriptStringEncode(Url.Action("Index", "Admin", new {area = "Orchard.MediaLibrary", dialog = true}))';
-            //    $.colorbox({
-            //        href: url,
-            //        iframe: true,
-            //        reposition: true,
-            //        width: "100%",
-            //        height: "100%",
-            //        onLoad: function() { // hide the scrollbars from the main window
-            //            $('html, body').css('overflow', 'hidden');
-            //            $('#cboxClose').remove();
-            //        },
-            //        onClosed: function() {
-            //            $('html, body').css('overflow', '');
-            //            var selectedData = $.colorbox.selectedData;
-            //            $log.log(selectedData);
+                var url = "/Admin/Orchard.MediaLibrary?dialog=True";
+                $.colorbox({
+                    href: url,
+                    iframe: true,
+                    reposition: true,
+                    width: "100%",
+                    height: "100%",
+                    onLoad: function() { // hide the scrollbars from the main window
+                        $('html, body').css('overflow', 'hidden');
+                        $('#cboxClose').remove();
+                    },
+                    onClosed: function() {
+                        $('html, body').css('overflow', '');
+                        var selectedData = $.colorbox.selectedData;
+                        $log.log(selectedData);
 
-            //            // NOTE: when grabbing images from the dialog, the path returned in selectedData[0].resource
-            //            // is simply the URI, not the full image path. This will cause the preview image not to load.
-            //            // To work around this, we have to prepend the entire window.location.hostname to ensure we
-            //            // can load the preview image.
-            //            var prefix = window.location.protocol + '//' + window.location.hostname;
+                        // NOTE: when grabbing images from the dialog, the path returned in selectedData[0].resource
+                        // is simply the URI, not the full image path. This will cause the preview image not to load.
+                        // To work around this, we have to prepend the entire window.location.hostname to ensure we
+                        // can load the preview image.
+                        var prefix = window.location.protocol + '//' + window.location.hostname;
 
-            //            if (selectedData == null) // Dialog cancelled, do nothing
-            //                return;
-            //            if (selectedData && updatedItem) {
-            //                $log.log('updating item...');
-            //                updatedItem.url = prefix + selectedData[0].resource;
-            //                //$scope.updateLinkUrlHelper(updatedItem, index);
-            //                $scope.linksAsJSONString = $scope.getlinksAsJSONString();
-            //            } else {
-            //                $log.log('adding new image...');
-            //                $("#newItemUrl").val(prefix + selectedData[0].resource);
-            //                $scope.newImageURL = prefix + selectedData[0].resource;
-            //            }
-            //            $scope.$apply();
-            //        }
-            //    });
-            //}
+                        if (selectedData == null) // Dialog cancelled, do nothing
+                            return;
+                        if (selectedData && updatedItem) {
+
+                            if (tileNumber == 1) {
+                                updatedItem.tile1ExternalLink = prefix + selectedData[0].resource;
+                            }
+                            if (tileNumber == 2) {
+                                updatedItem.tile2ExternalLink = prefix + selectedData[0].resource;
+                            }
+
+                            $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+                        } else {
+                            $log.log('adding new image...');
+                            if (tileNumber == 1) {
+                                $("#newItemTile1Link").val(prefix + selectedData[0].resource);
+                            }
+                            if (tileNumber == 2) {
+                                $("#newItemTile2Link").val(prefix + selectedData[0].resource);
+                            }
+                           
+                            $scope.newImageURL = prefix + selectedData[0].resource;
+                        }
+                        $scope.$apply();
+                    }
+                });
+            }
 
             $('.save-button button.primaryAction').click(function() {
                 $scope.linksAsJSONString = $scope.getlinksAsJSONString();
@@ -225,27 +238,27 @@ function Link(data) {
             });
 
 
-            //$("#grouplinksAccordion").sortable({
-            //    axis: 'y',
-            //    containment: 'parent',
-            //    update: function () {
+            $("#grouplinksAccordion").sortable({
+                axis: 'y',
+                containment: 'parent',
+                update: function () {
 
-            //        $("#grouplinksAccordion .panel.item").each(function (index) {
+                    $("#grouplinksAccordion .panel.item").each(function (index) {
 
-            //            var t = $(this).contents().find('.skypePanelTitle').html();
-            //            var id = $(this).attr('linkId');
-            //            var newSortOrder = index + 1;
+                        var t = $(this).contents().find('.skypePanelTitle').html();
+                        var id = $(this).attr('linkId');
+                        var newSortOrder = index + 1;
 
-            //            // find item with matching id and update its sort order
-            //            $scope.links.filter(function(link) {
-            //                return link.id == id;
-            //            })[0].sortorder = newSortOrder;
-            //        });
+                        // find item with matching id and update its sort order
+                        $scope.links.filter(function(link) {
+                            return link.id == id;
+                        })[0].sortorder = newSortOrder;
+                    });
 
-            //        $scope.linksAsJSONString = $scope.getlinksAsJSONString();
-            //        $scope.$apply();
-            //    }
-            //});
+                    $scope.linksAsJSONString = $scope.getlinksAsJSONString();
+                    $scope.$apply();
+                }
+            });
         }
     ]);
 

@@ -1,6 +1,7 @@
 ﻿@{
-    var rows = Model.ContentPart.RowWithTilesPart.Rows;
-}
+    var count = 0;
+    }
+
 
 <div class="row banner-image">
     <img src="@Model.ViewModel.BannerImage">
@@ -22,10 +23,11 @@
         </div>
     </div>
     
+
     
-    
-    @foreach (var row in rows) {
-        <div class='partner-overview-content-row-one'>
+    @foreach (var row in Model.ViewModel.Rows)
+    {
+        <div class="partner-overview-content-row-@(count%2 == 0? "one": "two")">   
             <div class='container-fluid'>
                 <div class='row page-body'>
                     <div class='col-lg-8 col-md-8'>
@@ -49,7 +51,7 @@
                         @if (@row.Tile1Title != null) {
                             <div class='tile-container'>
                                 <div class='tile-header row'>
-                                    <div class='tile-image col-xs-4' style="background-image: url(@row.Tile1Thumbnail); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
+                                    <div class='tile-image col-xs-4' style="background-image: url('/Media/Default/Secret%20Pages/office_online_devoffice_page_icon_35x35.png'); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
                                     <div class='tile-title col-xs-8'>
                                         @row.Tile1Title
                                     </div>
@@ -69,7 +71,7 @@
                         @if (@row.Tile2Title != null) {
                             <div class='tile-container'>
                                 <div class='tile-header row'>
-                                    <div class='tile-image col-xs-4' style="background-image: url(@row.Tile2Thumbnail); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
+                                    <div class='tile-image col-xs-4' style="background-image: url('/Media/Default/Secret%20Pages/office_online_devoffice_page_icon_35x35.png'); background-size: 40px 40px; background-position: center; background-repeat: no-repeat;"></div>
                                     <div class='tile-title col-xs-8'>
                                         @row.Tile2Title
                                     </div>
@@ -91,5 +93,6 @@
                 </div>
             </div>
         </div>
+        count++;
     }
 </div>
