@@ -78,10 +78,18 @@ namespace Devoffice.GettingStarted.Controllers
         private async Task<ContentResult> CallService(string service, string postUrl)
         {
             Utils.RequestHelper helper = new Utils.RequestHelper();
-            Utils.ServiceInfo si = this.GetServiceInfo(service);
-            if (si == null || si.Token == null || si.ServiceResourceId == null)
+            Utils.ServiceInfo si = null;
+            try
+            {
+                si = this.GetServiceInfo(service);
+            }
+            catch (System.Exception)
             {
                 return Content("Sorry!!! We couldn't fetch the token or service endpoint from Azure.");
+            }
+            if (si.ServiceResourceId == null)
+            {
+                return Content("Sorry!!! We couldn't fetch the service endpoint from Azure.");
             }
             string url = si.ServiceEndPointUri + postUrl;
             HttpResponseMessage msg = helper.PutRequest(url, si.Token);

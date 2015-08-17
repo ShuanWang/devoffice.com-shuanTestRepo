@@ -48,7 +48,7 @@
             "SetupFileFullPath": "\/Modules\/Devoffice.GettingStarted\/Documentation\/rest-api\/python\/setup-python.html",
             "GettingStartedFileFullPath": "\/Documentation\/rest-api\/python\/getting-started-Office-365-APIs-python.html",
             "GithubMDFileName": "rest-api\/python\/getting-started-Office-365-APIs-python.md",
-            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, navigate to the folder. Install the <a href='http://www.python-requests.org/en/latest/'>Requests: HTTP for Humans</a> library by running <b>pip install requests</b>. Then run <b>python manage.py runserver</b> to start your server.",
+            "PostDownloadInstructions": "Thanks! Your project is on its way from GitHub. To continue: Unzip downloaded package, navigate to the folder. Install the <a href='http://www.python-requests.org/en/latest/'>Requests: HTTP for Humans</a> library by running <b>pip install requests</b>. Run <b>python manage.py migrate</b> to initialize the database for the app. Then run <b>python manage.py runserver</b> to start your server.",
         },
         {
             "Id": "option-ruby",
