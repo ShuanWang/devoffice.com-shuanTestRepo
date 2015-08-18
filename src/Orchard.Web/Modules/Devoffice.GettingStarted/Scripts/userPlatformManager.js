@@ -126,6 +126,7 @@ function selectPlatform(platform) {
 
     sendPlatformInfoToServer(platformId);
 
+    addSuggestions(platformId, "suggestionlistId");
 }
 
 // add a static proeprty in selectPlatform
