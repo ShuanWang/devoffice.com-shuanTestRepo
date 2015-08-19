@@ -21,13 +21,13 @@ namespace Devoffice.GettingStarted.Utils
 {
     public class SettingsHelper
     {
-#if DEBUG
-        private static string _clientId = "da35b9a6-bbd1-4ad4-b07c-2950efa25a1e";
-        private static string _appKey = "MHA9YluTuhaqslTFnTCyEFw7OYKIaEdtbzwX9hzvd4c=";
-#else
-        private static string _clientId = "d9c2a6e1-fd01-4da5-b9fe-be93ca502042";
-        private static string _appKey = "GJZOs7JVI0HvkhOLfNdhdyOuMUzCGcJ6m1KrEnrDyII=";
-#endif
+        private static bool devEnv = false;
+        private static readonly string _devEnvClientId = "da35b9a6-bbd1-4ad4-b07c-2950efa25a1e";
+        private static string _devEnvAppKey = "MHA9YluTuhaqslTFnTCyEFw7OYKIaEdtbzwX9hzvd4c=";
+        
+        private static string _prodClientId = "d9c2a6e1-fd01-4da5-b9fe-be93ca502042";
+        private static string _prodAppKey = "GJZOs7JVI0HvkhOLfNdhdyOuMUzCGcJ6m1KrEnrDyII=";
+
         private static string _authorizationUri = "https://login.microsoftonline.com/common/oauth2/authorize";
 
         private static string _graphResourceId = "https://graph.windows.net";
@@ -38,7 +38,10 @@ namespace Devoffice.GettingStarted.Utils
         {
             get
             {
-                return _clientId;
+                if (devEnv == true)
+                    return _devEnvClientId;
+                else
+                    return _prodClientId;
             }
         }
 
@@ -46,7 +49,10 @@ namespace Devoffice.GettingStarted.Utils
         {
             get
             {
-                return _appKey;
+                if (devEnv == true)
+                    return _devEnvAppKey;
+                else
+                    return _prodAppKey;
             }
         }
 
