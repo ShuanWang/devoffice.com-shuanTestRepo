@@ -21,14 +21,16 @@ namespace Devoffice.GettingStarted.Utils
 {
     public class SettingsHelper
     {
+#if DEBUG
+        private static string _clientId = "da35b9a6-bbd1-4ad4-b07c-2950efa25a1e";
+        private static string _appKey = "MHA9YluTuhaqslTFnTCyEFw7OYKIaEdtbzwX9hzvd4c=";
+#else
         private static string _clientId = "d9c2a6e1-fd01-4da5-b9fe-be93ca502042";
         private static string _appKey = "GJZOs7JVI0HvkhOLfNdhdyOuMUzCGcJ6m1KrEnrDyII=";
-
-        private static string _tenantId = "ef087990-b502-49c3-a0e5-4e16a337c689";
+#endif
         private static string _authorizationUri = "https://login.microsoftonline.com/common/oauth2/authorize";
-        private static string _authority = "https://login.windows.net/{0}/";
 
-        private static string _graphResourceId = "https://graph.windows.net";        
+        private static string _graphResourceId = "https://graph.windows.net";
         private static string _discoverySvcResourceId = "https://api.office.com/discovery/";
         private static string _discoverySvcEndpointUri = "https://api.office.com/discovery/v1.0/me/";
 
@@ -48,14 +50,6 @@ namespace Devoffice.GettingStarted.Utils
             }
         }
 
-        public static string TenantId
-        {
-            get
-            {
-                return _tenantId;
-            }
-        }
-
         public static string AuthorizationUri
         {
             get
@@ -64,13 +58,6 @@ namespace Devoffice.GettingStarted.Utils
             }
         }
 
-        public static string Authority
-        {
-            get
-            {
-                return String.Format(_authority,_tenantId);
-            }
-        }
 
         public static string AADGraphResourceId
         {

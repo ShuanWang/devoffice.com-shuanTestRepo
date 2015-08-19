@@ -72,6 +72,25 @@ function setRedirectUri(platformId) {
             $("#signOnUrlField").val("http://localhost:8000");
     }
 }
+
+function sendPlatformInfoToServer(platformId)
+{
+    var urltosend = "/GettingStarted/Main/platform/" + platformId;
+    
+    var dataToSend = {
+        "platformid": platformId
+    };
+
+    dataToSend = AddAntiForgeryToken(dataToSend);
+
+    $.ajax({
+        url: urltosend,
+        type: "POST",
+        data:dataToSend
+    });
+
+    ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
+}
 function selectPlatform(platform) {
 
     //load content
@@ -104,20 +123,9 @@ function selectPlatform(platform) {
     //fileType = setupFile //Hardcoded as this will not chnage ; divName is also Hardcoded
     setDocumentationDivForPlatform(platformId, "setupFile", "ShowDocumentationDiv");
 
-    var urltosend = "/GettingStarted/Main/platform/" + platformId;
 
-    var dataTosend = {
-        "platformid": platformId
-    };
-    dataTosend = AddAntiForgeryToken(dataTosend);
-    /* Note: we dont need to do any error handling here*/
-    $.ajax({
-        url: urltosend,
-        type: "POST",
-        data: dataTosend,
-    });
+    sendPlatformInfoToServer(platformId);
 
-    ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
 }
 
 // add a static proeprty in selectPlatform
