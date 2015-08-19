@@ -1,4 +1,4 @@
-﻿devOfficeApp.controller('codeSamplesController',  ["$scope", "$filter", "$location", "$timeout", function ($scope, $filter, $location, $timeout) {
+devOfficeApp.controller('codeSamplesController',  ["$scope", "$filter", "$location", "$timeout", function ($scope, $filter, $location, $timeout) {
 
 
     if ($location.search()['filters'] != undefined) {
@@ -183,6 +183,8 @@
     });
 
     $scope.updateSearchResults = function() {
+        $scope.$apply();
+        $scope.updateFilterCounts();
         $scope.getCodeSamplesOfSelectedTypes();
         var filteredCodeSamples = $filter('filter')($scope.codeSamplesToShow, $scope.searchText);
         $scope.codeSamplesToShow = filteredCodeSamples;
@@ -221,10 +223,10 @@
 
         $location.search('filters', $scope.selectedTypes.join(",")); //add the selected types to the url
         $scope.$apply();
+        $scope.updateFilterCounts();
         $scope.getCodeSamplesOfSelectedTypes();
         $scope.updatePagination(1);
         updateSharingUrl();
-        $scope.updateFilterCounts();
     }
 
     $scope.getCodeSamplesOfSelectedTypes = function () {
@@ -233,16 +235,56 @@
         } else {
             $scope.codeSamplesToShow = [];
         }
-         
+        
+        //loop each Code Sample 
         $.each($scope.model.CodeSamples, function () {
             var isInSelectedTypes = false;
-            $.each(this.TermTypes, function (i, codeSample) {
-                if ($scope.selectedTypes.indexOf(codeSample) > -1) {
-                    isInSelectedTypes = true;
-                }
 
+            var countAppTypes = 0;
+            var countLanguageTypes = 0;
+            var countServiceTypes = 0;
+            var countPlatformTypes = 0;
+            var countSourceTypes = 0;
+            var countProductTypes = 0;
+
+            //loop each term type associated with the sample
+            $.each(this.TermTypes, function (i, codeSample) {
+                //Sample should be added if it matches the types across each category
+                if ($scope.selectedTypes.indexOf(codeSample) > -1) {
+                    //check app types
+                    if ($scope.selectedTypesCount && $scope.model.Types.toString().toLowerCase().indexOf(codeSample) > -1) {
+                        countAppTypes++;
+                    }
+                    //check language types
+                    if ($scope.selectedLanguagesCount && $scope.model.Languages.toString().toLowerCase().indexOf(codeSample) > -1) {
+                        countLanguageTypes++;
+                    }
+                    //check service types
+                    if ($scope.selectedServicesCount && $scope.model.Services.toString().toLowerCase().indexOf(codeSample) > -1) {
+                        countServiceTypes++;
+                    }
+                    //check platform types
+                    if ($scope.selectedPlatformsCount && $scope.model.Platforms.toString().toLowerCase().indexOf(codeSample) > -1) {
+                        countPlatformTypes++;
+                    }
+                    //check source types
+                    if ($scope.selectedSourcesCount && $scope.model.SourceReps.toString().toLowerCase().indexOf(codeSample) > -1) {
+                        countSourceTypes++;
+                    }
+                    //check products types
+                    if ($scope.selectedProductsCount && $scope.model.Products.toString().toLowerCase().indexOf(codeSample) > -1) {
+                        countProductTypes++;
+                    }
+                }
             });
-            if (isInSelectedTypes && $scope.codeSamplesToShow.indexOf(this) == -1) {
+            var hasEachType =($scope.selectedTypesCount ? countAppTypes > 0 : true) 
+                    && ($scope.selectedLanguagesCount ? countLanguageTypes > 0 : true)
+                    && ($scope.selectedServicesCount ? countServiceTypes > 0 : true)
+                    && ($scope.selectedPlatformsCount ? countPlatformTypes > 0 : true)
+                    && ($scope.selectedSourcesCount ? countSourceTypes > 0 : true )
+                    && ($scope.selectedProductsCount ? countProductTypes > 0 : true);
+
+            if (hasEachType && $scope.codeSamplesToShow.indexOf(this) == -1) {
                 $scope.codeSamplesToShow.push(this);
             }
         });
