@@ -94,6 +94,12 @@
     <Content Include="Scripts\embeddedCodeSample.min.js">
       <DependentUpon>embeddedCodeSample.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\ratingsDevX\ImageSprite.png" />
+    <Content Include="Scripts\ratingsDevX\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\ratingsDevX\rating.css" />
+    <Content Include="Scripts\ratingsDevX\rating.html" />
+    <Content Include="Scripts\ratingsDevX\rating.js" />
+    <Content Include="Scripts\ratingsDevX\ratingTest.html" />
     <Content Include="Scripts\tryitout.min.js">
       <DependentUpon>tryitout.js</DependentUpon>
     </Content>
