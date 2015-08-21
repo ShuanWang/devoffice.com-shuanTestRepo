@@ -1,0 +1,55 @@
+﻿#grouplinksAccordion .panel-title {
+    position: relative;
+    vertical-align: top;
+}
+#grouplinksAccordion .panel-title > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#grouplinksAccordion .moveIcon {
+	background: url(images/move.gif) no-repeat 0 5px;
+    cursor: move;
+    width: 30px;
+    height: 20px;
+}
+
+#grouplinksAccordion .skypeAdminEditRemoveLinks {
+    position: absolute;
+    right: 0;
+    height: 20px;
+    top: calc(50% - 10px);
+}
+
+#grouplinksAccordion .panel-collapse.link {
+    margin: 0 20px;
+}
+label {
+    font-weight: bold !important;
+}
+.linkDescriptionTextarea {
+    resize: vertical;
+}
+
+.media-library-picker-container .button {
+    margin-top: 5px;
+}
+#grouplinksAccordion .panel-collapse{padding:15px}
+
+.tile-block{    
+    margin: 20px 0;
+    padding: 0 10px 10px 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+.tile-block-header {
+    padding: 10px 0;
+    font-weight: bold;
+}
+.tile-block fieldset {
+    padding: 0 10px;
+}
+@media (min-width:1200px) {
+    #newItemBody, #update-row-body { height: 300px;}
+}

@@ -163,7 +163,7 @@
 
         for (var i = 0, l = $scope.model.PatternsAndPractices.length; i < l; i++) {
             $scope.model.PatternsAndPractices[i].TechnicalTitle = $scope.model.PatternsAndPractices[i].Title.replace(/ /g, "") + "-DetailLink";
-            if ($scope.model.PatternsAndPractices[i].ExternalLink.indexOf(window.location.host) != -1 || $scope.model.PatternsAndPractices[i].ExternalLink.startsWith('patterns-and-practices')) {
+            if ($scope.model.PatternsAndPractices[i].ExternalLink.indexOf(window.location.host) != -1 || $scope.model.PatternsAndPractices[i].ExternalLink.indexOf('patterns-and-practices') === 0) {
                 $scope.model.PatternsAndPractices[i].External = "";
             } else {
                 $scope.model.PatternsAndPractices[i].External = "_external";

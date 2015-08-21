@@ -87,8 +87,11 @@
                                     {
                                         <br />
                                         <div class="pull-right tile-link-container">
-                                            <a href="@tile.Url">@(!String.IsNullOrEmpty(tile.LinkText) ? tile.LinkText : "Learn More") <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
-</a>
+                                            <a href="@tile.Url">
+                                                @(!String.IsNullOrEmpty(tile.LinkText) ? tile.LinkText : "Learn More")
+                                                <span class="icon_seemore"></span>
+                                                <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
+                                            </a>
                                         </div>
                                     }
                                 </div>
@@ -132,11 +135,15 @@
                                         <div class='name autoheight cp1'>@tile.Title</div>
                                         <div data-pane="" class="description ellipsis">@tile.Description</div>
                                     </div>
-                                    @if (!String.IsNullOrEmpty(@tile.Url)) {
+                                    @if (!String.IsNullOrEmpty(@tile.Url))
+                                    {
                                         <br />
                                         <div class="pull-right tile-link-container">
-                                            <a href="@tile.Url">@(!String.IsNullOrEmpty(tile.LinkText) ? tile.LinkText : "Learn More") <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
-</a>
+                                            <a href="@tile.Url">
+                                                @(!String.IsNullOrEmpty(tile.LinkText) ? tile.LinkText : "Learn More")
+                                                <span class="icon_seemore"></span>
+                                                <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow">
+                                            </a>
                                         </div>
                                     }
                                 </div>

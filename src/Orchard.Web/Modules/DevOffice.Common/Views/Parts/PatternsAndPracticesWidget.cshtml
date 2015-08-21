@@ -39,27 +39,35 @@
     </ul>
 
 }
-else {
+else
+{
 
-<input type="hidden" id="ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
+    <input type="hidden" id="ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
 
 
-@*Top viewed block*@
-    <div ng-controller="topTenController"  ng-init="model = @Json.Encode(viewModel); pnpsToShow = [];">
+    <div ng-controller="topTenController" ng-init="model = @Json.Encode(viewModel); pnpsToShow = [];">
+        @*Top viewed block*@
         <div class="top-viewed" ng-show="topViewedPnPs.length > 0">
             <div class="container-fluid">
                 <h2>Top Viewed</h2>
                 <ul class="row">
                     <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="topViewedPnP in topViewedPnPs">
-                        <a ng-show="topViewedPnP.Title.split(' ').length > 1" href="{{topViewedPnP.ExternalLink}}">{{topViewedPnP.Title}}</a>
-                        <a ng-show="topViewedPnP.Title.split(' ').length <= 1" href="{{topViewedPnP.ExternalLink}}" style="word-break:break-all">{{topViewedPnP.Title}}</a>
+                        <div class="toprated pnp-toprated ">
+                            <img ng-show="topViewedPnP.PatternsAndPracticesTypes.indexOf('samples') != -1" src="/Themes/DevOffice/Content/Images/pnp_samples_lrg.png" alt="{{topViewedPnP.Title}} Icon" class="top-rated-img .responsive-icon" />
+                            <img ng-show="topViewedPnP.PatternsAndPracticesTypes.indexOf('scenarios')!= -1" src="/Themes/DevOffice/Content/Images/pnp_scenarios_lrg.png" alt="{{topViewedPnP.Title}} Icon" class="top-rated-img .responsive-icon" />
+                            <img ng-show="topViewedPnP.PatternsAndPracticesTypes.indexOf('solutions')!= -1" src="/Themes/DevOffice/Content/Images/pnp_solutions_lrg.png" alt="{{topViewedPnP.Title}} Icon" class="top-rated-img .responsive-icon" />
+                            <img ng-show="topViewedPnP.PatternsAndPracticesTypes.indexOf('guidance')!= -1" src="/Themes/DevOffice/Content/Images/pnp_guidance_lrg.png" alt="{{topViewedPnP.Title}} Icon" class="top-rated-img .responsive-icon" />
+                        </div>
+                        <div class="col-md-10 col-xs-10 toprated-content">
+                            <div class="tablecell">
+                                <a ng-show="topViewedPnP.Title.split(' ').length > 1" href="{{topViewedPnP.ExternalLink}}">{{topViewedPnP.Title}}</a>
+                                <a ng-show="topViewedPnP.Title.split(' ').length <= 1" href="{{topViewedPnP.ExternalLink}}" style="">{{topViewedPnP.Title}}</a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
-
-
-
 
         @*Filter box*@
         <div class="codeSamplesWidget container-fluid">
@@ -69,7 +77,8 @@ else {
                 <div id="sticky">
                     <div class="panel panel-default" id="affix-patterns-and-pracs">
                         <div class="pnp-search-container">
-                            <input ng-model="searchText" class="pnp-search" placeholder="Search"><img class="pnp-search-icon" src="/Themes/DevOffice/Content/Icons/devOffice_search_orange_15x15.png" />
+                            <input ng-model="searchText" class="pnp-search" placeholder="Search">
+                            <span class="icon_search"></span>
                         </div>
                         <div style="height:10px;background-color:#f2f2f2;"></div>
                         <div class="filter-box-header panel-heading">
@@ -80,15 +89,6 @@ else {
                             </h4>
                             <button type="button" ng-click="clearFilters()" class="clearfilters filter-button" data-toggle="button">Clear</button>
                         </div>
-
-
-
-
-
-
-
-
-
                         <div class="container-fluid">
 
                             <div class="filter-list-container row" id="accordion" role="tablist" aria-multiselectable="true">
@@ -112,8 +112,8 @@ else {
 
                                     </ul>
                                 </div>
-                                
-                                
+
+
                                 @* Collapsible - (Secondary) Type Filters*@
                                 <div class="filter-list clearfix panel panel-default" ng-show="model.SecondaryTypes.length > 0">
                                     <h3 class="filter-category" ng-class="{active: selectedSecondaryTypesCount > 0}">
@@ -130,7 +130,7 @@ else {
                                     </ul>
                                 </div>
 
-                                
+
 
                                 @* Collapsible - Theme Filters*@
                                 <div class="filter-list clearfix panel panel-default">
@@ -329,7 +329,10 @@ else {
                                     <div class="col-md-10 col-sm-10 col-xs-10 event-links">
                                         <span ng-show="pnp.ViewCount > 1 || pnp.ViewCount <= 0">{{pnp.ViewCount}} views</span>
                                         <span ng-show="pnp.ViewCount == 1">{{pnp.ViewCount}} view</span>
-                                        <a data-bind="attr: { href: Url }" href="{{pnp.ExternalLink}}" target="{{pnp.External}}" role="link" id="{{pnp.TechnicalTitle}}" class="pull-right ff-semibold" ng-click="updateViewCount(pnp.Id, 'patterns-and-practices')"> VIEW <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                                        <a data-bind="attr: { href: Url }" href="{{pnp.ExternalLink}}" target="{{pnp.External}}" role="link" id="{{pnp.TechnicalTitle}}" class="pull-right ff-semibold" ng-click="updateViewCount(pnp.Id, 'patterns-and-practices')">
+                                            VIEW
+                                            <span class="continue icon_seemore"></span>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -342,8 +345,7 @@ else {
                                     <div class="row">
                                         <div ng-repeat="link in pnp.Links" class="resource-line col-xs-3">
                                             <a href="{{link.Url}}">
-
-                                                <div class="link-icon col-xs-3 {{'icon_'+link.Type+'_codeSample'}}"></div>
+                                                <span class="link-icon col-xs-3 {{'icon_'+link.Type+'_codeSample'}}"></span>
                                                 <div class="link-title col-xs-9">{{link.Title}}</div>
                                             </a>
                                         </div>
@@ -356,7 +358,7 @@ else {
                 </ul>
                 <div class="pull-right paging-container" ng-show="pageCount()> 1">
                     <a class="page-number" ng-show="currentPage> 1" ng-click="updatePagination(currentPage - 1)" class="prev-link ff-semibold">
-                        <img class="see-more-icon podcast-see-more-icon flipped" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                        <span class="continue icon_seemore flipped"></span>
                         <span class="hidden-xs">Previous</span>
                     </a>
                     <a class="page-number" ng-show="showFirstPage" ng-click="updatePagination(1)">1</a>
@@ -371,7 +373,7 @@ else {
                         <span class="hidden-xs">
                             Next
                         </span>
-                        <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                        <span class="continue icon_seemore"></span>
                     </a>
                 </div>
 

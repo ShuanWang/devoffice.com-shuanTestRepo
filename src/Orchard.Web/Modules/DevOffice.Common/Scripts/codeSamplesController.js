@@ -164,7 +164,7 @@
         for (var i = 0, l = $scope.model.CodeSamples.length; i < l; i++) {
             $scope.model.CodeSamples[i].TechnicalTitle = $scope.model.CodeSamples[i].Title.replace(/ /g, "") + "-DetailLink";
             $scope.model.CodeSamples[i].CleanDate = parseInt($scope.model.CodeSamples[i].DatePublished.substr(6));
-            if ($scope.model.CodeSamples[i].ExternalLink.indexOf(window.location.host) != -1 || $scope.model.CodeSamples[i].ExternalLink.startsWith('code-samples')) {
+            if ($scope.model.CodeSamples[i].ExternalLink.indexOf(window.location.host) != -1 || $scope.model.CodeSamples[i].ExternalLink.indexOf('code-samples') === 0) {
                 $scope.model.CodeSamples[i].External = "";
             } else {
                 $scope.model.CodeSamples[i].External = "_external";

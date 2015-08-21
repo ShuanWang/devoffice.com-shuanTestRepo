@@ -12,11 +12,15 @@
 
     <div class="row community-container">
         <div class="communitySection col-lg-12">
-            @if (Model.CommunityItems != null) {
+            @if (Model.CommunityItems != null)
+            {
                 <ul role="list">
-                    @foreach (var communityItem in Model.CommunityItems) {
-                        if (!string.IsNullOrEmpty(communityItem.ExternalLink)) {
-                            if (!communityItem.ExternalLink.Contains(baseUrl) && !communityItem.ExternalLink.StartsWith("/")) {
+                    @foreach (var communityItem in Model.CommunityItems)
+                    {
+                        if (!string.IsNullOrEmpty(communityItem.ExternalLink))
+                        {
+                            if (!communityItem.ExternalLink.Contains(baseUrl) && !communityItem.ExternalLink.StartsWith("/"))
+                            {
                                 external = "_blank";
                             }
                         }
@@ -35,7 +39,10 @@
                                     </div>
                                 </div>
                                 <div class="learn-more-row row">
-                                    <a href="#" class="visible-sm visible-xs col-xs-12 see-more-article pull-right" role="link" id="CommunityItem-@communityItem.Title.Replace(" ", " ")-SeeMoreLink-Mobile">Learn more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" /></a>
+                                    <a href="#" class="visible-sm visible-xs col-xs-12 see-more-article pull-right" role="link" id="CommunityItem-@communityItem.Title.Replace(" ", " ")-SeeMoreLink-Mobile">
+                                        Learn more
+                                        <span class="continue icon_seemore"></span>
+                                    </a>
                                 </div>
                             </div>
                         </li>

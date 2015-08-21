@@ -50,5 +50,6 @@ namespace DevOffice.Common.ViewModels
         public string Icon { get; set; }
         public string ExternalLink { get; set; }
         public int ContentItemId { get; set; }
+        public IList<RelatedLink> RelatedLinks { get; set; }
     }
 }
