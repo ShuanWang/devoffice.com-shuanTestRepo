@@ -5,7 +5,7 @@
 //usage: hosting html page should have 
 //		* div element where the ratings div will be loaded
 //		* script reference to the ratings.js 
-/		* variable that creates a new ratingDevX() object passing the div element name
+//		* variable that creates a new ratingDevX() object passing the div element name
 //
 // <div id="rating"></div>
 //	<script src="rating.js" type="text/javascript"></script>
@@ -20,6 +20,7 @@ function ratingDevX(divLoad) {
 	var pageName = document.location.href.split('\\').pop().split('/').pop().split('?')[0].split('#')[0];
 	var cookieName = "ratingDevX-" + pageName;
 	var ratingObject = {
+        page : pageName,
 		userPrompted : false,		//did user see the rating window
 		isPageHelpful : undefined,	//did they answer Yes (true) or No (false) that the page is useful
 		userComments : ""			//user's verbatim comments
