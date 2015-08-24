@@ -11,7 +11,7 @@
 //      * a cookie is stored if feedback is submitted, so the rating control will not appear again
 //      * to clear this cookie, run "o.clearCookie()" from the console
 //
-// Script.Include("ratingsDevX/rating.js", "ratingsDevX\rating.min.js").AtHead();
+// Script.Include("ratingsDevX/rating.js", "ratingsDevX/rating.min.js").AtHead();
 // ...
 // <script>
 //     var o = new ratingDevX("layout-footer", "@Url.Content("~/Modules/Devoffice.GettingStarted/Scripts/ratingsDevX")");
