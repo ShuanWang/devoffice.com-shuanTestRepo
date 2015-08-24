@@ -171,6 +171,7 @@ namespace DevOffice.Common.Services
                              let permalinkTag = item.TrainingPart.PermalinkTag.Value
                              let id = (int)item.CommonPart.Id
                              let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
+                             let viewCount30Days = _viewCountRepository.Fetch(r => r.LinkId == id).Where(r => r.Date >= DateTime.UtcNow.AddDays(-30)).ToList().Count
                              select new Training
                              {
                                  TermsTagged = trainingTags,
@@ -185,6 +186,7 @@ namespace DevOffice.Common.Services
                                  Id = id,
                                  ViewCount = viewCount,
                                  Links = ConvertLinksModel(links),
+                                 ViewCount30Days = viewCount30Days
                              }).OrderBy(x => x.FullStartDate).ThenBy(x => x.Title).ToList();
 
             return trainings;
@@ -501,6 +503,8 @@ namespace DevOffice.Common.Services
                                let permalinkTag = item.CodeSamplePart.PermalinkTag.Value
                                let id = (int)item.CommonPart.Id
                                let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
+                               let viewCount30Days = _viewCountRepository.Fetch(r => r.LinkId == id).Where(r => r.Date >= DateTime.UtcNow.AddDays(-30)).ToList().Count
+
                                select new CodeSample
                                {
                                    Title = titleValue,
@@ -514,7 +518,8 @@ namespace DevOffice.Common.Services
                                    PermalinkTag = permalinkTag,
                                    Id = id,
                                    Links = ConvertLinksModel(links),
-                                   ViewCount = viewCount
+                                   ViewCount = viewCount,
+                                   ViewCount30Days = viewCount30Days
                                }).OrderByDescending(x => x.DatePublished).ThenBy(x => x.Title).ToList();
 
             return codeSamples;
@@ -542,6 +547,7 @@ namespace DevOffice.Common.Services
                                let permalinkTag = item.PatternsAndPracticesPart.PermalinkTag.Value
                                let id = (int)item.CommonPart.Id
                                let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
+                               let viewCount30Days = _viewCountRepository.Fetch(r => r.LinkId == id).Where(r => r.Date >= DateTime.UtcNow.AddDays(-30)).ToList().Count
                                let updatedDate = item.CommonPart.ModifiedUtc
                                let links = item.PatternsAndPracticesPart.RelatedLinksPart.Links
                                select new PatternsAndPractice
@@ -555,6 +561,7 @@ namespace DevOffice.Common.Services
                                    PermalinkTag = permalinkTag,
                                    Id = id,
                                    ViewCount = viewCount,
+                                   ViewCount30Days = viewCount30Days,
                                    UpdatedDate = updatedDate,
                                    Links = ConvertLinksModel(links),
                                }).ToList();
@@ -574,19 +581,6 @@ namespace DevOffice.Common.Services
         {
             // get all unique items from the last 30 days
             DateTime oneMonthAgo = DateTime.UtcNow.AddDays(-30);
-
-
-            //     return (from view in _viewCountRepository.
-            //             from orderedProduct in db.OrderedProducts
-            //             where orderedProduct.ProductID == product.ProductID
-            //             group orderedProduct by product into productGroups
-            //             select new ProductOrders
-            //             {
-            //                 product = productGroups.Key,
-            //                 numberOfOrders = productGroups.Count()
-            //             }
-            //).OrderByDescending(x => x.numberOfOrders).Distinct().Take(10);
-
 
             var results = _viewCountRepository.Fetch(r => r.Date >= oneMonthAgo).Where(r => r.Type == type).Select(r => r.LinkId).ToList();
             var viewDictionary = new Dictionary<int, int>();

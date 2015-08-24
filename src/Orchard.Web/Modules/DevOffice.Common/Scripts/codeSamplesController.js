@@ -1,4 +1,4 @@
-﻿devOfficeApp.controller('codeSamplesController',  ["$scope", "$filter", "$location", "$timeout", function ($scope, $filter, $location, $timeout) {
+﻿devOfficeApp.controller('codeSamplesController', ["$scope", "$filter", "$location", "$timeout", function ($scope, $filter, $location, $timeout) {
 
 
     if ($location.search()['filters'] != undefined) {
@@ -36,7 +36,7 @@
     $scope.selectedSourcesCount = 0;
     $scope.selectedPlatformsCount = 0;
 
-    $timeout(function() {
+    $timeout(function () {
         $scope.updateFilterCounts();
     }, 1000);
 
@@ -149,7 +149,7 @@
                 $scope.pagingRange.push(j);
             }
         }
-       
+
     }
 
     $scope.$watch('model', function () {
@@ -169,20 +169,28 @@
             } else {
                 $scope.model.CodeSamples[i].External = "_external";
             }
-            if ($scope.model.TopViewed.indexOf($scope.model.CodeSamples[i].Id) != -1) {
-                $scope.topViewedCodeSamples.push($scope.model.CodeSamples[i]);
-            }
+            //if ($scope.model.TopViewed.indexOf($scope.model.CodeSamples[i].Id) != -1) {
+            //    $scope.topViewedCodeSamples.push($scope.model.CodeSamples[i]);
+            //}
         }
 
         if (window.innerWidth >= 900) { $scope.pagesToShow = 5; }
-        else {  $scope.pagesToShow = 3; };
+        else { $scope.pagesToShow = 3; };
         $scope.handlePaging();
 
         $("#code-sample-social").attr("data-url", window.location.href);
         $("#sharelink-txt").val(window.location.href);
+
+        $scope.sortedItems = $scope.model.CodeSamples.sort(function (a, b) {
+            return b.ViewCount30Days - a.ViewCount30Days;
+        });
+        for (var j = 0, k = 9; j < k; j++) {
+            $scope.topViewedCodeSamples.push($scope.sortedItems[j]);
+        }
+
     });
 
-    $scope.updateSearchResults = function() {
+    $scope.updateSearchResults = function () {
         $scope.getCodeSamplesOfSelectedTypes();
         var filteredCodeSamples = $filter('filter')($scope.codeSamplesToShow, $scope.searchText);
         $scope.codeSamplesToShow = filteredCodeSamples;
@@ -233,7 +241,7 @@
         } else {
             $scope.codeSamplesToShow = [];
         }
-         
+
         $.each($scope.model.CodeSamples, function () {
             var isInSelectedTypes = false;
             $.each(this.TermTypes, function (i, codeSample) {
@@ -248,7 +256,7 @@
         });
     }
 
-    $scope.clearFilters = function() {
+    $scope.clearFilters = function () {
         $scope.selectedTypes = [];
         $scope.updateSearchResults();
         $("input:checkbox").prop('checked', false);
@@ -256,7 +264,7 @@
         $location.search('filters', $scope.selectedTypes.join(","));
     }
 
-    $scope.updateFilterCounts = function() {
+    $scope.updateFilterCounts = function () {
         $scope.selectedLanguagesCount = $('#languages input:checkbox:checked').length;
         $scope.selectedProductsCount = $('#products input:checkbox:checked').length;
         $scope.selectedSourcesCount = $('#sources input:checkbox:checked').length;

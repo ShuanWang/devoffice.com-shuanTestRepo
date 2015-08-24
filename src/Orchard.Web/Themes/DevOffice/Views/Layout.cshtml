@@ -17,7 +17,7 @@
     Style.Include("../Bootstrap/css/bootstrap.min.css");
     Style.Include("../Bootstrap/css/bootstrap-theme.min.css");
     Style.Include("../WindowsDevFiles/css/10.min.css");
-    Style.Include("site.min.css?version=h2");
+    Style.Include("site.min.css");
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     Script.Require("jQuery").AtHead();
@@ -28,7 +28,7 @@
     Script.Include("/Themes/DevOffice/Bootstrap/js/bootstrap.min.js").AtHead();
     Script.Include("/Themes/DevOffice/Scripts/app.js").AtHead();
     Script.Include("common.min.js?version=h2");
-    
+
 
     /* Some useful shortcuts or settings
     ***************************************************************/
@@ -119,7 +119,7 @@
                     </div>
 
                 }
-                
+
                 @if (Model.OneThirdRight != null)
                 {
                     <div class="container-fluid">

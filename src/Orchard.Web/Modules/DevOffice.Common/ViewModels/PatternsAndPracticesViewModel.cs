@@ -21,7 +21,8 @@ namespace DevOffice.Common.ViewModels
         public List<string> SecondaryTypes { get; set; }
     }
 
-    public class PatternsAndPractice {
+    public class PatternsAndPractice
+    {
         public string Title { get; set; }
         public string SubText { get; set; }
         public string Image { get; set; }
@@ -32,6 +33,7 @@ namespace DevOffice.Common.ViewModels
         public string PermalinkTag { get; set; }
         public int Id { get; set; }
         public int ViewCount { get; set; }
+        public int ViewCount30Days { get; set; }
         public DateTime UpdatedDate { get; set; }
         public IList<RelatedLink> Links { get; set; }
 

@@ -9,7 +9,7 @@ Copyright: 2014. All Rights Reserved
 	$Fonts
 \*------------------------------------*/
 
-@font-face {
+@font-face { 
     font-family: "sc_segoe-ui_normal";
     src: url(../Content/Fonts/Segoe-UI/3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-2.eot);
     src: url(../Content/Fonts/Segoe-UI/3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-2.eot?#iefix) format("embedded-opentype"), url(../Content/Fonts/Segoe-UI/3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-3.woff) format("woff"), url(../Content/Fonts/Segoe-UI/3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-1.ttf) format("truetype"), url(../Content/Fonts/Segoe-UI/3ca1af51-981a-4e1c-b9c6-a66d0a5fe3c0-4.svg#web) format("svg");
@@ -100,9 +100,7 @@ Copyright: 2014. All Rights Reserved
 .icon_search:before {
     content: "\e602";
 }
-.test{
 
-}
 .icon_plus:before {
     content: "\e603";
 }
