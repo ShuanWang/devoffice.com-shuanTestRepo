@@ -6,6 +6,10 @@
 //		* div element where the ratings div will be loaded
 //		* script reference to the ratings.js 
 //		* variable that creates a new ratingDevX() object passing the div element name and the folder location where the ratingDevX files live
+// 
+//testing: scroll to the location of the element where the rating control was initialized and ratings should appear
+//      * a cookie is stored if feedback is submitted, so the rating control will not appear again
+//      * to clear this cookie, run "o.clearCookie()" from the console
 //
 // Script.Include("ratingsDevX/rating.js", "ratingsDevX\rating.min.js").AtHead();
 // ...
@@ -13,7 +17,7 @@
 //     var o = new ratingDevX("layout-footer", "@Url.Content("~/Modules/Devoffice.GettingStarted/Scripts/ratingsDevX")");
 // </script>
 //
-
+//
 function ratingDevX(divLoad, folder) {
 	var ratingHelpfulValue;
 	var pageName = document.location.href.split('\\').pop().split('/').pop().split('?')[0].split('#')[0];
