@@ -7,12 +7,11 @@
 //		* script reference to the ratings.js 
 //		* variable that creates a new ratingDevX() object passing the div element name and the folder location where the ratingDevX files live
 //
-// <div id="rating"></div>
-//	<script src="rating.js" type="text/javascript"></script>
-//
-//	<script>
-//		var o = new ratingDevX("rating", folder);
-//	</script>
+// Script.Include("ratingsDevX/rating.js", "ratingsDevX\rating.min.js").AtHead();
+// ...
+// <script>
+//     var o = new ratingDevX("layout-footer", "@Url.Content("~/Modules/Devoffice.GettingStarted/Scripts/ratingsDevX")");
+// </script>
 //
 
 function ratingDevX(divLoad, folder) {
