@@ -99,6 +99,9 @@
     <Content Include="Scripts\ratingsDevX\rating.css" />
     <Content Include="Scripts\ratingsDevX\rating.html" />
     <Content Include="Scripts\ratingsDevX\rating.js" />
+    <Content Include="Scripts\ratingsDevX\rating.min.js">
+      <DependentUpon>rating.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ratingsDevX\ratingTest.html" />
     <Content Include="Scripts\tryitout.min.js">
       <DependentUpon>tryitout.js</DependentUpon>
@@ -196,6 +199,9 @@
     </Content>
     <Content Include="Scripts\tryitout.min.js.map">
       <DependentUpon>tryitout.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ratingsDevX\rating.min.js.map">
+      <DependentUpon>rating.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />

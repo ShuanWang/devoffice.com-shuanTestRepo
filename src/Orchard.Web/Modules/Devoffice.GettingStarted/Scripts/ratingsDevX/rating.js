@@ -5,17 +5,17 @@
 //usage: hosting html page should have 
 //		* div element where the ratings div will be loaded
 //		* script reference to the ratings.js 
-//		* variable that creates a new ratingDevX() object passing the div element name
+//		* variable that creates a new ratingDevX() object passing the div element name and the folder location where the ratingDevX files live
 //
 // <div id="rating"></div>
 //	<script src="rating.js" type="text/javascript"></script>
 //
 //	<script>
-//		var o = new ratingDevX("rating");
+//		var o = new ratingDevX("rating", folder);
 //	</script>
 //
 
-function ratingDevX(divLoad) {
+function ratingDevX(divLoad, folder) {
 	var ratingHelpfulValue;
 	var pageName = document.location.href.split('\\').pop().split('/').pop().split('?')[0].split('#')[0];
 	var cookieName = "ratingDevX-" + pageName;
@@ -26,14 +26,18 @@ function ratingDevX(divLoad) {
 		userComments : ""			//user's verbatim comments
 	}
 	
-	this.init = function() {
-		$("#" + divLoad).load("rating.html", function(response, status, xhr) {
-			setupControlHandlers();
-			showRatingIfNeeded();
-
-			//Load script for telemetry logging	
-			initTelemetry();
+	this.init = function () {
+		$(document).ready(function() {
+			var div = $("#" + divLoad).append($("<div id='ratingDevX'></div>"));
+			$("#ratingDevX").load(folder +"/rating.html", function(response, status, xhr) {
+				setupControlHandlers();
+				showRatingIfNeeded();
+			});
+			$("head").append($("<link rel='stylesheet' href='" + folder + "/rating.css' type='text/css'/>"));
 		}); 
+
+		//Load script for telemetry logging	
+		initTelemetry();
 	}
 
 	function setupControlHandlers() {
