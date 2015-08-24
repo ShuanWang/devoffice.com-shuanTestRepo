@@ -1,0 +1,182 @@
+.closeSmallWhite {
+    background: url('ImageSprite.png') no-repeat scroll -221px -3px;
+    width: 13px;
+    height: 13px;
+    overflow: hidden;
+}
+
+#responsiveRating {
+    bottom: -300px;
+    min-height: 40px;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    transition: bottom .6s;
+    -webkit-transition: bottom .6s;
+    -moz-transition: bottom .6s;
+    -ms-transition: bottom .6s;
+    z-index: 100;
+}
+
+    #responsiveRating.show {
+        bottom: 0;
+    }
+
+div#skinnyRating {
+    background-color: #1e75bc !important;
+}
+
+    div#skinnyRating .title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #fff !important;
+    }
+
+    div#skinnyRating .description {
+        color: #fff !important;
+    }
+
+    div#skinnyRating .rating {
+        margin-top: 11px;
+        margin-bottom: 7px;
+    }
+
+    div#skinnyRating .counter {
+        color: #fff !important;
+    }
+
+    div#skinnyRating div.buttons button {
+        color: #fff !important;
+        padding: 7px 18px !important;
+        background-color: #282828 !important;
+    }
+
+#skinnyRating > .closeSmallWhite {
+    float: right;
+    margin: 10px;
+}
+
+div.rating > div {
+    margin-left: 145px;
+}
+
+@media screen and (max-width:1262px) {
+}
+
+@media screen and (max-width:1180px) {
+}
+
+@media screen and (max-width:1024px) {
+}
+
+@media screen and (max-width:960px) {
+    div#s_skinnyRatingForm {
+        width: 100%;
+    }
+
+    div#s_ratingSection2 .buttons {
+        margin-top: 25px !important;
+        clear: both !important;
+    }
+
+    div.rating > div {
+        margin-left: 10%;
+    }
+}
+
+@media screen and (max-width:640px) {
+    div#skinnyRating #s_ratingSection1 > div.description, div#skinnyRating #s_ratingSection3 > div.description {
+        display: none;
+    }
+
+    div.rating > div {
+        margin-left: 40px;
+        min-width: 80%;
+    }
+}
+
+@media screen and (max-width:480px) {
+    div#skinnyRating #s_ratingSection1 > div.title {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    div.rating > div {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width:360px) {
+}
+
+/*///defined inline???*/
+div#skinnyRating {
+    background-color: #d2d2d2;
+    color: #000;
+    line-height: 16px;
+    padding: 5px 18px;
+}
+
+    div#skinnyRating #s_ratingSection1 > div, div#skinnyRating #s_ratingSection3 > div {
+        display: inline;
+    }
+
+    div#skinnyRating #s_ratingSection1 > div, div#skinnyRating #s_ratingSection2 > div, div#skinnyRating #s_ratingSection3 > div {
+        margin: 0 0 15px 0;
+        color: #000;
+        font-family: 'Segoe UI','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+        clear: none;
+    }
+
+    div#skinnyRating div.title {
+        line-height: 20px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    div#skinnyRating #s_ratingSection1 > div.description {
+        font-size: 14px;
+        margin: 0 10px 0 10px;
+    }
+
+    div#skinnyRating #s_ratingSection2 .title {
+        margin: 7px 0;
+    }
+
+    div#skinnyRating div.buttons button {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        border: none;
+        background-color: #00bcf2;
+        color: #000;
+        margin: 0 10px 0 0;
+        padding: 3px 6px;
+    }
+
+    div#skinnyRating div.rating div#s_ratingSection2, div#skinnyRating div.rating div#s_ratingSection3 {
+        display: none;
+    }
+
+#skinnyRating textarea {
+    height: 160px;
+    border: 0;
+    resize: none;
+    display: block;
+    width: 95%;
+}
+
+#s_skinnyRatingForm {
+    width: 60%;
+}
+
+#skinnyRating .counter {
+    float: right;
+    font-size: 14px;
+    font-weight: normal;
+    color: #505050 !important;
+    padding: 0 5%;
+    margin-top: 6px;
+}*
+

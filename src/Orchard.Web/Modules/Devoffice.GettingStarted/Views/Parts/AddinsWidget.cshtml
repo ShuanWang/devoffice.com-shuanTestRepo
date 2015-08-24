@@ -11,6 +11,7 @@
     Script.Include("gettingStarted.js", "gettingStarted.min.js").AtHead();
     Script.Include("browserInfo.js", "browserInfo.min.js").AtHead();
     Script.Include("addins.js", "addins.min.js").AtHead();
+    Script.Include("ratingsDevX/rating.js", "ratingsDevX\rating.min.js").AtHead();
 }
 
 <style>
@@ -24,6 +25,10 @@
 <title>Getting Started with Office Add-ins</title>
 
 <meta name="description" content="Get started with Office Add-ins (formerly Apps for Office).">
+
+<script>
+    var o = new ratingDevX("layout-footer", "@Url.Content("~/Modules/Devoffice.GettingStarted/Scripts/ratingsDevX")");
+</script>
 
 <div class="container-fluid">
     <div id="main">
