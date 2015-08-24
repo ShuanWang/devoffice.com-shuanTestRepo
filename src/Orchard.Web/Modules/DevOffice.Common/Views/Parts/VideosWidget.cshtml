@@ -49,7 +49,10 @@
                                     <div class="col-xs-8 name cp1"> @videoItem.Title</div>
 
                                     <div class="col-xs-8 event-links">
-                                        <a data-bind="attr: { href: Url }" href="#" role="link" id="@detailLinkId" class="pull-right ff-semibold js-video-tile" data-videoid="@videoItem.VideoId">WATCH<img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"> </a>
+                                        <a data-bind="attr: { href: Url }" href="#" role="link" id="@detailLinkId" class="pull-right ff-semibold js-video-tile" data-videoid="@videoItem.VideoId">
+                                            WATCH
+                                            <span class="continue icon_seemore"></span>
+                                        </a>
                                     </div>
                                 </div>
                                 @if (!string.IsNullOrEmpty(@videoItem.SubText))
@@ -65,7 +68,10 @@
                         </script>
                     </li>
                 }
-                <a class="showMoreButton col-md-2 col-xs-12 see-more pull-right" href="#" role="button" id="@seeMoreLinkId">See more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" /></a>
+                <a class="showMoreButton col-md-2 col-xs-12 see-more pull-right" href="#" role="button" id="@seeMoreLinkId">
+                    See more
+                    <span class="icon_seemore"></span>
+                </a>
             </ul>
         </div>
     }

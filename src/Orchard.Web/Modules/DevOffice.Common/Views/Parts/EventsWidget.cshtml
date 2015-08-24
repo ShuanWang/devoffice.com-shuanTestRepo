@@ -37,7 +37,8 @@
                 {
                     if (!string.IsNullOrEmpty(eventItem.ExternalLink))
                     {
-                        if (!eventItem.ExternalLink.Contains(baseUrl) && !eventItem.ExternalLink.StartsWith("/")) {
+                        if (!eventItem.ExternalLink.Contains(baseUrl) && !eventItem.ExternalLink.StartsWith("/"))
+                        {
                             external = "_blank";
                         }
                     }
@@ -45,7 +46,7 @@
                     // creating unique link Id's for Microsoft tracking
                     string[] detailLink = { taxonomyEventItem.Title.Replace(" ", ""), @eventItem.Title.Replace(" ", ""), @flipTileText.Replace(" ", "") };
                     var detailLinkId = string.Join("-", detailLink);
-                    
+
                     <li class="col-md-4 col-sm-6 collapse event-box-details" role="listitem" aria-label="@eventItem.Title">
                         <a data-bind="attr: { href: Url }" href="@eventItem.ExternalLink" target="@external" role="link" id="@detailLinkId">
                             <div class="event">
@@ -71,7 +72,10 @@
 
                     </li>
                 }
-                <a class="showMoreButton col-md-offset-10 col-md-2 col-xs-12 see-more pull-right" href="#" role="button" id="@seeMoreLinkId">See more<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" alt="See More Arrow" /></a>
+                <a class="showMoreButton col-md-offset-10 col-md-2 col-xs-12 see-more pull-right" href="#" role="button" id="@seeMoreLinkId">
+                    See more
+                    <span class="icon_seemore"></span>
+                </a>
             </ul>
 
         </div>

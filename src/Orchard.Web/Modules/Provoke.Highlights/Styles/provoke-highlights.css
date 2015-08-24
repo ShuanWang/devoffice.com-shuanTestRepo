@@ -390,6 +390,9 @@
     display: block;
 }
 
+.highlight-entry{
+    min-height: 18px;
+}
 
 /** HIGHLIGHT MODULE NAVIGATION */
 .highlight-module-tabs.container-fluid {

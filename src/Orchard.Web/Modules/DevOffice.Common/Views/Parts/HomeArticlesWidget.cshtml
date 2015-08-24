@@ -8,38 +8,24 @@
 @*col-lg-3 col-md-6 col-sm-6 col-xsm-12*@
 <div class="articlesWidget ">
 
-    <a href="/blogs"><h1 role="heading">Blog Posts</h1></a>
+    <a href="/blogs"><h1 role="heading" style="display:inline;">Blog Posts</h1></a> 
+    <a href="http://feeds.feedburner.com/office/fmNx" target="_external"><span class="icon_rss_codeSample" style="margin-bottom:10px;padding-left:10px;"></span></a>
 
     <div class="articleSection">
-
         @foreach (var article in viewModel)
         {
             <div class="articleStub">
-                @*<div class="hidden-xs hidden-sm">
-                    
-                    @if (!string.IsNullOrEmpty(@article.Image))
-                    {
-                        <img class="col-xs-3 article-stub-image" src="@article.Image" alt="@article.Title Icon" />
-                    }
-                    else
-                    {
-                        <img src="/Themes/DevOffice/Content/Images/blogs_missingpic_140x140.png" alt="@article.Title Icon" class="col-xs-3 article-stub-image" />
-                    }
-                    
-
-                    
-                </div>*@
                 
                 @if (string.IsNullOrEmpty(@article.Link))
                 {
                     <a href="/blogs/blog?id=@article.Id" class="read-more">
-                        <div class="article-title blog-description ff-semilight height40 pk-ellipsis-rendered pk-ellipsis">@article.Title</div>
+                        <div class="article-title blog-description  height40 pk-ellipsis-rendered pk-ellipsis">@article.Title</div>
                     </a>
                 }
                 else
                 {
                     <a href="@article.Link" class="read-more">
-                        <div class="article-title blog-description ff-semilight height40 pk-ellipsis-rendered pk-ellipsis">@article.Title</div>
+                        <div class="article-title blog-description height40 pk-ellipsis-rendered pk-ellipsis">@article.Title</div>
                     </a>
                 }
             </div>
@@ -48,7 +34,7 @@
         <div class="row">
             <a href="/blogs" class="col-md-12 col-xs-12 see-more-article">
                 <span>See more posts</span>
-                <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow">
+                <span class="icon_seemore"></span>
                 @*@if (seeMoreNumber == 1)
                 {
                     <span>See @seeMoreNumber more post</span>

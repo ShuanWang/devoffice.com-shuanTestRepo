@@ -40,6 +40,7 @@ namespace DevOffice.Common.ViewModels
         public string PermalinkTag { get; set; }
         public int Id { get; set; }
         public int ViewCount { get; set; }
+        public int ViewCount30Days { get; set; }
     }
 
     public class GitHubViewModel
@@ -50,5 +51,6 @@ namespace DevOffice.Common.ViewModels
         public string Icon { get; set; }
         public string ExternalLink { get; set; }
         public int ContentItemId { get; set; }
+        public IList<RelatedLink> RelatedLinks { get; set; }
     }
 }
