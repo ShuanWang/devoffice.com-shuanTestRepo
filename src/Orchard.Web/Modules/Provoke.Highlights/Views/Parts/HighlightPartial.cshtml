@@ -41,10 +41,10 @@
                 }
 
                 <h2 class="tab-heading ff-light">Part {{task.sortOrder}}</h2>
-                <h3 class="title ff-semibold" ng-model="task.title" @contentEditable>
+                <h3 class="title ff-semibold highlight-entry" ng-model="task.title" @contentEditable>
                     {{task.title}}
                 </h3>
-                <p class="duration ff-semilight" ng-model="task.duration" @contentEditable>{{task.duration}}</p>
+                <p class="duration ff-semilight highlight-entry" ng-model="task.duration" @contentEditable>{{task.duration}}</p>
             </div>
 
             @if (scenarioViewModel.IsAdminView)
@@ -69,7 +69,7 @@
         }
         <!-- TASK DESCRIPTION -->
         <div class='highlight-description-container' @Html.Raw(showDescriptionBinding)>
-            <div class='description ff-semilight' ng-model="task.description" @contentEditable>
+            <div class='description ff-semilight highlight-entry' ng-model="task.description" @contentEditable>
                 {{ task.description }}
             </div>
         </div>
@@ -109,8 +109,8 @@
                         <div class="title ff-semibold" @contentEditable ng-model="step.title">
                             {{step.title}}
                         </div>
-                        <div class="instruction ff-semilight" @contentEditable ng-model="step.description" >
-                            {{step.description}}
+                        <div class="instruction ff-semilight" @contentEditable ng-model="step.description" ng-bind-html="convertToHTML(step.description)">
+                            @*{{step.description}}*@
                         </div>
                     </div>
 

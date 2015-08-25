@@ -26,7 +26,8 @@
                             <div class="community-widget-section">
                                 <a href="@communityItem.ExternalLink" class="community-heading" target="@external" role="link" id="HomeCommunityItem-@communityItem.Title.Replace(" ", "")-DetailLink">
                                     <h2>@communityItem.Title</h2>
-                                    <img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow" />
+                                    @*<img class="see-more-icon" src="/Themes/DevOffice/Content/Images/orange_goto.png" alt="See More Arrow" />*@
+                                    <span class="icon_seemore"></span>
                                 </a>
                                 <div class="community-text">@Html.Raw(@communityItem.SubText)</div>
                                 @*<div class="learn-more-row row">

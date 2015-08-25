@@ -22,7 +22,7 @@ namespace DevOffice.Common.ViewModels
 
     public class Training
     {
-        public string Title { get; set; }        
+        public string Title { get; set; }
         public string SubText { get; set; }
         public string Image { get; set; }
         public string Location { get; set; }
@@ -39,9 +39,11 @@ namespace DevOffice.Common.ViewModels
         public int Id { get; set; }
         public string PermalinkTag { get; set; }
         public int ViewCount { get; set; }
+        public int ViewCount30Days { get; set; }
     }
 
-    public class RelatedLink {
+    public class RelatedLink
+    {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Type { get; set; }

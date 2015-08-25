@@ -49,17 +49,25 @@ else
 
     <input type="hidden" id="ForgeryToken" value="@Html.AntiForgeryTokenValueOrchard()" />
     <div class="full-container-search" ng-controller="codeSamplesController" ng-init="model = @Json.Encode(model); codeSamplesToShow = []">
-        <div class="top-viewed" ng-show="topViewed.length > 0">
+
+        @*Top viewed block*@
+        <div class="top-viewed" ng-show="topViewedCodeSamples.length > 0">
             <div class="container-fluid">
                 <h2>Top Viewed</h2>
                 <ul class="row">
                     <li class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="topViewed in topViewedCodeSamples">
-                        <a ng-show="topViewed.Title.split(' ').length > 1" href="{{topViewed.ExternalLink}}">{{topViewed.Title}}</a>
-                        <a ng-show="topViewed.Title.split(' ').length <= 1" href="{{topViewed.ExternalLink}}" style="word-break:break-all">{{topViewed.Title}}</a>
+                        <div class="glyphicon glyphicon-star toprated responsive-glyphIcon" style=""></div>
+                        <div class="col-md-10 col-xs-10 toprated-content" style="">
+                            <div class="tablecell">
+                                <a ng-show="topViewed.Title.split(' ').length > 1" class="ng-cloak" href="{{topViewed.ExternalLink}}">{{topViewed.Title}}</a>
+                                <a ng-show="topViewed.Title.split(' ').length <= 1" class="ng-cloak" href="{{topViewed.ExternalLink}}" style="">{{topViewed.Title}}</a>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
+
         <div class="codeSamplesWidget container-fluid">
 
             <div class="col-sm-12 col-md-4 nopad code-filter panel-group" id="accordion">
@@ -68,7 +76,8 @@ else
                     <div class="panel panel-default">
 
                         <div class="pnp-search-container">
-                            <input ng-model="searchText" class="pnp-search" placeholder="Search"><img class="pnp-search-icon" src="/Themes/DevOffice/Content/Icons/devOffice_search_orange_15x15.png" />
+                            <input ng-model="searchText" class="pnp-search" placeholder="Search">
+                            <span class="icon_search"></span>
                         </div>
                         <div style="height:10px;background-color:#f2f2f2;"></div>
                         <div class="filter-box-header panel-heading">
@@ -266,7 +275,10 @@ else
                                             <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount > 1 || codeSample.ViewCount <= 0">{{codeSample.ViewCount}} views</span>
                                             <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount == 1">{{codeSample.ViewCount}} view</span>
                                             <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6 ng-cloak">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
-                                            <a data-bind="attr: { href: Url }" href="{{codeSample.ExternalLink}}" target="{{codeSample.External}}" role="link" id="{{codeSample.TechnicalTitle}}" class="pull-right ff-semibold ng-cloak" ng-click="updateViewCount(codeSample.Id, 'code-samples')">VIEW<img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="see more arrow"></a>
+                                            <a data-bind="attr: { href: Url }" href="{{codeSample.ExternalLink}}" target="{{codeSample.External}}" role="link" id="{{codeSample.TechnicalTitle}}" class="pull-right ff-semibold ng-cloak" ng-click="updateViewCount(codeSample.Id, 'code-samples')">
+                                                VIEW
+                                                <span class="continue icon_seemore"></span>
+                                            </a>
                                         </div>
                                     </div>
 
@@ -285,8 +297,7 @@ else
                                         <div class="row">
                                             <div ng-repeat="link in codeSample.Links" class="resource-line col-xs-3">
                                                 <a href="{{link.Url}}" class="ng-cloak">
-
-                                                    <div class="link-icon col-xs-3 ng-cloak {{'icon_'+link.Type+'_codeSample'}}"></div>
+                                                    <span class="link-icon col-xs-3 ng-cloak {{'icon_'+link.Type+'_codeSample'}}"></span>
                                                     <div class="link-title col-xs-9 ng-cloak">{{link.Title}}</div>
                                                 </a>
                                             </div>
@@ -301,7 +312,7 @@ else
 
                     <div class="pull-right paging-container" ng-show="pageCount() > 1">
                         <a class="page-number" ng-show="currentPage> 1" ng-click="updatePagination(currentPage - 1)" class="prev-link ff-semibold">
-                            <img class="see-more-icon podcast-see-more-icon flipped" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                        <span class="continue icon_seemore flipped"></span>
                             <span class="hidden-xs">Previous</span>
                         </a>
                         <a class="page-number" ng-show="showFirstPage" ng-click="updatePagination(1)">1</a>
@@ -316,7 +327,7 @@ else
                             <span class="hidden-xs">
                                 Next
                             </span>
-                            <img class="see-more-icon podcast-see-more-icon" src="/Themes/DevOffice/Content/Images/seeMoreIcon.png" role="img" alt="next page arrow">
+                        <span class="continue icon_seemore"></span>
                         </a>
                     </div>
 

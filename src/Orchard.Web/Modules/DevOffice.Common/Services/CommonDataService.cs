@@ -29,12 +29,12 @@ using Orchard.Taxonomies.Services;
 
 namespace DevOffice.Common.Services
 {
-    public class CommonDataService : ICommonDataService {
-        
+    public class CommonDataService : ICommonDataService
+    {
         private readonly IRepository<FeedbackInformationRecord> _feedbackInformationRepository;
         private readonly IRepository<ViewCountRecord> _viewCountRepository;
         private readonly IRepository<TermContentItem> _termContentItemRepository;
-        private readonly IRepository<RelatedLinkRecord> _relatedLinksRepository; 
+        private readonly IRepository<RelatedLinkRecord> _relatedLinksRepository;
         private readonly IContentManager _contentManager;
         private readonly ITaxonomyService _taxonomyService;
         private readonly ICacheManager _cacheManager;
@@ -46,11 +46,11 @@ namespace DevOffice.Common.Services
         private List<PatternsAndPractice> AllPatternsAndPractices { get; set; }
 
         public CommonDataService(
-            IRepository<FeedbackInformationRecord> feedbackInformationRepository, 
-            IContentManager contentManager, 
+            IRepository<FeedbackInformationRecord> feedbackInformationRepository,
+            IContentManager contentManager,
             ITaxonomyService taxonomyService,
             ICacheManager cacheManager,
-            IClock clock, IRepository<TermContentItem> termContentItemRepository, 
+            IClock clock, IRepository<TermContentItem> termContentItemRepository,
             IRepository<RelatedLinkRecord> relatedLinksRepository,
             IRepository<ViewCountRecord> viewCountRepository
             )
@@ -76,22 +76,23 @@ namespace DevOffice.Common.Services
             var mediaDictionary = GetMediaDictionary(quickLinkItems);
 
             var links = (from dynamic item in quickLinkItems
-                let titleValue = item.TitlePart.Title
-                let subText = item.QuickLinksPart.SubText.Value
-                let linkValue = item.QuickLinksPart.ExternalLink.Value
-                let sortOrder = item.QuickLinksPart.SortOrder.Value
-                let smallImageIds = item.QuickLinksPart.SmallImage.Ids
-                let smallImage = smallImageIds.Length > 0 && mediaDictionary.ContainsKey(smallImageIds[0]) ? mediaDictionary[smallImageIds[0]].MediaUrl : String.Empty
-                let bigImageIds = item.QuickLinksPart.BigImage.Ids
-                let bigImage = smallImageIds.Length > 0 && mediaDictionary.ContainsKey(bigImageIds[0]) ? mediaDictionary[bigImageIds[0]].MediaUrl : String.Empty
-                select new QuickLink {
-                    Title = titleValue, 
-                    SubText = subText, 
-                    ExternalLink = linkValue, 
-                    SmallImage = smallImage, 
-                    BigImage = bigImage, 
-                    SortOrder = sortOrder
-                }).ToList();
+                         let titleValue = item.TitlePart.Title
+                         let subText = item.QuickLinksPart.SubText.Value
+                         let linkValue = item.QuickLinksPart.ExternalLink.Value
+                         let sortOrder = item.QuickLinksPart.SortOrder.Value
+                         let smallImageIds = item.QuickLinksPart.SmallImage.Ids
+                         let smallImage = smallImageIds.Length > 0 && mediaDictionary.ContainsKey(smallImageIds[0]) ? mediaDictionary[smallImageIds[0]].MediaUrl : String.Empty
+                         let bigImageIds = item.QuickLinksPart.BigImage.Ids
+                         let bigImage = smallImageIds.Length > 0 && mediaDictionary.ContainsKey(bigImageIds[0]) ? mediaDictionary[bigImageIds[0]].MediaUrl : String.Empty
+                         select new QuickLink
+                         {
+                             Title = titleValue,
+                             SubText = subText,
+                             ExternalLink = linkValue,
+                             SmallImage = smallImage,
+                             BigImage = bigImage,
+                             SortOrder = sortOrder
+                         }).ToList();
 
             return links.OrderBy(x => x.SortOrder).ToList();
         }
@@ -101,26 +102,29 @@ namespace DevOffice.Common.Services
             var eventItems = _contentManager.Query(VersionOptions.Published, "Event").List();
 
             var events = (from dynamic item in eventItems
-                let titleValue = item.TitlePart.Title
-                let subText = item.EventPart.SubText.Value
-                let location = item.EventPart.Location.Value
-                let externalLink = item.EventPart.ExternalLink.Value
-                let startDate = item.EventPart.StartDate.DateTime
-                let terms = item.EventPart.EventType.Terms
-                let eventTypes = GetTerms(item, "EventType")
-                let eventDate = Convert.ToDateTime(startDate)
-                let date = ((DateTime) eventDate).ToString("dd")
-                let year = ((DateTime) eventDate).ToString("yyyy")
-                let month = ((DateTime) eventDate).ToString("MMM").ToUpper()
-                select new Event {
-                    Title = titleValue, 
-                    SubText = subText, 
-                    Location = location, 
-                    EventType = eventTypes, 
-                    Month = month, Date = date, Year = year, 
-                    FullStartDate = Convert.ToDateTime(startDate), 
-                    ExternalLink = externalLink
-                }).ToList();
+                          let titleValue = item.TitlePart.Title
+                          let subText = item.EventPart.SubText.Value
+                          let location = item.EventPart.Location.Value
+                          let externalLink = item.EventPart.ExternalLink.Value
+                          let startDate = item.EventPart.StartDate.DateTime
+                          let terms = item.EventPart.EventType.Terms
+                          let eventTypes = GetTerms(item, "EventType")
+                          let eventDate = Convert.ToDateTime(startDate)
+                          let date = ((DateTime)eventDate).ToString("dd")
+                          let year = ((DateTime)eventDate).ToString("yyyy")
+                          let month = ((DateTime)eventDate).ToString("MMM").ToUpper()
+                          select new Event
+                          {
+                              Title = titleValue,
+                              SubText = subText,
+                              Location = location,
+                              EventType = eventTypes,
+                              Month = month,
+                              Date = date,
+                              Year = year,
+                              FullStartDate = Convert.ToDateTime(startDate),
+                              ExternalLink = externalLink
+                          }).ToList();
             return events.OrderBy(x => x.FullStartDate).ThenBy(x => x.Title).ToList();
         }
 
@@ -131,19 +135,20 @@ namespace DevOffice.Common.Services
             var mediaDictionary = GetMediaDictionary(communityItems);
 
             return (from dynamic item in communityItems
-                let subText = item.CommunityPart.SubText.Value
-                let description = item.CommunityPart.ItemDescription.Value
-                let externalLink = item.CommunityPart.ExternalLink.Value
-                let titleValue = item.TitlePart.Title
-                let imageIds = item.CommunityPart.Image.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                select new CommunityItem() {
-                    Title = titleValue, 
-                    SubText = subText, 
-                    Description = description, 
-                    ExternalLink = externalLink, 
-                    Image = image
-                }).ToList();
+                    let subText = item.CommunityPart.SubText.Value
+                    let description = item.CommunityPart.ItemDescription.Value
+                    let externalLink = item.CommunityPart.ExternalLink.Value
+                    let titleValue = item.TitlePart.Title
+                    let imageIds = item.CommunityPart.Image.Ids
+                    let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                    select new CommunityItem()
+                    {
+                        Title = titleValue,
+                        SubText = subText,
+                        Description = description,
+                        ExternalLink = externalLink,
+                        Image = image
+                    }).ToList();
         }
 
         public List<Training> GetTrainingItems()
@@ -153,52 +158,75 @@ namespace DevOffice.Common.Services
             var mediaDictionary = GetMediaDictionary(trainingItems);
 
             var trainings = (from trainingItem in trainingItems
-                let item = (dynamic) trainingItem
-                let subText = item.TrainingPart.SubText.Value
-                let imageIds = item.TrainingPart.Image.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                let externalLink = item.TrainingPart.ExternalLink.Value
-                let trainingTags = GetTermsWithTitle(trainingItem, "TrainingType")
-                let datePublished = item.CommonPart.PublishedUtc.Date
-                let startDate = item.TrainingPart.StartDate.DateTime
-                let titleValue = item.TitlePart.Title
-                let links = item.TrainingPart.RelatedLinksPart.Links
-                let permalinkTag = item.TrainingPart.PermalinkTag.Value
-                let id = (int)item.CommonPart.Id
-                let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
-                select new Training {
-                   TermsTagged = trainingTags,
-                   TermsTaggedList = trainingTags.Values.ToList(),
-                    Title = titleValue, SubText = subText, Image = image, 
-                    FullStartDate = Convert.ToDateTime(startDate), ExternalLink = externalLink, DatePublished = Convert.ToDateTime(datePublished), PermalinkTag = permalinkTag,  Id = id, ViewCount = viewCount,
-                    Links = ConvertLinksModel(links),
-                }).OrderBy(x => x.FullStartDate).ThenBy(x => x.Title).ToList();
+                             let item = (dynamic)trainingItem
+                             let subText = item.TrainingPart.SubText.Value
+                             let imageIds = item.TrainingPart.Image.Ids
+                             let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                             let externalLink = item.TrainingPart.ExternalLink.Value
+                             let trainingTags = GetTermsWithTitle(trainingItem, "TrainingType")
+                             let datePublished = item.CommonPart.PublishedUtc.Date
+                             let startDate = item.TrainingPart.StartDate.DateTime
+                             let titleValue = item.TitlePart.Title
+                             let links = item.TrainingPart.RelatedLinksPart.Links
+                             let permalinkTag = item.TrainingPart.PermalinkTag.Value
+                             let id = (int)item.CommonPart.Id
+                             let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
+                             let viewCount30Days = _viewCountRepository.Fetch(r => r.LinkId == id).Where(r => r.Date >= DateTime.UtcNow.AddDays(-30)).ToList().Count
+                             select new Training
+                             {
+                                 TermsTagged = trainingTags,
+                                 TermsTaggedList = trainingTags.Values.ToList(),
+                                 Title = titleValue,
+                                 SubText = subText,
+                                 Image = image,
+                                 FullStartDate = Convert.ToDateTime(startDate),
+                                 ExternalLink = externalLink,
+                                 DatePublished = Convert.ToDateTime(datePublished),
+                                 PermalinkTag = permalinkTag,
+                                 Id = id,
+                                 ViewCount = viewCount,
+                                 Links = ConvertLinksModel(links),
+                                 ViewCount30Days = viewCount30Days
+                             }).OrderBy(x => x.FullStartDate).ThenBy(x => x.Title).ToList();
 
             return trainings;
         }
 
-        private IList<RelatedLink> ConvertLinksModel(IEnumerable<RelatedLinkRecord> links) {
-            return links.Select(relatedLinkRecord => new RelatedLink {
-                Id = relatedLinkRecord.Id, SortOrder = relatedLinkRecord.SortOrder, Title = relatedLinkRecord.Title, Url = relatedLinkRecord.Url, Type = relatedLinkRecord.Type
+        public IList<RelatedLink> ConvertLinksModel(IEnumerable<RelatedLinkRecord> links)
+        {
+            return links.Select(relatedLinkRecord => new RelatedLink
+            {
+                Id = relatedLinkRecord.Id,
+                SortOrder = relatedLinkRecord.SortOrder,
+                Title = relatedLinkRecord.Title,
+                Url = relatedLinkRecord.Url,
+                Type = relatedLinkRecord.Type
             }).ToList();
         }
 
-        public List<Resource> GetResources() {
+        public List<Resource> GetResources()
+        {
             var resourcesItems = _contentManager.Query(VersionOptions.Published, "Resource").List().ToList();
 
             var mediaDictionary = GetMediaDictionary(resourcesItems);
 
             return (from dynamic item in resourcesItems
-                let id = item.Id
-                let title = item.TitlePart.Title
-                let subText = item.ResourcePart.SubText.Value
-                let linkText = item.ResourcePart.LearnMoreText.Value
-                let linkUrl = item.ResourcePart.LearnMoreUrl.Value
-                let imageIds = item.ResourcePart.Image.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty                
-                    select new Resource() {
-                    Title = title, SubText = subText, Image = image, LinkText = linkText, LinkUrl = linkUrl, Id=id
-                }).ToList();
+                    let id = item.Id
+                    let title = item.TitlePart.Title
+                    let subText = item.ResourcePart.SubText.Value
+                    let linkText = item.ResourcePart.LearnMoreText.Value
+                    let linkUrl = item.ResourcePart.LearnMoreUrl.Value
+                    let imageIds = item.ResourcePart.Image.Ids
+                    let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                    select new Resource()
+                    {
+                        Title = title,
+                        SubText = subText,
+                        Image = image,
+                        LinkText = linkText,
+                        LinkUrl = linkUrl,
+                        Id = id
+                    }).ToList();
         }
 
         public List<Video> GetVideos()
@@ -208,65 +236,79 @@ namespace DevOffice.Common.Services
             var mediaDictionary = GetMediaDictionary(videoItems);
 
             var videos = (from dynamic item in videoItems
-                let videoId = item.Id
-                let subText = item.VideoItemPart.SubText.Value
-                let imageIds = item.VideoItemPart.Image.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                let location = item.VideoItemPart.Location.Value
-                let embedCode = item.VideoItemPart.EmbedCode.Value
-                let terms = item.VideoItemPart.VideoType.Terms
-                let videoTypes = GetTerms(item, "VideoType")
-                let startDate = item.VideoItemPart.StartDate.DateTime
-                let titleValue = item.TitlePart.Title
-                let trainingDate = Convert.ToDateTime(startDate)
-                let date = ((DateTime) trainingDate).ToString("dd")
-                let year = ((DateTime) trainingDate).ToString("yyyy")
-                let month = ((DateTime) trainingDate).ToString("MMM").ToUpper()
-                select new Video {
-                    VideoId = videoId, Title = titleValue, SubText = subText, Image = image, Location = location, VideoTypes = videoTypes, Month = month, Date = date, Year = year, FullStartDate = Convert.ToDateTime(startDate), EmbedCode = embedCode
-                }).ToList();
+                          let videoId = item.Id
+                          let subText = item.VideoItemPart.SubText.Value
+                          let imageIds = item.VideoItemPart.Image.Ids
+                          let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                          let location = item.VideoItemPart.Location.Value
+                          let embedCode = item.VideoItemPart.EmbedCode.Value
+                          let terms = item.VideoItemPart.VideoType.Terms
+                          let videoTypes = GetTerms(item, "VideoType")
+                          let startDate = item.VideoItemPart.StartDate.DateTime
+                          let titleValue = item.TitlePart.Title
+                          let trainingDate = Convert.ToDateTime(startDate)
+                          let date = ((DateTime)trainingDate).ToString("dd")
+                          let year = ((DateTime)trainingDate).ToString("yyyy")
+                          let month = ((DateTime)trainingDate).ToString("MMM").ToUpper()
+                          select new Video
+                          {
+                              VideoId = videoId,
+                              Title = titleValue,
+                              SubText = subText,
+                              Image = image,
+                              Location = location,
+                              VideoTypes = videoTypes,
+                              Month = month,
+                              Date = date,
+                              Year = year,
+                              FullStartDate = Convert.ToDateTime(startDate),
+                              EmbedCode = embedCode
+                          }).ToList();
 
             return videos.OrderBy(x => x.FullStartDate).ThenBy(x => x.Title).ToList();
         }
 
-        public List<Training> GetPodcasts() {
+        public List<Training> GetPodcasts()
+        {
             var podcastItems = _contentManager.Query(VersionOptions.Published, "Podcast")
                 .WithQueryHintsFor("Podcast").List();
 
             var mediaDictionary = GetMediaDictionary(podcastItems);
 
             var podcasts = (from dynamic podcastItem in podcastItems
-                let subText = podcastItem.PodcastPart.SubText.Value
-                let imageIds = podcastItem.PodcastPart.Image.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                let location = podcastItem.PodcastPart.Location.Value
-                let externalLink = podcastItem.PodcastPart.ExternalLink.Value
-                let podcastTypes = GetTerms(podcastItem, "PodcastType")
-                let startDate = podcastItem.PodcastPart.StartDate.DateTime
-                let titleValue = podcastItem.TitlePart.Title
-                let trainingDate = Convert.ToDateTime(startDate)
-                let date = ((DateTime) trainingDate).ToString("dd")
-                let year = ((DateTime) trainingDate).ToString("yyyy")
-                let month = ((DateTime) trainingDate).ToString("MMM").ToUpper()
-                let datePublished = podcastItem.CommonPart.PublishedUtc.Date
-                let links = podcastItem.RelatedLinksPart.Links
-                let permalinkTag = podcastItem.PodcastPart.PermalinkTag.Value
-                let id = podcastItem.CommonPart.Id
-                select new Training {
-                    Title = titleValue, 
-                    SubText = subText, 
-                    Image = image, 
-                    Location = location, 
-                    TrainingTypes = podcastTypes, 
-                    Month = month, Date = date, 
-                    Year = year, 
-                    FullStartDate = Convert.ToDateTime(startDate),
-                    ExternalLink = externalLink, 
-                    DatePublished = datePublished, 
-                    Links = ConvertLinksModel(links),
-                    PermalinkTag = permalinkTag,
-                    Id = id 
-                }).ToList();
+                            let subText = podcastItem.PodcastPart.SubText.Value
+                            let imageIds = podcastItem.PodcastPart.Image.Ids
+                            let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                            let location = podcastItem.PodcastPart.Location.Value
+                            let externalLink = podcastItem.PodcastPart.ExternalLink.Value
+                            let podcastTypes = GetTerms(podcastItem, "PodcastType")
+                            let startDate = podcastItem.PodcastPart.StartDate.DateTime
+                            let titleValue = podcastItem.TitlePart.Title
+                            let trainingDate = Convert.ToDateTime(startDate)
+                            let date = ((DateTime)trainingDate).ToString("dd")
+                            let year = ((DateTime)trainingDate).ToString("yyyy")
+                            let month = ((DateTime)trainingDate).ToString("MMM").ToUpper()
+                            let datePublished = podcastItem.CommonPart.PublishedUtc.Date
+                            let links = podcastItem.RelatedLinksPart.Links
+                            let permalinkTag = podcastItem.PodcastPart.PermalinkTag.Value
+                            let id = podcastItem.CommonPart.Id
+                            select new Training
+                            {
+                                Title = titleValue,
+                                SubText = subText,
+                                Image = image,
+                                Location = location,
+                                TrainingTypes = podcastTypes,
+                                Month = month,
+                                Date = date,
+                                Year = year,
+                                FullStartDate = Convert.ToDateTime(startDate),
+                                ExternalLink = externalLink,
+                                DatePublished = datePublished,
+                                Links = ConvertLinksModel(links),
+                                PermalinkTag = permalinkTag,
+                                Id = id
+                            }).ToList();
 
             return podcasts.OrderByDescending(x => x.FullStartDate).ThenBy(x => x.Title).ToList();
         }
@@ -278,65 +320,65 @@ namespace DevOffice.Common.Services
             var mediaDictionary = GetMediaDictionary(gettingStartedItems);
 
             var gettingStartedTabs = (from dynamic item in gettingStartedItems
-                let title = item.TitlePart.Title
-                let ordering = item.GettingStartedPart.Ordering.Value
-                let order = ordering != null ? (int) ordering : 0
-                let hashtagValue = item.GettingStartedPart.HashTag.Value
-                let hashtag = !string.IsNullOrEmpty(hashtagValue) ? hashtagValue.Replace(" ", string.Empty) : string.Empty
-                let firstBlockIcon1Ids = item.GettingStartedPart.FirstBlockIcon1.Ids
-                let firstBlockIcon1 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon1Ids[0]) ? mediaDictionary[firstBlockIcon1Ids[0]].MediaUrl : String.Empty
-                let firstBlockIcon2Ids = item.GettingStartedPart.FirstBlockIcon2.Ids
-                let firstBlockIcon2 = firstBlockIcon2Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon2Ids[0]) ? mediaDictionary[firstBlockIcon2Ids[0]].MediaUrl : String.Empty
-                let firstBlockIcon3Ids = item.GettingStartedPart.FirstBlockIcon3.Ids
-                let firstBlockIcon3 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon3Ids[0]) ? mediaDictionary[firstBlockIcon3Ids[0]].MediaUrl : String.Empty
-                let firstBlockIcon4Ids = item.GettingStartedPart.FirstBlockIcon4.Ids
-                let firstBlockIcon4 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon4Ids[0]) ? mediaDictionary[firstBlockIcon4Ids[0]].MediaUrl : String.Empty
-                let firstBlockIcon5Ids = item.GettingStartedPart.FirstBlockIcon5.Ids
-                let firstBlockIcon5 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon5Ids[0]) ? mediaDictionary[firstBlockIcon5Ids[0]].MediaUrl : String.Empty
-                let firstBlockIcon6Ids = item.GettingStartedPart.FirstBlockIcon6.Ids
-                let firstBlockIcon6 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon6Ids[0]) ? mediaDictionary[firstBlockIcon6Ids[0]].MediaUrl : String.Empty
-               
-               
-                select new GettingStartedTab {
-                    Title = title, 
-                    HashTag = hashtag.ToLower(), 
-                    Intro = item.GettingStartedPart.Intro.Value, 
-                    FirstBlockTitle = item.GettingStartedPart.FirstBlockTitle.Value, 
-                    FirstBlockContent = item.GettingStartedPart.FirstBlockContent.Value, 
-                    SecondBlockTitle = item.GettingStartedPart.SecondBlockTitle.Value, 
-                    SecondBlockContent = item.GettingStartedPart.SecondBlockContent.Value, 
-                    ThirdBlockTitle = item.GettingStartedPart.ThirdBlockTitle.Value, 
-                    ThirdBlockContent = item.GettingStartedPart.ThirdBlockContent.Value, 
-                    FirstBlockLayoutStyle = item.GettingStartedPart.FirstBlockLayoutStyle.Value,
-                    DocumentsLink = item.GettingStartedPart.DocumentsLink.Value, 
-                    MVALink = item.GettingStartedPart.MVALink.Value, 
-                    SamplesLink = item.GettingStartedPart.SamplesLink.Value,
-                    Icons = GetMediaUrlsWithLinks(item.GettingStartedPart.Icons), 
-                    FirstBlockTitle1 = item.GettingStartedPart.FirstBlockTitle1.Value, 
-                    FirstBlockTitle2 = item.GettingStartedPart.FirstBlockTitle2.Value, 
-                    FirstBlockTitle3 = item.GettingStartedPart.FirstBlockTitle3.Value, 
-                    FirstBlockTitle4 = item.GettingStartedPart.FirstBlockTitle4.Value, 
-                    FirstBlockTitle5 = item.GettingStartedPart.FirstBlockTitle5.Value, 
-                    FirstBlockTitle6 = item.GettingStartedPart.FirstBlockTitle6.Value, 
-                    FirstBlockIcon1 = firstBlockIcon1,
-                    FirstBlockIcon2 = firstBlockIcon2,
-                    FirstBlockIcon3 = firstBlockIcon3, 
-                    FirstBlockIcon4 = firstBlockIcon4,
-                    FirstBlockIcon5 = firstBlockIcon5,
-                    FirstBlockIcon6 = firstBlockIcon6, 
-                    FirstBlockScreenshots1 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots1),
-                    FirstBlockScreenshots2 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots2),
-                    FirstBlockScreenshots3 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots3),
-                    FirstBlockScreenshots4 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots4),
-                    FirstBlockScreenshots5 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots5),
-                    FirstBlockScreenshots6 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots6), 
-                    Ordering = order
-                }).ToList();
+                                      let title = item.TitlePart.Title
+                                      let ordering = item.GettingStartedPart.Ordering.Value
+                                      let order = ordering != null ? (int)ordering : 0
+                                      let hashtagValue = item.GettingStartedPart.HashTag.Value
+                                      let hashtag = !string.IsNullOrEmpty(hashtagValue) ? hashtagValue.Replace(" ", string.Empty) : string.Empty
+                                      let firstBlockIcon1Ids = item.GettingStartedPart.FirstBlockIcon1.Ids
+                                      let firstBlockIcon1 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon1Ids[0]) ? mediaDictionary[firstBlockIcon1Ids[0]].MediaUrl : String.Empty
+                                      let firstBlockIcon2Ids = item.GettingStartedPart.FirstBlockIcon2.Ids
+                                      let firstBlockIcon2 = firstBlockIcon2Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon2Ids[0]) ? mediaDictionary[firstBlockIcon2Ids[0]].MediaUrl : String.Empty
+                                      let firstBlockIcon3Ids = item.GettingStartedPart.FirstBlockIcon3.Ids
+                                      let firstBlockIcon3 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon3Ids[0]) ? mediaDictionary[firstBlockIcon3Ids[0]].MediaUrl : String.Empty
+                                      let firstBlockIcon4Ids = item.GettingStartedPart.FirstBlockIcon4.Ids
+                                      let firstBlockIcon4 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon4Ids[0]) ? mediaDictionary[firstBlockIcon4Ids[0]].MediaUrl : String.Empty
+                                      let firstBlockIcon5Ids = item.GettingStartedPart.FirstBlockIcon5.Ids
+                                      let firstBlockIcon5 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon5Ids[0]) ? mediaDictionary[firstBlockIcon5Ids[0]].MediaUrl : String.Empty
+                                      let firstBlockIcon6Ids = item.GettingStartedPart.FirstBlockIcon6.Ids
+                                      let firstBlockIcon6 = firstBlockIcon1Ids.Length > 0 && mediaDictionary.ContainsKey(firstBlockIcon6Ids[0]) ? mediaDictionary[firstBlockIcon6Ids[0]].MediaUrl : String.Empty
+
+                                      select new GettingStartedTab
+                                      {
+                                          Title = title,
+                                          HashTag = hashtag.ToLower(),
+                                          Intro = item.GettingStartedPart.Intro.Value,
+                                          FirstBlockTitle = item.GettingStartedPart.FirstBlockTitle.Value,
+                                          FirstBlockContent = item.GettingStartedPart.FirstBlockContent.Value,
+                                          SecondBlockTitle = item.GettingStartedPart.SecondBlockTitle.Value,
+                                          SecondBlockContent = item.GettingStartedPart.SecondBlockContent.Value,
+                                          ThirdBlockTitle = item.GettingStartedPart.ThirdBlockTitle.Value,
+                                          ThirdBlockContent = item.GettingStartedPart.ThirdBlockContent.Value,
+                                          FirstBlockLayoutStyle = item.GettingStartedPart.FirstBlockLayoutStyle.Value,
+                                          DocumentsLink = item.GettingStartedPart.DocumentsLink.Value,
+                                          MVALink = item.GettingStartedPart.MVALink.Value,
+                                          SamplesLink = item.GettingStartedPart.SamplesLink.Value,
+                                          Icons = GetMediaUrlsWithLinks(item.GettingStartedPart.Icons),
+                                          FirstBlockTitle1 = item.GettingStartedPart.FirstBlockTitle1.Value,
+                                          FirstBlockTitle2 = item.GettingStartedPart.FirstBlockTitle2.Value,
+                                          FirstBlockTitle3 = item.GettingStartedPart.FirstBlockTitle3.Value,
+                                          FirstBlockTitle4 = item.GettingStartedPart.FirstBlockTitle4.Value,
+                                          FirstBlockTitle5 = item.GettingStartedPart.FirstBlockTitle5.Value,
+                                          FirstBlockTitle6 = item.GettingStartedPart.FirstBlockTitle6.Value,
+                                          FirstBlockIcon1 = firstBlockIcon1,
+                                          FirstBlockIcon2 = firstBlockIcon2,
+                                          FirstBlockIcon3 = firstBlockIcon3,
+                                          FirstBlockIcon4 = firstBlockIcon4,
+                                          FirstBlockIcon5 = firstBlockIcon5,
+                                          FirstBlockIcon6 = firstBlockIcon6,
+                                          FirstBlockScreenshots1 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots1),
+                                          FirstBlockScreenshots2 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots2),
+                                          FirstBlockScreenshots3 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots3),
+                                          FirstBlockScreenshots4 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots4),
+                                          FirstBlockScreenshots5 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots5),
+                                          FirstBlockScreenshots6 = GetMediaUrlsWithLinks(item.GettingStartedPart.FirstBlockScreenshots6),
+                                          Ordering = order
+                                      }).ToList();
             return gettingStartedTabs.OrderBy(x => x.Ordering).ToList();
         }
         public BlogPost GetArticleById(int id)
         {
-            
+
             dynamic item = _contentManager.Get(id);
             if (item == null || item.ContentType != "Article")
             {
@@ -360,13 +402,16 @@ namespace DevOffice.Common.Services
             return blogPost;
 
         }
-        public List<BlogPost> GetArticles(int pageNumber = 0, int count = 0) {
+        public List<BlogPost> GetArticles(int pageNumber = 0, int count = 0)
+        {
             var articles = new List<BlogPost>();
-            if (count == 0) {
+            if (count == 0)
+            {
                 return articles;
             }
             var start = 0;
-            if (pageNumber > 1) {
+            if (pageNumber > 1)
+            {
                 start = (pageNumber - 1) * count;
             }
             var articleItems = _contentManager.Query(VersionOptions.Published, "Article")
@@ -376,29 +421,34 @@ namespace DevOffice.Common.Services
 
             var mediaDictionary = GetMediaDictionary(articleItems);
 
-           return articles = (from dynamic item in articleItems
-                let id = item.Id
-                let titleValue = item.TitlePart.Title
-                let authorFirstName = item.ArticlePart.AuthorFirstName.Value
-                let authorLastName = item.ArticlePart.AuthorLastName.Value
-                let description = item.ArticlePart.Description.Value
-                let imageIds = item.ArticlePart.Image.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                let link = item.ArticlePart.Link.Value
-                let topics = GetTermNames(item, "ArticleTopic")
-                let startDate = item.CommonPart.PublishedUtc
-                let postBody = item.ArticlePart.PostBody.Value
-                select new BlogPost {
-                    Id = id,
-                    Title = titleValue, 
-                    Author = string.Join(" ", new string[]{authorFirstName, authorLastName}), 
-                    Description = description, Image = image, Link = link, Topics = topics, 
-                    DatePublished = Convert.ToDateTime(startDate),
-                    PostBody = postBody
-                }).ToList();
+            return articles = (from dynamic item in articleItems
+                               let id = item.Id
+                               let titleValue = item.TitlePart.Title
+                               let authorFirstName = item.ArticlePart.AuthorFirstName.Value
+                               let authorLastName = item.ArticlePart.AuthorLastName.Value
+                               let description = item.ArticlePart.Description.Value
+                               let imageIds = item.ArticlePart.Image.Ids
+                               let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                               let link = item.ArticlePart.Link.Value
+                               let topics = GetTermNames(item, "ArticleTopic")
+                               let startDate = item.CommonPart.PublishedUtc
+                               let postBody = item.ArticlePart.PostBody.Value
+                               select new BlogPost
+                               {
+                                   Id = id,
+                                   Title = titleValue,
+                                   Author = string.Join(" ", new string[] { authorFirstName, authorLastName }),
+                                   Description = description,
+                                   Image = image,
+                                   Link = link,
+                                   Topics = topics,
+                                   DatePublished = Convert.ToDateTime(startDate),
+                                   PostBody = postBody
+                               }).ToList();
         }
 
-        public int GetAllArticlesCount() {
+        public int GetAllArticlesCount()
+        {
             return _contentManager.Query(VersionOptions.Published, "Article").Count();
         }
 
@@ -407,9 +457,13 @@ namespace DevOffice.Common.Services
             var icons = new List<ImageLinks>();
             if (mediaField.Ids.Length > 0)
             {
-                foreach (MediaPart mediaPart in mediaField.MediaParts) {
-                    icons.Add(new ImageLinks {
-                        Image = mediaPart.MediaUrl,ImageUrl = mediaPart.Caption, Title = mediaPart.Title
+                foreach (MediaPart mediaPart in mediaField.MediaParts)
+                {
+                    icons.Add(new ImageLinks
+                    {
+                        Image = mediaPart.MediaUrl,
+                        ImageUrl = mediaPart.Caption,
+                        Title = mediaPart.Title
                     });
                 }
             }
@@ -417,49 +471,56 @@ namespace DevOffice.Common.Services
         }
 
 
-        public List<CodeSample> GetCodeSamples() {
-            if (AllCodeSamples == null) {
+        public List<CodeSample> GetCodeSamples()
+        {
+            if (AllCodeSamples == null)
+            {
                 AllCodeSamples = CodeSamplesQuery();
             }
             return AllCodeSamples;
 
         }
 
-        private List<CodeSample> CodeSamplesQuery() {
+        private List<CodeSample> CodeSamplesQuery()
+        {
             var codeSampleItems = _contentManager.Query(VersionOptions.Published, "CodeSample").List();
 
             var mediaDictionary = GetMediaDictionary(codeSampleItems);
 
             var codeSamples = (from codeSampleItem in codeSampleItems
-                let item = (dynamic) codeSampleItem
-                let subText = item.CodeSamplePart.SubText.Value
-                let imageIds = item.CodeSamplePart.Image.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                let location = item.CodeSamplePart.Location.Value
-                let externalLinkValue = item.CodeSamplePart.ExternalLink.Value
-                let externalLink = !string.IsNullOrEmpty(externalLinkValue) && externalLinkValue.StartsWith("https://github.com") ? string.Format("code-samples-detail/{0}", item.Id) : externalLinkValue
-                let terms = _taxonomyService.GetTermsForContentItem(codeSampleItem.Id).Select(x => x.Name.ToLower()).ToList()
-                let startDate = item.CodeSamplePart.StartDate.DateTime
-                let titleValue = item.TitlePart.Title
-                let datePublished = item.CommonPart.PublishedUtc.Date
-                let links =  item.CodeSamplePart.RelatedLinksPart.Links
-                let permalinkTag = item.CodeSamplePart.PermalinkTag.Value
-                let id = (int)item.CommonPart.Id
-                let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
-                select new CodeSample {
-                    Title = titleValue, 
-                    SubText = subText, 
-                    Image = image, 
-                    Location = location, 
-                    TermTypes = terms, 
-                    FullStartDate = Convert.ToDateTime(startDate), 
-                    ExternalLink = (string) externalLink, 
-                    DatePublished = Convert.ToDateTime(datePublished),
-                    PermalinkTag = permalinkTag,
-                    Id = id,
-                    Links = ConvertLinksModel(links),
-                    ViewCount = viewCount
-                }).OrderByDescending(x => x.DatePublished).ThenBy(x => x.Title).ToList();
+                               let item = (dynamic)codeSampleItem
+                               let subText = item.CodeSamplePart.SubText.Value
+                               let imageIds = item.CodeSamplePart.Image.Ids
+                               let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                               let location = item.CodeSamplePart.Location.Value
+                               let externalLinkValue = item.CodeSamplePart.ExternalLink.Value
+                               let externalLink = !string.IsNullOrEmpty(externalLinkValue) && externalLinkValue.StartsWith("https://github.com") ? string.Format("code-samples-detail/{0}", item.Id) : externalLinkValue
+                               let terms = _taxonomyService.GetTermsForContentItem(codeSampleItem.Id).Select(x => x.Name.ToLower()).ToList()
+                               let startDate = item.CodeSamplePart.StartDate.DateTime
+                               let titleValue = item.TitlePart.Title
+                               let datePublished = item.CommonPart.PublishedUtc.Date
+                               let links = item.CodeSamplePart.RelatedLinksPart.Links
+                               let permalinkTag = item.CodeSamplePart.PermalinkTag.Value
+                               let id = (int)item.CommonPart.Id
+                               let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
+                               let viewCount30Days = _viewCountRepository.Fetch(r => r.LinkId == id).Where(r => r.Date >= DateTime.UtcNow.AddDays(-30)).ToList().Count
+
+                               select new CodeSample
+                               {
+                                   Title = titleValue,
+                                   SubText = subText,
+                                   Image = image,
+                                   Location = location,
+                                   TermTypes = terms,
+                                   FullStartDate = Convert.ToDateTime(startDate),
+                                   ExternalLink = (string)externalLink,
+                                   DatePublished = Convert.ToDateTime(datePublished),
+                                   PermalinkTag = permalinkTag,
+                                   Id = id,
+                                   Links = ConvertLinksModel(links),
+                                   ViewCount = viewCount,
+                                   ViewCount30Days = viewCount30Days
+                               }).OrderByDescending(x => x.DatePublished).ThenBy(x => x.Title).ToList();
 
             return codeSamples;
         }
@@ -473,25 +534,37 @@ namespace DevOffice.Common.Services
             var mediaDictionary = GetMediaDictionary(patsAndPracsItems);
 
             var patAndPracs = (from patsAndPracsItem in patsAndPracsItems
-                let item = (dynamic) patsAndPracsItem
-                let titleValue = item.TitlePart.Title
-                let subText = item.PatternsAndPracticesPart.SubText.Value
-                let ordering = item.PatternsAndPracticesPart.Ordering.Value
-                let order = ordering != null ? (int) ordering : 0
-                let externalLinkValue = item.PatternsAndPracticesPart.ExternalLink.Value
-                let externalLink = !string.IsNullOrEmpty(externalLinkValue) && externalLinkValue.StartsWith("https://github.com") ? string.Format("patterns-and-practices-detail/{0}", item.Id) : externalLinkValue
-                let imageIds = item.PatternsAndPracticesPart.Icon.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                let terms = _taxonomyService.GetTermsForContentItem(patsAndPracsItem.Id).Select(x => x.Name.ToLower()).ToList()
-                let permalinkTag = item.PatternsAndPracticesPart.PermalinkTag.Value
-                let id = (int) item.CommonPart.Id
-                let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
-                let updatedDate = item.CommonPart.ModifiedUtc
-                let links = item.PatternsAndPracticesPart.RelatedLinksPart.Links
-                select new PatternsAndPractice {
-                    Title = titleValue, SubText = subText, Ordering = order, ExternalLink = externalLink, Image = image, 
-                    PatternsAndPracticesTypes = terms, PermalinkTag = permalinkTag, Id = id, ViewCount = viewCount, UpdatedDate = updatedDate, Links = ConvertLinksModel(links),
-                }).ToList();
+                               let item = (dynamic)patsAndPracsItem
+                               let titleValue = item.TitlePart.Title
+                               let subText = item.PatternsAndPracticesPart.SubText.Value
+                               let ordering = item.PatternsAndPracticesPart.Ordering.Value
+                               let order = ordering != null ? (int)ordering : 0
+                               let externalLinkValue = item.PatternsAndPracticesPart.ExternalLink.Value
+                               let externalLink = !string.IsNullOrEmpty(externalLinkValue) && externalLinkValue.StartsWith("https://github.com") ? string.Format("patterns-and-practices-detail/{0}", item.Id) : externalLinkValue
+                               let imageIds = item.PatternsAndPracticesPart.Icon.Ids
+                               let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                               let terms = _taxonomyService.GetTermsForContentItem(patsAndPracsItem.Id).Select(x => x.Name.ToLower()).ToList()
+                               let permalinkTag = item.PatternsAndPracticesPart.PermalinkTag.Value
+                               let id = (int)item.CommonPart.Id
+                               let viewCount = _viewCountRepository.Fetch(r => r.LinkId == id).ToList().Count
+                               let viewCount30Days = _viewCountRepository.Fetch(r => r.LinkId == id).Where(r => r.Date >= DateTime.UtcNow.AddDays(-30)).ToList().Count
+                               let updatedDate = item.CommonPart.ModifiedUtc
+                               let links = item.PatternsAndPracticesPart.RelatedLinksPart.Links
+                               select new PatternsAndPractice
+                               {
+                                   Title = titleValue,
+                                   SubText = subText,
+                                   Ordering = order,
+                                   ExternalLink = externalLink,
+                                   Image = image,
+                                   PatternsAndPracticesTypes = terms,
+                                   PermalinkTag = permalinkTag,
+                                   Id = id,
+                                   ViewCount = viewCount,
+                                   ViewCount30Days = viewCount30Days,
+                                   UpdatedDate = updatedDate,
+                                   Links = ConvertLinksModel(links),
+                               }).ToList();
             return patAndPracs.OrderBy(x => x.Ordering).ToList();
         }
 
@@ -504,22 +577,10 @@ namespace DevOffice.Common.Services
             return AllPatternsAndPractices;
         }
 
-        public List<int> GetTopViewedItems(string type) {
+        public List<int> GetTopViewedItems(string type)
+        {
             // get all unique items from the last 30 days
-            DateTime oneMonthAgo = DateTime.UtcNow.AddDays( -30 );
-
-
-       //     return (from view in _viewCountRepository.
-       //             from orderedProduct in db.OrderedProducts
-       //             where orderedProduct.ProductID == product.ProductID
-       //             group orderedProduct by product into productGroups
-       //             select new ProductOrders
-       //             {
-       //                 product = productGroups.Key,
-       //                 numberOfOrders = productGroups.Count()
-       //             }
-       //).OrderByDescending(x => x.numberOfOrders).Distinct().Take(10);
-
+            DateTime oneMonthAgo = DateTime.UtcNow.AddDays(-30);
 
             var results = _viewCountRepository.Fetch(r => r.Date >= oneMonthAgo).Where(r => r.Type == type).Select(r => r.LinkId).ToList();
             var viewDictionary = new Dictionary<int, int>();
@@ -552,45 +613,47 @@ namespace DevOffice.Common.Services
             var mediaDictionary = GetMediaDictionary(solutionItems);
 
             var solutions = (from solutionItem in solutionItems
-                let item = (dynamic) solutionItem
-                let titleValue = item.TitlePart.Title
-                let content = item.SolutionPart.Content.Value
-                let ordering = item.SolutionPart.Ordering.Value
-                let order = ordering != null ? (int) ordering : 0
-                let externalLink = item.SolutionPart.ExternalLink.Value
-                let contentItemTerms = _taxonomyService.GetTermsForContentItem(solutionItem.Id).Select(x => x.Name.ToLower()).ToList()
-                let solutionTypesTerms = item.SolutionPart.SolutionType.Terms
-                let solutionTypes = (List<int>) (solutionTypesTerms != null && solutionTypesTerms.Count > 0 ? ((List<TermPart>) (solutionTypesTerms)).Select(x => x.Weight).ToList() : new List<int>())
-                let solutionDevicesTerms = item.SolutionPart.SolutionType.Terms
-                let solutionDevices = (List<int>) (solutionDevicesTerms != null && solutionDevicesTerms.Count > 0 ? ((List<TermPart>) (solutionDevicesTerms)).Select(x => x.Weight).ToList() : new List<int>())
-                let solutionIdentityTerms = item.SolutionPart.SolutionType.Terms
-                let solutionIdentityIntegrationMethods = (List<int>) (solutionIdentityTerms != null && solutionIdentityTerms.Count > 0 ? ((List<TermPart>) (solutionIdentityTerms)).Select(x => x.Weight).ToList() : new List<int>())
-                let solutionPrimaryTerms = item.SolutionPart.SolutionType.Terms
-                let solutionPrimaryWorkloadInvolved = (List<int>) (solutionPrimaryTerms != null && solutionPrimaryTerms.Count > 0 ? ((List<TermPart>) (solutionPrimaryTerms)).Select(x => x.Weight).ToList() : new List<int>())
-                let imageIds = item.SolutionPart.Icon.Ids
-                let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
-                select new Solution {
-                    Title = titleValue, 
-                    Content = content, 
-                    Image = image, 
-                    Ordering = order, 
-                    ExternalLink = externalLink, 
-                    FilterTerms = contentItemTerms, 
-                    SolutionType = solutionTypes, 
-                    SolutionDevice = solutionDevices, 
-                    SolutionIdentityIntegrationMethod = solutionIdentityIntegrationMethods, 
-                    SolutionPrimaryWorkloadInvolved = solutionPrimaryWorkloadInvolved
-                }).ToList();
+                             let item = (dynamic)solutionItem
+                             let titleValue = item.TitlePart.Title
+                             let content = item.SolutionPart.Content.Value
+                             let ordering = item.SolutionPart.Ordering.Value
+                             let order = ordering != null ? (int)ordering : 0
+                             let externalLink = item.SolutionPart.ExternalLink.Value
+                             let contentItemTerms = _taxonomyService.GetTermsForContentItem(solutionItem.Id).Select(x => x.Name.ToLower()).ToList()
+                             let solutionTypesTerms = item.SolutionPart.SolutionType.Terms
+                             let solutionTypes = (List<int>)(solutionTypesTerms != null && solutionTypesTerms.Count > 0 ? ((List<TermPart>)(solutionTypesTerms)).Select(x => x.Weight).ToList() : new List<int>())
+                             let solutionDevicesTerms = item.SolutionPart.SolutionType.Terms
+                             let solutionDevices = (List<int>)(solutionDevicesTerms != null && solutionDevicesTerms.Count > 0 ? ((List<TermPart>)(solutionDevicesTerms)).Select(x => x.Weight).ToList() : new List<int>())
+                             let solutionIdentityTerms = item.SolutionPart.SolutionType.Terms
+                             let solutionIdentityIntegrationMethods = (List<int>)(solutionIdentityTerms != null && solutionIdentityTerms.Count > 0 ? ((List<TermPart>)(solutionIdentityTerms)).Select(x => x.Weight).ToList() : new List<int>())
+                             let solutionPrimaryTerms = item.SolutionPart.SolutionType.Terms
+                             let solutionPrimaryWorkloadInvolved = (List<int>)(solutionPrimaryTerms != null && solutionPrimaryTerms.Count > 0 ? ((List<TermPart>)(solutionPrimaryTerms)).Select(x => x.Weight).ToList() : new List<int>())
+                             let imageIds = item.SolutionPart.Icon.Ids
+                             let image = imageIds.Length > 0 && mediaDictionary.ContainsKey(imageIds[0]) ? mediaDictionary[imageIds[0]].MediaUrl : String.Empty
+                             select new Solution
+                             {
+                                 Title = titleValue,
+                                 Content = content,
+                                 Image = image,
+                                 Ordering = order,
+                                 ExternalLink = externalLink,
+                                 FilterTerms = contentItemTerms,
+                                 SolutionType = solutionTypes,
+                                 SolutionDevice = solutionDevices,
+                                 SolutionIdentityIntegrationMethod = solutionIdentityIntegrationMethods,
+                                 SolutionPrimaryWorkloadInvolved = solutionPrimaryWorkloadInvolved
+                             }).ToList();
             return solutions.OrderBy(x => x.Ordering).ToList();
         }
 
-        public List<Solution> GetSolutions(string[] solutionFiltersArray) {
+        public List<Solution> GetSolutions(string[] solutionFiltersArray)
+        {
             var solutions = GetSolutions();
             var query = from solution in solutions
-                select solution;
+                        select solution;
 
             var termFilters = new List<string>();
-            termFilters.AddRange(solutionFiltersArray.Select(x=>x.ToLower()));
+            termFilters.AddRange(solutionFiltersArray.Select(x => x.ToLower()));
 
             if (termFilters.Any())
             {
@@ -598,11 +661,13 @@ namespace DevOffice.Common.Services
             }
 
             return query.ToList();
-        } 
+        }
 
-        public List<Solution> GetTopFourSolutionsFromCache() {
+        public List<Solution> GetTopFourSolutionsFromCache()
+        {
 
-            return _cacheManager.Get(_cacheKey, ctx => {
+            return _cacheManager.Get(_cacheKey, ctx =>
+            {
                 ctx.Monitor(_clock.WhenUtc(CacheExpiryTime()));
                 return GetTopFourSolutions();
             });
@@ -611,13 +676,15 @@ namespace DevOffice.Common.Services
         private List<Solution> GetTopFourSolutions()
         {
             var solutions = new List<Solution>();
-            try {
+            try
+            {
                 const string url = "https://store.office.com/search.aspx?ui=en-US&rs=en-US&ad=US&catfltr=4&category=Editor%2527s%2BPicks";
                 var web = new HtmlWeb();
                 var htmlDoc = web.Load(url);
                 var nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='appCell']");
-               
-                for (int i = 0; i < 4; i++) {
+
+                for (int i = 0; i < 4; i++)
+                {
 
                     var iconUrl = nodes[i].SelectSingleNode(".//img").GetAttributeValue("src", null);
                     var externalLink = nodes[i].SelectSingleNode(".//a").GetAttributeValue("href", null);
@@ -625,7 +692,8 @@ namespace DevOffice.Common.Services
                     var appTitle = nodes[i].SelectSingleNode(".//div[@class='appTitle']").InnerText;
                     var solType = new List<int>();
                     solType.Add(3);
-                    var topFourSolutionViewModel = new Solution {
+                    var topFourSolutionViewModel = new Solution
+                    {
                         Image = iconUrl,
                         ExternalLink = externalLink,
                         Title = appTitle,
@@ -636,22 +704,26 @@ namespace DevOffice.Common.Services
                     solutions.Add(topFourSolutionViewModel);
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Logger.Error(ex, "An unexpected error occurred at GetTopFourSolutions");
             }
-            if (solutions.Count > 0) {
+            if (solutions.Count > 0)
+            {
                 // add or overwrite the never expiring global cache with new solutions
-                if (HttpRuntime.Cache["TopFourEditorPicksGlobal"] == null) {
+                if (HttpRuntime.Cache["TopFourEditorPicksGlobal"] == null)
+                {
                     HttpRuntime.Cache.Add("TopFourEditorPicksGlobal", solutions, null, Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.Normal, null);
                 }
-                else {
+                else
+                {
                     HttpRuntime.Cache.Insert("TopFourEditorPicksGlobal", solutions);
                 }
             }
             if (solutions.Count == 0 && HttpRuntime.Cache["TopFourEditorPicksGlobal"] != null)
             {
                 // return global cache if there are no solutions, i.e. in case of an exception
-                return (List<Solution>) HttpRuntime.Cache.Get("TopFourEditorPicksGlobal");
+                return (List<Solution>)HttpRuntime.Cache.Get("TopFourEditorPicksGlobal");
             }
             return solutions;
 
@@ -668,16 +740,17 @@ namespace DevOffice.Common.Services
             return oneAmUTCTime.AddDays(1);
         }
 
-        public SectionsWithTilesPageViewModel GetSectionsWithTilesPage(ContentItem pageItem) {
+        public SectionsWithTilesPageViewModel GetSectionsWithTilesPage(ContentItem pageItem)
+        {
             dynamic item = pageItem;
-            
+
             var mediaDictionary = GetMediaDictionary(item);
             var resources = GetResources();
             var tiles = GetAllTiles().ToList();
 
-            var Section1TilesIds = ((Array) item.SectionsWithTilesPagePart.Section1Tiles.Ids).OfType<int>().ToList();
-            var Section2TilesIds = ((Array) item.SectionsWithTilesPagePart.Section2Tiles.Ids).OfType<int>().ToList();
-            var resourceIds = ((Array) item.SectionsWithTilesPagePart.BottomRowResources.Ids).OfType<int>().ToList();
+            var Section1TilesIds = ((Array)item.SectionsWithTilesPagePart.Section1Tiles.Ids).OfType<int>().ToList();
+            var Section2TilesIds = ((Array)item.SectionsWithTilesPagePart.Section2Tiles.Ids).OfType<int>().ToList();
+            var resourceIds = ((Array)item.SectionsWithTilesPagePart.BottomRowResources.Ids).OfType<int>().ToList();
 
             return new SectionsWithTilesPageViewModel
             {
@@ -706,7 +779,7 @@ namespace DevOffice.Common.Services
                 Section2Tiles = tiles.Where(x => Section2TilesIds.Contains(x.Id)).ToList(),
                 Resources = resources.Where(x => resourceIds.Contains(x.Id)).ToList(),
                 PartnerLogos = GetPartnerLogos(item)
-                
+
             };
         }
 
@@ -720,21 +793,28 @@ namespace DevOffice.Common.Services
             return logoPaths;
         }
 
-        private IEnumerable<Tile> GetAllTiles() {
+        private IEnumerable<Tile> GetAllTiles()
+        {
             var tileItems = _contentManager.Query(VersionOptions.Published, "Tile").List().ToList();
 
             var mediaDictionary = GetMediaDictionary(tileItems);
 
             return (from dynamic item in tileItems
                     let title = item.TitlePart.Title
-                    let id = item.Id 
-                    let url = item.TilePart.Url.Value 
-                    let icon = item.TilePart.Icon.Ids.Length > 0 && mediaDictionary.ContainsKey(item.TilePart.Icon.Ids[0]) 
-                                ? item.TilePart.Icon.MediaParts[0].MediaUrl : string.Empty 
-                    let linkText = item.TilePart.LinkText.Value 
-                    let description = item.TilePart.Description.Value 
-                    select new Tile {
-                        Id = id, Url = url, Icon = icon, LinkText = linkText, Description = description, Title = title
+                    let id = item.Id
+                    let url = item.TilePart.Url.Value
+                    let icon = item.TilePart.Icon.Ids.Length > 0 && mediaDictionary.ContainsKey(item.TilePart.Icon.Ids[0])
+                                ? item.TilePart.Icon.MediaParts[0].MediaUrl : string.Empty
+                    let linkText = item.TilePart.LinkText.Value
+                    let description = item.TilePart.Description.Value
+                    select new Tile
+                    {
+                        Id = id,
+                        Url = url,
+                        Icon = icon,
+                        LinkText = linkText,
+                        Description = description,
+                        Title = title
                     }
             ).ToList();
         }
@@ -892,7 +972,8 @@ namespace DevOffice.Common.Services
                                   .ToDictionary(media => media.Id);
         }
 
-        private List<int> GetTerms(ContentItem item, string field) {
+        private List<int> GetTerms(ContentItem item, string field)
+        {
             //var ids = items.Select(x => x.Id).ToList();
             var id = item != null ? item.Id : 0;
             var termIds = String.IsNullOrEmpty(field)
@@ -921,10 +1002,10 @@ namespace DevOffice.Common.Services
                 ? _termContentItemRepository.Fetch(x => x.TermsPartRecord.ContentItemRecord.Id == id).Select(t => t.TermRecord.Id).ToList()
                 : _termContentItemRepository.Fetch(x => x.TermsPartRecord.ContentItemRecord.Id == id && x.Field == field).Select(t => t.TermRecord.Id).ToList();
 
-           return _contentManager.GetMany<TermPart>(termIds, VersionOptions.Published, QueryHints.Empty).ToDictionary(term => term.Weight, term => term.Name);
-                //.Select(term => myTerms.Add(term.Weight, term.Name));
+            return _contentManager.GetMany<TermPart>(termIds, VersionOptions.Published, QueryHints.Empty).ToDictionary(term => term.Weight, term => term.Name);
+            //.Select(term => myTerms.Add(term.Weight, term.Name));
 
-           // return _contentManager.GetMany<TermPart>(termIds, VersionOptions.Published, QueryHints.Empty).Select(term => new KeyValuePair<int,string>(term.Weight, term.Name)).ToList();
+            // return _contentManager.GetMany<TermPart>(termIds, VersionOptions.Published, QueryHints.Empty).Select(term => new KeyValuePair<int,string>(term.Weight, term.Name)).ToList();
         }
 
 

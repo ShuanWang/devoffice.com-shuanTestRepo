@@ -21,7 +21,7 @@
     $scope.pagingRange = [];
     $scope.pnpsToShow = $scope.model.PatternsAndPractices;
     $scope.pageCount = function () {
-        return Math.ceil($scope.pnpsToShow.length / $scope.itemsPerPage) ;
+        return Math.ceil($scope.pnpsToShow.length / $scope.itemsPerPage);
     };
     $scope.sortedByHighToLow = false;
     $scope.sortedByMostRecent = false;
@@ -47,7 +47,7 @@
         };
 
         $scope.$apply();
-      
+
     });
 
     $timeout(function () {
@@ -56,14 +56,14 @@
 
     $scope.orderByViews = function () {
         if (!$scope.sortedByHighToLow) {
-            $scope.pnpsToShow.sort(function(a, b) {
+            $scope.pnpsToShow.sort(function (a, b) {
                 return b.ViewCount - a.ViewCount;
             });
             $scope.sortedByHighToLow = true;
             $("#mostPopularIcon").attr("src", "/Themes/DevOffice/Content/Icons/devOffice_sort_down_grey_13x15.png");//update icon to be down arrow
             $("#mostPopularIconxs").attr("src", "/Themes/DevOffice/Content/Icons/devOffice_sort_down_orange_13x15.png");//update icon to be down arrow
         } else {
-            $scope.pnpsToShow.sort(function(a, b) {
+            $scope.pnpsToShow.sort(function (a, b) {
                 return a.ViewCount - b.ViewCount;
             });
             $scope.sortedByHighToLow = false;
@@ -105,7 +105,7 @@
 
 
 
-    $scope.handlePaging = function() {
+    $scope.handlePaging = function () {
         $scope.pagingRange = [];
         $scope.showFirstPage = false;
         $scope.showLastPage = false;
@@ -141,9 +141,9 @@
             for (var i = start; i <= end; i++)
                 $scope.pagingRange.push(i);
 
-        } 
+        }
         else {
-            for (var i = 1; i <= $scope.pageCount(); i++) {
+            for (var i = 1; i <= $scope.pageCount() ; i++) {
                 $scope.pagingRange.push(i);
             }
         }
@@ -155,7 +155,7 @@
 
         if ($scope.pnpsToShow.length == 0) {
             $scope.pnpsToShow = $scope.model.PatternsAndPractices;
-        
+
         }
         $scope.currListSlice = $scope.pnpsToShow.slice(0, $scope.itemsPerPage);
         $scope.orderByViews();
@@ -163,14 +163,14 @@
 
         for (var i = 0, l = $scope.model.PatternsAndPractices.length; i < l; i++) {
             $scope.model.PatternsAndPractices[i].TechnicalTitle = $scope.model.PatternsAndPractices[i].Title.replace(/ /g, "") + "-DetailLink";
-            if ($scope.model.PatternsAndPractices[i].ExternalLink.indexOf(window.location.host) != -1 || $scope.model.PatternsAndPractices[i].ExternalLink.startsWith('patterns-and-practices')) {
+            if ($scope.model.PatternsAndPractices[i].ExternalLink.indexOf(window.location.host) != -1 || $scope.model.PatternsAndPractices[i].ExternalLink.indexOf('patterns-and-practices') === 0) {
                 $scope.model.PatternsAndPractices[i].External = "";
             } else {
                 $scope.model.PatternsAndPractices[i].External = "_external";
             }
-            if ($scope.model.TopViewed.indexOf($scope.model.PatternsAndPractices[i].Id) != -1) {
-                $scope.topViewedPnPs.push($scope.model.PatternsAndPractices[i]);
-            }
+            //if ($scope.model.TopViewed.indexOf($scope.model.PatternsAndPractices[i].Id) != -1) {
+            //    $scope.topViewedPnPs.push($scope.model.PatternsAndPractices[i]);
+            //}
         }
         if (window.innerWidth >= 900) {
             $scope.pagesToShow = 5;
@@ -182,6 +182,14 @@
         $scope.handlePaging();
         $("#code-sample-social").attr("data-url", window.location.href);
         $("#sharelink-txt").val(window.location.href);
+
+
+        $scope.sortedItems = $scope.model.PatternsAndPractices.sort(function (a, b) {
+            return b.ViewCount30Days - a.ViewCount30Days;
+        });
+        for (var j = 0, k = 9; j < k; j++) {
+            $scope.topViewedPnPs.push($scope.sortedItems[j]);
+        }
 
     });
 
@@ -198,23 +206,23 @@
     });
 
 
-    
+
     //log a page view to the database
-    $scope.updateViewCount = function(itemId, type) {
+    $scope.updateViewCount = function (itemId, type) {
         $scope.date = new Date();
-        $.ajax('/devoffice.common/viewCount/post?itemid=' + itemId+'&type='+ type)
-            .error(function(err) {
+        $.ajax('/devoffice.common/viewCount/post?itemid=' + itemId + '&type=' + type)
+            .error(function (err) {
                 console.log("Unable to log view for item " + itemId);
 
             })
-            .success(function() {
+            .success(function () {
                 //console.log("I DID A THING! " + itemId + ", " + $scope.date);
             });
     };
 
     $scope.updatePagination = function (pageNumber) {
         $scope.currentPage = pageNumber;
-        var startItem = ($scope.currentPage-1) * $scope.itemsPerPage;
+        var startItem = ($scope.currentPage - 1) * $scope.itemsPerPage;
         $scope.currListSlice = $scope.pnpsToShow.slice(startItem, startItem + $scope.itemsPerPage);
         $scope.handlePaging();
     }
@@ -236,7 +244,7 @@
 
         $scope.getPnpsOfSelectedTypes();
         $scope.updatePagination(1);
-        
+
         $scope.updateFilterCounts();
         updateSharingUrl();
     }
@@ -270,7 +278,7 @@
         $location.search('filters', $scope.selectedTypes.join(","));
     }
 
-    $scope.updateFilterCounts = function() {
+    $scope.updateFilterCounts = function () {
 
 
         $scope.selectedLanguagesCount = $('#languages input:checkbox:checked').length;
@@ -285,11 +293,11 @@
 
     function updateSharingUrl() {
 
-            $("#code-sample-social").attr("data-url", window.location.href);
-            $("#sharelink-txt").val(window.location.href);
+        $("#code-sample-social").attr("data-url", window.location.href);
+        $("#sharelink-txt").val(window.location.href);
 
-            reloadAddThis();
-        }
+        reloadAddThis();
+    }
 
     $(".share-button").click(function (e) {
         e.preventDefault();
@@ -300,26 +308,26 @@
 
         }
         if ($(this).val() != "Choose filters and hit apply") {
-                $(this).focus();
-                $(this).select();
-                updateSharingUrl();
-            }
-        });
-    
-        function reloadAddThis() {
-            if (window.addthis) {
-                window.addthis = null;
-                window._adr = null;
-                window._atc = null;
-                window._atd = null;
-                window._ate = null;
-                window._atr = null;
-                window._atw = null;
-            }
-            $.getScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53e944d61ebade5f").done(function () {
-                addthis.init();
-                addthis.toolbox('#code-sample-social');
-                $(".social-share-container").show();
-            });
+            $(this).focus();
+            $(this).select();
+            updateSharingUrl();
         }
+    });
+
+    function reloadAddThis() {
+        if (window.addthis) {
+            window.addthis = null;
+            window._adr = null;
+            window._atc = null;
+            window._atd = null;
+            window._ate = null;
+            window._atr = null;
+            window._atw = null;
+        }
+        $.getScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53e944d61ebade5f").done(function () {
+            addthis.init();
+            addthis.toolbox('#code-sample-social');
+            $(".social-share-container").show();
+        });
+    }
 }]);
