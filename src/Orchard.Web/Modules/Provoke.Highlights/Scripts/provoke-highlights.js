@@ -420,18 +420,13 @@
                     // do nothing
                 }
             }
-
-
-            //$scope.makeStepDescriptionsHtml = function() {
-            //    for (var i = 0; i < $scope.tasks.length; i++) {
-            //        for (var j = 0; j < $scope.tasks[i].steps.length; j++) {
-            //            var tempDescription = $scope.tasks[i].steps[j].description;
-            //            $scope.tasks[i].steps[j].description = $sce.trustAsHtml(tempDescription);
-            //        }
-
-
-            //    }
-            //}
+            
+            //Convert the step description to HTML link if there is a URL present
+            $scope.convertToHTML = function (description) {
+                replacePattern = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
+                replacedText = description.replace(replacePattern, '<a title="$1" href="$1" target="_blank">$1</a>');
+                return $sce.trustAsHtml(replacedText);
+            };
 
             // Calculate the position of the tooltip based on the dimensions of the image
             function setTooltipPosition(obj) {

@@ -19,18 +19,19 @@ using Orchard.Autoroute.Services;
 namespace DevOffice.Secret
 {
     [OrchardFeature("DevOffice.Secret")]
-    public class Migrations:DataMigrationImpl
+    public class Migrations : DataMigrationImpl
     {
         private readonly IContentManager _contentManager;
         private readonly IMenuService _menuService;
         private readonly IAliasService _aliasService;
         private readonly IAutorouteService _autorouteService;
         private readonly IWidgetsService _widgetsService;
-                public Migrations(
-            IContentManager contentManager, 
-            IMenuService menuService, 
-            IAliasService aliasService, 
-            IAutorouteService autorouteService, 
+
+        public Migrations(
+            IContentManager contentManager,
+            IMenuService menuService,
+            IAliasService aliasService,
+            IAutorouteService autorouteService,
             IWidgetsService widgetsService)
         {
             _contentManager = contentManager;
@@ -44,6 +45,7 @@ namespace DevOffice.Secret
         public int Create()
         {
             #region Create Secret Form Widget
+
             //Create Secret Form Layer
             var secretFormPageLayer = _widgetsService.CreateLayer("Cloud Storage Form Page", "Widgets on this layer are displayed on the Cloud Storage Form page", "url('~/programs/officecloudstorageform')");
 
@@ -64,15 +66,16 @@ namespace DevOffice.Secret
             ContentDefinitionManager.AlterTypeDefinition(
                 "SecretFormWidget",
                 cfg => cfg
-                .WithPart("SecretFormWidgetPart")
-                .WithPart("CommonPart")
-                .WithPart("WidgetPart")
-                .WithPart("LocalizationPart")
-                .WithSetting("Stereotype", "Widget"));
+                    .WithPart("SecretFormWidgetPart")
+                    .WithPart("CommonPart")
+                    .WithPart("WidgetPart")
+                    .WithPart("LocalizationPart")
+                    .WithSetting("Stereotype", "Widget"));
 
             var secretFormWidget = _widgetsService.CreateWidget(secretFormPageLayer.Id, "SecretFormWidget", "Cloud Storage Form Widget", "1", "Content");
             secretFormWidget.RenderTitle = false;
             _contentManager.Publish(secretFormWidget.ContentItem);
+
             #endregion
 
             #region Create Partners Requirements page
@@ -125,12 +128,13 @@ namespace DevOffice.Secret
                         .WithSetting("AutorouteSettings.AutomaticAdjustmentOnEdit", "false")
                         .WithSetting("AutorouteSettings.PatternDefinitions", "[{Name:'Title', Pattern: '{Content.Slug}', Description: '/page-title'}]")
                         .WithSetting("AutorouteSettings.DefaultPatternIndex", "0")));
+
             #endregion
 
             #region Create Overview page
 
             //Create Overview content part
-             ContentDefinitionManager.AlterPartDefinition(
+            ContentDefinitionManager.AlterPartDefinition(
                 "OverviewPagePart", builder => builder
                     .WithField("BannerImage", cfg => cfg
                         .OfType(typeof(MediaLibraryPickerField).Name)
@@ -157,7 +161,7 @@ namespace DevOffice.Secret
                         .OfType(typeof(TextField).Name)
                         .WithDisplayName("Row 1 Link Text")
                         .WithSetting("TextFieldSettings.Hint", "Text to be displayed in link."))
-                    
+
                     .WithField("Row1TileImage", cfg => cfg
                         .OfType(typeof(MediaLibraryPickerField).Name)
                         .WithDisplayName("Row 1 Tile Image")
@@ -199,7 +203,7 @@ namespace DevOffice.Secret
                     .WithField("Row1Tile2LinkText", cfg => cfg
                         .OfType(typeof(TextField).Name)
                         .WithDisplayName("Row 1 Tile 2 Link Text"))
-                   
+
                     .WithField("Row2Title", cfg => cfg
                         .OfType(typeof(TextField).Name)
                         .WithDisplayName("Row 2 Title")
@@ -236,13 +240,13 @@ namespace DevOffice.Secret
                     .WithField("Row2TileLinkText", cfg => cfg
                         .OfType(typeof(TextField).Name)
                         .WithDisplayName("Row 2 Tile Link Text"))
-                         .WithField("Row2Tile2Image", cfg => cfg
+                    .WithField("Row2Tile2Image", cfg => cfg
                         .OfType(typeof(MediaLibraryPickerField).Name)
                         .WithDisplayName("Row 2 Tile 2 Image")
                         .WithSetting("MediaLibraryPickerFieldSettings.AllowedExtensions", "jpg png gif")
                         .WithSetting("MediaLibraryPickerFieldSettings.Hint", "The image to be displayed in the top left corner of the tile."))
-                   
-                        .WithField("Row2Tile2Title", cfg => cfg
+
+                    .WithField("Row2Tile2Title", cfg => cfg
                         .OfType(typeof(TextField).Name)
                         .WithDisplayName("Row 2 Tile 2 Title")
                         .WithSetting("TextFieldSettings.Hint", "A title for the tile to the right of the body.")
@@ -258,7 +262,7 @@ namespace DevOffice.Secret
                         .OfType(typeof(TextField).Name)
                         .WithDisplayName("Row 2 Tile 2 Link Text"))
 
-                   
+
 
                 );
 
@@ -279,13 +283,15 @@ namespace DevOffice.Secret
                         .WithSetting("AutorouteSettings.AutomaticAdjustmentOnEdit", "false")
                         .WithSetting("AutorouteSettings.PatternDefinitions", "[{Name:'Title', Pattern: '{Content.Slug}', Description: '/page-title'}]")
                         .WithSetting("AutorouteSettings.DefaultPatternIndex", "0")));
+
             #endregion
 
-            return  1;
+            return 1;
         }
 
-        public int UpdateFrom1() {
-            
+        public int UpdateFrom1()
+        {
+
             SchemaBuilder.CreateTable("SharePointSettingsPartRecord",
                 table => table
                     .ContentPartRecord()
@@ -294,25 +300,27 @@ namespace DevOffice.Secret
                     .Column<string>("ContainingWebUrl")
                     .Column<string>("TargetListName")
                     .Column<string>("TargetListItemMetaType")
-            );
+                );
 
             return 2;
         }
 
-        public int UpdateFrom2() {
+        public int UpdateFrom2()
+        {
             ContentDefinitionManager.AlterPartDefinition(
-   "OverviewPagePart", builder => builder
+                "OverviewPagePart", builder => builder
 
-       .WithField("IntroText", cfg => cfg
-           .OfType(typeof(TextField).Name)
-           .WithDisplayName("Intro Text")
-           .WithSetting("TextFieldSettings.Flavor", "textarea")
-           .WithSetting("TextFieldSettings.Hint", "Text displayed beneath the banner, but above the rows.")));
+                    .WithField("IntroText", cfg => cfg
+                        .OfType(typeof(TextField).Name)
+                        .WithDisplayName("Intro Text")
+                        .WithSetting("TextFieldSettings.Flavor", "textarea")
+                        .WithSetting("TextFieldSettings.Hint", "Text displayed beneath the banner, but above the rows.")));
             return 3;
         }
 
 
-        public int UpdateFrom3() {
+        public int UpdateFrom3()
+        {
 
             SchemaBuilder.AlterTable("SharePointSettingsPartRecord", table =>
             {
@@ -340,11 +348,11 @@ namespace DevOffice.Secret
             ContentDefinitionManager.AlterTypeDefinition(
                 "ActivityFeedAPIFormWidget",
                 cfg => cfg
-                .WithPart(typeof(ActivityFeedAPIFormWidgetPart).Name)
-                .WithPart("CommonPart")
-                .WithPart("WidgetPart")
-                .WithPart("LocalizationPart")
-                .WithSetting("Stereotype", "Widget"));
+                    .WithPart(typeof(ActivityFeedAPIFormWidgetPart).Name)
+                    .WithPart("CommonPart")
+                    .WithPart("WidgetPart")
+                    .WithPart("LocalizationPart")
+                    .WithSetting("Stereotype", "Widget"));
 
             var activityFeedAPIFormWidget = _widgetsService.CreateWidget(activityFeedAPIFormLayer.Id, "ActivityFeedAPIFormWidget", "Activity Feed API Form Widget", "1", "Content");
             activityFeedAPIFormWidget.RenderTitle = false;
@@ -355,82 +363,13 @@ namespace DevOffice.Secret
             return 4;
         }
 
-        public int UpdateFrom4() {
+        public int UpdateFrom4()
+        {
 
-            SchemaBuilder.CreateTable(typeof (EmailSettingsPartRecord).Name, table => table
+            SchemaBuilder.CreateTable(typeof(EmailSettingsPartRecord).Name, table => table
                 .ContentPartRecord()
                 .Column<string>("SendGridAccountName")
                 .Column<string>("SendGridAccountPassword")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 .Column<string>("ActivityFeedApiFromEmailAddress")
                 .Column<string>("ActivityFeedApiFromEmailTitle")
                 .Column<string>("ActivityFeedApiEmailSubject")
@@ -444,5 +383,54 @@ namespace DevOffice.Secret
 
             return 5;
         }
-    }    
+
+
+
+
+        public int UpdateFrom5()
+        {
+
+            #region Creating custom part - RowWithTiles
+
+            SchemaBuilder.CreateTable("RowWithTilesRecord", table => table
+                .ContentPartRecord()
+                .Column<string>("TilesJson", column => column.Unlimited())
+                );
+
+            ContentDefinitionManager.AlterPartDefinition(
+                typeof(RowWithTilesPart).Name, cfg => cfg.Attachable());
+
+            ContentDefinitionManager.AlterTypeDefinition(
+               "OverviewPage", cfg => cfg
+                   .WithPart("RowWithTilesPart"));
+
+
+
+            #endregion
+            return 6;
+
+        }
+
+        public int UpdateFrom6()
+        {
+            SchemaBuilder.CreateTable("SingleRowWithTilesRecord", table => table
+              .Column<int>("Id", column => column.PrimaryKey().Identity())
+              .Column<int>("RowWithTilesRecord_id")
+              .Column<string>("Title")
+              .Column<string>("Body", col => col.Unlimited())
+              .Column<string>("ExternalLink")
+              .Column<int>("SortOrder")
+              .Column<string>("Tile1Title")
+              .Column<string>("Tile1ExternalLink")
+              .Column<string>("Tile1Thumbnail")
+              .Column<string>("Tile2Title")
+              .Column<string>("Tile2ExternalLink")
+              .Column<string>("Tile2Thumbnail")
+              .Column<string>("LinkText"));
+
+            return 7;
+        }
+
+
+    }
 }

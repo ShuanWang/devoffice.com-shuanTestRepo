@@ -14,7 +14,6 @@
     $scope.pagesToShow = 3;
     $scope.currentPage = 1;
     $scope.model = "";
-    $scope.topViewedPnPs = [];
     $scope.showFirstPage = false;
     $scope.showLastPage = false;
     $scope.pagingRange = [];
@@ -159,9 +158,9 @@
             } else {
                 $scope.model.AllTrainingItems[i].External = "_external";
             }
-            if ($scope.model.TopViewed.indexOf($scope.model.AllTrainingItems[i].Id) != -1) {
-                $scope.topViewed.push($scope.model.AllTrainingItems[i]);
-            }
+            //if ($scope.model.TopViewed.indexOf($scope.model.AllTrainingItems[i].Id) != -1) {
+            //    $scope.topViewed.push($scope.model.AllTrainingItems[i]);
+            //}
         }
         if (window.innerWidth >= 900) {
             $scope.pagesToShow = 5;
@@ -174,7 +173,12 @@
         $("#sharelink-txt").val(window.location.href);
 
 
-
+        $scope.sortedItems = $scope.model.AllTrainingItems.sort(function (a, b) {
+            return b.ViewCount30Days - a.ViewCount30Days;
+        });
+        for (var j = 0, k = 9; j < k; j++) {
+            $scope.topViewed.push($scope.sortedItems[j]);
+        }
     });
 
 
