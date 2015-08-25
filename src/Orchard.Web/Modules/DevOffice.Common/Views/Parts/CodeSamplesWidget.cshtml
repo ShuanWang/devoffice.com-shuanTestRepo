@@ -59,8 +59,8 @@ else
                         <div class="glyphicon glyphicon-star toprated responsive-glyphIcon" style=""></div>
                         <div class="col-md-10 col-xs-10 toprated-content" style="">
                             <div class="tablecell">
-                                <a ng-show="topViewed.Title.split(' ').length > 1" href="{{topViewed.ExternalLink}}">{{topViewed.Title}}</a>
-                                <a ng-show="topViewed.Title.split(' ').length <= 1" href="{{topViewed.ExternalLink}}" style="">{{topViewed.Title}}</a>
+                                <a ng-show="topViewed.Title.split(' ').length > 1" class="ng-cloak" href="{{topViewed.ExternalLink}}">{{topViewed.Title}}</a>
+                                <a ng-show="topViewed.Title.split(' ').length <= 1" class="ng-cloak" href="{{topViewed.ExternalLink}}" style="">{{topViewed.Title}}</a>
                             </div>
                         </div>
                     </li>
@@ -100,21 +100,21 @@ else
                                         <a data-toggle="collapse" href="#types" data-parent="#accordion" aria-expanded="true" aria-controls="types" class="collapsed">
                                             <span class="filter-category-icon icon_expand"></span>Types
                                         </a>
-                                        <span ng-show="selectedTypesCount > 0" class="filter-list-count" style="">{{selectedTypesCount}}</span>
+                                        <span ng-show="selectedTypesCount > 0" class="filter-list-count ng-cloak" style="">{{selectedTypesCount}}</span>
                                     </h3>
 
                                     <ul class="col-xs-12 panel-collapse collapse" id="types" role="tabpanel" aria-labelledby="Code Samples Types">
 
                                         <li style="padding:0 5px;" ng-repeat="type in model.Types" class="col-md-6 col-sm-4 col-xs-12">
-                                            <input style="margin-right:5px" type="checkbox" value="{{type}}" ng-click="updateSelectedTypes(type)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(type.toLowerCase()) != -1" />
+                                            <input style="margin-right:5px" type="checkbox" class="ng-cloak" value="{{type}}" ng-click="updateSelectedTypes(type)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(type.toLowerCase()) != -1" />
                                             {{type}}
                                         </li>
 
                                     </ul>
                                 </div>
-
-
-
+                                
+                             
+                                
 
                                 @* Collapsible - Language Filters*@
                                 <div class="filter-list clearfix panel panel-default">
@@ -122,12 +122,12 @@ else
                                         <a data-toggle="collapse" href="#languages" data-parent="#accordion" aria-expanded="False" aria-controls="languages">
                                             <span class="filter-category-icon icon_expand"></span>Language
                                         </a>
-                                        <span ng-show="selectedLanguagesCount > 0" class="filter-list-count" style="">{{selectedLanguagesCount}}</span>
+                                        <span ng-show="selectedLanguagesCount > 0" class="filter-list-count ng-cloak" style="">{{selectedLanguagesCount}}</span>
                                     </h3>
 
                                     <ul class="col-xs-12 panel-collapse collapse" id="languages" role="tabpanel" aria-labelledby="Code Samples Languages">
-                                        <li style="padding:0 5px;" ng-repeat="language in model.Languages" class="col-md-6 col-sm-4 col-xs-12">
-                                            <input style="margin-right:5px" type="checkbox" value="{{language}}" ng-click="updateSelectedTypes(language)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(language.toLowerCase()) != -1" />
+                                        <li style="padding:0 5px;" ng-repeat="language in model.Languages" class="col-md-6 col-sm-4 col-xs-12 ng-cloak">
+                                            <input style="margin-right:5px" type="checkbox" value="{{language}}" class="ng-cloak" ng-click="updateSelectedTypes(language)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(language.toLowerCase()) != -1" />
                                             {{language}}
                                         </li>
                                     </ul>
@@ -139,11 +139,11 @@ else
                                         <a data-toggle="collapse" href="#services" data-parent="#accordion" aria-expanded="False" aria-controls="services">
                                             <span class="filter-category-icon icon_expand"></span>Services
                                         </a>
-                                        <span ng-show="selectedServicesCount > 0" class="filter-list-count" style="">{{selectedServicesCount}}</span>
+                                        <span ng-show="selectedServicesCount > 0" class="filter-list-count ng-cloak" style="">{{selectedServicesCount}}</span>
                                     </h3>
                                     <ul class="col-xs-12 panel-collapse collapse" id="services" role="tabpanel" aria-labelledby="Code Samples Services">
-                                        <li style="padding:0 5px;" ng-repeat="service in model.Services" class="col-md-6 col-sm-4 col-xs-12">
-                                            <input style="margin-right:5px" type="checkbox" value="{{service}}" ng-click="updateSelectedTypes(service)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(service.toLowerCase()) != -1" />
+                                        <li style="padding:0 5px;" ng-repeat="service in model.Services" class="col-md-6 col-sm-4 col-xs-12 ng-cloak">
+                                            <input style="margin-right:5px" type="checkbox" value="{{service}}" class="ng-cloak" ng-click="updateSelectedTypes(service)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(service.toLowerCase()) != -1" />
                                             {{service}}
                                         </li>
                                     </ul>
@@ -155,11 +155,11 @@ else
                                         <a data-toggle="collapse" href="#platforms" data-parent="#accordion" aria-expanded="False" aria-controls="platforms">
                                             <span class="filter-category-icon icon_expand"></span>Platform
                                         </a>
-                                        <span ng-show="selectedPlatformsCount > 0" class="filter-list-count" style="">{{selectedPlatformsCount}}</span>
+                                        <span ng-show="selectedPlatformsCount > 0" class="filter-list-count ng-cloak" style="">{{selectedPlatformsCount}}</span>
                                     </h3>
                                     <ul class="col-xs-12 panel-collapse collapse" id="platforms" role="tabpanel" aria-labelledby="Code Samples Platforms">
                                         <li style="padding:0 5px;" ng-repeat="platform in model.Platforms" class="col-md-6 col-sm-4 col-xs-12">
-                                            <input style="margin-right:5px" type="checkbox" value="{{platform}}" ng-click="updateSelectedTypes(platform)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(platform.toLowerCase()) != -1" />
+                                            <input style="margin-right:5px" type="checkbox" value="{{platform}}" class="ng-cloak" ng-click=" updateselectedtypes(platform)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(platform.toLowerCase()) != -1" />
                                             {{platform}}
                                         </li>
                                     </ul>
@@ -171,11 +171,11 @@ else
                                         <a data-toggle="collapse" href="#sources" data-parent="#accordion" aria-expanded="False" aria-controls="sources">
                                             <span class="filter-category-icon icon_expand"></span>Source
                                         </a>
-                                        <span ng-show="selectedSourcesCount > 0" class="filter-list-count" style="">{{selectedSourcesCount}}</span>
+                                        <span ng-show="selectedSourcesCount > 0" class="filter-list-count ng-cloak" style="">{{selectedSourcesCount}}</span>
                                     </h3>
                                     <ul class="col-xs-12 panel-collapse collapse" id="sources" role="tabpanel" aria-labelledby="Code Samples Source Repositories">
                                         <li style="padding:0 5px;" ng-repeat="source in model.SourceReps" class="col-md-6 col-sm-4 col-xs-12">
-                                            <input style="margin-right:5px" type="checkbox" value="{{source}}" ng-click="updateSelectedTypes(source)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(source.toLowerCase()) != -1" />
+                                            <input style="margin-right:5px" type="checkbox" value="{{source}}" class="ng-cloak" ng-click="updateSelectedTypes(source)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(source.toLowerCase()) != -1" />
                                             {{source}}
                                         </li>
                                     </ul>
@@ -187,11 +187,11 @@ else
                                         <a data-toggle="collapse" href="#products" data-parent="#accordion" aria-expanded="False" aria-controls="produts">
                                             <span class="filter-category-icon icon_expand"></span>Products
                                         </a>
-                                        <span ng-show="selectedProductsCount > 0" class="filter-list-count" style="">{{selectedProductsCount}}</span>
+                                        <span ng-show="selectedProductsCount > 0" class="filter-list-count ng-cloak" style="">{{selectedProductsCount}}</span>
                                     </h3>
                                     <ul class="col-xs-12 panel-collapse collapse" id="products" role="tabpanel" aria-labelledby="Code Samples Products">
                                         <li style="padding:0 5px;" ng-repeat="product in model.Products" class="col-md-6 col-sm-4 col-xs-12">
-                                            <input style="margin-right:5px" type="checkbox" value="{{product}}" ng-click="updateSelectedTypes(product)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(product.toLowerCase()) != -1" />
+                                            <input style="margin-right:5px" type="checkbox" value="{{product}}" class="ng-cloak" ng-click=" updateselectedtypes(product)" ng-model="selectedTypes" ng-checked="selectedTypes.indexOf(product.toLowerCase()) != -1" />
                                             {{product}}
                                         </li>
                                     </ul>
@@ -220,129 +220,129 @@ else
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="top-link-block" class="hidden hidden-md">
-                <div class="top-link" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-                    <a href="#"> <i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
                 </div>
-            </div><!-- /top-link-block -->
+                <div id="top-link-block" class="hidden hidden-md">
+                    <div class="top-link" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+                        <a href="#"> <i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
+                    </div>
+                </div><!-- /top-link-block -->
 
-            <div class="col-sm-12 col-md-8 nopad" id="CodeSamplesList">
+                <div class="col-sm-12 col-md-8 nopad" id="CodeSamplesList">
 
 
-                <div id="OrderedResults" class="bg-sorter">
-                    <div class="row filter-bar">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <span class="pull-left ff-light sorter-label">Sort by:</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <a ng-click="orderByViews()" class="bg-white f-gray  ff-light sorter popular">
-                                Most popular
-                                <img id="mostPopularIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
-                                <img id="mostPopularIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <a ng-click="orderByDate()" class="bg-white f-gray  ff-light pull-right sorter recent">
-                                Most recent
-                                <img id="mostRecentIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
-                                <img id="mostRecentIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                    <div id="OrderedResults" class="bg-sorter">
+                        <div class="row filter-bar">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <span class="pull-left ff-light sorter-label">Sort by:</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <a ng-click="orderByViews()" class="bg-white f-gray  ff-light sorter popular">
+                                    Most popular
+                                    <img id="mostPopularIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                    <img id="mostPopularIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <a ng-click="orderByDate()" class="bg-white f-gray  ff-light pull-right sorter recent">
+                                    Most recent
+                                    <img id="mostRecentIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
+                                    <img id="mostRecentIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
 
-                            </a>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
 
-                <ul ng-show="codeSamplesToShow.length > 0" class="col-md-12 eventlist upcoming-events" role="list" aria-label="Code Samples">
+                    <ul ng-show="codeSamplesToShow.length > 0" class="col-md-12 eventlist upcoming-events" role="list" aria-label="Code Samples">
 
-                    <li ng-repeat="codeSample in currListSlice" class="col-lg-12 event-box-details collapse in" role="listitem" aria-label="{{codeSample.Title}}" id="permalinkTag">
-                        <div class="code-event">
-                            <div class="event-info">
-                                <div class="code-title">
-                                    <div class="event-icon code-sample col-xs-2">
+                        <li ng-repeat="codeSample in currListSlice" class="col-lg-12 event-box-details collapse in ng-cloak" role="listitem" aria-label="{{codeSample.Title}}" id="permalinkTag">
+                            <div class="code-event">
+                                <div class="event-info">
+                                    <div class="code-title">
+                                        <div class="event-icon code-sample col-xs-2">
 
-                                        <img ng-show="codeSample.Image.length > 0" src="{{codeSample.Image}}" alt="{{codeSample.Title}} Icon" class="img-responsive" />
+                                            <img ng-show="codeSample.Image.length > 0" src="{{codeSample.Image}}" alt="{{codeSample.Title}} Icon" class="img-responsive ng-cloak" />
 
-                                    </div>
-                                    <div class="col-xs-10 name cp1" style="height:35px;">{{codeSample.Title}}</div>
-                                    <div class="register-now height40 col-md-10 col-sm-8 col-xs-10">
-                                        <div data-pane="detailLinkId" class="description height40">{{codeSample.SubText}}</div>
+                                        </div>
+                                        <div class="col-xs-10 name cp1 ng-cloak" style="height:35px;">{{codeSample.Title}}</div>
+                                        <div class="register-now height40 col-md-10 col-sm-8 col-xs-10">
+                                            <div data-pane="detailLinkId" class="description height40 ng-cloak">{{codeSample.SubText}}</div>
 
-                                    </div>
-                                    <div class="col-xs-10 event-links">
-                                        <span class="col-xs-12 col-sm-3" style="padding-left:0;" ng-show="codeSample.ViewCount > 1 || codeSample.ViewCount <= 0">{{codeSample.ViewCount}} views</span>
-                                        <span class="col-xs-12 col-sm-3" style="padding-left:0;" ng-show="codeSample.ViewCount == 1">{{codeSample.ViewCount}} view</span>
-                                        <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
-                                        <a data-bind="attr: { href: Url }" href="{{codeSample.ExternalLink}}" target="{{codeSample.External}}" role="link" id="{{codeSample.TechnicalTitle}}" class="pull-right ff-semibold" ng-click="updateViewCount(codeSample.Id, 'code-samples')">
-                                            VIEW
-                                            <span class="continue icon_seemore"></span>
-                                        </a>
-                                    </div>
-                                </div>
-
-
-                                <div class="details">
-
-                                </div>
-                            </div>
-
-
-                            <div ng-show="codeSample.Links.length > 0" class="related-resources row">
-                                <div class="col-sm-2 resource-text">
-                                    Resources
-                                </div>
-                                <div class="col-sm-10 resource-row">
-                                    <div class="row">
-                                        <div ng-repeat="link in codeSample.Links" class="resource-line col-xs-3">
-                                            <a href="{{link.Url}}">
-                                                <span class="link-icon col-xs-3 {{'icon_'+link.Type+'_codeSample'}}"></span>
-                                                <div class="link-title col-xs-9">{{link.Title}}</div>
+                                        </div>
+                                        <div class="col-xs-10 event-links">
+                                            <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount > 1 || codeSample.ViewCount <= 0">{{codeSample.ViewCount}} views</span>
+                                            <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount == 1">{{codeSample.ViewCount}} view</span>
+                                            <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6 ng-cloak">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
+                                            <a data-bind="attr: { href: Url }" href="{{codeSample.ExternalLink}}" target="{{codeSample.External}}" role="link" id="{{codeSample.TechnicalTitle}}" class="pull-right ff-semibold ng-cloak" ng-click="updateViewCount(codeSample.Id, 'code-samples')">
+                                                VIEW
+                                                <span class="continue icon_seemore"></span>
                                             </a>
                                         </div>
                                     </div>
+
+
+                                    <div class="details">
+
+                                    </div>
                                 </div>
+
+
+                                <div ng-show="codeSample.Links.length > 0" class="related-resources row">
+                                    <div class="col-sm-2 resource-text">
+                                        Resources
+                                    </div>
+                                    <div class="col-sm-10 resource-row">
+                                        <div class="row">
+                                            <div ng-repeat="link in codeSample.Links" class="resource-line col-xs-3">
+                                                <a href="{{link.Url}}" class="ng-cloak">
+                                                    <span class="link-icon col-xs-3 ng-cloak {{'icon_'+link.Type+'_codeSample'}}"></span>
+                                                    <div class="link-title col-xs-9 ng-cloak">{{link.Title}}</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+                        </li>
 
-                        </div>
-                    </li>
+                    </ul>
 
-                </ul>
-
-                <div class="pull-right paging-container" ng-show="pageCount() > 1">
-                    <a class="page-number" ng-show="currentPage> 1" ng-click="updatePagination(currentPage - 1)" class="prev-link ff-semibold">
+                    <div class="pull-right paging-container" ng-show="pageCount() > 1">
+                        <a class="page-number" ng-show="currentPage> 1" ng-click="updatePagination(currentPage - 1)" class="prev-link ff-semibold">
                         <span class="continue icon_seemore flipped"></span>
-                        <span class="hidden-xs">Previous</span>
-                    </a>
-                    <a class="page-number" ng-show="showFirstPage" ng-click="updatePagination(1)">1</a>
-                    <span class="page-number" ng-show="showStartEllipsis">...</span>
-                    <span class="page-number" ng-repeat="i in pagingRange">
-                        <a ng-show="i==currentPage" class="circled-page paging"> {{i}}</a>
-                        <a ng-hide="i==currentPage" ng-click="updatePagination(i)" class="paging">{{i}}</a>
-                    </span>
-                    <span class="page-number" ng-show="showEndEllipsis">...</span>
-                    <a class="page-number" ng-show="showLastPage" ng-click="updatePagination(pageCount())">{{pageCount()}}</a>
-                    <a ng-show="currentPage < pageCount()" ng-click="updatePagination(currentPage + 1)" class="next-link ff-semibold">
-                        <span class="hidden-xs">
-                            Next
+                            <span class="hidden-xs">Previous</span>
+                        </a>
+                        <a class="page-number" ng-show="showFirstPage" ng-click="updatePagination(1)">1</a>
+                        <span class="page-number" ng-show="showStartEllipsis">...</span>
+                        <span class="page-number" ng-repeat="i in pagingRange">
+                            <a ng-show="i==currentPage" class="circled-page paging ng-cloak"> {{i}}</a>
+                            <a ng-hide="i==currentPage" ng-click="updatePagination(i)" class="paging ng-cloak">{{i}}</a>
                         </span>
+                        <span class="page-number" ng-show="showEndEllipsis">...</span>
+                        <a class="page-number ng-cloak" ng-show="showLastPage" ng-click="updatePagination(pageCount())">{{pageCount()}}</a>
+                        <a ng-show="currentPage < pageCount()" ng-click="updatePagination(currentPage + 1)" class="next-link ff-semibold ng-cloak">
+                            <span class="hidden-xs">
+                                Next
+                            </span>
                         <span class="continue icon_seemore"></span>
-                    </a>
-                </div>
+                        </a>
+                    </div>
 
 
-                <ul ng-show="codeSamplesToShow.length <= 0" class="col-md-12 eventlist upcoming-events" role="list">
-                    <li class="container collapse in no-results-message-container">
-                        <h4 class="col-md-12 bg-primary no-results-message">There are no code samples that match your filter selection.</h4>
-                    </li>
-                </ul>
+                    <ul ng-show="codeSamplesToShow.length <= 0" class="col-md-12 eventlist upcoming-events" role="list">
+                        <li class="container collapse in no-results-message-container">
+                            <h4 class="col-md-12 bg-primary no-results-message">There are no code samples that match your filter selection.</h4>
+                        </li>
+                    </ul>
 
+                    </div>
+         
             </div>
 
         </div>
-
-    </div>
 
 
 
