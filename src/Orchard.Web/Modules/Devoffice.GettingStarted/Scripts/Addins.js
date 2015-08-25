@@ -221,6 +221,7 @@ function selectMore(selectedClient, selectedShape) {
 
     switch (selectedShape) {
         case 'content':
+            $("#buildList-AppType").html("Content");
             $('#more-github').attr('href', content.overlaybottom);
             if (selectedClient == 'excel') {
                 $('#more-playground').attr('href', content.overlaytop.excel);
@@ -232,6 +233,7 @@ function selectMore(selectedClient, selectedShape) {
             break;
 
         case 'taskPane':
+            $("#buildList-AppType").html("Task pane");
             $('#more-github').attr('href', taskPane.overlaybottom);
             if (selectedClient == 'excel') {
                 $('#more-playground').attr('href', taskPane.overlaytop.excel);

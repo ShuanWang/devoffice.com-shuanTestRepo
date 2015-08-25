@@ -75,7 +75,7 @@ function ratingDevX(divLoad, folder) {
 		})
 		
 		$(".closeSmallWhite").click(function() {
-			$("#responsiveRating").removeClass("show");
+		    closeRating();
 		})
 
 		function updateCharCount() {
