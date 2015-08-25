@@ -60,8 +60,8 @@ function CardTracker(cardsContainerID, navBarID) {
 			    _animateCard(cardIDs[i]);
 		    }
 			var item = $(listItems[i]);
-			item.toggleClass(doneClassName, inView || aboveTop);
-		}
+			item.toggleClass(doneClassName, aboveMiddle);
+        }
 		//sticky nav bar
 		$("#"+navBarID).toggleClass('navbar-fixed-top', doctop > 70);
 
@@ -288,27 +288,33 @@ function CardTracker(cardsContainerID, navBarID) {
 
     //Return an object that represents where the element is vertically on the page
 	function _viewPos(id) {
-		id = id[0] == "#" ?  id : "#" + id;
-		var $el = $(id);
-		var $window = $(window);
+	    id = id[0] == "#" ? id : "#" + id;
+	    var $el = $(id);
+	    var $window = $(window);
 
-		var docViewTop = $window.scrollTop();
-		var docViewBottom = docViewTop + $window.height();
+	    var docViewTop = $window.scrollTop();
+	    var docViewBottom = docViewTop + $(window).height();
 
-		var elTop = $el.offset().top;
-		var elBottom = elTop + $el.height();
-		var topInView =  (elTop >= docViewTop) && (elTop <= docViewBottom);
-		var bottomInView = (elBottom >= docViewTop) && (elBottom <= docViewBottom);
-		var aboveMiddleTopInView = (elTop >= (docViewBottom - docViewTop) / 2);
+	    var elTop = $el.offset().top;
+	    var elBottom = elTop + $el.height();
+	    var topInView = (elTop >= docViewTop) && (elTop <= docViewBottom);
+	    var bottomInView = (elBottom >= docViewTop) && (elBottom <= docViewBottom);
+	    var aboveMiddleTopInView = (elTop <= ((docViewBottom - docViewTop) / 2) + docViewTop);  //top of element is past the middle of the window
+	    var wholeScreen = (elTop <= docViewTop) && (elBottom >= docViewBottom); //element is taking up entire page and is running above and below window       
 
-		var elVisible = _isVisible(id);
+	    var elVisible = _isVisible(id);
+	    var view = {
+	        inViewFull: (topInView && bottomInView && elVisible),
+	        inViewPartial: (((topInView || bottomInView) || (wholeScreen)) && elVisible),
+	        aboveTop: (elBottom <= docViewTop),
+	        belowBottom: (elTop >= docViewBottom),
+	        aboveMiddle: aboveMiddleTopInView,
+	        wholeScreen: wholeScreen
+	    };
 
-		return { inViewFull: (topInView && bottomInView && elVisible),
-		    inViewPartial: ((topInView || bottomInView) && elVisible),
-		    aboveTop: (elBottom <= docViewTop),
-		    belowBottom: (elTop >= docViewBottom),
-		    aboveMiddle: aboveMiddleTopInView
-		};
+	    //console.log(id, JSON.stringify(view));
+
+	    return view;
 	}
 
 	//Return whether the element is visible (and its parent elements)
