@@ -77,7 +77,7 @@ function CardTracker(cardsContainerID, navBarID) {
 	    //Add some animation when user clicks on a nav item
 	    $(".navItem").click(function (e) {
 	        //e.preventDefault();
-	        this.showCard($(this).attr("href"));  //should be something like #2
+	        _showCard($(this).attr("href")); 
 	    });
 
         //Don't animate the first card
@@ -228,8 +228,8 @@ function CardTracker(cardsContainerID, navBarID) {
 	}
 
     // Scroll the specified card into view
-	this.showCard = function (id) {
-		//set id to jquery element selector if not already
+	this.showCard = _showCard = function (id) {
+	    //set id to jquery element selector if not already
 		id = id[0] == "#" ?  id : "#" + id;
 		var card = $(id);
 
