@@ -94,6 +94,9 @@
     <Content Include="Scripts\embeddedCodeSample.min.js">
       <DependentUpon>embeddedCodeSample.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\navBar.min.js">
+      <DependentUpon>navBar.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ratingsDevX\ImageSprite.png" />
     <Content Include="Scripts\ratingsDevX\jquery-1.11.3.min.js" />
     <Content Include="Scripts\ratingsDevX\rating.css" />
@@ -202,6 +205,9 @@
     </Content>
     <Content Include="Scripts\ratingsDevX\rating.min.js.map">
       <DependentUpon>rating.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\navBar.min.js.map">
+      <DependentUpon>navBar.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />
