@@ -28,6 +28,7 @@ $(document).ready(function () {
 
 $(document).scroll(function () {
     cardTracker.updateScroll();
+    feedback.updateProgress(cardTracker.lastVisibleCard());
 });
 
 function iframeLoaded() {

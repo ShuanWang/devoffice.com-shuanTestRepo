@@ -68,6 +68,7 @@
     var platformId = null;
     $(document).scroll(function () {
         cardTracker.updateScroll();
+        feedback.updateProgress(cardTracker.lastVisibleCard());
     });
     var userDontWantToSign = false;
     $(document).ready(function () {
@@ -117,7 +118,7 @@
     });
 
     //Initialize feedback control
-    var o = new ratingDevX("layout-footer", "@Url.Content("~/Modules/Devoffice.GettingStarted/Scripts/ratingsDevX")");
+    var feedback = new ratingDevX("layout-footer", "@Url.Content("~/Modules/Devoffice.GettingStarted/Scripts/ratingsDevX")");
 </script>
 <div id="main" class="container-fluid">
     <div id="myNavBar"></div>
