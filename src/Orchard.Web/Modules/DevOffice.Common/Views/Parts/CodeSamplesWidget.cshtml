@@ -274,7 +274,7 @@ else
                                         <div class="col-xs-10 event-links">
                                             <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount > 1 || codeSample.ViewCount <= 0">{{codeSample.ViewCount}} views</span>
                                             <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount == 1">{{codeSample.ViewCount}} view</span>
-                                            <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6 ng-cloak">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
+                                            <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6 ng-cloak" ng-show="{{codeSample.CleanDate}}">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
                                             <a data-bind="attr: { href: Url }" href="{{codeSample.ExternalLink}}" target="{{codeSample.External}}" role="link" id="{{codeSample.TechnicalTitle}}" class="pull-right ff-semibold ng-cloak" ng-click="updateViewCount(codeSample.Id, 'code-samples')">
                                                 VIEW
                                                 <span class="continue icon_seemore"></span>
