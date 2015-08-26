@@ -333,4 +333,19 @@ function CardTracker(cardsContainerID, navBarID) {
 	    //console.log("isInBlockingList: " + found, "for: " + id);
 	    return (found != -1);
 	}
+
+	this.lastVisibleCard = function () {
+	    var i;
+	    var maxVisibleCard = "";    //id of the card that is the last one visible on page
+	    for (i = 0; i < cardIDs.length; i++) {
+	        var cardID = cardIDs[i];
+	        if (_isVisible(cardID)) {
+	            maxVisibleCard = cardID;
+	        }
+	        if (i == blockingCards[0] + 1) {
+	            break;
+	        }
+	    }
+	    return maxVisibleCard;
+	}
 }

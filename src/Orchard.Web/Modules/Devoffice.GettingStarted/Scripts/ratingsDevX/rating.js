@@ -23,7 +23,8 @@ function ratingDevX(divLoad, folder) {
 	var pageName = document.location.href.split('\\').pop().split('/').pop().split('?')[0].split('#')[0];
 	var cookieName = "ratingDevX-" + pageName;
 	var ratingObject = {
-        page : pageName,
+	    page: pageName,
+	    pageProgress: "",           //name of the last visible card the user has seen
 		userPrompted : false,		//did user see the rating window
 		isPageHelpful : undefined,	//did they answer Yes (true) or No (false) that the page is useful
 		userComments : ""			//user's verbatim comments
@@ -41,6 +42,10 @@ function ratingDevX(divLoad, folder) {
 
 		//Load script for telemetry logging	
 		initTelemetry();
+	}
+
+	this.updateProgress = function (userProgress) {
+	    ratingObject.pageProgress = userProgress;
 	}
 
 	function setupControlHandlers() {
