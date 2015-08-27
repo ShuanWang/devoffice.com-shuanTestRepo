@@ -76,7 +76,7 @@ else
                     <div class="panel panel-default">
 
                         <div class="pnp-search-container">
-                            <input ng-model="searchText" class="pnp-search" placeholder="Search">
+                            <input ng-model="searchText" class="pnp-search" placeholder="Search" autofocus>
                             <span class="icon_search"></span>
                         </div>
                         <div style="height:10px;background-color:#f2f2f2;"></div>
@@ -236,14 +236,14 @@ else
                                 <span class="pull-left ff-light sorter-label">Sort by:</span>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <a ng-click="orderByViews()" class="bg-white f-gray  ff-light sorter popular">
+                                <a ng-click="orderByViews()" class="bg-white f-gray  ff-light sorter popular" style="cursor:pointer">
                                     Most popular
                                     <img id="mostPopularIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
                                     <img id="mostPopularIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <a ng-click="orderByDate()" class="bg-white f-gray  ff-light pull-right sorter recent">
+                                <a ng-click="orderByDate()" class="bg-white f-gray  ff-light pull-right sorter recent" style="cursor:pointer">
                                     Most recent
                                     <img id="mostRecentIcon" class="sort-icon hidden-xs" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
                                     <img id="mostRecentIconxs" class="sort-icon hidden-sm hidden-md hidden-lg" src="/Themes/DevOffice/Content/Icons/devOffice_sort_updown_13x15.png" />
@@ -274,7 +274,7 @@ else
                                         <div class="col-xs-10 event-links">
                                             <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount > 1 || codeSample.ViewCount <= 0">{{codeSample.ViewCount}} views</span>
                                             <span class="col-xs-12 col-sm-3 ng-cloak" style="padding-left:0;" ng-show="codeSample.ViewCount == 1">{{codeSample.ViewCount}} view</span>
-                                            <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6 ng-cloak">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
+                                            <span data-pane="detailLinkId" style="padding-left:0;" class=" height40 date-updated col-xs-8 col-sm-6 ng-cloak" ng-show="{{codeSample.CleanDate}}">Updated {{codeSample.CleanDate | date:'MMM d, yyyy'}}</span>
                                             <a data-bind="attr: { href: Url }" href="{{codeSample.ExternalLink}}" target="{{codeSample.External}}" role="link" id="{{codeSample.TechnicalTitle}}" class="pull-right ff-semibold ng-cloak" ng-click="updateViewCount(codeSample.Id, 'code-samples')">
                                                 VIEW
                                                 <span class="continue icon_seemore"></span>

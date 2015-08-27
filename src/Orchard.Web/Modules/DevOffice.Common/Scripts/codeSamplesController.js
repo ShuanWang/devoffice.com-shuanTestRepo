@@ -197,6 +197,12 @@ devOfficeApp.controller('codeSamplesController', ["$scope", "$filter", "$locatio
         var filteredCodeSamples = $filter('filter')($scope.codeSamplesToShow, $scope.searchText);
         $scope.codeSamplesToShow = filteredCodeSamples;
         $scope.updatePagination(1);
+        $scope.$apply();
+        
+        var searchTerms = $scope.selectedTypes.toString() + ", searchText=" + $scope.searchText;
+        if (filteredCodeSamples.length==0) {
+           ga('send', 'event', 'CodeSamples-Search-NoResults-Typing', searchTerms);
+        }
     }
 
     $scope.$watch('searchText', function () {
@@ -230,11 +236,18 @@ devOfficeApp.controller('codeSamplesController', ["$scope", "$filter", "$locatio
         else { $scope.selectedTypes.push(typeName.toLowerCase()); }
 
         $location.search('filters', $scope.selectedTypes.join(",")); //add the selected types to the url
-        $scope.$apply();
         $scope.updateFilterCounts();
         $scope.getCodeSamplesOfSelectedTypes();
         $scope.updatePagination(1);
         updateSharingUrl();
+        $scope.$apply();
+
+        //log when filters are checked
+        var searchTerms = $scope.selectedTypes.toString() + ", searchText=" + $scope.searchText;
+        if ($scope.codeSamplesToShow.length==0) {
+           ga('send', 'event', 'CodeSamples-Search-NoResults-Filters', searchTerms);
+        }
+
     }
 
     $scope.getCodeSamplesOfSelectedTypes = function () {
