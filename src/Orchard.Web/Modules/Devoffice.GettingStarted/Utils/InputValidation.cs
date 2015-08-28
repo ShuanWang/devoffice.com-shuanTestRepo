@@ -21,7 +21,8 @@ namespace Devoffice.GettingStarted.Utils
                                                              "excel",
                                                              "outlook",
                                                              "powerpoint",
-                                                             "word" 
+                                                             "word",
+                                                             "onedrive"
                                                  };
 
         public static bool isValidPlatform(string platformId)

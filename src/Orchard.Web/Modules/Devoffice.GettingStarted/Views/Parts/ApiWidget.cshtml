@@ -50,10 +50,11 @@
     Script.Include("FileSaver.js", "FileSaver.min.js").AtFoot();
     Script.Include("embeddedCodeSample.js", "embeddedCodeSample.min.js").AtFoot();
     Script.Include("jquery.json-view.min.js").AtFoot();
-    Script.Include("tryitout.js", "tryitout.min.js").AtFoot();
+    Script.Include("tryitout.js", "tryitout.min.js").AtHead();
     Script.Include("websiteContent.js", "websiteContent.min.js").AtFoot();
     Script.Include("ratingsDevX/rating.js", "ratingsDevX/rating.min.js").AtHead();
 }
+
 <title>Getting started with Office 365 REST APIs</title>
 
 <meta http-equiv="Pragma" name="description" content="Get started with Office 365 REST APIs.">
@@ -69,7 +70,7 @@
 
 
 <script>
-    @using(Script.Head()) {
+    @using (Script.Head()) {
         <script type="text/javascript">
         //<![CDATA[
             var antiForgeryToken = '@Html.AntiForgeryTokenValueOrchard()';
@@ -101,7 +102,7 @@
         function elementClasses() { };
         elementClasses.CodeContainer = "code-container";
 
-        TryItOut(elementIDs, elementClasses);
+        TryItOut(elementIDs, elementClasses, "@Session[Devoffice.GettingStarted.Utils.Constants.productName]");
 
         //attach to platform filters
         //TBD: temp code
