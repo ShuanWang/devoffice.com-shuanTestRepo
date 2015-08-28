@@ -35,11 +35,11 @@ $(document).scroll(function () {
 function iframeLoaded() {
     //even though the onload for the iframe is called, the wac frame is still not open
     window.setTimeout(function () {
-            $("#iframeLoading").hide();
+            $("#iframeLoading").hide().removeClass("loading");
             if (currentProduct == "excel") {
                 displayXLIframe(true);
             }
-        }, 2000);
+        }, 3000);
 }
 
 function displayXLIframe(show) {
@@ -133,7 +133,7 @@ function selectClient(selectedClient, scrollIntoView) {
             setContent($('#embedContents'), "<h3>Explore the JavaScript API in Excel</h3><p>Below, you'll see an Excel Add-in that we've built. This add-in showcases a selection of the JavaScript API. Click on one of the tiles to explore the relevant method in the API.</p><br><p>You can download this add-in and launch it in your own version of Office from the <a href='https://store.office.com/api-tutorial-for-office-WA104077907.aspx?assetid=WA104077907' target='_blank'>Office Store.</a></p><br>");
 
             //show the add-in frame, which should be loading in the background
-            displayXLIframe(true);
+            if (!$("#iframeLoading").hasClass("loading")) { displayXLIframe(true); }
 
             $('#option1title').text(content.title);
             $('#option1img').attr('src', content.img.excel);

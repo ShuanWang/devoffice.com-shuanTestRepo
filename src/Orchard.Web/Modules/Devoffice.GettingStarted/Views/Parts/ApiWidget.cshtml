@@ -12,6 +12,19 @@
             {
                 Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = platform;
             }
+            string product = qscoll["product"];
+            if (Devoffice.GettingStarted.Utils.InputValidation.isValidProduct(product))
+            {
+                Session[Devoffice.GettingStarted.Utils.Constants.productName] = product;
+            }
+            else
+            {
+                Session[Devoffice.GettingStarted.Utils.Constants.productName] = null;
+            }
+        }
+        else
+        {
+            Session[Devoffice.GettingStarted.Utils.Constants.productName] = null;
         }
     }
 }
