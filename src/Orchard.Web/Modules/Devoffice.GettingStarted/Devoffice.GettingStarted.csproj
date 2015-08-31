@@ -106,6 +106,9 @@
       <DependentUpon>rating.js</DependentUpon>
     </Content>
     <Content Include="Scripts\ratingsDevX\ratingTest.html" />
+    <Content Include="Scripts\registerApp.min.js">
+      <DependentUpon>registerApp.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\tryitout.min.js">
       <DependentUpon>tryitout.js</DependentUpon>
     </Content>
@@ -209,6 +212,9 @@
     </Content>
     <Content Include="Scripts\navBar.min.js.map">
       <DependentUpon>navBar.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\registerApp.min.js.map">
+      <DependentUpon>registerApp.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />

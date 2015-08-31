@@ -1,8 +1,3 @@
-﻿
-// get the default app id uri, it is required to update the uri based on the name entered by the user
-var defaultAppIdUri = $("#appIdUriField").val();
-$('#appNameField').addClass('highlight');
-
 function registerAppParams() {
     var clientId = null;
     var clientSecret = null;
@@ -53,6 +48,11 @@ function hideErrorDiv(selector)
 }
 
 $(document).ready(function () {
+    // get the default app id uri, it is required to update the uri based on the name entered by the user
+    var defaultAppIdUri = $("#appIdUriField").val();
+    $('#appNameField').addClass('highlight');
+
+
     $('#app-reg-signin').click(function () {
         ga('send', 'event', 'O365path-Rest', 'Signin-ExistingAccount');
         var registrationCardId = "register-app";
@@ -99,7 +99,21 @@ $(document).ready(function () {
     $("#redirectUriField").focus(function () {
         hideErrorDiv("#redirect-uri-error-div");
     });
+
+    //currentProduct intialized in ApiWidget.cshtml
+    updatePermissionsTable(currentProduct);
 });
+
+function updatePermissionsTable(product) {
+    if (product!=null && product!="") {
+        //select all permissions class elements and hide them
+        $(".permissions").hide();
+
+        //select all permissions class elements for the product and show them
+        $(".permissions." + product).show();
+    }
+}
+
 function registerApp() {
     $('#reg-error_display').hide(); // make sure you hide the error message, if user does the second attempt
     var appType = $('#appTypeField').val();
