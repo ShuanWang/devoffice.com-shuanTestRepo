@@ -8,14 +8,14 @@
             string product = qscoll["product"];
             if (Devoffice.GettingStarted.Utils.InputValidation.isValidProduct(product))
             {
-                Session[Devoffice.GettingStarted.Utils.Constants.productName] = product;
+                Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = product;
             }
             else {
-                Session[Devoffice.GettingStarted.Utils.Constants.productName] = null;    
+                Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = null;    
             }
         }
     } else {
-        Session[Devoffice.GettingStarted.Utils.Constants.productName] = null;
+        Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = null;
     }
 
 }
@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            @if (Session[Devoffice.GettingStarted.Utils.Constants.productName] == null)
+            @if (Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] == null)
             {
                 <div class="card" id="selectapp" name="2. Select app" isblocking="true">
                     <h3>Select the Office app that you wish to build an add-in for:</h3>
@@ -177,11 +177,11 @@
     </div><!--main-->
 </div>
 
-@if (Session[Devoffice.GettingStarted.Utils.Constants.productName] != null)
+@if (Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] != null)
 {
     <script>
         $(document).ready(function () {
-            selectClient("@Session[Devoffice.GettingStarted.Utils.Constants.productName]", false);
+            selectClient("@Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr]", false);
         });
     </script>
 }

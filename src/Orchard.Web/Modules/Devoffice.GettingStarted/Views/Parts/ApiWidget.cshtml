@@ -1,5 +1,10 @@
 ﻿@{
     string signinError = null;
+
+    //default to null in case query string changed in the session
+    Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = null;
+    Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = null;
+
     if (string.IsNullOrEmpty(HttpContext.Current.Request.Url.Query) == false)
     {
         // Parse the query string variables into a NameValueCollection.
@@ -12,19 +17,20 @@
             {
                 Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = platform;
             }
+            else
+            {
+                Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = null;
+            }
+            
             string product = qscoll["product"];
             if (Devoffice.GettingStarted.Utils.InputValidation.isValidProduct(product))
             {
-                Session[Devoffice.GettingStarted.Utils.Constants.productName] = product;
+                Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = product;
             }
             else
             {
-                Session[Devoffice.GettingStarted.Utils.Constants.productName] = null;
+                Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = null;
             }
-        }
-        else
-        {
-            Session[Devoffice.GettingStarted.Utils.Constants.productName] = null;
         }
     }
 }
@@ -78,7 +84,7 @@
         </script>
     }
     var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
-    var currentProduct = "@Session[Devoffice.GettingStarted.Utils.Constants.productName]";  //product name passed in on querystring
+    var currentProduct = "@Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr]";  //product name passed in on querystring
     //var platformName = null;
     var platformId = null;
     $(document).scroll(function () {
@@ -108,7 +114,7 @@
         //TBD: temp code
         $("#pickPlatform ul li a").click(function () {
             cardTracker.showCard("setup");
-            selectPlatform(this);
+            selectPlatform(this, currentProduct);
         });
         $('#startCoding ul li a').click(function () { startCodingContentDisplay(this) });
         $('#post-download-instructions').hide();

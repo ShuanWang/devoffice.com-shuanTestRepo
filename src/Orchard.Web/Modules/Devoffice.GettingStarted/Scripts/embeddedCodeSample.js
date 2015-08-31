@@ -150,6 +150,22 @@ var reposList = {
             "GitHubRepoName": "O365-Ruby-tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial"
+        },
+        {
+            "Platform": "option-dotnet",
+            "uid": "option-dotnet-onedrive-api",
+            "App": "onedrive",
+            "CodeSampleName": "DotNet-onedrive faked sample", /* placeholder */
+            "Description": "Test placeholder for OneDrive sample code for .Net",
+            "FileName": "dotnet-tutorial-master\/dotnet-tutorial\/Web.config",
+            "ClientIdStringToReplace": "</appSettings>",
+            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
+            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
+            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Win-tutorial-master.zip",
+            "GitHubRepoName": "O365-Win-Tutorial",
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/master.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial"
         }
     ]
 }
@@ -159,16 +175,16 @@ var reposList = {
  * 
  * platform=> platform to search for e.g. option-ios
  */
-function search(platform) {
-    var repos = [];
-    if (platform != undefined && platform != "") {
-        for (var i = 0; i < reposList.Repo.length; ++i) {
-            if (reposList.Repo[i].Platform == platform) {
-                repos.push(reposList.Repo[i]);
-            }
+function searchSampleDownloads(platform, product) {
+    var filteredRepo = $.map(reposList.Repo, function (value, index) {
+        var matchPlatform = false; var matchProduct = false;
+        matchPlatform = platform==undefined || platform==null || platform=="" ? true : value.Platform == platform;
+        matchProduct = product==undefined || product==null || product=="" ? true : value.App == product;
+        if (matchPlatform && matchProduct) {
+            return value;
         }
-    }
-    return repos;
+    });
+    return filteredRepo;
 }
 
 /*
@@ -191,8 +207,8 @@ function getRepoById(uid) {
  * selectedPlatform=> user selected platform
  * divId=> a div where the panels for multiple download will be added.
  */
-function addSuggestions(selectedPlatform, divId) {
-    var repos = search(selectedPlatform);
+function addSuggestions(divId, selectedPlatform, product) {
+    var repos = searchSampleDownloads(selectedPlatform, product);
     if (repos.length <= 0) { 
         alert("No Suggestion found"); // TBD, need to remove, currently for debug purpose only
         return;
