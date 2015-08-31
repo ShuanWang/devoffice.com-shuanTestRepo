@@ -1,4 +1,14 @@
-﻿<div class="card" id="next-step" name="6. More resources">
+﻿<script>
+    $(document).ready(function () {
+        //Update code samples link if on a specific product
+        if (currentProduct != null && currentProduct != "") {
+            var href = $("#nextStepCodeSamplesLink").attr("href");
+            $("#nextStepCodeSamplesLink").attr("href", href + "," + currentProduct);
+        }
+    });
+</script>
+
+<div class="card" id="next-step" name="6. More resources">
     <h1>You’re all set!</h1>
     <p>Here are some other resources to help you as you continue building your app.</p>
     <div>
@@ -7,7 +17,7 @@
         <h4>API references</h4>
         <a href="https://msdn.microsoft.com/en-us/office/office365/howto/rest-api-overview" target="_blank">Office 365 API Reference</a>
         <h4>Code samples</h4>
-        <p>There are a ton of <a href="http://dev.office.com/codesamples#?filters=office%20365%20app" target="_blank">code samples</a> that you can use as a starting point for your app.</p>
+        <p>There are a ton of <a id="nextStepCodeSamplesLink" href="http://dev.office.com/codesamples#?filters=office%20365%20app" target="_blank">code samples</a> that you can use as a starting point for your app.</p>
         <h4>Manage your apps and permissions in Azure</h4>
         <p>Check out the Azure Management portal to <a target="_blank" href="https://msdn.microsoft.com/en-us/office/office365/howto/add-common-consent-manually">manage your app.</a></p>
         <h4>Get your app featured</h4>
