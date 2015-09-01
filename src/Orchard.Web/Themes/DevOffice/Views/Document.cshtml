@@ -37,6 +37,22 @@
     </script>
     <script src="//cdn.optimizely.com/js/2209430092.js"></script>
     @Display(Model.Head)
+
+    <script>
+    //appInsights telemetry
+    var appInsightInstrumentationKey = "26fb3bba-0fdf-4493-b54e-e974c37cc5bc"; //prod Key
+    if (window.location.host.toLowerCase().indexOf('localhost') != -1 || window.location.host.toLowerCase().indexOf('azurewebsites') != -1) {
+        appInsightInstrumentationKey = "49bc8c7a-c997-4078-819c-f5d51d975aeb"; //staging key
+    }
+    var appInsights = window.appInsights || function (config) {
+        function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+    }({
+        instrumentationKey: appInsightInstrumentationKey
+    });
+    window.appInsights = appInsights;
+    appInsights.trackPageView();
+    </script>
+
 </head>
 
 <body>
@@ -83,21 +99,6 @@
         ga('require', 'displayfeatures');
         ga('require', 'linkid', 'linkid.js');
         ga('send', 'pageview');
-
-        /* TBD: we need to enable this code for telemetry of client id
-        //appInsights telemetry
-        var appInsightInstrumentationKey = "24ad1491-74e5-46fb-9afc-d047c649850d" //prod Key, TODO replace it with devOfficeComOrchard account
-        if (window.location.host.indexOf('localhost') != -1 || window.location.host.indexOf('azurewebsites') != -1) {
-            appInsightInstrumentationKey: "76981fce-2462-44ca-b2a5-4186f0607408" //replaced with staging and dev key.
-        }
-        var appInsights = window.appInsights || function (config) {
-            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
-        }({
-            InstrumentationKey: "24ad1491-74e5-46fb-9afc-d047c649850d"
-        });
-        window.appInsights = appInsights;
-        appInsights.trackPageView();
-        */
     </script>
 </body>
 </html>

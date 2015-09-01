@@ -103,6 +103,7 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
         {
             throw new Error('ClientIdIsUndefnied');
         }
+        var clientIdOriginalFormat = clientId;
         $.support.cors = true; //this is required for IE support
         if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
             console.log('The File APIs are not fully supported in this browser.');
@@ -158,8 +159,7 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
             var content = codeSampleZip.generate({ type: "blob" });
             window.saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
-            // TBD: need to enable it once appinsights.js issue is fixed
-            //appInsights.trackEvent("ClientID--" + clientId);
+            appInsights.trackEvent("DownloadCodeSampleWithClientId", { ClientId: clientIdOriginalFormat });
         });
         _progressStatus(100)
     }
