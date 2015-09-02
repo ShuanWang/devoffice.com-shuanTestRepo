@@ -306,10 +306,10 @@ function CardTracker(cardsContainerID, navBarID) {
 	    var view = {
 	        inViewFull: (topInView && bottomInView && elVisible),
 	        inViewPartial: (((topInView || bottomInView) || (wholeScreen)) && elVisible),
-	        aboveTop: (elBottom <= docViewTop),
-	        belowBottom: (elTop >= docViewBottom),
-	        aboveMiddle: aboveMiddleTopInView,
-	        wholeScreen: wholeScreen
+	        aboveTop: (elBottom <= docViewTop) && elVisible,
+	        belowBottom: (elTop >= docViewBottom) && elVisible,
+	        aboveMiddle: aboveMiddleTopInView && elVisible,
+	        wholeScreen: wholeScreen && elVisible
 	    };
 
 	    //console.log(id, JSON.stringify(view));
