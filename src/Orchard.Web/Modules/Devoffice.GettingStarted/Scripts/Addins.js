@@ -17,11 +17,9 @@ $(document).ready(function () {
 
     //Do OS specific things
     if (!os().isWindows) {
-        console.log('OS: Not windows');
         $(".userHasVS").hide();
         $(".userHasNoVS").show();
     } else {
-        console.log('OS: Windows');
         $(".userHasVS").show();
         $(".userHasNoVS").hide();
     }
