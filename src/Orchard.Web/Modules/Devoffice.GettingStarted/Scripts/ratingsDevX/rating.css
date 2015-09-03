@@ -15,7 +15,7 @@
     -webkit-transition: bottom .6s;
     -moz-transition: bottom .6s;
     -ms-transition: bottom .6s;
-    z-index: 100;
+    z-index: 10000000;  //need a big z-index to stay on top of "Share" link in responsive widths
 }
 
     #responsiveRating.show {
