@@ -57,6 +57,7 @@ $(document).ready(function () {
         ga('send', 'event', 'O365path-Rest', 'Signin-ExistingAccount');
         var registrationCardId = "register-app";
         document.cookie = "current-card=" + registrationCardId + "; path=/";
+        document.cookie = "current-product=" + currentProduct + "; path=/";
         window.location.href = "/GettingStarted/Account/SignIn";
     });
 
@@ -202,6 +203,8 @@ function registerApp() {
 
                 registerAppParams.clientId = data.client_id;
                 registerAppParams.clientSecret = data.client_secret;
+                //Scroll the registration result into view
+                cardTracker.showCard("registration-result");
                 cardTracker.removeBlockingCard();
                 disablePlatformSelection();
                 ga('send', 'event', 'O365path-Rest', 'RegisterApp--Complete');

@@ -110,6 +110,12 @@
 
         TryItOut(elementIDs, elementClasses, currentProduct);
 
+        //see if we are opening a specific card
+        var urlTarget = document.location.hash;
+        if (urlTarget != "") {
+            cardTracker.showCard(urlTarget);
+        }
+
         //attach to platform filters
         //TBD: temp code
         $("#pickPlatform ul li a").click(function () {
@@ -122,6 +128,7 @@
         var tryitOutCardId = "try-it-out";
         $('#loginLink').click(function () {
             document.cookie = "current-card=" + tryitOutCardId + "; path=/";
+            document.cookie = "current-product=" + currentProduct + "; path=/";
         });
 
         $('#loginLink-tocontinue').click(function () {
