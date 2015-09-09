@@ -126,7 +126,9 @@ function selectPlatform(platform, product) {
 
     sendPlatformInfoToServer(platformId);
 
-    addSuggestions("suggestionlistId", platformId, product);
+    //Uncomment this to re-add mutliple downloads
+    //_SetupProject.cshtml will also need to have the existing button commented out
+    //addSuggestions("suggestionlistId", platformId, product);
 }
 
 function hidePlatformsWithoutSamples(product) {

@@ -40,22 +40,6 @@ var reposList = {
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Android-Connect"
         },
         {
-            "Platform": "option-android",
-            "uid": "o365-andorid-snippet-outlook",
-            "CodeSampleName": "Office 365 Code Snippets for Android",
-            "Description": "This sample for Android is a repository of simple method examples that access email, calendar events, contacts, and files in Office 365. These 'snippet' methods are self contained so you can paste them into your own code or use as reference for learning.",
-            "App": "outlook, onedrive",
-            "FileName": "O365-Android-Snippets-master\/app\/src\/main\/java\/com\/microsoft\/office365\/snippetapp\/helpers\/Constants.java",
-            "ClientIdStringToReplace": "<Your client ID HERE>",
-            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
-            "RedirectURLStringToReplace": "<Your redirect URI HERE>",
-            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Android-Snippets-master.zip",
-            "GitHubRepoName": "O365-Android-Snippets",
-            "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Android-Snippets/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Android-Snippets"
-        },
-        {
             "Platform": "option-dotnet",
             "uid": "option-dotnet-mail-api",
             "App": "outlook",
@@ -70,22 +54,6 @@ var reposList = {
             "GitHubRepoName": "O365-Win-Tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial"
-        },
-        {
-            "Platform": "option-dotnet_TBD",
-            "uid": "dotnet-o365-starter-mvc",
-            "App": "outlook",
-            "CodeSampleName": "Office 365 Starter Project for ASP.NET MVC",
-            "Description": "This sample uses the Office 365 API Tools to demonstrate basic operations against the Calendar, Contacts, and Mail service endpoints in Office 365 from a single-tenant ASP.NET MVC application.",
-            "FileName": "O365-ASPNETMVC-Start-master\/O365-APIs-Start-ASPNET-MVC\/Web.config",
-            "ClientIdStringToReplace": "</appSettings>",
-            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
-            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
-            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-ASPNETMVC-Start-master.zip",
-            "GitHubRepoName": "O365-ASPNETMVC-Start",
-            "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-ASPNETMVC-Start/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/OfficeDev/O365-ASPNETMVC-Start"
         },
         {
             "Platform": "option-php",
@@ -150,22 +118,6 @@ var reposList = {
             "GitHubRepoName": "O365-Ruby-tutorial",
             "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial"
-        },
-        {
-            "Platform": "option-dotnet",
-            "uid": "option-dotnet-onedrive-api",
-            "App": "onedrive",
-            "CodeSampleName": "DotNet-onedrive faked sample", /* placeholder */
-            "Description": "Test placeholder for OneDrive sample code for .Net",
-            "FileName": "dotnet-tutorial-master\/dotnet-tutorial\/Web.config",
-            "ClientIdStringToReplace": "</appSettings>",
-            "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
-            "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
-            "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Win-tutorial-master.zip",
-            "GitHubRepoName": "O365-Win-Tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial"
         }
     ]
 }
@@ -190,11 +142,11 @@ function searchSampleDownloads(platform, product) {
 /*
  * returns the repo details  based on the uid
  * 
- * uid=> uid of the repo
+ * Returns the first platform match
  */
-function getRepoById(uid) {
+function getRepoById(platform) {
     for (var i = 0; i < reposList.Repo.length; ++i) {
-        if (reposList.Repo[i].uid === uid) {
+        if (reposList.Repo[i].Platform === platform) {
             return reposList.Repo[i];
         }
     }
