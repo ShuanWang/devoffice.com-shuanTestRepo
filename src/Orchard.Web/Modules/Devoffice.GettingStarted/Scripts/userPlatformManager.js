@@ -1,11 +1,11 @@
-// it fetches the user selected platform and updates the page
-function updatePlatform(platform, product) {
+﻿// it fetches the user selected platform and updates the page
+function updatePlatform(platform) {
     //load content
     if (platform == null || platform == undefined || platform == "#undefined" || platform == "") {
-        //return;
+        return;
     }
     
-    selectPlatform(platform, product);
+    selectPlatform(platform);
 }
 
 // this function will be called when an app has been registered
@@ -91,7 +91,7 @@ function sendPlatformInfoToServer(platformId)
 
     ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
 }
-function selectPlatform(platform, product) {
+function selectPlatform(platform) {
 
     //load content
     if (platform == null || platform == undefined) {
@@ -126,20 +126,6 @@ function selectPlatform(platform, product) {
 
     sendPlatformInfoToServer(platformId);
 
-    //Uncomment this to re-add mutliple downloads
-    //_SetupProject.cshtml will also need to have the existing button commented out
-    //addSuggestions("suggestionlistId", platformId, product);
-}
-
-function hidePlatformsWithoutSamples(product) {
-    if (product !== null && product != "") {
-        $("#pickPlatform ul li a").each(function () {
-            var platform = $(this).attr("id");
-            var found = searchSampleDownloads(platform, product);
-            $(this).toggle(found.length > 0);
-        });
-        //TODO: What to do if no samples exist?
-    }
 }
 
 // add a static proeprty in selectPlatform

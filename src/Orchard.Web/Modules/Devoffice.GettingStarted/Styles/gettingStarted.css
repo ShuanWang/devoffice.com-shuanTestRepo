@@ -759,7 +759,3 @@ pre.response {
 .disableClick{
     pointer-events: none;
 }
-
-.btn-success {
-    margin-bottom: 20px;
-}

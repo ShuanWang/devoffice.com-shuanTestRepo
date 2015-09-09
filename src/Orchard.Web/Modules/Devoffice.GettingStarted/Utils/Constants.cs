@@ -30,9 +30,6 @@ namespace Devoffice.GettingStarted.Utils
         public const string userLoggedInStr = "logged_in";
         public const string platformNameTagStr = "user_platform";
         public const string appNameTagStr = "user_app";
-
-        public const string productNameTagStr = "product";
-
 #if DEBUG
         public const string redirectUri = "https://localhost:44302/Home/rest";
 #else

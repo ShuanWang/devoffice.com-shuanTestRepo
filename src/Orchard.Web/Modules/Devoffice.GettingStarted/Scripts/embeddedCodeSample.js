@@ -1,4 +1,3 @@
-/// <reference path="E:\devofficecom\src\Orchard.Web\Modules\Devoffice.GettingStarted\Views/O365/_RegisterApp.cshtml" />
 //Variables for error handling
 var inError = false;
 var zipHasContent = false;
@@ -6,45 +5,33 @@ var selectedPlatformIndex = undefined; //to identify which platform is selected 
 
 //repos in GitHub
 var reposList = {
-    "Repo": [
+    "Platform": [
         {
-            "Platform": "option-ios",
-            "uid": "O365-iOS-Connect-outlook",
-            "App": "outlook",
-            "CodeSampleName": "O365-iOS-Connect",
-            "Description": "This Connect sample for iOS shows how to connect your app to Office 365. Once connected, the sample shows how to send a simple service call. Comes in both Swift and Objective-C",
+            "Name": "option-ios",
             "FileName": "O365-iOS-Connect-master\/objective-c\/O365-iOS-Connect\/AuthenticationManager.m",
             "ClientIdStringToReplace": "ENTER_CLIENT_ID_HERE",
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
-            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples/O365-iOS-Connect-master.zip",
-            "GitHubRepoName": "O365-iOS-Connect.zip",
+            "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-iOS-Connect-master.zip",
+            "GitHubRepoName": "O365-iOS-Connect",
             "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-iOS-Connect/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-iOS-Connect/"
         },
         {
-            "Platform": "option-android",
-            "uid": "O365-Android-Connect-outlook",
-            "App": "outlook",
-            "CodeSampleName": "O365-Android-Connect",
-            "Description": "This Connect sample for Android shows you how to connect your app to Office 365. It also demonstrates how to issue a simple service call, like sending an email.",
+            "Name": "option-android",
             "FileName": "O365-Android-Connect-master\/app\/src\/main\/java\/com\/microsoft\/office365\/connect\/Constants.java",
             "ClientIdStringToReplace": "<Your client id here>",
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
             "RedirectURLStringToReplace": "<Your redirect URI here>",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Android-Connect-master.zip",
-            "GitHubRepoName": "O365-Android-Connect.zip",
+            "GitHubRepoName": "O365-Android-Connect",
             "GitHubMasterZipUrl": "https://github.com/OfficeDev/O365-Android-Connect/archive/master.zip",
             "GitHubRepoUrl": "https://github.com/OfficeDev/O365-Android-Connect"
         },
         {
-            "Platform": "option-dotnet",
-            "uid": "option-dotnet-mail-api",
-            "App": "outlook",
-            "CodeSampleName": "DotNet-tutorial", /* we need to add name */
-            "Description": "An ASP.NET MVC tutorial for using the Mail API. ",
+            "Name": "option-dotnet",
             "FileName": "dotnet-tutorial-master\/dotnet-tutorial\/Web.config",
             "ClientIdStringToReplace": "</appSettings>",
             "ClientSecretStringToReplace": "ENTER_CLIENTSECRET_ID_HERE_HackWillNotReplace",
@@ -52,31 +39,23 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Win-tutorial-master.zip",
             "GitHubRepoName": "O365-Win-Tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/dotnet-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/dotnet-tutorial/tree/v1"
         },
         {
-            "Platform": "option-php",
-            "uid": "option-php-outlook",
-            "App": "outlook",
-            "CodeSampleName": "Simple PHP tutorial",
-            "Description": "A simple tutorial for creating a PHP app that uses the Outlook Mail API",
-            "FileName": "php-tutorial\/oauth.php",
+            "Name": "option-php",
+            "FileName": "O365-PHP-tutorial-master\/php-tutorial\/oauth.php",
             "ClientIdStringToReplace": "21a66e5f-74c5-4acb-a0ee-02814e3fe217",
             "ClientSecretStringToReplace": "tqlvN4Skz4Ah7BVcttEpJLxilJ4V0h+EnrSmLAaYfmQ=",
             "RedirectURLStringToReplace": "ENTER_REDIRECT_URI_HERE_HackWillNotReplace",
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-PHP-tutorial-master.zip",
             "GitHubRepoName": "O365-PHP-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/php-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/php-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/php-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/php-tutorial/tree/v1"
         },
         {
-            "Platform": "option-node",
-            "uid": "option-node-outlook",
-            "CodeSampleName": "Simple Node.js tutorial",
-            "Description": "A simple Node.js tutorial to use the Mail API.",
-            "App": "outlook",
+            "Name": "option-node",
             "FileName": "node-tutorial-master\/authHelper.js",
             "ClientIdStringToReplace": "YOUR CLIENT ID HERE",
             "ClientSecretStringToReplace": "YOUR CLIENT SECRET HERE",
@@ -84,15 +63,11 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Node-tutorial-master.zip",
             "GitHubRepoName": "O365-Node-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/node-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/node-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/node-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/node-tutorial/tree/v1"
         },
         {
-            "Platform": "option-python",
-            "uid": "option-python-outlook",
-            "CodeSampleName": "Simple Python tutorial",
-            "Description": "A simple tutorial for creating a Python app that uses the Outlook Mail API.",
-            "App": "outlook",
+            "Name": "option-python",
             "FileName": "python_tutorial-master\/tutorial\/authhelper.py",
             "ClientIdStringToReplace": "YOUR CLIENT ID",
             "ClientSecretStringToReplace": "YOUR CLIENT SECRET",
@@ -100,15 +75,11 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Python-tutorial-master.zip",
             "GitHubRepoName": "O365-Python-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/python_tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/python_tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/python_tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/python_tutorial/tree/v1"
         },
         {
-            "Platform": "option-ruby",
-            "uid": "option-ruby-outlook",
-            "CodeSampleName": "O365-tutorial",
-            "Description": "A simple guide to writing your first Ruby on Rails app using the Outlook Mail API.", /* we need to add description */
-            "App": "outlook",
+            "Name": "option-ruby",
             "FileName": "o365-tutorial-master\/app\/helpers\/auth_helper.rb",
             "ClientIdStringToReplace": "<YOUR CLIENT ID>",
             "ClientSecretStringToReplace": "<YOUR CLIENT SECRET>",
@@ -116,121 +87,17 @@ var reposList = {
             "SignOnURLStringToReplace": "ENTER_SIGNON_URI_HERE_HackWillNotReplace",
             "LocalZipFile": "\/Modules\/Devoffice.GettingStarted\/CodeSamples\/O365-Ruby-tutorial-master.zip",
             "GitHubRepoName": "O365-Ruby-tutorial",
-            "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/master.zip",
-            "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial"
+            "GitHubMasterZipUrl": "https://github.com/jasonjoh/o365-tutorial/archive/v1.zip",
+            "GitHubRepoUrl": "https://github.com/jasonjoh/o365-tutorial/tree/v1"
         }
     ]
 }
 
-/*
- * Searchs for list of suggestion based on the platform
- * 
- * platform=> platform to search for e.g. option-ios
- */
-function searchSampleDownloads(platform, product) {
-    var filteredRepo = $.map(reposList.Repo, function (value, index) {
-        var matchPlatform = false; var matchProduct = false;
-        matchPlatform = platform==undefined || platform==null || platform=="" ? true : value.Platform == platform;
-        matchProduct = product==undefined || product==null || product=="" ? true : value.App == product;
-        if (matchPlatform && matchProduct) {
-            return value;
-        }
-    });
-    return filteredRepo;
-}
-
-/*
- * returns the repo details  based on the uid
- * 
- * Returns the first platform match
- */
-function getRepoById(platform) {
-    for (var i = 0; i < reposList.Repo.length; ++i) {
-        if (reposList.Repo[i].Platform === platform) {
-            return reposList.Repo[i];
-        }
-    }
-    return null;
-}
-
-/*
- * Adds the suggestion for selected platform in the given divid
- * 
- * selectedPlatform=> user selected platform
- * divId=> a div where the panels for multiple download will be added.
- */
-function addSuggestions(divId, selectedPlatform, product) {
-    var repos = searchSampleDownloads(selectedPlatform, product);
-    if (repos.length <= 0) { 
-        alert("No Suggestion found"); // TBD, need to remove, currently for debug purpose only
-        return;
-    }
-    var innerHtml = "";
-    for (var i = 0; i < repos.length; ++i) {
-        innerHtml += "<li>" + getPanelHtml(repos[i]) + "</li>";
-    }
-    $("#" + divId).html("<ul class='panel-collection'>" + innerHtml + "</ul>");
-
-    // do binding for each download button
-    for (var i = 0; i < repos.length; ++i) {
-        var btnid = "codesample-download-button-" + repos[i].uid;
-        $('#' + btnid).click(downloadCodeSampleHandler);
-    }
-}
-
-
-/*
- * builds the panel html from the given repo
- */
-function getPanelHtml(repo) {
-    return "<div class='panel panel-default text-center panel-download'>" +
-                "<div class='panel-heading'>" +
-                    "<div class='panel-title'>" + repo.CodeSampleName + "</div>" +
-                "</div>" +
-               "<div class='panel-body'>" +
-                  repo.Description +
-               "</div>" +
-                "<div class='panel-footer'>" + getDownloadButtonHTML(repo.uid) + "</div>" +
-            "</div>";
-}
-
-/*
- * build the download html for the given repo
- */
-function getDownloadButtonHTML(uid) {
-    return "<a class='btn btn-success' "+ 
-        "id='codesample-download-button-" + uid +"'"+ 
-        "data-uid='" + uid + "'" +
-        ">" + "<i class='fa fa-download'></i> Download" + "</a>";
-}
-
-
-
-function downloadCodeSampleHandler()
-{
-    var uid = $(this).attr("data-uid");
-    codeSamplePackageAndDownload(uid, registerAppParams.clientId, registerAppParams.clientSecret,
-        registerAppParams.redirectUri, registerAppParams.signonUri);
-}
-
-
-/*
- * The core function that downloads the code sample and embeds the client id and other details in
- * code sample
- * 
- * uid=> unique id of the repo that need to be downloaded
- * 
- */
-function codeSamplePackageAndDownload(uid, clientId, clientSecret, appRedirectUrl, signOnUrl) {
-    var repo = getRepoById(uid);
-    if (repo == null) {
-        alert("No repo found for the given uid = " + uid); // TBD, need to remove, currently for debug purpose only
-        return;
-    }
+function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appRedirectUrl, signOnUrl) {
     try {
-        var platformName = repo.Platform;
         ga('send', 'event', 'DownloadCodeSample', 'Begin-' + platformName, platformName, 0);
         _resetFlags();
+        _setPlatformSelectedIndex(platformName);
 
         if (typeof navigator !== "undefined" && /(Safari\/[1-9])/.test(navigator.userAgent) && /(Chrome\/[1-9])/.test(navigator.userAgent)==false)  {
             console.log('Safari does not support :blob for downloading.');
@@ -254,12 +121,12 @@ function codeSamplePackageAndDownload(uid, clientId, clientSecret, appRedirectUr
         }
 
         //Special case for Windows snippet
-        if (uid === 'option-dotnet') {
+        if (platformName === 'option-dotnet') {
             clientId = "<add key=\"ida:ClientId\" value=\""+clientId+"\" />" +  
             "<add key=\"ida:ClientSecret\" value=\""+clientSecret+"\" />" +
             " </appSettings>";
         }
-        var zipFileName = repo.LocalZipFile;
+        var zipFileName = reposList.Platform[selectedPlatformIndex].LocalZipFile;
         JSZipUtils.getBinaryContent(zipFileName, function (err, data) {
             if (err) {
                 throw new Error('ErrorReadingFiles');
@@ -269,14 +136,14 @@ function codeSamplePackageAndDownload(uid, clientId, clientSecret, appRedirectUr
             for (var nameOfFile in codeSampleZip.files) {
                 var file = codeSampleZip.files[nameOfFile]; //may be move it inside If clause
 
-                //if (nameOfFile.indexOf(reposList.Repo[selectedPlatformIndex].FileName) > 0)
-                if (nameOfFile === repo.FileName) {
+                //if (nameOfFile.indexOf(reposList.Platform[selectedPlatformIndex].FileName) > 0)
+                if (nameOfFile === reposList.Platform[selectedPlatformIndex].FileName) {
                     fileContent = file.asText();
                     codeSampleZip.remove(nameOfFile);
-                    fileContent = fileContent.replace(repo.ClientIdStringToReplace, clientId);
-                    fileContent = fileContent.replace(repo.ClientSecretStringToReplace, clientSecret);
-                    fileContent = fileContent.replace(repo.RedirectURLStringToReplace, appRedirectUrl);
-                    fileContent = fileContent.replace(repo.SignOnURLStringToReplace, signOnUrl);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientIdStringToReplace, clientId);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientSecretStringToReplace, clientSecret);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].RedirectURLStringToReplace, appRedirectUrl);
+                    fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].SignOnURLStringToReplace, signOnUrl);
                     codeSampleZip.file(nameOfFile, fileContent);
                 }
                     //special case for iOS swift folder
@@ -285,32 +152,43 @@ function codeSamplePackageAndDownload(uid, clientId, clientSecret, appRedirectUr
                         if (nameOfFile === 'O365-iOS-Connect-master\/swift\/O365-iOS-Connect-Swift\/AuthenticationManager.swift') {
                         fileContent = file.asText();
                         codeSampleZip.remove(nameOfFile);
-                        fileContent = fileContent.replace(repo.ClientIdStringToReplace, clientId);
-                        fileContent = fileContent.replace(repo.ClientSecretStringToReplace, clientSecret);
-                        fileContent = fileContent.replace(repo.RedirectURLStringToReplace, appRedirectUrl);
-                        fileContent = fileContent.replace(repo.SignOnURLStringToReplace, signOnUrl);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientIdStringToReplace, clientId);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].ClientSecretStringToReplace, clientSecret);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].RedirectURLStringToReplace, appRedirectUrl);
+                        fileContent = fileContent.replace(reposList.Platform[selectedPlatformIndex].SignOnURLStringToReplace, signOnUrl);
                         codeSampleZip.file(nameOfFile, fileContent);
                     }
             }
 
             }
             var content = codeSampleZip.generate({ type: "blob" });
-            window.saveAs(content, repo.GitHubRepoName + ".zip");
+            window.saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
             appInsights.trackEvent("DownloadCodeSampleWithClientId", { ClientId: clientIdOriginalFormat });
         });
         _progressStatus(100)
     }
     catch (error) {
-        _errorHandlerDownloadSample(error, repo);
+        _errorHandlerDownloadSample(error);
+    }
+}
+
+function _setPlatformSelectedIndex(platformSelected) {
+    $.each(reposList, function (key, repos) {
+        $(repos).each(function (index, platform) {
+            if (platform.Name === platformSelected) {
+                selectedPlatformIndex = index;
+                return;
             }
+        });
+    });
 }
 
 function ViewCodeSampleInGithub(platformName) {
     var gitHubRepoLocation = "https://github.com/OfficeDev"; //onError it will redirect to Office Dev repo
     $.each(reposList, function (key, repos) {
-        $(repos).each(function (index, repo) {
-            if (repo.Platform === platformName) {
+        $(repos).each(function (index, platform) {
+            if (platform.Name === platformName) {
                 gitHubRepoLocation = platform.GitHubRepoUrl;
                 return;
             }
@@ -329,7 +207,7 @@ function _resetFlags() {
     }
 
 //Need to improve this function to show error in UI. Show download link from GitHub if in Error.
-function _errorHandlerDownloadSample(error, repo) {
+function _errorHandlerDownloadSample(error) {
     var msg;
     switch (error.message) {
         case 'ClientIdIsUndefnied':
@@ -354,7 +232,7 @@ function _errorHandlerDownloadSample(error, repo) {
 
     if (selectedPlatformIndex != undefined) {
         msg = 'FYI - We downloaded an untouched sample from GitHub. ' + msg;
-        location.href = (repo.GitHubMasterZipUrl);
+        location.href = (reposList.Platform[selectedPlatformIndex].GitHubMasterZipUrl);
 
         $('#post-download-instructions').html(msg)
         $('#post-download-instructions').show();

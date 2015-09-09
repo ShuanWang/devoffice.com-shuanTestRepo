@@ -94,7 +94,6 @@
     <Content Include="Scripts\embeddedCodeSample.min.js">
       <DependentUpon>embeddedCodeSample.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\FileSaver.min.js" />
     <Content Include="Scripts\navBar.min.js">
       <DependentUpon>navBar.js</DependentUpon>
     </Content>
@@ -107,9 +106,6 @@
       <DependentUpon>rating.js</DependentUpon>
     </Content>
     <Content Include="Scripts\ratingsDevX\ratingTest.html" />
-    <Content Include="Scripts\registerApp.min.js">
-      <DependentUpon>registerApp.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\tryitout.min.js">
       <DependentUpon>tryitout.js</DependentUpon>
     </Content>
@@ -181,7 +177,6 @@
     <Content Include="Scripts\embeddedCodeSample.min.js.map">
       <DependentUpon>embeddedCodeSample.min.js</DependentUpon>
     </Content>
-    <Content Include="CodeSamples\O365-Android-Snippets-master.zip" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -213,9 +208,6 @@
     </Content>
     <Content Include="Scripts\navBar.min.js.map">
       <DependentUpon>navBar.min.js</DependentUpon>
-    </Content>
-    <Content Include="Scripts\registerApp.min.js.map">
-      <DependentUpon>registerApp.min.js</DependentUpon>
     </Content>
     <None Include="Scripts\_references.js" />
     <Content Include="Styles\gettingStarted.css" />
