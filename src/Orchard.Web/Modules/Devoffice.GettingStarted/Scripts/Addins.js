@@ -1,5 +1,5 @@
 // Addins.js
-// Script used in the AddinsWidget Part 
+// Script used in the AddinsWidget Part
 
 var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
 var currentProduct = "";
