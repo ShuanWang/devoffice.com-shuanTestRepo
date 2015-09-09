@@ -3,31 +3,32 @@
     <!--<div class=""><h3>Setup your project &amp; start coding</h3></div>
 
     <hr /> -->
+    <!-- //Remarking these elements as per feedback
+        <div id="startCoding">
 
-<!-- //Remarking these elements as per feedback
-    <div id="startCoding">
-
-        <ul class="tabs">
-            <li><a class="selected" id="option-QuickDownload">Use a Starter Project</a></li>
-            <li><a id="option-QuickInstructions">Write code from scratch</a></li>
-        </ul>
-        <a id="editOnGithub" style="float:right;" class="link-button" hidden="true" onclick="redirectEditOnGitHub(platformId);">
-            <span class="ms-Button-label">Edit on Github</span>
-        </a>    
-    </div>
--->
+            <ul class="tabs">
+                <li><a class="selected" id="option-QuickDownload">Use a Starter Project</a></li>
+                <li><a id="option-QuickInstructions">Write code from scratch</a></li>
+            </ul>
+            <a id="editOnGithub" style="float:right;" class="link-button" hidden="true" onclick="redirectEditOnGitHub(platformId);">
+                <span class="ms-Button-label">Edit on Github</span>
+            </a>
+        </div>
+    -->
     <div id="use-starter-project">
         <ol>
-            <li><p>Download our starter project to get going. If you signed in and registered your app, we'll <strong>embed</strong> your Client ID and whatever else you need in the package for you.</p>
+            <li>
+                <p>Download our starter project to get going. If you signed in and registered your app, we'll <strong>embed</strong> your Client ID and whatever else you need in the package for you.</p>
             </li>
         </ol>
-<!--- //Remarked based on feedback, changing it to button
-        <a id="link-download-code-sample" class="link-button" onclick="codeSamplePackageAndDownload(platformId, registerAppParams.clientId,registerAppParams.clientSecret, registerAppParams.redirectUri, registerAppParams.signonUri);">
-            <span class="ms-Button-label">Download Embedded Code Sample</span>
-        </a>
---> 
+        <!--- //Remarked based on feedback, changing it to button
+                <a id="link-download-code-sample" class="link-button" onclick="codeSamplePackageAndDownload(platformId, registerAppParams.clientId,registerAppParams.clientSecret, registerAppParams.redirectUri, registerAppParams.signonUri);">
+                    <span class="ms-Button-label">Download Embedded Code Sample</span>
+                </a>
+        -->
         <input class="button"  type="button" value="Download" id="downloadCodeSampleButton" onclick="codeSamplePackageAndDownload(platformId, registerAppParams.clientId, registerAppParams.clientSecret, registerAppParams.redirectUri, registerAppParams.signonUri);"/>
     </div>
     <div id="write-code-from-scratch" hidden="true"></div>
+    <div id="suggestionlistId"></div>
     <div class="note" id="post-download-instructions" hidden="true"></div>
 </div>

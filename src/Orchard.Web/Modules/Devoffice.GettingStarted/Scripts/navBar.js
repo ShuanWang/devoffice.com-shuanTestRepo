@@ -72,6 +72,9 @@ function CardTracker(cardsContainerID, navBarID) {
 	    $("#" + navBarID).addClass("cardNavBar");
 
 	    buildCardTracker(cardTrackerWidthFactor);
+
+	    this.renumberCards();
+
 	    _hideBlockingCards();
 
 	    //Add some animation when user clicks on a nav item
@@ -348,4 +351,23 @@ function CardTracker(cardsContainerID, navBarID) {
 	    }
 	    return maxVisibleCard;
 	}
+
+    //when the cards have a number at the beginning, use this to renumber them
+	this.renumberCards = function () {
+	    for (i = 0; i < cardIDs.length; i++) {
+	        var cardID = cardIDs[i];
+	        //assume number is of format like 1. Intro or 2. Select
+	        var origCardName = $("#navbarAnchorItem-" + cardID).text();
+	        var cardNamePieces = origCardName.split(".");
+	        if (cardNamePieces.length > 0) {
+	            var cardNumber = i + 1;
+	            var cardName = cardNamePieces.pop();
+	            var newCardName = cardNumber + "." + cardName
+	            if (newCardName != origCardName) {
+	                $("#navbarAnchorItem-" + cardID).text(newCardName);
+	            }
+	        }
+	    }
+	}
+
 }

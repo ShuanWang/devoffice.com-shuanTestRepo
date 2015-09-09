@@ -1,5 +1,10 @@
 ﻿@{
     string signinError = null;
+
+    //default to null in case query string changed in the session
+    Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = null;
+    Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = null;
+
     if (string.IsNullOrEmpty(HttpContext.Current.Request.Url.Query) == false)
     {
         // Parse the query string variables into a NameValueCollection.
@@ -11,6 +16,20 @@
             if (Devoffice.GettingStarted.Utils.InputValidation.isValidPlatform(platform))
             {
                 Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = platform;
+            }
+            else
+            {
+                Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr] = null;
+            }
+            
+            string product = qscoll["product"];
+            if (Devoffice.GettingStarted.Utils.InputValidation.isValidProduct(product))
+            {
+                Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = product;
+            }
+            else
+            {
+                Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] = null;
             }
         }
     }
@@ -31,7 +50,7 @@
     Script.Include("userPlatformManager.js", "userPlatformManager.min.js").AtHead();
     Script.Include("gettingStarted.js", "gettingStarted.min.js").AtHead();
 
-    Script.Include("registerApp.js", "registerApp.min.js").AtFoot();
+    Script.Include("registerApp.js", "registerApp.min.js").AtHead();
     Script.Include("jszip.js", "jszip.min.js").AtFoot();
     Script.Include("jszip-utils.js", "jszip-utils.min.js").AtFoot();
     Script.Include("FileSaver.js", "FileSaver.min.js").AtFoot();
@@ -41,6 +60,7 @@
     Script.Include("websiteContent.js", "websiteContent.min.js").AtFoot();
     Script.Include("ratingsDevX/rating.js", "ratingsDevX/rating.min.js").AtHead();
 }
+
 <title>Getting started with Office 365 REST APIs</title>
 
 <meta http-equiv="Pragma" name="description" content="Get started with Office 365 REST APIs.">
@@ -56,7 +76,7 @@
 
 
 <script>
-    @using(Script.Head()) {
+    @using (Script.Head()) {
         <script type="text/javascript">
         //<![CDATA[
             var antiForgeryToken = '@Html.AntiForgeryTokenValueOrchard()';
@@ -64,6 +84,7 @@
         </script>
     }
     var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
+    var currentProduct = "@Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr]";  //product name passed in on querystring
     //var platformName = null;
     var platformId = null;
     $(document).scroll(function () {
@@ -74,7 +95,6 @@
     $(document).ready(function () {
         // initialize progress tracker
         cardTracker.init(1.0);
-
 
         function elementIDs() { };
         elementIDs.services = "serviceOptions";
@@ -88,13 +108,19 @@
         function elementClasses() { };
         elementClasses.CodeContainer = "code-container";
 
-        TryItOut(elementIDs, elementClasses);
+        TryItOut(elementIDs, elementClasses, currentProduct);
+
+        //see if we are opening a specific card
+        var urlTarget = document.location.hash;
+        if (urlTarget != "") {
+            cardTracker.showCard(urlTarget);
+        }
 
         //attach to platform filters
         //TBD: temp code
         $("#pickPlatform ul li a").click(function () {
             cardTracker.showCard("setup");
-            selectPlatform(this);
+            selectPlatform(this, currentProduct);
         });
         $('#startCoding ul li a').click(function () { startCodingContentDisplay(this) });
         $('#post-download-instructions').hide();
@@ -102,6 +128,7 @@
         var tryitOutCardId = "try-it-out";
         $('#loginLink').click(function () {
             document.cookie = "current-card=" + tryitOutCardId + "; path=/";
+            document.cookie = "current-product=" + currentProduct + "; path=/";
         });
 
         $('#loginLink-tocontinue').click(function () {
@@ -114,7 +141,7 @@
 
         $("signOnUrlHelp").click( function() {
             alert("help");
-        });
+        });        
     });
 
     //Initialize feedback control

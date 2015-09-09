@@ -98,16 +98,31 @@ namespace Devoffice.GettingStarted.Controllers
 
         public ActionResult SignOut()
         {
+            string queryString = String.Empty;
+            
             this.ClearSession();
+
+            //add the product= filter if it was in the original request
+            if (Request.Cookies["current-product"] != null)
+            {
+                queryString = AppendQueryString(queryString, "product=" + Request.Cookies["current-product"]);
+            }
 
             //TBD: once we log out we need to fallback to http protocol
             UriBuilder returnUri = new UriBuilder(Request.Url.Scheme, Request.Url.Host, Request.Url.Port,
                 "/Getting-Started/office365Apis");
+
+            //add the product= filter if it was in the original request
+            if (Request.Cookies["current-product"].Value != null)
+            {
+                queryString = AppendQueryString(queryString, "product=" + Request.Cookies["current-product"].Value);
+            }
+            returnUri.Query = queryString;
+
+            
             if (Request.Cookies["current-card"] != null)
             {
-                string returnUrl = returnUri.ToString();
-                returnUrl += ("#" + Request.Cookies["current-card"].Value);
-                return new RedirectResult(returnUrl);
+                returnUri.Fragment = Request.Cookies["current-card"].Value;
             }
             return new RedirectResult(returnUri.ToString());
         }
@@ -161,18 +176,23 @@ namespace Devoffice.GettingStarted.Controllers
                 }
             }
 
+
             UriBuilder returnUri = new UriBuilder(Request.Url.Scheme, Request.Url.Host, Request.Url.Port,
                 "/Getting-Started/office365Apis");
             if (string.IsNullOrEmpty(queryString))
             {
                 if (Request.Cookies["current-card"] != null)
                 {
-                    string returnUrl = returnUri.ToString();
-                    returnUrl += ("#" + Request.Cookies["current-card"].Value);
-                    return new RedirectResult(returnUrl);
+                    returnUri.Fragment = Request.Cookies["current-card"].Value;
                 }
             }
-            
+
+            //add the product= filter if it was in the original request
+            if (Request.Cookies["current-product"].Value != null)
+            {
+                queryString = AppendQueryString(queryString, "product=" + Request.Cookies["current-product"].Value);
+            }
+
             returnUri.Query = queryString;
 
             return new RedirectResult(returnUri.ToString());
