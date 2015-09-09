@@ -99,6 +99,11 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
         _resetFlags();
         _setPlatformSelectedIndex(platformName);
 
+        if (typeof navigator !== "undefined" && /(Safari\/[1-9])/.test(navigator.userAgent) && /(Chrome\/[1-9])/.test(navigator.userAgent)==false)  {
+            console.log('Safari does not support :blob for downloading.');
+            throw new Error('SafariDownloadNotSupported');
+        }
+
         if (clientId === undefined || clientId === null)
         {
             throw new Error('ClientIdIsUndefnied');
@@ -207,6 +212,9 @@ function _errorHandlerDownloadSample(error) {
     switch (error.message) {
         case 'ClientIdIsUndefnied':
             msg = 'Sign-in and register app so we can embed your client id, redirect uri and app secret into your app for you.';
+            break;
+        case 'SafariDownloadNotSupported':
+            msg = "Safari doesn't work well with some of the open source components we use on this page. You may have more success with another browser. For now, we've downloaded the code sample for you, but you'll need to update the client id, client secret (if applicable), and redirect uri in the code yourself. See the readme in the download for more instructions.";
             break;
         case 'FileAPINotSupported':
             msg = 'File APIs are not supported in your browser.';
