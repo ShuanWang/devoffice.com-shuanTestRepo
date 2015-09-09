@@ -1,12 +1,11 @@
 
-function TryItOut(elemIDs, elemClasses, app) {
+function TryItOut(elemIDs, elemClasses) {
 
     var serviceEndpointUris_user;
     var data = [
         {
             "name": "Mail API: Get messages",
-            "App": "outlook",
-            "serviceName": "Mail",
+            "serviceName":"Mail",
             "serviceEndPointUri": "https://outlook.office365.com/api/v1.0",
             "urlpart": "/me/folders/{0}/messages",
             "serverAction": "/GettingStarted/Proxy/EMail",
@@ -22,7 +21,6 @@ function TryItOut(elemIDs, elemClasses, app) {
         }, // end of item
         {
             "name": "Calendar API: Get events",
-            "App": "outlook",
             "serviceName": "Calendar",
             "serviceEndPointUri": "https://outlook.office365.com/api/v1.0",
             "urlpart": "/me/events",
@@ -33,7 +31,6 @@ function TryItOut(elemIDs, elemClasses, app) {
         }, // end of item
         {
             "name": "Contacts API: Get all contacts",
-            "App": "outlook",
             "serviceName": "Contacts",
             "serviceEndPointUri": "https://outlook.office365.com/api/v1.0",
             "urlpart": "/me/contacts",
@@ -44,7 +41,6 @@ function TryItOut(elemIDs, elemClasses, app) {
         }, // end of item
         {
             "name": "Files API: List folder contents",
-            "App": "onedrive",
             "serviceName": "MyFiles",
             "serviceEndPointUri": "https://a830edad9050849NDA1-my.sharepoint.com/_api/v1.0/me",
             "urlpart": "/files/getByPath('{0}')/children",
@@ -78,11 +74,8 @@ function TryItOut(elemIDs, elemClasses, app) {
         // build product menu
         var appHtml = "";
         for (var i = 0; i < data.length; ++i) {
-            //filter "Pick a service to Try" combo based on app name in querystring, if specified
-            var appName = data[i].App;
-            if ((app==null || app=="") || appName.indexOf(app) > -1) {
-                appHtml += "<option value ='" + i + "'>" + data[i]["name"] + "</option>";
-            }
+            var valueHtml = "value = " + i;
+            appHtml += "<option value ='" + i + "'>" + data[i]["name"] + "</option>";
         }
 
         menuSelector.html(appHtml);

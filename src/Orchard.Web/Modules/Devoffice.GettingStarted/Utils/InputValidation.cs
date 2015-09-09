@@ -17,27 +17,11 @@ namespace Devoffice.GettingStarted.Utils
                                                              "option-ruby"   
                                                  };
 
-        public static readonly string[] validProducts = {
-                                                             "excel",
-                                                             "outlook",
-                                                             "powerpoint",
-                                                             "word",
-                                                             "onedrive"
-                                                 };
-
         public static bool isValidPlatform(string platformId)
         {
             if (!string.IsNullOrEmpty(platformId))
             {
                 return validPlatforms.Contains(platformId);
-            }
-            return false;
-        }
-        public static bool isValidProduct(string product)
-        {
-            if (!string.IsNullOrEmpty(product))
-            {
-                return validProducts.Contains(product);
             }
             return false;
         }
