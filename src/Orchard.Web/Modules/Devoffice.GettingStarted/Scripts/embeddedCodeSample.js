@@ -228,9 +228,10 @@ function codeSamplePackageAndDownload(uid, clientId, clientSecret, appRedirectUr
         return;
     }
     try {
-        var platformName = repo.Platform;
-        ga('send', 'event', 'DownloadCodeSample', 'Begin-' + platformName, platformName, 0);
         _resetFlags();
+        var platformName = repo.Platform;
+        _setPlatformSelectedIndex(platformName);
+        ga('send', 'event', 'DownloadCodeSample', 'Begin-' + platformName, platformName, 0);
 
         if (typeof navigator !== "undefined" && /(Safari\/[1-9])/.test(navigator.userAgent) && /(Chrome\/[1-9])/.test(navigator.userAgent)==false)  {
             console.log('Safari does not support :blob for downloading.');
@@ -364,6 +365,17 @@ function _errorHandlerDownloadSample(error, repo) {
     }
     //document.getElementById("messageLabel").textContent = 'CodeSampleDownloadError: ' + msg
     ga('send', 'event', 'DownloadCodeSample', 'Error-' + msg, '', 0);
+}
+
+function _setPlatformSelectedIndex(platformSelected) {
+    $.each(reposList, function (key, repos) {
+        $(repos).each(function (index, platform) {
+            if (platform.Platform === platformSelected) {
+                selectedPlatformIndex = index;
+                return;
+            }
+        });
+    });
 }
 
 
