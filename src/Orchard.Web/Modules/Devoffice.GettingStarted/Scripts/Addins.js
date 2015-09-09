@@ -219,6 +219,7 @@ function selectClient(selectedClient, scrollIntoView) {
             break;
     }
     ga('send', 'event', 'AddinPath-SelectClient', selectedClient);
+    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'addins', 'ms.ea_action', 'SelectClient', 'ms.contentproperties', selectedClient);
     //removing the blocking card will show the next cards
     //Don't call removeBlockingCard again since it will remove the next blocking card
     if (cardTracker.isInBlockingList("selectapp")) {
@@ -275,6 +276,7 @@ function selectMore(selectedClient, selectedShape) {
     }
 
     ga('send', 'event', 'AddinPath-Shape', selectedClient + '-' + selectedShape);
+    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'addins', 'ms.ea_action', 'SelectAddinsShape', 'ms.contentproperties', selectedClient + '-' + selectedShape);
     setBuildContent(buildContentOptions);
 
     //removing the blocking card will show the next cards
