@@ -2,6 +2,7 @@
 // Script used in the AddinsWidget Part
 
 var cardTracker = new CardTracker("o365-progressTrackerContainer", "myNavBar");
+var currentProduct = "";
 
 $(document).ready(function () {
     cardTracker.init(1.0);
@@ -16,11 +17,9 @@ $(document).ready(function () {
 
     //Do OS specific things
     if (!os().isWindows) {
-        console.log('OS: Not windows');
         $(".userHasVS").hide();
         $(".userHasNoVS").show();
     } else {
-        console.log('OS: Windows');
         $(".userHasVS").show();
         $(".userHasNoVS").hide();
     }
@@ -32,7 +31,17 @@ $(document).scroll(function () {
 });
 
 function iframeLoaded() {
-    $("#iframeLoading").removeClass("loading");
+    //even though the onload for the iframe is called, the wac frame is still not open
+    window.setTimeout(function () {
+            $("#iframeLoading").hide().removeClass("loading");
+            if (currentProduct == "excel") {
+                displayXLIframe(true);
+            }
+        }, 3000);
+}
+
+function displayXLIframe(show) {
+    $("#xlframe").toggle(show);
 }
 
 var taskPane = {
@@ -94,13 +103,20 @@ function enableOption2() {
     $('#option2button').show();
 }
 
-function setContent(div, html) {
+function setContent(div, html, scrollIntoView) {
     cardTracker.hideCard("explore");
     div.html(html);
-    cardTracker.showCard("explore");
+    if (scrollIntoView) {
+        cardTracker.showCard("explore");
+    } else {
+        cardTracker.showCardNoScroll("explore");
+    }
 }
 
-function selectClient(selectedClient) {
+function selectClient(selectedClient, scrollIntoView) {
+    scrollIntoView = scrollIntoView != undefined ? scrollIntoView : true;
+    currentProduct = selectedClient;
+
     $('#option1button').hide();
     $('#option2button').hide();
 
@@ -108,16 +124,14 @@ function selectClient(selectedClient) {
     cardTracker.hideCard("more");
 
     //Hide the xl addin by default
-    $('#xlframe').hide();
+    displayXLIframe(false);
 
     switch (selectedClient) {
         case 'excel':
-            $("#iframeLoading").toggle($("#iframeLoading").hasClass("loading"));
-
             setContent($('#embedContents'), "<h3>Explore the JavaScript API in Excel</h3><p>Below, you'll see an Excel Add-in that we've built. This add-in showcases a selection of the JavaScript API. Click on one of the tiles to explore the relevant method in the API.</p><br><p>You can download this add-in and launch it in your own version of Office from the <a href='https://store.office.com/api-tutorial-for-office-WA104077907.aspx?assetid=WA104077907' target='_blank'>Office Store.</a></p><br>");
 
             //show the add-in frame, which should be loading in the background
-            $('#xlframe').show();
+            if (!$("#iframeLoading").hasClass("loading")) { displayXLIframe(true); }
 
             $('#option1title').text(content.title);
             $('#option1img').attr('src', content.img.excel);

@@ -2,7 +2,15 @@
 {
     <script>
         $(document).ready(function () {
-            updatePlatform("#" + "@Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr]");
+            updatePlatform("#" + "@Session[Devoffice.GettingStarted.Utils.Constants.platformNameTagStr]", currentProduct);
+        });            
+    </script>
+}
+@if (Session[Devoffice.GettingStarted.Utils.Constants.productNameTagStr] != null)
+{
+    <script>
+        $(document).ready(function () {
+            hidePlatformsWithoutSamples(currentProduct);
         });            
     </script>
 }
