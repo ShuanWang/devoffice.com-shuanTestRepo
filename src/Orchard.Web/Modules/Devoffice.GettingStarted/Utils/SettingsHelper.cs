@@ -21,7 +21,7 @@ namespace Devoffice.GettingStarted.Utils
 {
     public class SettingsHelper
     {
-        private static bool devEnv = true;
+        private static bool devEnv = false;
         private static readonly string _devEnvClientId = "da35b9a6-bbd1-4ad4-b07c-2950efa25a1e";
         private static string _devEnvAppKey = "MHA9YluTuhaqslTFnTCyEFw7OYKIaEdtbzwX9hzvd4c=";
         
