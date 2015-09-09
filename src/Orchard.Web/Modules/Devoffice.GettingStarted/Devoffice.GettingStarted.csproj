@@ -94,6 +94,7 @@
     <Content Include="Scripts\embeddedCodeSample.min.js">
       <DependentUpon>embeddedCodeSample.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\FileSaver.min.js" />
     <Content Include="Scripts\navBar.min.js">
       <DependentUpon>navBar.js</DependentUpon>
     </Content>

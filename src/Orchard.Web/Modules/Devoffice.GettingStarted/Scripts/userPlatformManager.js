@@ -2,7 +2,7 @@
 function updatePlatform(platform, product) {
     //load content
     if (platform == null || platform == undefined || platform == "#undefined" || platform == "") {
-        return;
+        //return;
     }
     
     selectPlatform(platform, product);
