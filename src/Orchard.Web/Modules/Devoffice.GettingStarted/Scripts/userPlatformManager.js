@@ -89,7 +89,9 @@ function sendPlatformInfoToServer(platformId)
         data:dataToSend
     });
 
+    setCookie("platform", platformId);
     ga('send', 'event', 'O365path-Rest', 'Setup-' + platformId);
+    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'SelectPlatform', 'ms.contentproperties', platformId);
 }
 function selectPlatform(platform) {
 

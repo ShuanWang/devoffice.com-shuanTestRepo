@@ -120,4 +120,5 @@ function redirectEditOnGitHub(platformId)
     });
     window.open(gitHubContentLocation, "_blank");
     ga('send', 'event', 'O365path-Rest', 'EditOnGithub');
+    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'CodeSampleEditOnGitHub');
 }

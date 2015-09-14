@@ -30,6 +30,7 @@
     Script.Include("navBar.js", "navBar.min.js").AtHead();
     Script.Include("userPlatformManager.js", "userPlatformManager.min.js").AtHead();
     Script.Include("gettingStarted.js", "gettingStarted.min.js").AtHead();
+    Script.Include("logSignedIn.js", "logSignedIn.min.js").AtHead();
 
     Script.Include("registerApp.js", "registerApp.min.js").AtFoot();
     Script.Include("jszip.js", "jszip.min.js").AtFoot();
@@ -110,6 +111,7 @@
         $('#app-reg-signin-later').click(function () {
             cardTracker.removeAllBlockingCards();
             ga('send', 'event', 'O365path-Rest', 'Signin-Later');
+            MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Signin-Later');
         });
 
         $("signOnUrlHelp").click( function() {

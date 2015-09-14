@@ -55,6 +55,7 @@ function hideErrorDiv(selector)
 $(document).ready(function () {
     $('#app-reg-signin').click(function () {
         ga('send', 'event', 'O365path-Rest', 'Signin-ExistingAccount');
+        MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Signin-ExistingAccount');
         var registrationCardId = "register-app";
         document.cookie = "current-card=" + registrationCardId + "; path=/";
         window.location.href = "/GettingStarted/Account/SignIn";
@@ -190,13 +191,15 @@ function registerApp() {
                 registerAppParams.clientSecret = data.client_secret;
                 cardTracker.removeBlockingCard();
                 disablePlatformSelection();
-                ga('send', 'event', 'O365path-Rest', 'RegisterApp--Complete');
+                ga('send', 'event', 'O365path-Rest', 'RegisterApp--Complete' + '-' + getCookie("platform"));
+                MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'RegisterApp-Success', 'ms.contentproperties', getCookie("platform"), 'ms.callresult', data.client_id);
             }
             else {
                 $('#reg-error_msg').text(data.error_message);
                 $('#reg-error_display').show();
                 //$('#reg-error_display').addClass('animated fadeInUp');
                 ga('send', 'event', 'O365path-Rest', 'RegisterApp--Error--' + data.error_message);
+                MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'RegisterApp-Error', 'ms.callresult', data.error_message);
             }
         },
         error: function (jqXHR, exception) {

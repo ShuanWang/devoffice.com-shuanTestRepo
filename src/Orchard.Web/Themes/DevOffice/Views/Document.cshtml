@@ -99,6 +99,11 @@
         ga('require', 'displayfeatures');
         ga('require', 'linkid', 'linkid.js');
         ga('send', 'pageview');
+        var result = logSignedIn('@Session["logged_in"]');
+        if (result === "true") {
+            ga('send', 'event', 'Signin-Success');
+            MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Signin-Success');
+        }
     </script>
 </body>
 </html>

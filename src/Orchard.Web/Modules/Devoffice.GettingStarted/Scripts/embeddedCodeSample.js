@@ -165,6 +165,7 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
             window.saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
             appInsights.trackEvent("DownloadCodeSampleWithClientId", { ClientId: clientIdOriginalFormat });
+            MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'DownloadCodeSample-Success', 'ms.contentproperties', platformName + '-' + clientIdOriginalFormat);
         });
         _progressStatus(100)
     }
@@ -196,6 +197,7 @@ function ViewCodeSampleInGithub(platformName) {
     });
     window.open(gitHubRepoLocation, "_blank");
     ga('send', 'event', 'DownloadCodeSample', 'ViewOnGithub-' + platformName);
+    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'ViewCodeSampleOnGithub', 'ms.contentproperties', platformName);
 }
 
 
@@ -233,7 +235,8 @@ function _errorHandlerDownloadSample(error) {
     if (selectedPlatformIndex != undefined) {
         msg = 'FYI - We downloaded an untouched sample from GitHub. ' + msg;
         location.href = (reposList.Platform[selectedPlatformIndex].GitHubMasterZipUrl);
-
+        MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'DownloadCodeSample-Success', 'ms.contentproperties', getCookie("platform"));
+        ga('send', 'event', 'DownloadCodeSample', getCookie("platform"));
         $('#post-download-instructions').html(msg)
         $('#post-download-instructions').show();
         //$('#post-download-instructions').addClass('animated fadeInUp');
@@ -242,6 +245,7 @@ function _errorHandlerDownloadSample(error) {
     }
     //document.getElementById("messageLabel").textContent = 'CodeSampleDownloadError: ' + msg
     ga('send', 'event', 'DownloadCodeSample', 'Error-' + msg, '', 0);
+    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'DownloadCodeSample-Error', 'ms.callresult', error.message);
 }
 
 

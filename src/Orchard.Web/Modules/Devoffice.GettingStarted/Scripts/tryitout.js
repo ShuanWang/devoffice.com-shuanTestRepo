@@ -223,6 +223,7 @@ function TryItOut(elemIDs, elemClasses) {
             error: function (jqXHR, exception) {
                 msgHolder.html("<div class='ms-font-color-error ms-font-m'>Encountered error while requesting service endpoint, Please login and try again</div>");
                 ga('send', 'event', 'O365path-Rest', 'Try-it-out-GetServiceEndPoint-Error-' + jqXHR.responseText);
+                MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-GetServiceEndPoint-Error', 'ms.callresult', jqXHR.responseText);
             },
             complete: function (xhr) {
             }
@@ -258,17 +259,20 @@ function TryItOut(elemIDs, elemClasses) {
                 updateResponse(result, data, true);
                 resultStatus = xhr.status;
                 ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnUserData-' + controller + '-Success');
+                MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnUserData-Success', 'ms.contentproperties', controller);
             },
             error: function (jqXHR, exception) {
                 updateResponse(result, "Error...", false);
                 if (jqXHR.status === 0) {
                     updateResponse(result, "The request has been cancelled, please login and try again", false);
                     ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnUserData-' + controller + '-Error-Request has been cancelled');
+                    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnUserData-Error', 'ms.contentproperties', controller, 'ms.callresult', 'Request has been cancelled');
                     return;
                 }
                 else {
                     updateResponse(result, jqXHR.responseText, false);
                     ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnUserData-' + controller + '-Error-' + jqXHR.responseText);
+                    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnUserData-Error', 'ms.contentproperties', controller, 'ms.callresult', jqXHR.responseText);
                     return;
                 }
             },
@@ -319,12 +323,14 @@ function TryItOut(elemIDs, elemClasses) {
                 updateResponse(result, data, true);
                 resultStatus = xhr.status;
                 ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Success');
+                MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnSampleData-Success', 'ms.contentproperties', url);
             },
             error: function(jqXHR, exception) { 
                 // Time out 
                 if (exception === 'timeout') {
                     updateResponse(result, "Timeout occurred...", false);
                     ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + 'TimeoutError');
+                    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnSampleData-Error', 'ms.contentproperties', url, 'ms.callresult', 'TimeoutError');
                     return;
                 }
                 var errorHeader = jqXHR.getResponseHeader('ApiExProxy-Error');
@@ -332,6 +338,7 @@ function TryItOut(elemIDs, elemClasses) {
                 if (jqXHR.status == '0' || (errorHeader != null && errorHeader != '0')) {
                     updateResponse(result, "Proxy not reachable", false);
                     ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + 'ProxyNotReachable');
+                    MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnSampleData-Error', 'ms.contentproperties', url, 'ms.callresult', 'ProxyNotReachable');
                 } else {
                     try {
                        // Service Error
@@ -339,11 +346,13 @@ function TryItOut(elemIDs, elemClasses) {
                         updateResponse(result, jsonResponseText, true);
                         resultStatus = jqXHR.status;
                         ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + jsonResponseText);
+                        MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnSampleData-Error', 'ms.contentproperties', url, 'ms.callresult', jsonResponseText);
                     }
                     catch (error) {
                         // Unexpected Service Error 
                         updateResponse(result, "Unexpected Error occured", false);
                         ga('send', 'event', 'O365path-Rest', 'Try-it-out-invokeUrlOnSampleData-' + url + '-Error-' + 'Unexpected Service Error');
+                        MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'Try-it-out-invokeUrlOnSampleData-Error', 'ms.contentproperties', url, 'ms.callresult', 'Unexpected Service Error');
                     }
                 }
             },
