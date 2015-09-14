@@ -165,7 +165,7 @@ function codeSamplePackageAndDownload(platformName, clientId, clientSecret, appR
             window.saveAs(content, reposList.Platform[selectedPlatformIndex].GitHubRepoName + ".zip");
             ga('send', 'event', 'DownloadCodeSample', 'Success-' + platformName, platformName, 1);
             appInsights.trackEvent("DownloadCodeSampleWithClientId", { ClientId: clientIdOriginalFormat });
-            MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'DownloadCodeSample-Success', 'ms.contentproperties', platformName + '-' + clientIdOriginalFormat);
+            MscomCustomEvent('ms.InteractionType', '4', 'ms.controlname', 'O365apis', 'ms.ea_action', 'DownloadCodeSample-Success', 'ms.contentproperties', platformName + '-withClientId');
         });
         _progressStatus(100)
     }
